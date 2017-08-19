@@ -11,9 +11,12 @@ class AbilityScores extends Component {
   render() {
     return (
       <div>
-          {this.props.abilityScores.map((abilityScore) => <AbilityScore key={abilityScore.name} abilityScore={abilityScore}
+          <table>
+          {this.props.abilityScores.abilityScores.map((abilityScore) => <AbilityScore key={abilityScore.name} abilityScore={abilityScore}
             canEditDefaultRacial={races.find(r => r.name == this.props.currentRace).hasUnspecifiedModifiers}
-            canEditDefaultTheme={themes.find(t => t.name == this.props.currentTheme).hasUnspecifiedModifiers} />)};
+            canEditDefaultTheme={themes.find(t => t.name == this.props.currentTheme).hasUnspecifiedModifiers} />)}
+            </table>
+            <div>Points Remaining: {this.props.abilityScores.remainingPointsToSpent}</div>
       </div>
     );
   }

@@ -1,5 +1,6 @@
 import Character from '../models/character';
 import AbilityScore from '../models/abilityScore';
+import AbilityManager from '../models/abilityManager';
 import * as Abilities from '../rules/abilities';
 import * as RaceTypes from '../rules/races';
 import * as ThemeTypes from '../rules/themes';
@@ -9,34 +10,28 @@ export default {
         race: RaceTypes.HUMAN,
         theme: ThemeTypes.THEMELESS
     }),
-    abilityScores: [
+    abilityScores: new AbilityManager({abilityScores: [
         new AbilityScore({
             name: Abilities.STRENGTH,
-            baseScore: 10,
             racialModifier: 2,
             themeModifier: 1,
             isDefaultRacialModifier: true,
             isDefaultThemeModifier: true,
         }),
         new AbilityScore({
-            name: Abilities.DEXTERITY,
-            baseScore: 10
+            name: Abilities.DEXTERITY
         }),
         new AbilityScore({
-            name: Abilities.CONSTITUTION,
-            baseScore: 10
+            name: Abilities.CONSTITUTION
         }),
         new AbilityScore({
-            name: Abilities.INTELLIGENCE,
-            baseScore: 10
+            name: Abilities.INTELLIGENCE
         }),
         new AbilityScore({
-            name: Abilities.WISDOM,
-            baseScore: 10
+            name: Abilities.WISDOM
         }),
         new AbilityScore({
-            name: Abilities.CHARISMA,
-            baseScore: 10
+            name: Abilities.CHARISMA
         })
-    ]
+    ]})
 }

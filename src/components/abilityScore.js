@@ -5,8 +5,12 @@ import * as abilityScoreActions from '../actions/abilityScoreActions'
 import InitialState from '../reducers/initialState';
 
 class AbilityScore extends Component {
-  scoreChanged = (ev) => {
-    this.props.abilityScoreActions.updateAbilityScore(this.props.abilityScore.name, ev.target.value);
+  addPoint = (ev) => {
+    this.props.abilityScoreActions.addPoint(this.props.abilityScore.name);
+  }
+
+  removePoint = (ev) => {
+    this.props.abilityScoreActions.removePoint(this.props.abilityScore.name);
   }
 
   defaultRacialModifierChanged = (ev) => {
@@ -23,13 +27,15 @@ class AbilityScore extends Component {
 
   render() {
     return (
-      <div>
-        <label htmlFor={`Ability-${this.props.abilityScore.name}`}>{this.props.abilityScore.name}</label>
-        <input type="number" id={`Ability-${this.props.abilityScore.name}`} value={this.props.abilityScore.score} onChange={this.scoreChanged} />
-        <span>{this.props.abilityScore.modifier}</span>
-        <input type="checkbox" checked={this.props.abilityScore.isDefaultRacialModifier} onChange={this.defaultRacialModifierChanged} disabled={!this.props.canEditDefaultRacial}/>
-        <input type="checkbox" checked={this.props.abilityScore.isDefaultThemeModifier} onChange={this.defaultThemeModifierChanged} disabled={!this.props.canEditDefaultTheme}/>
-      </div>
+      <tr>
+        <td>{this.props.abilityScore.name}</td>
+        <td>{this.props.abilityScore.score}</td>
+        <td>{this.props.abilityScore.pointsAssigned}<button onClick={this.addPoint}>+</button><button onClick={this.removePoint}>-</button></td>
+        <td>{this.props.abilityScore.racialModifier}</td>
+        <td>{this.props.abilityScore.themeModifier}</td>
+        <td><input type="checkbox" checked={this.props.abilityScore.isDefaultRacialModifier} onChange={this.defaultRacialModifierChanged} disabled={!this.props.canEditDefaultRacial}/></td>
+        <td><input type="checkbox" checked={this.props.abilityScore.isDefaultThemeModifier} onChange={this.defaultThemeModifierChanged} disabled={!this.props.canEditDefaultTheme}/></td>
+      </tr>
     );
   }
 }

@@ -11,18 +11,44 @@ export default function abilityScores(state = initialState.abilityScores, action
     case AbilityActions.UPDATE_ABILITY_SCORE:
       const abilityScore = findAbilityByName(state, action.ability);
       if(abilityScore){
-        const newAbilityScore = abilityScore.updateTo(action.newScore);
+        const newAbilityScore = update(abilityScore, {pointsAssigned: {$set: action.newScore}})
         return replaceAbilityScore(state, abilityScore, newAbilityScore);
       }
+      return state;
+
+    case AbilityActions.ADD_POINT:
+      if(state.remainingPointsToSpent > 0) {
+        const abilityScoreToAddTo = findAbilityByName(state, action.ability);
+        if(abilityScoreToAddTo){
+          const newAbilityScore = update(abilityScoreToAddTo, {pointsAssigned: {$apply: (x) => x + 1}})
+          const newState = replaceAbilityScore(state, abilityScoreToAddTo, newAbilityScore);
+          if(newAbilityScore.pointsAssigned > 0) {
+            return update(newState, {remainingPointsToSpent: {$apply: (x) => x - 1}})
+          }
+          return newState;
+        }        
+      }
+      return state;
+    case AbilityActions.REMOVE_POINT:
+      const abilityScoreToRemoveFrom = findAbilityByName(state, action.ability);
+      if(abilityScoreToRemoveFrom){
+        const newAbilityScore = update(abilityScoreToRemoveFrom, {pointsAssigned: {$apply: (x) => x - 1}})
+        const newState = replaceAbilityScore(state, abilityScoreToRemoveFrom, newAbilityScore);
+        if(newAbilityScore.pointsAssigned >= 0) {
+          return update(newState, {remainingPointsToSpent: {$apply: (x) => x + 1}})
+        }
+        return newState;
+      }        
       return state;
     case CharacterActions.CHANGE_RACE:
       const newRace = races.find(r => r.name == action.newRace);
       if(newRace) {
-        let newState = state.map(abilityScore => {
+        let newAbilityScores = state.abilityScores.map(abilityScore => {
           var newRaceModifier = newRace.abilityModifiers.find(m => m.ability == abilityScore.name);
           var newModifier = newRaceModifier ? newRaceModifier.modifier : 0;
           return update(abilityScore, {racialModifier: {$set: newModifier}})
         });
+        let newState = update(state, {abilityScores: {$set: newAbilityScores}});
         const nullAbilities = newRace.abilityModifiers.filter(a => !a.ability);
         if(nullAbilities.length > 0) {
           const defaultRacial = findDefaultRacial(state);
@@ -35,18 +61,19 @@ export default function abilityScores(state = initialState.abilityScores, action
     case CharacterActions.CHANGE_THEME:
       const newTheme = themes.find(r => r.name == action.newTheme);
       if(newTheme) {
-        let newState = state.map(abilityScore => {
+        let newAbilityScores = state.abilityScores.map(abilityScore => {
           var newThemeModifier = newTheme.abilityModifiers.find(m => m.ability == abilityScore.name);
           var newModifier = newThemeModifier ? newThemeModifier.modifier : 0;
           return update(abilityScore, {themeModifier: {$set: newModifier}})
         });
+        let newState = update(state, {abilityScores: {$set: newAbilityScores}});
         const nullAbilities = newTheme.abilityModifiers.filter(a => !a.ability);
         if(nullAbilities.length > 0) {
           const defaultTheme = findDefaultTheme(state);
           const newAbility = update(defaultTheme, {themeModifier: {$set: nullAbilities[0].modifier}});
           newState = replaceAbilityScore(newState, defaultTheme, newAbility);
         }
-        return newState;
+        return newState
       }
       return state;
     case AbilityActions.SET_DEFAULT_RACIAL:
@@ -85,17 +112,17 @@ export default function abilityScores(state = initialState.abilityScores, action
 }
 
 function replaceAbilityScore(state, old, replacement) {
-  return update(state, {$splice: [[state.indexOf(old), 1, replacement]]})
+  return update(state,{abilityScores: {$splice: [[state.abilityScores.indexOf(old), 1, replacement]]}})
 }
 
 function findAbilityByName(state, name) {
-  return state.find(a => a.name == name)
+  return state.abilityScores.find(a => a.name == name)
 }
 
 function findDefaultRacial(state) {
-  return state.find(a => a.isDefaultRacialModifier);
+  return state.abilityScores.find(a => a.isDefaultRacialModifier);
 }
 
 function findDefaultTheme(state) {
-  return state.find(a => a.isDefaultRacialModifier);
+  return state.abilityScores.find(a => a.isDefaultRacialModifier);
 }

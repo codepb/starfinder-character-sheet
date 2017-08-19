@@ -1,9 +1,10 @@
 export default class AbilityScore {
     name;
     get score() {
-        return this.baseScore + this.racialModifier + this.themeModifier;
+        return this.baseScore + this.racialModifier + this.themeModifier + this.pointsAssigned;
     }
-    baseScore = 0;
+    baseScore = 10;
+    pointsAssigned = 0;
     racialModifier = 0;
     themeModifier = 0;
     isDefaultRacialModifier = false;
@@ -16,6 +17,6 @@ export default class AbilityScore {
     }
 
     updateTo = (newScore) => {
-        return new AbilityScore({ ...this, baseScore: newScore - this.racialModifier});
+        return new AbilityScore({ ...this, points: newScore - this.racialModifier - this.themeModifier - this.baseScore});
     }
 }
