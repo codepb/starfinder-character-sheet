@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import Button from 'material-ui/Button';
+import Checkbox from 'material-ui/Checkbox';
+import { TableCell,  TableRow } from 'material-ui/Table';
 import * as abilityScoreActions from '../actions/abilityScoreActions'
 import InitialState from '../reducers/initialState';
 
@@ -27,15 +30,16 @@ class AbilityScore extends Component {
 
   render() {
     return (
-      <tr>
-        <td>{this.props.abilityScore.name}</td>
-        <td>{this.props.abilityScore.score}</td>
-        <td>{this.props.abilityScore.pointsAssigned}<button onClick={this.addPoint}>+</button><button onClick={this.removePoint}>-</button></td>
-        <td>{this.props.abilityScore.racialModifier}</td>
-        <td>{this.props.abilityScore.themeModifier}</td>
-        <td><input type="checkbox" checked={this.props.abilityScore.isDefaultRacialModifier} onChange={this.defaultRacialModifierChanged} disabled={!this.props.canEditDefaultRacial}/></td>
-        <td><input type="checkbox" checked={this.props.abilityScore.isDefaultThemeModifier} onChange={this.defaultThemeModifierChanged} disabled={!this.props.canEditDefaultTheme}/></td>
-      </tr>
+      <TableRow>
+        <TableCell>{this.props.abilityScore.name}</TableCell>
+        <TableCell>{this.props.abilityScore.score}</TableCell>
+        <TableCell>{this.props.abilityScore.modifier}</TableCell>
+        <TableCell>{this.props.abilityScore.pointsAssigned}<Button color="primary" onClick={this.addPoint}>+</Button><Button color="accent" onClick={this.removePoint}>-</Button></TableCell>
+        <TableCell>{this.props.abilityScore.racialModifier}</TableCell>
+        <TableCell>{this.props.abilityScore.themeModifier}</TableCell>
+        <TableCell><Checkbox checked={this.props.abilityScore.isDefaultRacialModifier} onChange={this.defaultRacialModifierChanged} disabled={!this.props.canEditDefaultRacial}/></TableCell>
+        <TableCell><Checkbox checked={this.props.abilityScore.isDefaultThemeModifier} onChange={this.defaultThemeModifierChanged} disabled={!this.props.canEditDefaultTheme}/></TableCell>
+      </TableRow>
     );
   }
 }

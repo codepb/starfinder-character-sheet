@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import TextField from 'material-ui/TextField';
+import DisabledTextField from './utilities/disabledTextField';
+import Typography from 'material-ui/Typography';
 import Select from './utilities/select';
 import * as characterActions from '../actions/characterActions';
 import races from '../rules/races';
@@ -18,11 +21,17 @@ class AbilityScores extends Component {
     this.props.characterActions.changeTheme(value);
   }
 
+  nameChanged = (event) => {
+    this.props.characterActions.changeName(event.target.value);
+  }
+
   render() {
     return (
       <div>
-        <Select name="race" value={this.props.character.race} options={raceOptions} onChange={this.raceChanged} />
-        <Select name="theme"  value={this.props.character.theme} options={themeOptions} onChange={this.themeChanged} />
+        <TextField label="Name" value={this.props.character.name} onChange={this.nameChanged}/>
+        <Select label="Race" value={this.props.character.race.name} options={raceOptions} onChange={this.raceChanged} />
+        <Select label="Theme"  value={this.props.character.theme} options={themeOptions} onChange={this.themeChanged} />
+        <DisabledTextField label="Size" value={this.props.character.race.size} disabled={true}/>
       </div>
     );
   }

@@ -3,6 +3,9 @@ export default class AbilityScore {
     get score() {
         return this.baseScore + this.racialModifier + this.themeModifier + this.pointsAssigned;
     }
+    get modifier() {
+        return Math.floor(this.score / 2 - 5);
+    }
     baseScore = 10;
     pointsAssigned = 0;
     racialModifier = 0;

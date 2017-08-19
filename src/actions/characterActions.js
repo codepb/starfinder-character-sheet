@@ -13,3 +13,10 @@ export function changeTheme(newTheme){
     newTheme
   };
 }
+
+export function changeName(newName){
+  return {
+    type: types.CHANGE_NAME,
+    newName
+  };
+}
