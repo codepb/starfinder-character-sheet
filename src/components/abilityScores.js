@@ -3,13 +3,17 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as abilityScoreActions from '../actions/abilityScoreActions'
 import AbilityScore from './abilityScore';
+import races from '../rules/races';
+import themes from '../rules/themes';
 
 class AbilityScores extends Component {
 
   render() {
     return (
       <div>
-          {this.props.abilityScores.map((abilityScore) => <AbilityScore key={abilityScore.name} abilityScore={abilityScore} />)};
+          {this.props.abilityScores.map((abilityScore) => <AbilityScore key={abilityScore.name} abilityScore={abilityScore}
+            canEditDefaultRacial={races.find(r => r.name == this.props.currentRace).hasUnspecifiedModifiers}
+            canEditDefaultTheme={themes.find(t => t.name == this.props.currentTheme).hasUnspecifiedModifiers} />)};
       </div>
     );
   }
@@ -17,7 +21,9 @@ class AbilityScores extends Component {
 
 function mapStateToProps(state) {    
     return {
-        abilityScores: state.abilityScores
+        abilityScores: state.abilityScores,
+        currentRace: state.character.race,
+        currentTheme: state.character.theme
     };
 }
 

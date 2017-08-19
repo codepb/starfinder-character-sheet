@@ -1,9 +1,13 @@
 export default class AbilityScore {
     name;
-    score;
-    get modifier() {
-        return (this.score/2) - 5;
+    get score() {
+        return this.baseScore + this.racialModifier + this.themeModifier;
     }
+    baseScore = 0;
+    racialModifier = 0;
+    themeModifier = 0;
+    isDefaultRacialModifier = false;
+    isDefaultThemeModifier = false;
 
     constructor(params) {
         for (let i in params) {
@@ -11,7 +15,7 @@ export default class AbilityScore {
         }
     }
 
-    getUpdatedAbilityScore = (newScore) => {
-        return new AbilityScore({ ...this, score: newScore});
+    updateTo = (newScore) => {
+        return new AbilityScore({ ...this, baseScore: newScore - this.racialModifier});
     }
 }

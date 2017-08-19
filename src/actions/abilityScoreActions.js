@@ -7,3 +7,17 @@ export function updateAbilityScore(ability, newScore){
     newScore
   };
 }
+
+export function setAsDefaultRacialModifier(ability){
+  return {
+    type: types.SET_DEFAULT_RACIAL,
+    ability
+  };
+}
+
+export function setAsDefaultThemeModifier(ability){
+  return {
+    type: types.SET_DEFAULT_THEME,
+    ability
+  };
+}
