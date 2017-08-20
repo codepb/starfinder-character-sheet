@@ -12,7 +12,7 @@ const styles = {
 
 function DisabledTextInput(props) {
   return (
-    <TextField classes={{inputDisabled: props.classes.inputDisabled}} disabled={true} value={props.value} label={props.label} />
+    <TextField InputProps={{classes: {inputDisabled: props.classes.inputDisabled}}} disabled={true} value={props.value} label={props.label} />
   );
 }
 

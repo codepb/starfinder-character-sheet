@@ -33,5 +33,6 @@ export default {
         race: races.find(r => r.name == RaceTypes.HUMAN),
         theme: ThemeTypes.THEMELESS
     }),
+    miscInitiative: 0,
     abilityScores: new AbilityManager({abilityScores: abilityScores})
 }
