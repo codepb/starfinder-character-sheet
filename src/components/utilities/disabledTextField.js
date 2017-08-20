@@ -12,14 +12,15 @@ const styles = {
 
 function DisabledTextInput(props) {
   return (
-    <TextField InputProps={{classes: {inputDisabled: props.classes.inputDisabled}}} disabled={true} value={props.value} label={props.label} />
+    <TextField InputProps={{classes: {inputDisabled: props.classes.inputDisabled}}} disabled={true} value={props.value} label={props.label} style={props.style}/>
   );
 }
 
 DisabledTextInput.propTypes = {
   classes: PropTypes.object.isRequired,
   value: PropTypes.any,
-  label: PropTypes.string
+  label: PropTypes.string,
+  style: PropTypes.style
 };
 
 export default withStyles(styles)(DisabledTextInput);

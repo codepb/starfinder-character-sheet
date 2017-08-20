@@ -34,5 +34,6 @@ export default {
         theme: ThemeTypes.THEMELESS
     }),
     miscInitiative: 0,
-    abilityScores: new AbilityManager({abilityScores: abilityScores})
+    abilityScores: new AbilityManager({abilityScores: abilityScores}),
+    armorBonuses: { energy: 0, kinetic: 0, misc: 0, damageReduction: 0, resistances: '' }
 }
