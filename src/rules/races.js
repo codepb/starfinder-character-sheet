@@ -9,6 +9,13 @@ export const DAMAYA_LASHUNTA = 'Damaya Lashunta';
 export const SHIRREN = 'Shirren';
 export const VESK = 'Vesk';
 export const YSOKI = 'Ysoki';
+export const DWARF = 'Dwarf';
+export const ELF = 'Elf';
+export const FEYCHILD_GNOME = 'Feychild Gnome';
+export const BLEACHLING_GNOME = 'Bleachling Gnome';
+export const HALF_ELF = 'Half-Elf';
+export const HALF_ORC = 'Half-Orc';
+export const HALFLING = 'Halfling';
 
 class Race {
   name;
@@ -170,6 +177,132 @@ export const YSOKI_RACE = new Race({
   ]
 });
 
+export const DWARF_RACE = new Race({
+  name: DWARF,
+  hp: 6,
+  size: Sizes.MEDIUM,
+  abilityModifiers: [
+    new AbilityModifier({
+      ability: Abilities.CONSTITUTION,
+      modifier: 2
+    }),
+    new AbilityModifier({
+      ability: Abilities.WISDOM,
+      modifier: 2
+    }),
+    new AbilityModifier({
+      ability: Abilities.CHARISMA,
+      modifier: -2
+    })
+  ]
+});
+
+export const ELF_RACE = new Race({
+  name: ELF,
+  hp: 4,
+  size: Sizes.MEDIUM,
+  abilityModifiers: [
+    new AbilityModifier({
+      ability: Abilities.DEXTERITY,
+      modifier: 2
+    }),
+    new AbilityModifier({
+      ability: Abilities.INTELLIGENCE,
+      modifier: 2
+    }),
+    new AbilityModifier({
+      ability: Abilities.CONSTITUTION,
+      modifier: -2
+    })
+  ]
+});
+
+export const FEYCHILD_GNOME_RACE = new Race({
+  name: FEYCHILD_GNOME,
+  hp: 4,
+  size: Sizes.SMALL,
+  abilityModifiers: [
+    new AbilityModifier({
+      ability: Abilities.CONSTITUTION,
+      modifier: 2
+    }),
+    new AbilityModifier({
+      ability: Abilities.CHARISMA,
+      modifier: 2
+    }),
+    new AbilityModifier({
+      ability: Abilities.STRENGTH,
+      modifier: -2
+    })
+  ]
+});
+
+export const BLEACHLING_GNOME_RACE = new Race({
+  name: BLEACHLING_GNOME,
+  hp: 4,
+  size: Sizes.SMALL,
+  abilityModifiers: [
+    new AbilityModifier({
+      ability: Abilities.CONSTITUTION,
+      modifier: 2
+    }),
+    new AbilityModifier({
+      ability: Abilities.INTELLIGENCE,
+      modifier: 2
+    }),
+    new AbilityModifier({
+      ability: Abilities.STRENGTH,
+      modifier: -2
+    })
+  ]
+});
+
+export const HALF_ELF_RACE = new Race({
+  name: HALF_ELF,
+  hp: 4,
+  size: Sizes.MEDIUM,
+  hasUnspecifiedModifiers: true,
+  abilityModifiers: [
+    new AbilityModifier({
+      ability: null,
+      modifier: 2
+    })
+  ]
+});
+
+export const HALF_ORC_RACE = new Race({
+  name: HALF_ORC,
+  hp: 6,
+  size: Sizes.MEDIUM,
+  hasUnspecifiedModifiers: true,
+  abilityModifiers: [
+    new AbilityModifier({
+      ability: null,
+      modifier: 2
+    })
+  ]
+});
+
+export const HALFLING_RACE = new Race({
+  name: HALFLING,
+  hp: 2,
+  size: Sizes.SMALL,
+  abilityModifiers: [
+    new AbilityModifier({
+      ability: Abilities.DEXTERITY,
+      modifier: 2
+    }),
+    new AbilityModifier({
+      ability: Abilities.CHARISMA,
+      modifier: 2
+    }),
+    new AbilityModifier({
+      ability: Abilities.STRENGTH,
+      modifier: -2
+    })
+  ]
+});
+
 const races = [
   ANDROID_RACE,
   HUMAN_RACE,
@@ -178,7 +311,14 @@ const races = [
   DAMAYA_LASHUNTA_RACE,
   SHIRREN_RACE,
   VESK_RACE,
-  YSOKI_RACE
+  YSOKI_RACE,
+  DWARF_RACE,
+  ELF_RACE,
+  FEYCHILD_GNOME_RACE,
+  BLEACHLING_GNOME_RACE,
+  HALF_ELF_RACE,
+  HALF_ORC_RACE,
+  HALFLING_RACE
 ]
 
 export default races;

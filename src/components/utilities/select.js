@@ -31,7 +31,7 @@ export default class Select extends Component {
         <Menu anchorEl={this.state.anchorElement} open={this.state.open} onRequestClose={this.handleRequestClose}>
           {this.props.options.map((option, i) => <MenuItem value={option.value}
                                                             key={option.value}
-                                                            selected={option.value == this.state.value}
+                                                            selected={option.value === this.state.value}
                                                             onClick={ev => this.changed(ev, option.value)}>{option.label}</MenuItem>)}
         </Menu>
       </span>

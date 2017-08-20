@@ -1,4 +1,3 @@
-import update from 'immutability-helper';
 import initialState from './initialState';
 import * as InitiativeActions from '../actions/types/initiative';
 

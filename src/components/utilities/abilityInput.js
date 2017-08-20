@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
 import TextField from 'material-ui/TextField';
 import DisabledTextField from './disabledTextField';
 
@@ -29,10 +28,10 @@ export default function AbilityInput(props) {
 }
 
 AbilityInput.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   value: PropTypes.any,
   label: PropTypes.string,
-  style: PropTypes.style,
+  style: PropTypes.object,
   onChange: PropTypes.func,
   type: PropTypes.string
 };

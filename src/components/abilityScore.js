@@ -5,7 +5,6 @@ import Button from 'material-ui/Button';
 import Checkbox from 'material-ui/Checkbox';
 import { TableCell,  TableRow } from 'material-ui/Table';
 import * as abilityScoreActions from '../actions/abilityScoreActions'
-import InitialState from '../reducers/initialState';
 
 class AbilityScore extends Component {
   addPoint = (ev) => {
@@ -17,13 +16,13 @@ class AbilityScore extends Component {
   }
 
   defaultRacialModifierChanged = (ev) => {
-    if(!this.props.isDefaultRacialModifier) {
+    if(!this.props.abilityScore.isDefaultRacialModifier) {
       this.props.abilityScoreActions.setAsDefaultRacialModifier(this.props.abilityScore.name);
     }
   }
 
   defaultThemeModifierChanged = (ev) => {
-    if(!this.props.isDefaultThemeModifier) {
+    if(!this.props.abilityScore.isDefaultThemeModifier) {
       this.props.abilityScoreActions.setAsDefaultThemeModifier(this.props.abilityScore.name);
     }
   }

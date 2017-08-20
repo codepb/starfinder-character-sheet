@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import TextField from 'material-ui/TextField';
 import { FormLabel } from 'material-ui/Form';
 import Icon from 'material-ui/Icon';
 import Card, { CardHeader, CardContent } from 'material-ui/Card';
 import AbilityInput from './utilities/abilityInput';
 import * as armorBonusActions from '../actions/armorBonusActions';
-import AbilityScore from './abilityScore';
-import races from '../rules/races';
-import themes from '../rules/themes';
 import * as Abilities from '../rules/abilities';
 
 var styles = {
@@ -45,35 +41,35 @@ class Armor extends Component {
         <CardContent>
           <div>
             <FormLabel style={{marginRight:'5px'}}>EAC</FormLabel>
-            <AbilityInput label="Total" disabled={true} value={this.props.energyArmorClass} disabled={true} style={styles.textFld}/>
+            <AbilityInput label="Total" value={this.props.energyArmorClass} disabled={true} style={styles.textFld}/>
             <Icon style={styles.icons}>drag_handle</Icon>
             <AbilityInput value="10" disabled={true} style={styles.textFld}/>
             <Icon style={styles.icons}>add</Icon>
             <AbilityInput label="Bonus" type="number" value={this.props.armorBonuses.energy}  onChange={this.energyBonusUpdated} style={styles.textFld}/>
             <Icon style={styles.icons}>add</Icon>
-            <AbilityInput label="Dexterity" disabled={true} value={this.props.dexterityScore.modifier} disabled={true} style={styles.textFld}/>
+            <AbilityInput label="Dexterity" value={this.props.dexterityScore.modifier} disabled={true} style={styles.textFld}/>
             <Icon style={styles.icons}>add</Icon>
             <AbilityInput label="Misc" type="number" value={this.props.armorBonuses.misc} onChange={this.miscUpdated} style={styles.textFld}/>
           </div>
           <div>
             <FormLabel style={{marginRight:'5px'}}>KAC</FormLabel>
-            <AbilityInput label="Total" disabled={true} value={this.props.kineticArmorClass} disabled={true} style={styles.textFld}/>
+            <AbilityInput label="Total" value={this.props.kineticArmorClass} disabled={true} style={styles.textFld}/>
             <Icon style={styles.icons}>drag_handle</Icon>
             <AbilityInput value="10" disabled={true} style={styles.textFld}/>
             <Icon style={styles.icons}>add</Icon>
             <AbilityInput label="Bonus" type="number" value={this.props.armorBonuses.kinetic}  onChange={this.kineticBonusUpdated} style={styles.textFld}/>
             <Icon style={styles.icons}>add</Icon>
-            <AbilityInput label="Dexterity" disabled={true} value={this.props.dexterityScore.modifier} disabled={true} style={styles.textFld}/>
+            <AbilityInput label="Dexterity" value={this.props.dexterityScore.modifier} disabled={true} style={styles.textFld}/>
             <Icon style={styles.icons}>add</Icon>
             <AbilityInput label="Misc" type="number" value={this.props.armorBonuses.misc} onChange={this.miscUpdated} style={styles.textFld}/>
           </div>
           <div>
             <FormLabel style={{marginRight:'5px'}}>AC vs Combat Maneuvers</FormLabel>
-            <AbilityInput label="Total" disabled={true} value={8 + this.props.kineticArmorClass} disabled={true} style={styles.textFld}/>
+            <AbilityInput label="Total" value={8 + this.props.kineticArmorClass} disabled={true} style={styles.textFld}/>
             <Icon style={styles.icons}>drag_handle</Icon>
             <AbilityInput value="8" disabled={true} style={styles.textFld}/>
             <Icon style={styles.icons}>add</Icon>
-            <AbilityInput label="KAC" disabled={true} value={this.props.kineticArmorClass} disabled={true} style={styles.textFld}/>
+            <AbilityInput label="KAC" value={this.props.kineticArmorClass} disabled={true} style={styles.textFld}/>
           </div>
           <div>
             <AbilityInput label="DR" type="number" value={this.props.armorBonuses.damageReduction} onChange={this.damageReductionUpdated}  style={styles.textFld}/>

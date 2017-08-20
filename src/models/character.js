@@ -1,5 +1,3 @@
-import AbilityScore from './abilityScore';
-
 export default class Character {
     abilityScores = [];
     name = '';

@@ -1,6 +1,5 @@
 import update from 'immutability-helper';
 import initialState from './initialState';
-import Character from '../models/character';
 import * as AbilityActions from '../actions/types/abilityScores';
 import * as CharacterActions from '../actions/types/character';
 import races from '../rules/races';
@@ -41,14 +40,14 @@ export default function abilityScores(state = initialState.abilityScores, action
       }        
       return state;
     case CharacterActions.CHANGE_RACE:
-      const newRace = races.find(r => r.name == action.newRace);
+      const newRace = races.find(r => r.name === action.newRace);
       if(newRace) {
         let newAbilityScores = {};
         
         for(let ability in state.abilityScores) {
           const abilityScore = state.abilityScores[ability];
-          var newRaceModifier = newRace.abilityModifiers.find(m => m.ability == abilityScore.name);
-          var newModifier = newRaceModifier ? newRaceModifier.modifier : 0;
+          const newRaceModifier = newRace.abilityModifiers.find(m => m.ability === abilityScore.name);
+          const newModifier = newRaceModifier ? newRaceModifier.modifier : 0;
           newAbilityScores[ability] = update(abilityScore, {racialModifier: {$set: newModifier}})
         };
         let newState = update(state, {abilityScores: {$set: newAbilityScores}});
@@ -62,14 +61,14 @@ export default function abilityScores(state = initialState.abilityScores, action
       }
       return state;
     case CharacterActions.CHANGE_THEME:
-      const newTheme = themes.find(r => r.name == action.newTheme);
+      const newTheme = themes.find(r => r.name === action.newTheme);
       if(newTheme) {
         let newAbilityScores = {};
         for(let ability in state.abilityScores) { 
           const abilityScore = state.abilityScores[ability];
-          var newThemeModifier = newTheme.abilityModifiers.find(m => m.ability == abilityScore.name);
-          var newModifier = newThemeModifier ? newThemeModifier.modifier : 0;
-          newAbilityScores[ability] = update(abilityScore, {themeModifier: {$set: newModifier}})
+          const newThemeModifier = newTheme.abilityModifiers.find(m => m.ability === abilityScore.name);
+          const newModifierTheme = newThemeModifier ? newThemeModifier.modifier : 0;
+          newAbilityScores[ability] = update(abilityScore, {themeModifier: {$set: newModifierTheme}})
         };
         let newState = update(state, {abilityScores: {$set: newAbilityScores}});
         const nullAbilities = newTheme.abilityModifiers.filter(a => !a.ability);
@@ -84,7 +83,7 @@ export default function abilityScores(state = initialState.abilityScores, action
     case AbilityActions.SET_DEFAULT_RACIAL:
       const racialAbilityScore = findAbilityByName(state, action.ability);
       const currentDefaultRacial = findDefaultRacial(state);
-      if(racialAbilityScore && abilityScore != currentDefaultRacial) {
+      if(racialAbilityScore && abilityScore !== currentDefaultRacial) {
         const currentRacialModifier = currentDefaultRacial.racialModifier;
         const newDefaultRacial = update(racialAbilityScore, {isDefaultRacialModifier: {$set: true}, racialModifier: {$set: currentRacialModifier}});
         let newState = replaceAbilityScore(state, racialAbilityScore, newDefaultRacial);
@@ -99,7 +98,7 @@ export default function abilityScores(state = initialState.abilityScores, action
     case AbilityActions.SET_DEFAULT_THEME:
       const themeAbilityScore = findAbilityByName(state, action.ability);
       const currentDefaultTheme = findDefaultTheme(state);   
-      if(themeAbilityScore && themeAbilityScore != currentDefaultTheme) {
+      if(themeAbilityScore && themeAbilityScore !== currentDefaultTheme) {
         const currentThemeModifier = currentDefaultTheme.themeModifier;
         const newDefaultTheme = update(themeAbilityScore, {isDefaultThemeModifier: {$set: true}, themeModifier: {$set: currentThemeModifier}});
         let newState = replaceAbilityScore(state, themeAbilityScore, newDefaultTheme);

@@ -6,7 +6,6 @@ import Card, { CardHeader, CardContent } from 'material-ui/Card';
 import Typography from 'material-ui/Typography';
 import * as abilityScoreActions from '../actions/abilityScoreActions'
 import AbilityScore from './abilityScore';
-import races from '../rules/races';
 import themes from '../rules/themes';
 
 class AbilityScores extends Component {
@@ -17,7 +16,7 @@ class AbilityScores extends Component {
         const abilityScore = this.props.abilityScores.abilityScores[ability];
         rows.push(<AbilityScore key={abilityScore.name} abilityScore={abilityScore}
             canEditDefaultRacial={this.props.currentRace.hasUnspecifiedModifiers}
-            canEditDefaultTheme={themes.find(t => t.name == this.props.currentTheme).hasUnspecifiedModifiers} />)
+            canEditDefaultTheme={themes.find(t => t.name === this.props.currentTheme).hasUnspecifiedModifiers} />)
       }
     return (
         <Card raised={true}>

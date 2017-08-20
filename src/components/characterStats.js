@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import TextField from 'material-ui/TextField';
 import DisabledTextField from './utilities/disabledTextField';
-import Typography from 'material-ui/Typography';
 import Select from './utilities/select';
 import * as characterActions from '../actions/characterActions';
 import races from '../rules/races';

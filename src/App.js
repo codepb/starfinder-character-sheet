@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
-import logo from './logo.svg';
 import './App.css';
 import AbilityScores from './components/abilityScores.js';
 import CharacterStats from './components/characterStats.js';

@@ -2,7 +2,7 @@ import Character from '../models/character';
 import AbilityScore from '../models/abilityScore';
 import AbilityManager from '../models/abilityManager';
 import * as Abilities from '../rules/abilities';
-import races, * as RaceTypes from '../rules/races';
+import * as Races from '../rules/races';
 import * as ThemeTypes from '../rules/themes';
 
 const abilityScores = {};
@@ -30,7 +30,7 @@ abilityScores[Abilities.CHARISMA] = new AbilityScore({
 });
 export default {
     character: new Character({
-        race: races.find(r => r.name == RaceTypes.HUMAN),
+        race: Races.HUMAN_RACE,
         theme: ThemeTypes.THEMELESS
     }),
     miscInitiative: 0,
