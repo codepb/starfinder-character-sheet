@@ -6,7 +6,6 @@ import { FormLabel } from 'material-ui/Form';
 import Icon from 'material-ui/Icon';
 import Card, { CardHeader, CardContent } from 'material-ui/Card';
 import DisabledTextField from './utilities/disabledTextField';
-import AbilityInput from './utilities/abilityInput';
 import * as initiativeActions from '../actions/initiativeActions';
 import AbilityScore from './abilityScore';
 import races from '../rules/races';
@@ -14,11 +13,12 @@ import themes from '../rules/themes';
 import * as Abilities from '../rules/abilities';
 
 var styles = {
-  textFld: { width: 40, textAlign: 'center' },
+  textFld: { width: 60, textAlign: 'center' },
+  label: { width: 100, marginRight: '5px' },
   icons: { verticalAlign: 'middle' }
 };
 
-class Initiative extends Component {
+class Health extends Component {
   miscUpdated = (ev) => {
     this.props.initiativeActions.updateMiscInitiative(ev.target.value * 1);
   }
@@ -26,13 +26,20 @@ class Initiative extends Component {
   render() {
     return (
       <Card raised={true}>
-        <CardHeader title="Initiative" />
+        <CardHeader title="Health and Resolve" />
         <CardContent>
-          <AbilityInput label="Total" disabled={true} value={this.props.dexterityScore.modifier + this.props.miscInitiative} disabled={true} style={styles.textFld}/>
-          <Icon style={styles.icons}>drag_handle</Icon>
-          <AbilityInput label="Dexterity" disabled={true} value={this.props.dexterityScore.modifier} disabled={true} style={styles.textFld}/>
-          <Icon style={styles.icons}>add</Icon>
-          <AbilityInput label="Misc" type="number" value={this.props.miscInitiative} onChange={this.miscUpdated}/>
+          <div>
+            <FormLabel style={styles.label}>Total</FormLabel>
+            <TextField label="Stamina" type="number" value={this.props.energyArmorClass} disabled={true} style={styles.textFld}/>
+            <TextField label="Hit Points" type="number" value={this.props.armorBonuses.energy}  onChange={this.energyBonusUpdated} style={styles.textFld}/>
+            <TextField label="Resolve Points" type="number" value={this.props.dexterityScore.modifier} disabled={true} style={styles.textFld}/>
+          </div>
+          <div>
+            <FormLabel style={styles.label}>Current</FormLabel>
+            <TextField label="Stamina" type="number" value={this.props.energyArmorClass} disabled={true} style={styles.textFld}/>
+            <TextField label="Hit Points" type="number" value={this.props.armorBonuses.energy}  onChange={this.energyBonusUpdated} style={styles.textFld}/>
+            <TextField label="Resolve Points" type="number" value={this.props.dexterityScore.modifier} disabled={true} style={styles.textFld}/>
+          </div>
         </CardContent>
       </Card>
     );
@@ -58,4 +65,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(Initiative);
+)(Health);

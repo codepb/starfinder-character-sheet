@@ -5,7 +5,7 @@ import TextField from 'material-ui/TextField';
 import { FormLabel } from 'material-ui/Form';
 import Icon from 'material-ui/Icon';
 import Card, { CardHeader, CardContent } from 'material-ui/Card';
-import DisabledTextField from './utilities/disabledTextField';
+import AbilityInput from './utilities/abilityInput';
 import * as armorBonusActions from '../actions/armorBonusActions';
 import AbilityScore from './abilityScore';
 import races from '../rules/races';
@@ -45,39 +45,39 @@ class Armor extends Component {
         <CardContent>
           <div>
             <FormLabel style={{marginRight:'5px'}}>EAC</FormLabel>
-            <DisabledTextField label="Total" value={this.props.energyArmorClass} disabled={true} style={styles.textFld}/>
+            <AbilityInput label="Total" disabled={true} value={this.props.energyArmorClass} disabled={true} style={styles.textFld}/>
             <Icon style={styles.icons}>drag_handle</Icon>
-            <DisabledTextField value="10" style={styles.textFld}/>
+            <AbilityInput value="10" disabled={true} style={styles.textFld}/>
             <Icon style={styles.icons}>add</Icon>
-            <TextField label="Bonus" type="number" value={this.props.armorBonuses.energy}  onChange={this.energyBonusUpdated} style={styles.textFld}/>
+            <AbilityInput label="Bonus" type="number" value={this.props.armorBonuses.energy}  onChange={this.energyBonusUpdated} style={styles.textFld}/>
             <Icon style={styles.icons}>add</Icon>
-            <DisabledTextField label="Dexterity" value={this.props.dexterityScore.modifier} disabled={true} style={styles.textFld}/>
+            <AbilityInput label="Dexterity" disabled={true} value={this.props.dexterityScore.modifier} disabled={true} style={styles.textFld}/>
             <Icon style={styles.icons}>add</Icon>
-            <TextField label="Misc" type="number" value={this.props.armorBonuses.misc} onChange={this.miscUpdated} style={styles.textFld}/>
+            <AbilityInput label="Misc" type="number" value={this.props.armorBonuses.misc} onChange={this.miscUpdated} style={styles.textFld}/>
           </div>
           <div>
             <FormLabel style={{marginRight:'5px'}}>KAC</FormLabel>
-            <DisabledTextField label="Total" value={this.props.kineticArmorClass} disabled={true} style={styles.textFld}/>
+            <AbilityInput label="Total" disabled={true} value={this.props.kineticArmorClass} disabled={true} style={styles.textFld}/>
             <Icon style={styles.icons}>drag_handle</Icon>
-            <DisabledTextField value="10" style={styles.textFld}/>
+            <AbilityInput value="10" disabled={true} style={styles.textFld}/>
             <Icon style={styles.icons}>add</Icon>
-            <TextField label="Bonus" type="number" value={this.props.armorBonuses.kinetic}  onChange={this.kineticBonusUpdated} style={styles.textFld}/>
+            <AbilityInput label="Bonus" type="number" value={this.props.armorBonuses.kinetic}  onChange={this.kineticBonusUpdated} style={styles.textFld}/>
             <Icon style={styles.icons}>add</Icon>
-            <DisabledTextField label="Dexterity" value={this.props.dexterityScore.modifier} disabled={true} style={styles.textFld}/>
+            <AbilityInput label="Dexterity" disabled={true} value={this.props.dexterityScore.modifier} disabled={true} style={styles.textFld}/>
             <Icon style={styles.icons}>add</Icon>
-            <TextField label="Misc" type="number" value={this.props.armorBonuses.misc} onChange={this.miscUpdated} style={styles.textFld}/>
+            <AbilityInput label="Misc" type="number" value={this.props.armorBonuses.misc} onChange={this.miscUpdated} style={styles.textFld}/>
           </div>
           <div>
             <FormLabel style={{marginRight:'5px'}}>AC vs Combat Maneuvers</FormLabel>
-            <DisabledTextField label="Total" value={8 + this.props.kineticArmorClass} disabled={true} style={styles.textFld}/>
+            <AbilityInput label="Total" disabled={true} value={8 + this.props.kineticArmorClass} disabled={true} style={styles.textFld}/>
             <Icon style={styles.icons}>drag_handle</Icon>
-            <DisabledTextField value="8" style={styles.textFld}/>
+            <AbilityInput value="8" disabled={true} style={styles.textFld}/>
             <Icon style={styles.icons}>add</Icon>
-            <DisabledTextField label="KAC" value={this.props.kineticArmorClass} disabled={true} style={styles.textFld}/>
+            <AbilityInput label="KAC" disabled={true} value={this.props.kineticArmorClass} disabled={true} style={styles.textFld}/>
           </div>
           <div>
-            <TextField label="DR" type="number" value={this.props.armorBonuses.damageReduction} onChange={this.damageReductionUpdated}  style={styles.textFld}/>
-            <TextField label="Resistances" value={this.props.armorBonuses.resistances} onChange={this.resistancesUpdated}/>
+            <AbilityInput label="DR" type="number" value={this.props.armorBonuses.damageReduction} onChange={this.damageReductionUpdated}  style={styles.textFld}/>
+            <AbilityInput label="Resistances" value={this.props.armorBonuses.resistances} onChange={this.resistancesUpdated}/>
           </div>
         </CardContent>
       </Card>

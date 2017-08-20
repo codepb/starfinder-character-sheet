@@ -34,9 +34,9 @@ class AbilityScore extends Component {
         <TableCell>{this.props.abilityScore.name}</TableCell>
         <TableCell>{this.props.abilityScore.score}</TableCell>
         <TableCell>{this.props.abilityScore.modifier}</TableCell>
-        <TableCell>{this.props.abilityScore.pointsAssigned}<Button color="primary" onClick={this.addPoint}>+</Button><Button color="accent" onClick={this.removePoint}>-</Button></TableCell>
         <TableCell>{this.props.abilityScore.racialModifier}</TableCell>
         <TableCell>{this.props.abilityScore.themeModifier}</TableCell>
+        <TableCell>{this.props.abilityScore.pointsAssigned}<Button color="primary" onClick={this.addPoint}>+</Button><Button color="accent" onClick={this.removePoint}>-</Button></TableCell>        
         <TableCell><Checkbox checked={this.props.abilityScore.isDefaultRacialModifier} onChange={this.defaultRacialModifierChanged} disabled={!this.props.canEditDefaultRacial}/></TableCell>
         <TableCell><Checkbox checked={this.props.abilityScore.isDefaultThemeModifier} onChange={this.defaultThemeModifierChanged} disabled={!this.props.canEditDefaultTheme}/></TableCell>
       </TableRow>
