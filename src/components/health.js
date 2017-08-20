@@ -1,17 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import TextField from 'material-ui/TextField';
-import { FormLabel } from 'material-ui/Form';
-import Icon from 'material-ui/Icon';
 import Table, { TableHead, TableBody, TableRow, TableCell} from 'material-ui/Table';
 import Card, { CardHeader, CardContent } from 'material-ui/Card';
-import DisabledTextField from './utilities/disabledTextField';
 import * as healthActions from '../actions/healthActions';
 import AbilityInput from './utilities/abilityInput';
-import races from '../rules/races';
-import themes from '../rules/themes';
-import * as Abilities from '../rules/abilities';
 
 var styles = {
   textFld: { width: 60, textAlign: 'center' },
@@ -37,7 +30,7 @@ class Health extends Component {
       <Card raised={true}>
         <CardHeader title="Health and Resolve" />
         <CardContent>
-          <Table style={{ tableLayout: 'auto' }} fixedHeader={false} >
+          <Table>
             <TableHead>
               <TableRow>
                 <TableCell />

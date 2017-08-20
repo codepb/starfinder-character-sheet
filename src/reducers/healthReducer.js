@@ -1,7 +1,6 @@
 import update from 'immutability-helper';
 import initialState from './initialState';
 import * as HealthTypes from '../actions/types/health';
-import classes from '../rules/classes';
 
 export default function health(state = initialState.health, action) {
   switch (action.type) {
