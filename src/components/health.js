@@ -4,10 +4,11 @@ import { bindActionCreators } from 'redux';
 import TextField from 'material-ui/TextField';
 import { FormLabel } from 'material-ui/Form';
 import Icon from 'material-ui/Icon';
+import Table, { TableHead, TableBody, TableRow, TableCell} from 'material-ui/Table';
 import Card, { CardHeader, CardContent } from 'material-ui/Card';
 import DisabledTextField from './utilities/disabledTextField';
-import * as initiativeActions from '../actions/initiativeActions';
-import AbilityScore from './abilityScore';
+import * as healthActions from '../actions/healthActions';
+import AbilityInput from './utilities/abilityInput';
 import races from '../rules/races';
 import themes from '../rules/themes';
 import * as Abilities from '../rules/abilities';
@@ -19,8 +20,16 @@ var styles = {
 };
 
 class Health extends Component {
-  miscUpdated = (ev) => {
-    this.props.initiativeActions.updateMiscInitiative(ev.target.value * 1);
+  staminaPointsUpdated = (ev) => {
+    this.props.healthActions.updateCurrentStaminaPoints(ev.target.value * 1);
+  }
+
+  hitPointsUpdated = (ev) => {
+    this.props.healthActions.updateCurrentHitPoints(ev.target.value * 1);
+  }
+
+  resolvePointsUpdated = (ev) => {
+    this.props.healthActions.updateCurrentResolvePoints(ev.target.value * 1);
   }
 
   render() {
@@ -28,18 +37,30 @@ class Health extends Component {
       <Card raised={true}>
         <CardHeader title="Health and Resolve" />
         <CardContent>
-          <div>
-            <FormLabel style={styles.label}>Total</FormLabel>
-            <TextField label="Stamina" type="number" value={this.props.energyArmorClass} disabled={true} style={styles.textFld}/>
-            <TextField label="Hit Points" type="number" value={this.props.armorBonuses.energy}  onChange={this.energyBonusUpdated} style={styles.textFld}/>
-            <TextField label="Resolve Points" type="number" value={this.props.dexterityScore.modifier} disabled={true} style={styles.textFld}/>
-          </div>
-          <div>
-            <FormLabel style={styles.label}>Current</FormLabel>
-            <TextField label="Stamina" type="number" value={this.props.energyArmorClass} disabled={true} style={styles.textFld}/>
-            <TextField label="Hit Points" type="number" value={this.props.armorBonuses.energy}  onChange={this.energyBonusUpdated} style={styles.textFld}/>
-            <TextField label="Resolve Points" type="number" value={this.props.dexterityScore.modifier} disabled={true} style={styles.textFld}/>
-          </div>
+          <Table style={{ tableLayout: 'auto' }} fixedHeader={false} >
+            <TableHead>
+              <TableRow>
+                <TableCell />
+                <TableCell>Stamina Points</TableCell>
+                <TableCell>Hit Points</TableCell>
+                <TableCell>Resolve Points</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              <TableRow>
+            <TableCell>Total</TableCell>
+            <TableCell ><AbilityInput type="number" value={this.props.staminaPoints.total} disabled={true} style={styles.textFld}/></TableCell>
+            <TableCell><AbilityInput type="number" value={this.props.hitPoints.total} disabled={true} style={styles.textFld}/></TableCell>
+            <TableCell><AbilityInput type="number" value={this.props.resolvePoints.total} disabled={true} style={styles.textFld}/></TableCell>
+            </TableRow>
+            <TableRow>
+            <TableCell>Current</TableCell>
+            <TableCell><AbilityInput type="number" value={this.props.staminaPoints.current} onChange={this.staminaPointsUpdated} style={styles.textFld}/></TableCell>
+            <TableCell><AbilityInput type="number" value={this.props.hitPoints.current} onChange={this.hitPointsUpdated} style={styles.textFld}/></TableCell>
+            <TableCell><AbilityInput type="number" value={this.props.resolvePoints.current} onChange={this.resolvePointsUpdated} style={styles.textFld}/></TableCell>
+          </TableRow>
+          </TableBody>
+          </Table>
         </CardContent>
       </Card>
     );
@@ -48,16 +69,15 @@ class Health extends Component {
 
 function mapStateToProps(state) {    
     return {
-        dexterityScore: state.abilityScores.abilityScores[Abilities.DEXTERITY],
-        currentRace: state.character.race,
-        currentTheme: state.character.theme,
-        miscInitiative: state.initiative
+      hitPoints: state.health.hitPoints,
+      staminaPoints: state.health.staminaPoints,
+      resolvePoints: state.health.resolvePoints
     };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-      initiativeActions: bindActionCreators(initiativeActions, dispatch)
+    healthActions: bindActionCreators(healthActions, dispatch)
   };
 }
 

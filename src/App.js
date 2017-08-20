@@ -6,6 +6,7 @@ import AbilityScores from './components/abilityScores.js';
 import CharacterStats from './components/characterStats.js';
 import Initiative from './components/initiative.js';
 import Armor from './components/armor.js';
+import Health from './components/health.js';
 
 class App extends Component {
   render() {
@@ -23,6 +24,9 @@ class App extends Component {
           <Grid item>
             <div style={{margin: '20px'}}>
               <Initiative />
+            </div>
+            <div style={{margin: '20px'}}>
+              <Health />
             </div>
             <div style={{margin: '20px'}}>
               <Armor />

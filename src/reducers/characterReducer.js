@@ -10,6 +10,8 @@ export default function character(state = initialState.character, action) {
       return update(state, {race: {$set: races.find(r => r.name === action.newRace) } });
     case CharacterActions.CHANGE_THEME:
       return update(state, {theme: {$set: action.newTheme } });
+    case CharacterActions.CHANGE_CLASS:
+      return update(state, {class: {$set: action.newClass } });
     case CharacterActions.CHANGE_NAME:
       return update(state, {name: {$set: action.newName } });
     default:

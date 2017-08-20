@@ -25,6 +25,7 @@ class AbilityScores extends Component {
                 <Table>
                     <TableHead>
                             <TableRow>
+                                <TableCell></TableCell>
                                 <TableCell>Skill</TableCell>
                                 <TableCell>Score</TableCell>
                                 <TableCell>Modifier</TableCell>

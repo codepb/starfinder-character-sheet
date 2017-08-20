@@ -12,6 +12,7 @@ export default class AbilityScore {
     themeModifier = 0;
     isDefaultRacialModifier = false;
     isDefaultThemeModifier = false;
+    isKey = false;
 
     constructor(params) {
         for (let i in params) {

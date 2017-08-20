@@ -7,9 +7,11 @@ import Select from './utilities/select';
 import * as characterActions from '../actions/characterActions';
 import races from '../rules/races';
 import themes from '../rules/themes';
+import classes from '../rules/classes';
 
 const raceOptions = races.map(r =>  { return {label: r.name, value: r.name}});
 const themeOptions = themes.map(r =>  { return {label: r.name, value: r.name}});
+const classOptions = classes.map(r => { return {label: r.name, value: r.name}});
 
 class AbilityScores extends Component {
   raceChanged = (value) => {
@@ -24,12 +26,17 @@ class AbilityScores extends Component {
     this.props.characterActions.changeName(event.target.value);
   }
 
+  classChanged = (value) => {
+    this.props.characterActions.changeClass(value);
+  }
+
   render() {
     return (
       <div>
         <TextField label="Name" value={this.props.character.name} onChange={this.nameChanged}/>
         <Select label="Race" value={this.props.character.race.name} options={raceOptions} onChange={this.raceChanged} />
         <Select label="Theme"  value={this.props.character.theme} options={themeOptions} onChange={this.themeChanged} />
+        <Select label="Class"  value={this.props.character.class} options={classOptions} onChange={this.classChanged} />
         <DisabledTextField label="Size" value={this.props.character.race.size} disabled={true}/>
       </div>
     );

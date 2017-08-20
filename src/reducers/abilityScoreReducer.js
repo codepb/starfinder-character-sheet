@@ -4,6 +4,7 @@ import * as AbilityActions from '../actions/types/abilityScores';
 import * as CharacterActions from '../actions/types/character';
 import races from '../rules/races';
 import themes from '../rules/themes';
+import classes from '../rules/classes';
 
 export default function abilityScores(state = initialState.abilityScores, action) {
   switch (action.type) {
@@ -80,6 +81,17 @@ export default function abilityScores(state = initialState.abilityScores, action
         return newState
       }
       return state;
+      case CharacterActions.CHANGE_CLASS:
+      const newClass = classes.find(r => r.name === action.newClass);
+      if(newClass) {
+        const currentKey = findKeyAbility(state);
+        const updatedCurrentKey = update(currentKey, {isKey: {$set: false}});
+        const newState = replaceAbilityScore(state, currentKey, updatedCurrentKey);
+        const newKey = findAbilityByName(newState, newClass.keyAbility);
+        const updatedNewKey = update(newKey, {isKey: {$set: true}});
+        return replaceAbilityScore(newState, newKey, updatedNewKey);
+      }
+      return state;
     case AbilityActions.SET_DEFAULT_RACIAL:
       const racialAbilityScore = findAbilityByName(state, action.ability);
       const currentDefaultRacial = findDefaultRacial(state);
@@ -134,6 +146,14 @@ function findDefaultRacial(state) {
 function findDefaultTheme(state) {
   for(let ability in state.abilityScores){
     if(state.abilityScores[ability].isDefaultThemeModifier) {
+      return state.abilityScores[ability];
+    }
+  }
+}
+
+function findKeyAbility(state) {
+  for(let ability in state.abilityScores){
+    if(state.abilityScores[ability].isKey) {
       return state.abilityScores[ability];
     }
   }

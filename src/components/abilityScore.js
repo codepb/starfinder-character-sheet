@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Button from 'material-ui/Button';
 import Checkbox from 'material-ui/Checkbox';
+import Icon from 'material-ui/Icon';
 import { TableCell,  TableRow } from 'material-ui/Table';
 import * as abilityScoreActions from '../actions/abilityScoreActions'
 
@@ -28,8 +29,10 @@ class AbilityScore extends Component {
   }
 
   render() {
+    const keyScore = this.props.abilityScore.isKey ? <Icon>chevron_right</Icon> : '';
     return (
       <TableRow>
+        <TableCell>{keyScore}</TableCell>
         <TableCell>{this.props.abilityScore.name}</TableCell>
         <TableCell>{this.props.abilityScore.score}</TableCell>
         <TableCell>{this.props.abilityScore.modifier}</TableCell>
