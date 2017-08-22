@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { FormLabel } from 'material-ui/Form';
+import TextField from 'material-ui/TextField';
 import Icon from 'material-ui/Icon';
 import Card, { CardHeader, CardContent } from 'material-ui/Card';
 import AbilityInput from './utilities/abilityInput';
@@ -73,7 +74,7 @@ class Armor extends Component {
           </div>
           <div>
             <AbilityInput label="DR" type="number" value={this.props.armorBonuses.damageReduction} onChange={this.damageReductionUpdated}  style={styles.textFld}/>
-            <AbilityInput label="Resistances" value={this.props.armorBonuses.resistances} onChange={this.resistancesUpdated}/>
+            <TextField label="Resistances" value={this.props.armorBonuses.resistances} onChange={this.resistancesUpdated}/>
           </div>
         </CardContent>
       </Card>
