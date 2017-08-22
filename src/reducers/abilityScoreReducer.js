@@ -19,7 +19,7 @@ export default function abilityScores(state = initialState.abilityScores, action
     case AbilityActions.ADD_POINT:
       if(state.remainingPointsToSpent > 0) {
         const abilityScoreToAddTo = findAbilityByName(state, action.ability);
-        if(abilityScoreToAddTo){
+        if(abilityScoreToAddTo) {
           const newAbilityScore = update(abilityScoreToAddTo, {pointsAssigned: {$apply: (x) => x + 1}})
           const newState = replaceAbilityScore(state, abilityScoreToAddTo, newAbilityScore);
           if(newAbilityScore.pointsAssigned > 0) {
@@ -32,7 +32,11 @@ export default function abilityScores(state = initialState.abilityScores, action
     case AbilityActions.REMOVE_POINT:
       const abilityScoreToRemoveFrom = findAbilityByName(state, action.ability);
       if(abilityScoreToRemoveFrom){
+        if(abilityScoreToRemoveFrom.score === 0) {
+          return state;
+        }
         const newAbilityScore = update(abilityScoreToRemoveFrom, {pointsAssigned: {$apply: (x) => x - 1}})
+        
         const newState = replaceAbilityScore(state, abilityScoreToRemoveFrom, newAbilityScore);
         if(newAbilityScore.pointsAssigned >= 0) {
           return update(newState, {remainingPointsToSpent: {$apply: (x) => x + 1}})

@@ -39,5 +39,5 @@ export default {
     miscInitiative: 0,
     abilityScores: new AbilityManager({abilityScores: abilityScores}),
     armorBonuses: { energy: 0, kinetic: 0, misc: 0, damageReduction: 0, resistances: '' },
-    health: { hitPoints: { total: 10, current:10, classContribution: 6, raceContribution: 4 }, staminaPoints: { total: 6, current: 6, classContribution: 6 }, resolvePoints: {total: 1, current: 1, keyAbilityContribution: 0 }}
+    health: { hitPoints: { total: 10, current:10, classContribution: 6, raceContribution: 4 }, staminaPoints: { total: 6, current: 6, classContribution: 6, constitutionContribution: 0 }, resolvePoints: {total: 1, current: 1, keyAbilityContribution: 0 }}
 }
