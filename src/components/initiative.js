@@ -1,18 +1,14 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import Icon from 'material-ui/Icon';
 import Card, { CardHeader, CardContent } from 'material-ui/Card';
 import AbilityInput from './utilities/abilityInput';
-import * as initiativeActions from '../actions/initiativeActions';
-import * as Abilities from '../rules/abilities';
-import AbilityManager from '../models/abilityManager';
+
 
 var styles = {
-  icons: { verticalAlign: 'middle' }
+  icons: { verticalAlign: 'middle', color: 'rgba(0, 0, 0, 0.87)', fontSize: '20px' }
 };
 
-class Initiative extends Component {
+export default class Initiative extends Component {
   miscUpdated = (ev) => {
     this.props.initiativeActions.updateMiscInitiative(ev.target.value * 1);
   }
@@ -32,22 +28,3 @@ class Initiative extends Component {
     );
   }
 }
-
-function mapStateToProps(state) {
-  const abilityManager = new AbilityManager();
-  return {
-      dexterityModifier: abilityManager.getAbilityScoreFromState(state, Abilities.DEXTERITY).modifier,
-      miscInitiative: state.initiative
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-      initiativeActions: bindActionCreators(initiativeActions, dispatch)
-  };
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Initiative);

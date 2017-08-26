@@ -25,6 +25,12 @@ export default {
         defaultRaceBonus: Abilities.STRENGTH,
         abilityPoints
     },
-    armorBonuses: { misc: 0, damageReduction: 0, resistances: '' },
+    armor: { 
+        name: '',
+        penalty: 0,
+        maxDexterity: 10,
+        speedAdjustment: 0,
+        bonuses: {misc: 0, damageReduction: 0, resistances: '' }
+    },
     currentHealth: { hitPoints: 10 , staminaPoints: 6, resolvePoints: 1 }
 }

@@ -1,30 +1,41 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { FormLabel } from 'material-ui/Form';
 import TextField from 'material-ui/TextField';
 import Icon from 'material-ui/Icon';
 import Card, { CardHeader, CardContent } from 'material-ui/Card';
 import AbilityInput from './utilities/abilityInput';
-import * as armorBonusActions from '../actions/armorBonusActions';
-import * as Abilities from '../rules/abilities';
-import AbilityManager from '../models/abilityManager';
 
 var styles = {
-  icons: { verticalAlign: 'middle' }
+  icons: { verticalAlign: 'middle', color: 'rgba(0, 0, 0, 0.87)', fontSize: '20px' }
 };
 
-class Armor extends Component {
+export default class Armor extends Component {
   miscUpdated = (ev) => {
-    this.props.armorBonusActions.updateMiscArmor(ev.target.value * 1);
+    this.props.armorActions.updateMiscArmor(ev.target.value * 1);
   }
 
   damageReductionUpdated = (ev) => {
-    this.props.armorBonusActions.updateDamageReduction(ev.target.value * 1);
+    this.props.armorActions.updateDamageReduction(ev.target.value * 1);
   }
 
   resistancesUpdated = (ev) => {
-    this.props.armorBonusActions.updateResistances(ev.target.value);
+    this.props.armorActions.updateResistances(ev.target.value);
+  }
+
+  armorWornUpdated = (ev) => {
+    this.props.armorActions.updateName(ev.target.value);
+  }
+
+  armorPenaltyUpdated = (ev) => {
+    this.props.armorActions.updatePenalty(ev.target.value * 1);
+  }
+
+  armorMaxDexterityUpdated = (ev) => {
+    this.props.armorActions.updateMaxDexterity(ev.target.value * 1);
+  }
+
+  armorSpeedAdjustmentUpdated = (ev) => {
+    this.props.armorActions.updateSpeedAdjustment(ev.target.value * 1);
   }
 
   render() {
@@ -32,6 +43,12 @@ class Armor extends Component {
       <Card raised={true}>
         <CardHeader title="Armor" />
         <CardContent>
+          <div>
+            <TextField label="Armor Worn" defaultValue={this.props.armorWorn} onBlur={this.armorWornUpdated} />
+            <AbilityInput label="Penalty" type="number" value={this.props.armorPenalty} onChange={this.armorPenaltyUpdated} />
+            <AbilityInput label="Max Dex" type="number" value={this.props.armorMaxDexterity} onChange={this.armorMaxDexterityUpdated} />
+            <AbilityInput label="Speed Adjust" type="number" value={this.props.armorSpeedAdjustment} onChange={this.armorSpeedAdjustmentUpdated} />
+          </div>
           <div>
             <FormLabel style={{marginRight:'5px'}}>EAC</FormLabel>
             <AbilityInput label="Total" value={10 + this.props.armorBonuses.energy + this.props.dexterityModifier + this.props.armorBonuses.misc} disabled={true}/>
@@ -66,7 +83,7 @@ class Armor extends Component {
           </div>
           <div>
             <AbilityInput label="DR" type="number" value={this.props.damageReduction} onChange={this.damageReductionUpdated} />
-            <TextField label="Resistances" value={this.props.resistances} onChange={this.resistancesUpdated}/>
+            <TextField label="Resistances" value={this.props.resistances} onBlur={this.resistancesUpdated}/>
           </div>
         </CardContent>
       </Card>
@@ -74,32 +91,3 @@ class Armor extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  const abilityManager = new AbilityManager();  
-    return {
-        dexterityModifier: abilityManager.getAbilityScoreFromState(state, Abilities.DEXTERITY).modifier,
-        armorBonuses: getArmorBonusesFromState(state),
-        damageReduction: state.armorBonuses.damageReduction,
-        resitances: state.armorBonuses.resistances
-    };
-}
-
-function getArmorBonusesFromState(state) {
-  return {
-    kinetic: 0,
-    energy: 0,
-    misc: state.armorBonuses.misc
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    armorBonusActions: bindActionCreators(armorBonusActions, dispatch)
-  };
-}
-
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Armor);

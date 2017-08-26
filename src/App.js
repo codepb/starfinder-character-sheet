@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import './App.css';
-import AbilityScores from './components/abilityScores.js';
-import CharacterStats from './components/characterStats.js';
-import Initiative from './components/initiative.js';
-import Armor from './components/armor.js';
-import Health from './components/health.js';
+import AbilityScoresContainer from './containers/abilityScoresContainer.js';
+import CharacterStatsContainer from './containers/characterStatsContainer.js';
+import InitiativeContainer from './containers/initiativeContainer.js';
+import ArmorContainer from './containers/armorContainer.js';
+import HealthContainer from './containers/healthContainer.js';
 
 class App extends Component {
   render() {
@@ -14,22 +14,22 @@ class App extends Component {
       <Paper style={{padding: '20px', margin: '5px'}}>
         <Grid container>
           <Grid item>
-            <CharacterStats />
+            <CharacterStatsContainer />
           </Grid>
         </Grid>
         <Grid container>
           <Grid item>
-            <AbilityScores />
+            <AbilityScoresContainer />
           </Grid>
           <Grid item>
             <div style={{margin: '20px'}}>
-              <Initiative />
+              <InitiativeContainer />
             </div>
             <div style={{margin: '20px'}}>
-              <Health />
+              <HealthContainer />
             </div>
             <div style={{margin: '20px'}}>
-              <Armor />
+              <ArmorContainer />
             </div>
           </Grid>
         </Grid>

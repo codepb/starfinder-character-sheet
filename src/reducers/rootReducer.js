@@ -2,14 +2,14 @@ import {combineReducers} from 'redux';
 import character from './characterReducer';
 import abilities from './abilitiesReducer';
 import initiative from './initiativeReducer';
-import armorBonuses from './armorBonusesReducer';
+import armor from './armorReducer';
 import currentHealth from './currentHealthReducer';
 
 const rootReducer = combineReducers({
     character,
     abilities,
     initiative,
-    armorBonuses,
+    armor,
     currentHealth
 });
 

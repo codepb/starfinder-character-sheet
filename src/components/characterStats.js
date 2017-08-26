@@ -1,19 +1,14 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import TextField from 'material-ui/TextField';
+import { FormLabel } from 'material-ui/Form';
 import DisabledTextField from './utilities/disabledTextField';
 import Select from './utilities/select';
-import * as characterActions from '../actions/characterActions';
-import races from '../rules/races';
-import themes from '../rules/themes';
-import classes from '../rules/classes';
+import AbilityInput from './utilities/abilityInput';
 
-const raceOptions = Object.keys(races).map(r =>  { return {label: r, value: r}});
-const themeOptions = Object.keys(themes).map(t =>  { return {label: t, value: t}});
-const classOptions = Object.keys(classes).map(c => { return {label: c, value: c}});
-
-class AbilityScores extends Component {
+export default class CharacterStats extends Component {
+  state = {
+    name: this.props.character.name
+  }
   raceChanged = (value) => {
     this.props.characterActions.changeRace(value);
   }
@@ -23,6 +18,12 @@ class AbilityScores extends Component {
   }
 
   nameChanged = (event) => {
+    this.setState({
+      name: event.target.value
+    });
+  }
+
+  nameBlurred = (event) => {
     this.props.characterActions.changeName(event.target.value);
   }
 
@@ -33,30 +34,16 @@ class AbilityScores extends Component {
   render() {
     return (
       <div>
-        <TextField label="Name" value={this.props.character.name} onChange={this.nameChanged}/>
-        <Select label="Race" value={this.props.character.race} options={raceOptions} onChange={this.raceChanged} />
-        <Select label="Theme"  value={this.props.character.theme} options={themeOptions} onChange={this.themeChanged} />
-        <Select label="Class"  value={this.props.character.class} options={classOptions} onChange={this.classChanged} />
+        <TextField label="Name" value={this.state.name} onChange={this.nameChanged} onBlur={this.nameBlurred}/>
+        <Select label="Race" value={this.props.character.race} options={this.props.raceOptions} onChange={this.raceChanged} />
+        <Select label="Theme"  value={this.props.character.theme} options={this.props.themeOptions} onChange={this.themeChanged} />
+        <Select label="Class"  value={this.props.character.class} options={this.props.classOptions} onChange={this.classChanged} />
         <DisabledTextField label="Size" value={this.props.character.size} disabled={true}/>
+        <FormLabel style={{marginRight:'5px'}}>Speed</FormLabel>
+        <AbilityInput label="Base" type="number" value={this.props.baseSpeed} disabled={true}/>
+        <AbilityInput label="Adjusted" type="number" value={this.props.adjustedSpeed} disabled={true}/>
       </div>
     );
   }
 }
 
-function mapStateToProps(state) {    
-    const size = races[state.character.race].size;
-    return {
-        character: {...state.character, size}        
-    };
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-        characterActions: bindActionCreators(characterActions, dispatch)
-    };
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(AbilityScores);
