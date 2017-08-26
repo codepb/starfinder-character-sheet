@@ -3,6 +3,7 @@ import * as Abilities from '../rules/abilities';
 import * as Races from '../rules/races';
 import * as ThemeTypes from '../rules/themes';
 import * as Classes from '../rules/classes';
+import skills from '../rules/skills';
 
 const abilityPoints = {
     [Abilities.STRENGTH]: 0,
@@ -12,6 +13,13 @@ const abilityPoints = {
     [Abilities.WISDOM]: 0,
     [Abilities.CHARISMA]: 0
 };
+
+const skillRanks = {};
+
+for(let skill in skills) {
+    skillRanks[skill] = 0;
+}
+
 
 export default {
     character: new Character({
@@ -32,5 +40,10 @@ export default {
         speedAdjustment: 0,
         bonuses: {misc: 0, damageReduction: 0, resistances: '' }
     },
-    currentHealth: { hitPoints: 10 , staminaPoints: 6, resolvePoints: 1 }
+    currentHealth: { hitPoints: 10 , staminaPoints: 6, resolvePoints: 1 },
+    skills: {
+        profession1Ability: Abilities.CHARISMA,
+        profession2Ability: Abilities.CHARISMA,
+        skillRanks        
+    }
 }
