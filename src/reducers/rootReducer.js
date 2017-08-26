@@ -1,16 +1,16 @@
 import {combineReducers} from 'redux';
 import character from './characterReducer';
-import abilityScores from './abilityScoreReducer';
+import abilities from './abilitiesReducer';
 import initiative from './initiativeReducer';
 import armorBonuses from './armorBonusesReducer';
-import health from './healthReducer';
+import currentHealth from './currentHealthReducer';
 
 const rootReducer = combineReducers({
     character,
-    abilityScores,
+    abilities,
     initiative,
     armorBonuses,
-    health
+    currentHealth
 });
 
 export default rootReducer;

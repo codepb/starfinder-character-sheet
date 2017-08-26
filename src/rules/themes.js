@@ -1,4 +1,4 @@
-import AbilityModifier, * as Abilities  from './abilities';
+import * as Abilities  from './abilities';
 
 export const ACE_PILOT = 'Ace Pilot';
 export const BOUNTY_HUNTER = 'Bounty Hunter';
@@ -22,99 +22,79 @@ class Theme {
     }
   }
 }
+export const ACE_PILOT_THEME = new Theme({
+  name: ACE_PILOT,
+  abilityModifiers: {
+    [Abilities.DEXTERITY] : 1,
+  }
+});
+export const BOUNTY_HUNTER_THEME = new Theme({
+  name: BOUNTY_HUNTER,
+  abilityModifiers: {
+    [Abilities.CONSTITUTION] : 1,
+  }
+});
+export const ICON_THEME = new Theme({
+  name: ICON,
+  abilityModifiers: {
+    [Abilities.CHARISMA] : 1,
+  }
+});
+export const MERCENARY_THEME = new Theme({
+  name: MERCENARY,
+  abilityModifiers: {
+    [Abilities.STRENGTH] : 1,
+  }
+});
+export const OUTLAW_THEME = new Theme({
+  name: OUTLAW,
+  abilityModifiers: {
+    [Abilities.DEXTERITY] : 1,
+  }
+});
+export const PRIEST_THEME = new Theme({
+  name: PRIEST,
+  abilityModifiers: {
+    [Abilities.WISDOM] : 1,
+  }
+});
+export const SCHOLAR_THEME = new Theme({
+  name: SCHOLAR,
+  abilityModifiers: {
+    [Abilities.INTELLIGENCE] : 1,
+  }
+});
+export const SPACEFARER_THEME = new Theme({
+  name: SPACEFARER,
+  abilityModifiers: {
+    [Abilities.CONSTITUTION] : 1,
+  }
+});
+export const XENOSEEKER_THEME = new Theme({
+  name: XENOSEEKER,
+  abilityModifiers: {
+    [Abilities.CHARISMA] : 1,
+  }
+});
+export const THEMELESS_THEME = new Theme({
+  name: THEMELESS,
+  hasUnspecifiedModifiers: true,
+  abilityModifiers: {
+    [Abilities.UNSPECIFIED] : 1,
+  }
+});
 
-const themes = [
-  new Theme({
-    name: ACE_PILOT,
-    abilityModifiers: [
-      new AbilityModifier({
-        ability: Abilities.DEXTERITY,
-        modifier: 1
-      })
-    ]
-  }),
-  new Theme({
-    name: BOUNTY_HUNTER,
-    abilityModifiers: [
-      new AbilityModifier({
-        ability: Abilities.CONSTITUTION,
-        modifier: 1
-      })
-    ]
-  }),
-  new Theme({
-    name: ICON,
-    abilityModifiers: [
-      new AbilityModifier({
-        ability: Abilities.CHARISMA,
-        modifier: 1
-      })
-    ]
-  }),
-  new Theme({
-    name: MERCENARY,
-    abilityModifiers: [
-      new AbilityModifier({
-        ability: Abilities.STRENGTH,
-        modifier: 1
-      })
-    ]
-  }),
-  new Theme({
-    name: OUTLAW,
-    abilityModifiers: [
-      new AbilityModifier({
-        ability: Abilities.DEXTERITY,
-        modifier: 1
-      })
-    ]
-  }),
-  new Theme({
-    name: PRIEST,
-    abilityModifiers: [
-      new AbilityModifier({
-        ability: Abilities.WISDOM,
-        modifier: 1
-      })
-    ]
-  }),
-  new Theme({
-    name: SCHOLAR,
-    abilityModifiers: [
-      new AbilityModifier({
-        ability: Abilities.INTELLIGENCE,
-        modifier: 1
-      })
-    ]
-  }),
-  new Theme({
-    name: SPACEFARER,
-    abilityModifiers: [
-      new AbilityModifier({
-        ability: Abilities.CONSTITUTION,
-        modifier: 1
-      })
-    ]
-  }),
-  new Theme({
-    name: XENOSEEKER,
-    abilityModifiers: [
-      new AbilityModifier({
-        ability: Abilities.CHARISMA,
-        modifier: 1
-      })
-    ]
-  }),
-  new Theme({
-    name: THEMELESS,
-    hasUnspecifiedModifiers: true,
-    abilityModifiers: [
-      new AbilityModifier({
-        ability: null,
-        modifier: 1
-      })
-    ]
-  }),
-]
+const themes = {
+  [ACE_PILOT]: ACE_PILOT_THEME,
+  [BOUNTY_HUNTER]: BOUNTY_HUNTER_THEME,
+  [ICON]: ICON_THEME,
+  [MERCENARY]: MERCENARY_THEME,
+  [OUTLAW]: OUTLAW_THEME,
+  [PRIEST]: PRIEST_THEME,
+  [SCHOLAR]: SCHOLAR_THEME,
+  [SPACEFARER]: SPACEFARER_THEME,
+  [XENOSEEKER]: XENOSEEKER_THEME,
+  [THEMELESS]: THEMELESS_THEME,
+}
 
 export default themes;

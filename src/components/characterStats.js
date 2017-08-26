@@ -9,9 +9,9 @@ import races from '../rules/races';
 import themes from '../rules/themes';
 import classes from '../rules/classes';
 
-const raceOptions = races.map(r =>  { return {label: r.name, value: r.name}});
-const themeOptions = themes.map(r =>  { return {label: r.name, value: r.name}});
-const classOptions = classes.map(r => { return {label: r.name, value: r.name}});
+const raceOptions = Object.keys(races).map(r =>  { return {label: r, value: r}});
+const themeOptions = Object.keys(themes).map(t =>  { return {label: t, value: t}});
+const classOptions = Object.keys(classes).map(c => { return {label: c, value: c}});
 
 class AbilityScores extends Component {
   raceChanged = (value) => {
@@ -34,18 +34,19 @@ class AbilityScores extends Component {
     return (
       <div>
         <TextField label="Name" value={this.props.character.name} onChange={this.nameChanged}/>
-        <Select label="Race" value={this.props.character.race.name} options={raceOptions} onChange={this.raceChanged} />
+        <Select label="Race" value={this.props.character.race} options={raceOptions} onChange={this.raceChanged} />
         <Select label="Theme"  value={this.props.character.theme} options={themeOptions} onChange={this.themeChanged} />
         <Select label="Class"  value={this.props.character.class} options={classOptions} onChange={this.classChanged} />
-        <DisabledTextField label="Size" value={this.props.character.race.size} disabled={true}/>
+        <DisabledTextField label="Size" value={this.props.character.size} disabled={true}/>
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {    
+    const size = races[state.character.race].size;
     return {
-        character: state.character
+        character: {...state.character, size}        
     };
 }
 

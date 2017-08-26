@@ -1,4 +1,4 @@
-import AbilityModifier, * as Abilities  from './abilities';
+import * as Abilities  from './abilities';
 import * as Sizes from './sizes';
 
 export const ANDROID = 'Android';
@@ -29,232 +29,134 @@ class Race {
       this[i] = params[i];
     }
   }
+
+  getAbilityModifierForAbility = (ability) => {
+    return this.abilityModifiers[ability];
+  }
 }
 
 export const ANDROID_RACE = new Race({
   name: ANDROID,
   hp: 4,
   size: Sizes.MEDIUM,
-  abilityModifiers: [
-    new AbilityModifier({
-      ability: Abilities.DEXTERITY,
-      modifier: 2
-    }),
-    new AbilityModifier({
-      ability: Abilities.INTELLIGENCE,
-      modifier: 2
-    }),
-    new AbilityModifier({
-      ability: Abilities.CHARISMA,
-      modifier: -2
-    })
-  ]
+  abilityModifiers: {
+      [Abilities.DEXTERITY] : 2,
+      [Abilities.INTELLIGENCE] : 2,
+      [Abilities.CHARISMA] : -2
+  }
 });
 export const HUMAN_RACE = new Race({
   name: HUMAN,
   hp: 4,
   size: Sizes.MEDIUM,
   hasUnspecifiedModifiers: true,
-  abilityModifiers: [
-    new AbilityModifier({
-      ability: null,
-      modifier: 2
-    })
-  ]
+  abilityModifiers: {
+    [Abilities.UNSPECIFIED] : 2
+  }    
 });
 export const KASATHA_RACE = new Race({
   name: KASATHA,
   hp: 4,
   size: Sizes.MEDIUM,
-  abilityModifiers: [
-    new AbilityModifier({
-      ability: Abilities.STRENGTH,
-      modifier: 2
-    }),
-    new AbilityModifier({
-      ability: Abilities.WISDOM,
-      modifier: 2
-    }),
-    new AbilityModifier({
-      ability: Abilities.INTELLIGENCE,
-      modifier: -2
-    })
-  ]
+  abilityModifiers: {
+    [Abilities.STRENGTH] : 2,
+    [Abilities.WISDOM] : 2,
+    [Abilities.INTELLIGENCE] : -2
+  }
 });
 export const KORSHA_LASHUNTA_RACE = new Race({
   name: KORSHA_LASHUNTA,
   hp: 4,
   size: Sizes.MEDIUM,
-  abilityModifiers: [
-    new AbilityModifier({
-      ability: Abilities.STRENGTH,
-      modifier: 2
-    }),
-    new AbilityModifier({
-      ability: Abilities.WISDOM,
-      modifier: -2
-    }),
-    new AbilityModifier({
-      ability: Abilities.CHARISMA,
-      modifier: +2
-    })
-  ]
+  abilityModifiers: {
+    [Abilities.STRENGTH] : 2,
+    [Abilities.CHARISMA] : 2,
+    [Abilities.WISDOM] : -2
+  }
 });
 export const DAMAYA_LASHUNTA_RACE = new Race({
   name: DAMAYA_LASHUNTA,
   hp: 4,
   size: Sizes.MEDIUM,
-  abilityModifiers: [
-    new AbilityModifier({
-      ability: Abilities.INTELLIGENCE,
-      modifier: 2
-    }),
-    new AbilityModifier({
-      ability: Abilities.CONSTITUTION,
-      modifier: -2
-    }),
-    new AbilityModifier({
-      ability: Abilities.CHARISMA,
-      modifier: +2
-    })
-  ]
+  abilityModifiers: {
+    [Abilities.INTELLIGENCE] : 2,
+    [Abilities.CHARISMA] : 2,
+    [Abilities.CONSTITUTION] : -2
+  }
 });
 export const SHIRREN_RACE = new Race({
   name: SHIRREN,
   hp: 6,
   size: Sizes.MEDIUM,
-  abilityModifiers: [
-    new AbilityModifier({
-      ability: Abilities.CONSTITUTION,
-      modifier: 2
-    }),
-    new AbilityModifier({
-      ability: Abilities.WISDOM,
-      modifier: 2
-    }),
-    new AbilityModifier({
-      ability: Abilities.CHARISMA,
-      modifier: -2
-    })
-  ]
+  abilityModifiers: {
+    [Abilities.CONSTITUTION] : 2,
+    [Abilities.WISDOM] : 2,
+    [Abilities.CHARISMA] : -2
+  }
 });
 export const VESK_RACE = new Race({
   name: VESK,
   hp: 6,
   size: Sizes.MEDIUM,
-  abilityModifiers: [
-    new AbilityModifier({
-      ability: Abilities.CONSTITUTION,
-      modifier: 2
-    }),
-    new AbilityModifier({
-      ability: Abilities.STRENGTH,
-      modifier: 2
-    }),
-    new AbilityModifier({
-      ability: Abilities.INTELLIGENCE,
-      modifier: -2
-    })
-  ]
+  abilityModifiers: {
+    [Abilities.CONSTITUTION] : 2,
+    [Abilities.STRENGTH] : 2,
+    [Abilities.INTELLIGENCE] : -2
+  }
 });
 export const YSOKI_RACE = new Race({
   name: YSOKI,
   hp: 2,
   size: Sizes.SMALL,
-  abilityModifiers: [
-    new AbilityModifier({
-      ability: Abilities.DEXTERITY,
-      modifier: 2
-    }),
-    new AbilityModifier({
-      ability: Abilities.INTELLIGENCE,
-      modifier: 2
-    }),
-    new AbilityModifier({
-      ability: Abilities.STRENGTH,
-      modifier: -2
-    })
-  ]
+  abilityModifiers: {
+    [Abilities.DEXTERITY] : 2,
+    [Abilities.INTELLIGENCE] : 2,
+    [Abilities.STRENGTH] : -2
+  }
 });
 
 export const DWARF_RACE = new Race({
   name: DWARF,
   hp: 6,
   size: Sizes.MEDIUM,
-  abilityModifiers: [
-    new AbilityModifier({
-      ability: Abilities.CONSTITUTION,
-      modifier: 2
-    }),
-    new AbilityModifier({
-      ability: Abilities.WISDOM,
-      modifier: 2
-    }),
-    new AbilityModifier({
-      ability: Abilities.CHARISMA,
-      modifier: -2
-    })
-  ]
+  abilityModifiers: {
+    [Abilities.CONSTITUTION] : 2,
+    [Abilities.WISDOM] : 2,
+    [Abilities.CHARISMA] : -2
+  }
 });
 
 export const ELF_RACE = new Race({
   name: ELF,
   hp: 4,
   size: Sizes.MEDIUM,
-  abilityModifiers: [
-    new AbilityModifier({
-      ability: Abilities.DEXTERITY,
-      modifier: 2
-    }),
-    new AbilityModifier({
-      ability: Abilities.INTELLIGENCE,
-      modifier: 2
-    }),
-    new AbilityModifier({
-      ability: Abilities.CONSTITUTION,
-      modifier: -2
-    })
-  ]
+  abilityModifiers: {
+    [Abilities.DEXTERITY] : 2,
+    [Abilities.INTELLIGENCE] : 2,
+    [Abilities.CONSTITUTION] : -2
+  }
 });
 
 export const FEYCHILD_GNOME_RACE = new Race({
   name: FEYCHILD_GNOME,
   hp: 4,
   size: Sizes.SMALL,
-  abilityModifiers: [
-    new AbilityModifier({
-      ability: Abilities.CONSTITUTION,
-      modifier: 2
-    }),
-    new AbilityModifier({
-      ability: Abilities.CHARISMA,
-      modifier: 2
-    }),
-    new AbilityModifier({
-      ability: Abilities.STRENGTH,
-      modifier: -2
-    })
-  ]
+  abilityModifiers: {
+    [Abilities.CONSTITUTION] : 2,
+    [Abilities.CHARISMA] : 2,
+    [Abilities.STRENGTH] : -2
+  }
 });
 
 export const BLEACHLING_GNOME_RACE = new Race({
   name: BLEACHLING_GNOME,
   hp: 4,
   size: Sizes.SMALL,
-  abilityModifiers: [
-    new AbilityModifier({
-      ability: Abilities.CONSTITUTION,
-      modifier: 2
-    }),
-    new AbilityModifier({
-      ability: Abilities.INTELLIGENCE,
-      modifier: 2
-    }),
-    new AbilityModifier({
-      ability: Abilities.STRENGTH,
-      modifier: -2
-    })
-  ]
+  abilityModifiers: {
+    [Abilities.CONSTITUTION] : 2,
+    [Abilities.INTELLIGENCE] : 2,
+    [Abilities.STRENGTH] : -2
+  }
 });
 
 export const HALF_ELF_RACE = new Race({
@@ -262,12 +164,9 @@ export const HALF_ELF_RACE = new Race({
   hp: 4,
   size: Sizes.MEDIUM,
   hasUnspecifiedModifiers: true,
-  abilityModifiers: [
-    new AbilityModifier({
-      ability: null,
-      modifier: 2
-    })
-  ]
+  abilityModifiers: {
+    [Abilities.UNSPECIFIED] : 2,
+  }
 });
 
 export const HALF_ORC_RACE = new Race({
@@ -275,51 +174,39 @@ export const HALF_ORC_RACE = new Race({
   hp: 6,
   size: Sizes.MEDIUM,
   hasUnspecifiedModifiers: true,
-  abilityModifiers: [
-    new AbilityModifier({
-      ability: null,
-      modifier: 2
-    })
-  ]
+  abilityModifiers: {
+    [Abilities.UNSPECIFIED] : 2,
+  }
 });
 
 export const HALFLING_RACE = new Race({
   name: HALFLING,
   hp: 2,
   size: Sizes.SMALL,
-  abilityModifiers: [
-    new AbilityModifier({
-      ability: Abilities.DEXTERITY,
-      modifier: 2
-    }),
-    new AbilityModifier({
-      ability: Abilities.CHARISMA,
-      modifier: 2
-    }),
-    new AbilityModifier({
-      ability: Abilities.STRENGTH,
-      modifier: -2
-    })
-  ]
+  abilityModifiers: {
+    [Abilities.DEXTERITY] : 2,
+    [Abilities.CHARISMA] : 2,
+    [Abilities.STRENGTH] : -2
+  }
 });
 
-const races = [
-  ANDROID_RACE,
-  HUMAN_RACE,
-  KASATHA_RACE,
-  KORSHA_LASHUNTA_RACE,
-  DAMAYA_LASHUNTA_RACE,
-  SHIRREN_RACE,
-  VESK_RACE,
-  YSOKI_RACE,
-  DWARF_RACE,
-  ELF_RACE,
-  FEYCHILD_GNOME_RACE,
-  BLEACHLING_GNOME_RACE,
-  HALF_ELF_RACE,
-  HALF_ORC_RACE,
-  HALFLING_RACE
-]
+const races = {
+  [ANDROID]: ANDROID_RACE,
+  [HUMAN]: HUMAN_RACE,
+  [KASATHA]: KASATHA_RACE,
+  [KORSHA_LASHUNTA]: KORSHA_LASHUNTA_RACE,
+  [DAMAYA_LASHUNTA]: DAMAYA_LASHUNTA_RACE,
+  [SHIRREN]: SHIRREN_RACE,
+  [VESK]: VESK_RACE,
+  [YSOKI]: YSOKI_RACE,
+  [DWARF]: DWARF_RACE,
+  [ELF]: ELF_RACE,
+  [FEYCHILD_GNOME]: FEYCHILD_GNOME_RACE,
+  [BLEACHLING_GNOME]: BLEACHLING_GNOME_RACE,
+  [HALF_ELF]: HALF_ELF_RACE,
+  [HALF_ORC]: HALF_ORC_RACE,
+  [HALFLING]: HALFLING_RACE
+}
 
 export default races;
 

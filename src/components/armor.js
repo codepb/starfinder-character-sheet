@@ -8,23 +8,15 @@ import Card, { CardHeader, CardContent } from 'material-ui/Card';
 import AbilityInput from './utilities/abilityInput';
 import * as armorBonusActions from '../actions/armorBonusActions';
 import * as Abilities from '../rules/abilities';
+import AbilityManager from '../models/abilityManager';
 
 var styles = {
-  textFld: { width: 40 },
   icons: { verticalAlign: 'middle' }
 };
 
 class Armor extends Component {
   miscUpdated = (ev) => {
     this.props.armorBonusActions.updateMiscArmor(ev.target.value * 1);
-  }
-
-  kineticBonusUpdated = (ev) => {
-    this.props.armorBonusActions.updateKineticArmor(ev.target.value * 1);
-  }
-
-  energyBonusUpdated = (ev) => {
-    this.props.armorBonusActions.updateEnergyArmor(ev.target.value * 1);
   }
 
   damageReductionUpdated = (ev) => {
@@ -42,39 +34,39 @@ class Armor extends Component {
         <CardContent>
           <div>
             <FormLabel style={{marginRight:'5px'}}>EAC</FormLabel>
-            <AbilityInput label="Total" value={this.props.energyArmorClass} disabled={true} style={styles.textFld}/>
+            <AbilityInput label="Total" value={10 + this.props.armorBonuses.energy + this.props.dexterityModifier + this.props.armorBonuses.misc} disabled={true}/>
             <Icon style={styles.icons}>drag_handle</Icon>
-            <AbilityInput value="10" disabled={true} style={styles.textFld}/>
+            <AbilityInput value="10" disabled={true}/>
             <Icon style={styles.icons}>add</Icon>
-            <AbilityInput label="Bonus" type="number" value={this.props.armorBonuses.energy}  onChange={this.energyBonusUpdated} style={styles.textFld}/>
+            <AbilityInput label="Bonus" type="number" value={this.props.armorBonuses.energy} disabled={true}/>
             <Icon style={styles.icons}>add</Icon>
-            <AbilityInput label="Dexterity" value={this.props.dexterityScore.modifier} disabled={true} style={styles.textFld}/>
+            <AbilityInput label="Dexterity" value={this.props.dexterityModifier} disabled={true} />
             <Icon style={styles.icons}>add</Icon>
-            <AbilityInput label="Misc" type="number" value={this.props.armorBonuses.misc} onChange={this.miscUpdated} style={styles.textFld}/>
+            <AbilityInput label="Misc" type="number" value={this.props.armorBonuses.misc} onChange={this.miscUpdated} />
           </div>
           <div>
             <FormLabel style={{marginRight:'5px'}}>KAC</FormLabel>
-            <AbilityInput label="Total" value={this.props.kineticArmorClass} disabled={true} style={styles.textFld}/>
+            <AbilityInput label="Total" value={10 + this.props.armorBonuses.kinetic + this.props.dexterityModifier + this.props.armorBonuses.misc} disabled={true} />
             <Icon style={styles.icons}>drag_handle</Icon>
-            <AbilityInput value="10" disabled={true} style={styles.textFld}/>
+            <AbilityInput value="10" disabled={true} />
             <Icon style={styles.icons}>add</Icon>
-            <AbilityInput label="Bonus" type="number" value={this.props.armorBonuses.kinetic}  onChange={this.kineticBonusUpdated} style={styles.textFld}/>
+            <AbilityInput label="Bonus" type="number" value={this.props.armorBonuses.kinetic} disabled={true} />
             <Icon style={styles.icons}>add</Icon>
-            <AbilityInput label="Dexterity" value={this.props.dexterityScore.modifier} disabled={true} style={styles.textFld}/>
+            <AbilityInput label="Dexterity" value={this.props.dexterityModifier} disabled={true} />
             <Icon style={styles.icons}>add</Icon>
-            <AbilityInput label="Misc" type="number" value={this.props.armorBonuses.misc} onChange={this.miscUpdated} style={styles.textFld}/>
+            <AbilityInput label="Misc" type="number" value={this.props.armorBonuses.misc} onChange={this.miscUpdated} />
           </div>
           <div>
             <FormLabel style={{marginRight:'5px'}}>AC vs Combat Maneuvers</FormLabel>
-            <AbilityInput label="Total" value={8 + this.props.kineticArmorClass} disabled={true} style={styles.textFld}/>
+            <AbilityInput label="Total" value={18 + this.props.armorBonuses.kinetic + this.props.dexterityModifier + this.props.armorBonuses.misc} disabled={true} />
             <Icon style={styles.icons}>drag_handle</Icon>
-            <AbilityInput value="8" disabled={true} style={styles.textFld}/>
+            <AbilityInput value="8" disabled={true} />
             <Icon style={styles.icons}>add</Icon>
-            <AbilityInput label="KAC" value={this.props.kineticArmorClass} disabled={true} style={styles.textFld}/>
+            <AbilityInput label="KAC" value={10 + this.props.armorBonuses.kinetic + this.props.dexterityModifier + this.props.armorBonuses.misc} disabled={true} />
           </div>
           <div>
-            <AbilityInput label="DR" type="number" value={this.props.armorBonuses.damageReduction} onChange={this.damageReductionUpdated}  style={styles.textFld}/>
-            <TextField label="Resistances" value={this.props.armorBonuses.resistances} onChange={this.resistancesUpdated}/>
+            <AbilityInput label="DR" type="number" value={this.props.damageReduction} onChange={this.damageReductionUpdated} />
+            <TextField label="Resistances" value={this.props.resistances} onChange={this.resistancesUpdated}/>
           </div>
         </CardContent>
       </Card>
@@ -82,15 +74,22 @@ class Armor extends Component {
   }
 }
 
-function mapStateToProps(state) {    
+function mapStateToProps(state) {
+  const abilityManager = new AbilityManager();  
     return {
-        dexterityScore: state.abilityScores.abilityScores[Abilities.DEXTERITY],
-        currentRace: state.character.race,
-        currentTheme: state.character.theme,
-        armorBonuses: state.armorBonuses,
-        energyArmorClass: 10 + state.abilityScores.abilityScores[Abilities.DEXTERITY].modifier + state.armorBonuses.misc + state.armorBonuses.energy,
-        kineticArmorClass: 10 + state.abilityScores.abilityScores[Abilities.DEXTERITY].modifier + state.armorBonuses.misc + state.armorBonuses.kinetic
+        dexterityModifier: abilityManager.getAbilityScoreFromState(state, Abilities.DEXTERITY).modifier,
+        armorBonuses: getArmorBonusesFromState(state),
+        damageReduction: state.armorBonuses.damageReduction,
+        resitances: state.armorBonuses.resistances
     };
+}
+
+function getArmorBonusesFromState(state) {
+  return {
+    kinetic: 0,
+    energy: 0,
+    misc: state.armorBonuses.misc
+  }
 }
 
 function mapDispatchToProps(dispatch) {

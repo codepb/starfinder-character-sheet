@@ -5,7 +5,7 @@ import Button from 'material-ui/Button';
 import Checkbox from 'material-ui/Checkbox';
 import Icon from 'material-ui/Icon';
 import { TableCell,  TableRow } from 'material-ui/Table';
-import * as abilityScoreActions from '../actions/abilityScoreActions'
+import * as abilityScoreActions from '../actions/abilityActions'
 
 class AbilityScore extends Component {
   addPoint = (ev) => {
@@ -17,19 +17,15 @@ class AbilityScore extends Component {
   }
 
   defaultRacialModifierChanged = (ev) => {
-    if(!this.props.abilityScore.isDefaultRacialModifier) {
-      this.props.abilityScoreActions.setAsDefaultRacialModifier(this.props.abilityScore.name);
-    }
+    this.props.abilityScoreActions.setAsDefaultRacialModifier(this.props.abilityScore.name);
   }
 
   defaultThemeModifierChanged = (ev) => {
-    if(!this.props.abilityScore.isDefaultThemeModifier) {
-      this.props.abilityScoreActions.setAsDefaultThemeModifier(this.props.abilityScore.name);
-    }
+    this.props.abilityScoreActions.setAsDefaultThemeModifier(this.props.abilityScore.name);
   }
 
   render() {
-    const keyScore = this.props.abilityScore.isKey ? <Icon>chevron_right</Icon> : '';
+    const keyScore = this.props.isKey? <Icon>chevron_right</Icon> : '';
     return (
       <TableRow>
         <TableCell>{keyScore}</TableCell>
@@ -39,8 +35,8 @@ class AbilityScore extends Component {
         <TableCell>{this.props.abilityScore.racialModifier}</TableCell>
         <TableCell>{this.props.abilityScore.themeModifier}</TableCell>
         <TableCell>{this.props.abilityScore.pointsAssigned}<Button color="primary" onClick={this.addPoint}>+</Button><Button color="accent" onClick={this.removePoint}>-</Button></TableCell>        
-        <TableCell><Checkbox checked={this.props.abilityScore.isDefaultRacialModifier} onChange={this.defaultRacialModifierChanged} disabled={!this.props.canEditDefaultRacial}/></TableCell>
-        <TableCell><Checkbox checked={this.props.abilityScore.isDefaultThemeModifier} onChange={this.defaultThemeModifierChanged} disabled={!this.props.canEditDefaultTheme}/></TableCell>
+        <TableCell><Checkbox checked={this.props.isDefaultRaceBonus} onChange={this.defaultRacialModifierChanged} disabled={!this.props.canEditDefaultRaceBonus}/></TableCell>
+        <TableCell><Checkbox checked={this.props.isDefaultThemeBonus} onChange={this.defaultThemeModifierChanged} disabled={!this.props.canEditDefaultThemeBonus}/></TableCell>
       </TableRow>
     );
   }

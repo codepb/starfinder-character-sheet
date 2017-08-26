@@ -6,9 +6,9 @@ import Card, { CardHeader, CardContent } from 'material-ui/Card';
 import AbilityInput from './utilities/abilityInput';
 import * as initiativeActions from '../actions/initiativeActions';
 import * as Abilities from '../rules/abilities';
+import AbilityManager from '../models/abilityManager';
 
 var styles = {
-  textFld: { width: 40, textAlign: 'center' },
   icons: { verticalAlign: 'middle' }
 };
 
@@ -22,9 +22,9 @@ class Initiative extends Component {
       <Card raised={true}>
         <CardHeader title="Initiative" />
         <CardContent>
-          <AbilityInput label="Total" value={this.props.dexterityScore.modifier + this.props.miscInitiative} disabled={true} style={styles.textFld}/>
+          <AbilityInput label="Total" value={this.props.dexterityModifier + this.props.miscInitiative} disabled={true} />
           <Icon style={styles.icons}>drag_handle</Icon>
-          <AbilityInput label="Dexterity" value={this.props.dexterityScore.modifier} disabled={true} style={styles.textFld}/>
+          <AbilityInput label="Dexterity" value={this.props.dexterityModifier} disabled={true} />
           <Icon style={styles.icons}>add</Icon>
           <AbilityInput label="Misc" type="number" value={this.props.miscInitiative} onChange={this.miscUpdated}/>
         </CardContent>
@@ -33,13 +33,12 @@ class Initiative extends Component {
   }
 }
 
-function mapStateToProps(state) {    
-    return {
-        dexterityScore: state.abilityScores.abilityScores[Abilities.DEXTERITY],
-        currentRace: state.character.race,
-        currentTheme: state.character.theme,
-        miscInitiative: state.initiative
-    };
+function mapStateToProps(state) {
+  const abilityManager = new AbilityManager();
+  return {
+      dexterityModifier: abilityManager.getAbilityScoreFromState(state, Abilities.DEXTERITY).modifier,
+      miscInitiative: state.initiative
+  };
 }
 
 function mapDispatchToProps(dispatch) {
@@ -47,7 +46,6 @@ function mapDispatchToProps(dispatch) {
       initiativeActions: bindActionCreators(initiativeActions, dispatch)
   };
 }
-
 
 export default connect(
     mapStateToProps,
