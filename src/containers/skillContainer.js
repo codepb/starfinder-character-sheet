@@ -18,7 +18,9 @@ function mapStateToProps(state) {
       ranks: state.skills.skillBonuses[skill].ranks,
       abilityModifier: abilityManager.getAbilityScoreFromState(state, skillDetails.ability).modifier,
       miscModifier: state.skills.skillBonuses[skill].misc,
-      isClassSkill: currentClass.classSkills.includes(skill)
+      isClassSkill: currentClass.classSkills.includes(skill),
+      armorCheckPenaltyApplies: skillDetails.armorCheckPenaltyApplies,
+      armorCheckPenalty: skillDetails.armorCheckPenaltyApplies ? state.armor.penalty : 0
     }
   } 
     return {

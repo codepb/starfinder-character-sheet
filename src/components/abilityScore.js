@@ -28,13 +28,14 @@ class AbilityScore extends Component {
     const keyScore = this.props.isKey? <Icon>chevron_right</Icon> : '';
     const isThemeBonus = this.props.abilityScore.themeModifier > 0;
     const isRaceBonus = this.props.abilityScore.raceModifier > 0;
+    const isRaceMinus = this.props.abilityScore.raceModifier < 0;
     return (
       <TableRow>
         <TableCell disablePadding={true}>{keyScore}</TableCell>
         <TableCell compact={true}>{this.props.abilityScore.name}</TableCell>
         <TableCell compact={true}><strong>{this.props.abilityScore.score}</strong></TableCell>
         <TableCell compact={true}><strong>{this.props.abilityScore.modifier}</strong></TableCell>    
-        <TableCell compact={true}><Checkbox checked={isRaceBonus} onChange={this.defaultRacialModifierChanged} disabled={!this.props.canEditDefaultRaceBonus}/></TableCell>
+        <TableCell compact={true}><Checkbox checked={isRaceBonus} onChange={this.defaultRacialModifierChanged} indeterminate={isRaceMinus} disabled={!this.props.canEditDefaultRaceBonus}/></TableCell>
         <TableCell compact={true}><Checkbox checked={isThemeBonus} onChange={this.defaultThemeModifierChanged} disabled={!this.props.canEditDefaultThemeBonus}/></TableCell>
         <TableCell compact={true}>{this.props.abilityScore.pointsAssigned}</TableCell>
         <TableCell disablePadding={true}><Button color="primary" onClick={this.addPoint} dense={true}>+</Button></TableCell>

@@ -15,7 +15,9 @@ export default class SkillsList extends Component {
           ranks={skillDetails.ranks}
           abilityModifier={skillDetails.abilityModifier}
           miscModifier={skillDetails.miscModifier}
-          skillActions={this.props.skillActions} />)
+          skillActions={this.props.skillActions}
+          armorCheckPenalty={skillDetails.armorCheckPenalty}
+          armorCheckPenaltyApplies={skillDetails.armorCheckPenaltyApplies} />)
     }
     return (
       <Card raised={true}>

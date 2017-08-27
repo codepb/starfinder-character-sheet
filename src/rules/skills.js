@@ -3,6 +3,7 @@ import * as Abilities from './abilities';
 class Skill {
   ability;
   trainedOnly = false;
+  armorCheckPenaltyApplies = false;
 
   constructor(params){
     for (let i in params) {
@@ -34,8 +35,8 @@ export const STEALTH = 'Stealth';
 export const SURVIVAL = 'Survival';
 
 const skills = {
-  [ACROBATICS]: new Skill({ability: Abilities.DEXTERITY}),
-  [ATHLETICS]: new Skill({ability: Abilities.STRENGTH}),
+  [ACROBATICS]: new Skill({ability: Abilities.DEXTERITY, armorCheckPenaltyApplies: true}),
+  [ATHLETICS]: new Skill({ability: Abilities.STRENGTH, armorCheckPenaltyApplies: true}),
   [BLUFF]: new Skill({ability: Abilities.CHARISMA}),
   [COMPUTERS]: new Skill({ability: Abilities.INTELLIGENCE, trainedOnly: true}),
   [CULTURE]: new Skill({ability: Abilities.INTELLIGENCE, trainedOnly: true}),
@@ -52,8 +53,8 @@ const skills = {
   [PROFFESSION1]: new Skill({ability: Abilities.INTELLIGENCE, trainedOnly: true}),
   [PROFFESSION2]: new Skill({ability: Abilities.INTELLIGENCE, trainedOnly: true}),
   [SENSE_MOTIVE]: new Skill({ability: Abilities.WISDOM}),
-  [SLEIGHT_OF_HAND]: new Skill({ability: Abilities.INTELLIGENCE, trainedOnly: true}),
-  [STEALTH]: new Skill({ability: Abilities.DEXTERITY}),
+  [SLEIGHT_OF_HAND]: new Skill({ability: Abilities.INTELLIGENCE, trainedOnly: true, armorCheckPenaltyApplies: true}),
+  [STEALTH]: new Skill({ability: Abilities.DEXTERITY, armorCheckPenaltyApplies: true}),
   [SURVIVAL]: new Skill({ability: Abilities.WISDOM})
 };
 

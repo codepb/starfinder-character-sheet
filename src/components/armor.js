@@ -27,7 +27,10 @@ export default class Armor extends Component {
   }
 
   armorPenaltyUpdated = (ev) => {
-    this.props.armorActions.updatePenalty(ev.target.value * 1);
+    const value = ev.target.value * 1;
+    if(value <= 0) {
+      this.props.armorActions.updatePenalty(ev.target.value * 1);
+    }
   }
 
   armorMaxDexterityUpdated = (ev) => {
