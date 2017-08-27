@@ -5,6 +5,7 @@ import initiative from './initiativeReducer';
 import armor from './armorReducer';
 import currentHealth from './currentHealthReducer';
 import skills from './skillReducer';
+import savingThrows from './savingThrowReducer';
 
 const rootReducer = combineReducers({
     character,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
     initiative,
     armor,
     currentHealth,
-    skills
+    skills,
+    savingThrows
 });
 
 export default rootReducer;

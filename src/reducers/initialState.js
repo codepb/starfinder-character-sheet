@@ -4,6 +4,7 @@ import * as Races from '../rules/races';
 import * as ThemeTypes from '../rules/themes';
 import * as Classes from '../rules/classes';
 import skills from '../rules/skills';
+import * as SavingThrows from '../rules/savingThrows';
 
 const abilityPoints = {
     [Abilities.STRENGTH]: 0,
@@ -48,5 +49,10 @@ export default {
         profession1Ability: Abilities.CHARISMA,
         profession2Ability: Abilities.CHARISMA,
         skillBonuses        
+    },
+    savingThrows: {
+        [SavingThrows.FORTITUDE]: { misc: 0 },
+        [SavingThrows.REFLEX]: { misc: 0 },
+        [SavingThrows.WILL]: { misc: 0 }
     }
 }
