@@ -4,13 +4,15 @@ import abilities from './abilitiesReducer';
 import initiative from './initiativeReducer';
 import armor from './armorReducer';
 import currentHealth from './currentHealthReducer';
+import skills from './skillReducer';
 
 const rootReducer = combineReducers({
     character,
     abilities,
     initiative,
     armor,
-    currentHealth
+    currentHealth,
+    skills
 });
 
 export default rootReducer;

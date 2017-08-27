@@ -14,10 +14,13 @@ const abilityPoints = {
     [Abilities.CHARISMA]: 0
 };
 
-const skillRanks = {};
+const skillBonuses = {};
 
 for(let skill in skills) {
-    skillRanks[skill] = 0;
+    skillBonuses[skill] = {
+        ranks: 0,
+        misc: 0
+    };
 }
 
 
@@ -44,6 +47,6 @@ export default {
     skills: {
         profession1Ability: Abilities.CHARISMA,
         profession2Ability: Abilities.CHARISMA,
-        skillRanks        
+        skillBonuses        
     }
 }

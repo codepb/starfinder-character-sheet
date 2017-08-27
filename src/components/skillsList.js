@@ -14,7 +14,8 @@ export default class SkillsList extends Component {
           isClassSkill={skillDetails.isClassSkill}
           ranks={skillDetails.ranks}
           abilityModifier={skillDetails.abilityModifier}
-          miscModifier={skillDetails.miscModifier} />)
+          miscModifier={skillDetails.miscModifier}
+          skillActions={this.props.skillActions} />)
     }
     return (
       <Table>

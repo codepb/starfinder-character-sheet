@@ -39,7 +39,7 @@ export default class Health extends Component {
             <TableBody>
               <TableRow>
             <TableCell>Total</TableCell>
-            <TableCell ><AbilityInput type="number" value={this.props.staminaPoints.total} disabled={true} style={styles.textFld}/></TableCell>
+            <TableCell><AbilityInput type="number" value={this.props.staminaPoints.total} disabled={true} style={styles.textFld}/></TableCell>
             <TableCell><AbilityInput type="number" value={this.props.hitPoints.total} disabled={true} style={styles.textFld}/></TableCell>
             <TableCell><AbilityInput type="number" value={this.props.resolvePoints.total} disabled={true} style={styles.textFld}/></TableCell>
             </TableRow>
