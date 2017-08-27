@@ -30,7 +30,11 @@ export default {
     character: new Character({
         race: Races.HUMAN,
         theme: ThemeTypes.THEMELESS,
-        class: Classes.ENVOY
+        class: Classes.ENVOY,
+        gender: '',
+        homeWorld: '',
+        alignment: '',
+        deity: ''
     }),
     miscInitiative: 0,
     abilities: {

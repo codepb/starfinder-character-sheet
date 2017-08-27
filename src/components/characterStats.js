@@ -6,9 +6,6 @@ import Select from './utilities/select';
 import AbilityInput from './utilities/abilityInput';
 
 export default class CharacterStats extends Component {
-  state = {
-    name: this.props.character.name
-  }
   raceChanged = (value) => {
     this.props.characterActions.changeRace(value);
   }
@@ -17,14 +14,24 @@ export default class CharacterStats extends Component {
     this.props.characterActions.changeTheme(value);
   }
 
-  nameChanged = (event) => {
-    this.setState({
-      name: event.target.value
-    });
-  }
-
   nameBlurred = (event) => {
     this.props.characterActions.changeName(event.target.value);
+  }
+
+  genderBlurred = (event) => {
+    this.props.characterActions.changeGender(event.target.value);
+  }
+
+  homeWorldBlurred = (event) => {
+    this.props.characterActions.changeHomeWorld(event.target.value);
+  }
+
+  deityBlurred = (event) => {
+    this.props.characterActions.changeDeity(event.target.value);
+  }
+
+  alignmentChanged = (value) => {
+    this.props.characterActions.changeAlignment(value);
   }
 
   classChanged = (value) => {
@@ -34,14 +41,22 @@ export default class CharacterStats extends Component {
   render() {
     return (
       <div>
-        <TextField label="Name" value={this.state.name} onChange={this.nameChanged} onBlur={this.nameBlurred}/>
-        <Select label="Race" value={this.props.character.race} options={this.props.raceOptions} onChange={this.raceChanged} />
-        <Select label="Theme"  value={this.props.character.theme} options={this.props.themeOptions} onChange={this.themeChanged} />
-        <Select label="Class"  value={this.props.character.class} options={this.props.classOptions} onChange={this.classChanged} />
-        <DisabledTextField label="Size" value={this.props.character.size} disabled={true}/>
-        <FormLabel style={{marginRight:'5px'}}>Speed</FormLabel>
-        <AbilityInput label="Base" type="number" value={this.props.baseSpeed} disabled={true}/>
-        <AbilityInput label="Adjusted" type="number" value={this.props.adjustedSpeed} disabled={true}/>
+        <div style={{marginBottom: '10px'}}>
+          <TextField label="Name" defaultValue={this.props.character.name}  onBlur={this.nameBlurred}/>
+          <Select label="Class"  value={this.props.character.class} options={this.props.classOptions} onChange={this.classChanged} />
+          <Select label="Race" value={this.props.character.race} options={this.props.raceOptions} onChange={this.raceChanged} />
+          <Select label="Theme"  value={this.props.character.theme} options={this.props.themeOptions} onChange={this.themeChanged} />        
+          <DisabledTextField label="Size" value={this.props.character.size} disabled={true}/>
+        </div>
+        <div>
+          <FormLabel style={{marginRight:'5px'}}>Speed</FormLabel>
+          <AbilityInput label="Base" type="number" value={this.props.baseSpeed} disabled={true}/>
+          <AbilityInput label="Adjusted" type="number" value={this.props.adjustedSpeed} disabled={true}/>
+          <TextField label="Gender" style={{width: '40px'}} defaultValue={this.props.character.gender} onBlur={this.genderBlurred} />
+          <TextField label="Home World" defaultValue={this.props.character.homeWorld} onBlur={this.homeWorldBlurred} />
+          <Select label="Alignment" value={this.props.character.alignment} options={this.props.alignmentOptions} onChange={this.alignmentChanged} />
+          <TextField label="Deity" defaultValue={this.props.character.deity} onBlur={this.deityBlurred} />
+        </div>
       </div>
     );
   }

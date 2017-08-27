@@ -13,6 +13,14 @@ export default function character(state = initialState.character, action) {
       return update(state, {class: {$set: action.newClass } });
     case CharacterActions.CHANGE_NAME:
       return update(state, {name: {$set: action.newName } });
+    case CharacterActions.CHANGE_GENDER:
+      return update(state, {gender: {$set: action.newGender } });
+    case CharacterActions.CHANGE_HOME_WORLD:
+      return update(state, {homeWorld: {$set: action.newValue } });
+    case CharacterActions.CHANGE_ALIGNMENT:
+      return update(state, {alignment: {$set: action.newValue } });
+      case CharacterActions.CHANGE_DEITY:
+      return update(state, {deity: {$set: action.newValue } });
     default:
       return state;
   }

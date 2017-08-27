@@ -27,3 +27,31 @@ export function changeName(newName){
     newName
   };
 }
+
+export function changeGender(newGender){
+  return {
+    type: types.CHANGE_GENDER,
+    newGender
+  };
+}
+
+export function changeHomeWorld(newValue){
+  return {
+    type: types.CHANGE_HOME_WORLD,
+    newValue
+  };
+}
+
+export function changeAlignment(newValue){
+  return {
+    type: types.CHANGE_ALIGNMENT,
+    newValue
+  };
+}
+
+export function changeDeity(newValue){
+  return {
+    type: types.CHANGE_DEITY,
+    newValue
+  };
+}
