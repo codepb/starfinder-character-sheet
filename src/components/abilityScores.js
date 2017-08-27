@@ -24,15 +24,15 @@ export default class AbilityScores extends Component {
                 <Table>
                     <TableHead>
                             <TableRow>
-                                <TableCell></TableCell>
-                                <TableCell>Skill</TableCell>
-                                <TableCell>Score</TableCell>
-                                <TableCell>Modifier</TableCell>
-                                <TableCell>Racial</TableCell>
-                                <TableCell>Theme</TableCell>
-                                <TableCell>Assigned</TableCell>                   
-                                <TableCell>Racial Bonus</TableCell>
-                                <TableCell>Theme Bonus</TableCell>
+                                <TableCell disablePadding={true}></TableCell>
+                                <TableCell compact={true}>Skill</TableCell>
+                                <TableCell compact={true}>Score</TableCell>
+                                <TableCell compact={true}>Modifier</TableCell>
+                                <TableCell compact={true}>Race Bonus</TableCell>
+                                <TableCell compact={true}>Theme Bonus</TableCell>
+                                <TableCell compact={true}>Assigned</TableCell>
+                                <TableCell disablePadding={true} />
+                                <TableCell disablePadding={true} />  
                             </TableRow>
                         </TableHead>
                         <TableBody>

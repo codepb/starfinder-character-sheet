@@ -18,23 +18,28 @@ export default class SkillsList extends Component {
           skillActions={this.props.skillActions} />)
     }
     return (
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell />
-            <TableCell />
-            <TableCell />
-            <TableCell>Total</TableCell>
-            <TableCell>Ranks</TableCell>
-            <TableCell>Class Bonus</TableCell>
-            <TableCell>Ability Mod.</TableCell>
-            <TableCell>Misc. Mod.</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows}
-        </TableBody>
-      </Table>
+      <Card raised={true}>
+        <CardHeader title="Skills" />
+        <CardContent>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell disablePadding={true}/>
+                <TableCell disablePadding={true}/>
+                <TableCell compact={true}/>
+                <TableCell compact={true}>Total</TableCell>
+                <TableCell compact={true}>Ranks</TableCell>
+                <TableCell compact={true}>Class</TableCell>
+                <TableCell compact={true}>Ability</TableCell>
+                <TableCell compact={true}>Misc.</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {rows}
+            </TableBody>
+          </Table>
+        </CardContent>
+      </Card>
     );
   }
 }

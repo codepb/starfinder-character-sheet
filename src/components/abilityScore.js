@@ -26,17 +26,19 @@ class AbilityScore extends Component {
 
   render() {
     const keyScore = this.props.isKey? <Icon>chevron_right</Icon> : '';
+    const isThemeBonus = this.props.abilityScore.themeModifier > 0;
+    const isRaceBonus = this.props.abilityScore.raceModifier > 0;
     return (
       <TableRow>
-        <TableCell>{keyScore}</TableCell>
-        <TableCell>{this.props.abilityScore.name}</TableCell>
-        <TableCell>{this.props.abilityScore.score}</TableCell>
-        <TableCell>{this.props.abilityScore.modifier}</TableCell>
-        <TableCell>{this.props.abilityScore.raceModifier}</TableCell>
-        <TableCell>{this.props.abilityScore.themeModifier}</TableCell>
-        <TableCell>{this.props.abilityScore.pointsAssigned}<Button color="primary" onClick={this.addPoint}>+</Button><Button color="accent" onClick={this.removePoint}>-</Button></TableCell>        
-        <TableCell><Checkbox checked={this.props.isDefaultRaceBonus} onChange={this.defaultRacialModifierChanged} disabled={!this.props.canEditDefaultRaceBonus}/></TableCell>
-        <TableCell><Checkbox checked={this.props.isDefaultThemeBonus} onChange={this.defaultThemeModifierChanged} disabled={!this.props.canEditDefaultThemeBonus}/></TableCell>
+        <TableCell disablePadding={true}>{keyScore}</TableCell>
+        <TableCell compact={true}>{this.props.abilityScore.name}</TableCell>
+        <TableCell compact={true}><strong>{this.props.abilityScore.score}</strong></TableCell>
+        <TableCell compact={true}><strong>{this.props.abilityScore.modifier}</strong></TableCell>    
+        <TableCell compact={true}><Checkbox checked={isRaceBonus} onChange={this.defaultRacialModifierChanged} disabled={!this.props.canEditDefaultRaceBonus}/></TableCell>
+        <TableCell compact={true}><Checkbox checked={isThemeBonus} onChange={this.defaultThemeModifierChanged} disabled={!this.props.canEditDefaultThemeBonus}/></TableCell>
+        <TableCell compact={true}>{this.props.abilityScore.pointsAssigned}</TableCell>
+        <TableCell disablePadding={true}><Button color="primary" onClick={this.addPoint} dense={true}>+</Button></TableCell>
+        <TableCell disablePadding={true}><Button color="accent" onClick={this.removePoint} dense={true}>-</Button></TableCell>   
       </TableRow>
     );
   }

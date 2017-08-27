@@ -20,7 +20,12 @@ class App extends Component {
         </Grid>
         <Grid container>
           <Grid item>
-            <AbilityScoresContainer />
+            <div style={{margin: '20px'}}>
+              <AbilityScoresContainer />
+            </div>
+            <div style={{margin: '20px'}}>
+              <SkillContainer />
+            </div>
           </Grid>
           <Grid item>
             <div style={{margin: '20px'}}>
@@ -31,9 +36,6 @@ class App extends Component {
             </div>
             <div style={{margin: '20px'}}>
               <ArmorContainer />
-            </div>
-            <div style={{margin: '20px'}}>
-              <SkillContainer />
             </div>
           </Grid>
         </Grid>

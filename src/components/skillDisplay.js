@@ -25,14 +25,14 @@ export default class SkillsDisplay extends Component {
     const totalToDisplay = this.props.isTrainedOnly && this.props.ranks === 0 ? '' : total;
     return (
       <TableRow>
-        <TableCell>{trainedOnly}</TableCell>
-        <TableCell><Checkbox checked={this.props.isClassSkill} disabled={true}/></TableCell>
-        <TableCell>{`${this.props.skill} [${this.props.ability.substring(0,3).toUpperCase()}]`}</TableCell>
-        <TableCell><strong>{totalToDisplay}</strong></TableCell>
-        <TableCell><AbilityInput type="number" value={this.props.ranks} onChange={this.ranksUpdated}/></TableCell>
-        <TableCell>{classBonus}</TableCell>
-        <TableCell>{this.props.abilityModifier}</TableCell>
-        <TableCell><AbilityInput type="number" value={this.props.miscModifier} onChange={this.miscModifierUpdated}/></TableCell>
+        <TableCell disablePadding={true}>{trainedOnly}</TableCell>
+        <TableCell disablePadding={true}><Checkbox checked={this.props.isClassSkill} disabled={true}/></TableCell>
+        <TableCell compact={true}>{`${this.props.skill} [${this.props.ability.substring(0,3).toUpperCase()}]`}</TableCell>
+        <TableCell compact={true}><strong>{totalToDisplay}</strong></TableCell>
+        <TableCell compact={true}><AbilityInput type="number" value={this.props.ranks} onChange={this.ranksUpdated}/></TableCell>
+        <TableCell compact={true}>{classBonus}</TableCell>
+        <TableCell compact={true}>{this.props.abilityModifier}</TableCell>
+        <TableCell compact={true}><AbilityInput type="number" value={this.props.miscModifier} onChange={this.miscModifierUpdated}/></TableCell>
       </TableRow>);
   }
 }
