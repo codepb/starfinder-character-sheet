@@ -6,6 +6,7 @@ class Class {
   hp;
   stamina;
   keyAbility;
+  skillRanksPerLevel;
   classSkills = [];
 
   constructor(params){
@@ -29,6 +30,7 @@ export const ENVOY_CLASS = new Class({
   hp: 6,
   stamina: 6,
   keyAbility: Abilities.CHARISMA,
+  skillRanksPerLevel: 8,
   classSkills: [
     Skills.ACROBATICS,
     Skills.ATHLETICS,
@@ -54,6 +56,7 @@ export const MECHANIC_CLASS = new Class({
   hp: 6,
   stamina: 6,
   keyAbility: Abilities.INTELLIGENCE,
+  skillRanksPerLevel: 4,
   classSkills: [
     Skills.ATHLETICS,
     Skills.COMPUTERS,
@@ -70,6 +73,7 @@ export const MYSTIC_CLASS = new Class({
   hp: 6,
   stamina: 6,
   keyAbility: Abilities.WISDOM,
+  skillRanksPerLevel: 6,
   classSkills: [
     Skills.BLUFF,
     Skills.CULTURE,
@@ -91,6 +95,7 @@ export const OPERATIVE_CLASS = new Class({
   hp: 6,
   stamina: 6,
   keyAbility: Abilities.DEXTERITY,
+  skillRanksPerLevel: 8,
   classSkills: [
     Skills.ACROBATICS,
     Skills.ATHLETICS,
@@ -116,6 +121,7 @@ export const SOLARIAN_CLASS = new Class({
   hp: 7,
   stamina: 7,
   keyAbility: Abilities.CHARISMA,
+  skillRanksPerLevel: 4,
   classSkills: [
     Skills.ACROBATICS,
     Skills.ATHLETICS,
@@ -135,6 +141,7 @@ export const SOLDIER_DEX_CLASS = new Class({
   hp: 7,
   stamina: 7,
   keyAbility: Abilities.DEXTERITY,
+  skillRanksPerLevel: 4,
   classSkills: [
     Skills.ACROBATICS,
     Skills.ATHLETICS,
@@ -152,6 +159,7 @@ export const SOLDIER_STR_CLASS = new Class({
   hp: 7,
   stamina: 7,
   keyAbility: Abilities.STRENGTH,
+  skillRanksPerLevel: 4,
   classSkills: [
     Skills.ACROBATICS,
     Skills.ATHLETICS,
@@ -169,6 +177,7 @@ export const TECHNOMANCER_CLASS = new Class({
   hp: 5,
   stamina: 5,
   keyAbility: Abilities.INTELLIGENCE,
+  skillRanksPerLevel: 4,
   classSkills: [
     Skills.COMPUTERS,
     Skills.ENGINEERING,

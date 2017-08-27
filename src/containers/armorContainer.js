@@ -21,8 +21,8 @@ function mapStateToProps(state) {
 
 function getArmorBonusesFromState(state) {
   return {
-    kinetic: 0,
-    energy: 0,
+    kinetic: state.armor.bonuses.kinetic,
+    energy: state.armor.bonuses.energy,
     misc: state.armor.bonuses.misc
   }
 }

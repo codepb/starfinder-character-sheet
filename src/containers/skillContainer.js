@@ -3,15 +3,16 @@ import { bindActionCreators } from 'redux';
 import SkillsList from '../components/skillsList';
 import skills from '../rules/skills';
 import classes from '../rules/classes';
+import * as Abilities from '../rules/abilities';
 import AbilityManager from '../models/abilityManager';
 import * as skillActions from '../actions/skillActions';
 
 function mapStateToProps(state) {
   const skillsToMap = {};
   const abilityManager = new AbilityManager();
+  const currentClass = classes[state.character.class];
   for(let skill in skills) {
-    const skillDetails = skills[skill];
-    const currentClass = classes[state.character.class];
+    const skillDetails = skills[skill];    
     skillsToMap[skill] = {
       ability: skillDetails.ability,
       isTrainedOnly: skillDetails.trainedOnly,
@@ -25,6 +26,7 @@ function mapStateToProps(state) {
   } 
     return {
       skills: skillsToMap,
+      skillRanksPerLevel: currentClass.skillRanksPerLevel + abilityManager.getAbilityScoreFromState(state, Abilities.INTELLIGENCE).modifier
     };
 }
 

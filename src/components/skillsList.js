@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Table, { TableHead, TableBody, TableRow, TableCell} from 'material-ui/Table';
 import Card, { CardHeader, CardContent } from 'material-ui/Card';
+import Typography from 'material-ui/Typography';
 import SkillDisplay from './skillDisplay';
 
 export default class SkillsList extends Component {
@@ -23,6 +24,7 @@ export default class SkillsList extends Component {
       <Card raised={true}>
         <CardHeader title="Skills" />
         <CardContent>
+          <Typography align='right'>Skill Ranks per Level: {this.props.skillRanksPerLevel}</Typography>
           <Table>
             <TableHead>
               <TableRow>

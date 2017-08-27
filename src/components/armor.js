@@ -34,11 +34,22 @@ export default class Armor extends Component {
   }
 
   armorMaxDexterityUpdated = (ev) => {
-    this.props.armorActions.updateMaxDexterity(ev.target.value * 1);
+    const value = ev.target.value * 1;
+    if( value > 0) {
+      this.props.armorActions.updateMaxDexterity(ev.target.value * 1);
+    }
   }
 
   armorSpeedAdjustmentUpdated = (ev) => {
     this.props.armorActions.updateSpeedAdjustment(ev.target.value * 1);
+  }
+
+  energyArmorUpdated = (ev) => {
+    this.props.armorActions.updateEnergyArmorBonus(ev.target.value * 1);
+  }
+
+  kineticArmorUpdated = (ev) => {
+    this.props.armorActions.updateKineticArmorBonus(ev.target.value * 1);
   }
 
   render() {
@@ -58,7 +69,7 @@ export default class Armor extends Component {
             <Icon style={styles.icons}>drag_handle</Icon>
             <AbilityInput value="10" disabled={true}/>
             <Icon style={styles.icons}>add</Icon>
-            <AbilityInput label="Bonus" type="number" value={this.props.armorBonuses.energy} disabled={true}/>
+            <AbilityInput label="Bonus" type="number" value={this.props.armorBonuses.energy} onChange={this.energyArmorUpdated}/>
             <Icon style={styles.icons}>add</Icon>
             <AbilityInput label="Dexterity" value={this.props.dexterityModifier} disabled={true} />
             <Icon style={styles.icons}>add</Icon>
@@ -70,7 +81,7 @@ export default class Armor extends Component {
             <Icon style={styles.icons}>drag_handle</Icon>
             <AbilityInput value="10" disabled={true} />
             <Icon style={styles.icons}>add</Icon>
-            <AbilityInput label="Bonus" type="number" value={this.props.armorBonuses.kinetic} disabled={true} />
+            <AbilityInput label="Bonus" type="number" value={this.props.armorBonuses.kinetic} onChange={this.kineticArmorUpdated} />
             <Icon style={styles.icons}>add</Icon>
             <AbilityInput label="Dexterity" value={this.props.dexterityModifier} disabled={true} />
             <Icon style={styles.icons}>add</Icon>

@@ -48,3 +48,17 @@ export function updateSpeedAdjustment(newValue) {
     newValue
   };
 }
+
+export function updateEnergyArmorBonus(newValue) {
+  return {
+    type: types.UPDATE_ENERGY_ARMOR_BONUS,
+    newValue
+  };
+}
+
+export function updateKineticArmorBonus(newValue) {
+  return {
+    type: types.UPDATE_KINETIC_ARMOR_BONUS,
+    newValue
+  };
+}

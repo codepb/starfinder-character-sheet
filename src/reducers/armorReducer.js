@@ -18,6 +18,10 @@ export default function armor(state = initialState.armor, action) {
       return update(state, { maxDexterity: { $set: action.newValue }});
     case ArmorBonusActions.UPDATE_ARMOR_SPEED_ADJUSTMENT:
       return update(state, { speedAdjustment: { $set: action.newValue }});
+    case ArmorBonusActions.UPDATE_ENERGY_ARMOR_BONUS:
+      return update(state, {bonuses: { energy: { $set: action.newValue }}});
+    case ArmorBonusActions.UPDATE_KINETIC_ARMOR_BONUS:
+      return update(state, {bonuses: { kinetic: { $set: action.newValue }}});
     default:
       return state;
   }

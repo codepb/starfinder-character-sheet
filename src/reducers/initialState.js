@@ -41,7 +41,7 @@ export default {
         penalty: 0,
         maxDexterity: 10,
         speedAdjustment: 0,
-        bonuses: {misc: 0, damageReduction: 0, resistances: '' }
+        bonuses: {misc: 0, damageReduction: 0, resistances: '', energy: 0, kinetic: 0 }
     },
     currentHealth: { hitPoints: 10 , staminaPoints: 6, resolvePoints: 1 },
     skills: {
