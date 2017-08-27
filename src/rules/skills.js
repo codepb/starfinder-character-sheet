@@ -53,7 +53,7 @@ const skills = {
   [PROFFESSION1]: new Skill({ability: Abilities.INTELLIGENCE, trainedOnly: true}),
   [PROFFESSION2]: new Skill({ability: Abilities.INTELLIGENCE, trainedOnly: true}),
   [SENSE_MOTIVE]: new Skill({ability: Abilities.WISDOM}),
-  [SLEIGHT_OF_HAND]: new Skill({ability: Abilities.INTELLIGENCE, trainedOnly: true, armorCheckPenaltyApplies: true}),
+  [SLEIGHT_OF_HAND]: new Skill({ability: Abilities.DEXTERITY, trainedOnly: true, armorCheckPenaltyApplies: true}),
   [STEALTH]: new Skill({ability: Abilities.DEXTERITY, armorCheckPenaltyApplies: true}),
   [SURVIVAL]: new Skill({ability: Abilities.WISDOM})
 };
