@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import Table, { TableHead, TableBody, TableRow, TableCell} from 'material-ui/Table';
-import Card, { CardHeader, CardContent } from 'material-ui/Card';
+import { TableRow, TableCell} from 'material-ui/Table';
 import Icon from 'material-ui/Icon';
 import Checkbox from 'material-ui/Checkbox';
 import AbilityInput from './utilities/abilityInput';
