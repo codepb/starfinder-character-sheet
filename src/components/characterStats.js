@@ -47,11 +47,11 @@ export default class CharacterStats extends Component {
           <Select label="Race" value={this.props.character.race} options={this.props.raceOptions} onChange={this.raceChanged} />
           <Select label="Theme"  value={this.props.character.theme} options={this.props.themeOptions} onChange={this.themeChanged} />        
           <DisabledTextField label="Size" value={this.props.character.size} disabled={true}/>
-        </div>
-        <div>
           <FormLabel style={{marginRight:'5px'}}>Speed</FormLabel>
           <AbilityInput label="Base" type="number" value={this.props.baseSpeed} disabled={true}/>
           <AbilityInput label="Adjusted" type="number" value={this.props.adjustedSpeed} disabled={true}/>
+        </div>
+        <div>          
           <TextField label="Gender" style={{width: '40px'}} defaultValue={this.props.character.gender} onBlur={this.genderBlurred} />
           <TextField label="Home World" defaultValue={this.props.character.homeWorld} onBlur={this.homeWorldBlurred} />
           <Select label="Alignment" value={this.props.character.alignment} options={this.props.alignmentOptions} onChange={this.alignmentChanged} />
