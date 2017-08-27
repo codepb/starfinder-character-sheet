@@ -3,10 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "eslint": "^4.3.0",
+    "immutability-helper": "^2.3.1",
+    "material-ui": "^1.0.0-beta.6",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "react-scripts": "1.0.11",
+    "react-redux": "^5.0.6",
+    "react-scripts": "^1.0.11",
+    "redux": "^3.7.2",
     "redux-localstorage": "^1.0.0-rc5",
+    "redux-multi": "^0.1.12",
+    "redux-thunk": "^2.2.0",
     "typeface-roboto": "0.0.35"
   },
   "homepage": "http://codepb.github.io/starfinder-character-sheet",
