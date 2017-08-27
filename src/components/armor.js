@@ -3,7 +3,10 @@ import { FormLabel } from 'material-ui/Form';
 import TextField from 'material-ui/TextField';
 import Icon from 'material-ui/Icon';
 import Card, { CardHeader, CardContent } from 'material-ui/Card';
+import Table, { TableHead, TableBody, TableRow, TableCell} from 'material-ui/Table';
+import Typography from 'material-ui/Typography';
 import AbilityInput from './utilities/abilityInput';
+
 
 var styles = {
   icons: { verticalAlign: 'middle', color: 'rgba(0, 0, 0, 0.87)', fontSize: '20px' }
@@ -15,7 +18,7 @@ export default class Armor extends Component {
   }
 
   damageReductionUpdated = (ev) => {
-    this.props.armorActions.updateDamageReduction(ev.target.value * 1);
+    this.props.armorActions.updateDamageReduction(ev.target.value);
   }
 
   resistancesUpdated = (ev) => {
@@ -57,47 +60,51 @@ export default class Armor extends Component {
       <Card raised={true}>
         <CardHeader title="Armor" />
         <CardContent>
+          <TextField label="Armor Worn" defaultValue={this.props.armorWorn} onBlur={this.armorWornUpdated} style={{width: '300px', marginRight: '10px'}}/>
+          <span style={{marginLeft: '10px', marginRight: '10px'}}><AbilityInput label="Penalty" type="number" value={this.props.armorPenalty} onChange={this.armorPenaltyUpdated} inputStyles={{width: '90px'}}/></span>
+          <span style={{marginLeft: '10px', marginRight: '10px'}}><AbilityInput label="Max Dex" type="number" value={this.props.armorMaxDexterity} onChange={this.armorMaxDexterityUpdated} inputStyles={{width: '90px'}}/></span>
+          <span style={{marginLeft: '10px', marginRight: '10px'}}><AbilityInput label="Speed Adj" type="number" value={this.props.armorSpeedAdjustment} onChange={this.armorSpeedAdjustmentUpdated} inputStyles={{width: '90px'}}/></span>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell compact={true} />
+                <TableCell compact={true} style={{textAlign: 'center'}}>Total</TableCell>
+                <TableCell compact={true} style={{textAlign: 'center'}}>Base</TableCell>
+                <TableCell compact={true} style={{textAlign: 'center'}}>Bonus</TableCell>
+                <TableCell compact={true} style={{textAlign: 'center'}}>Dexterity</TableCell>
+                <TableCell compact={true} style={{textAlign: 'center'}}>Misc</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              <TableRow>
+                <TableCell compact={true}>Energy Armor Class</TableCell>
+                <TableCell compact={true} style={{textAlign: 'center'}}><strong>{10 + this.props.armorBonuses.energy + this.props.dexterityModifier + this.props.armorBonuses.misc}</strong></TableCell>
+                <TableCell compact={true} style={{textAlign: 'center'}}>10</TableCell>
+                <TableCell compact={true} style={{textAlign: 'center'}}><AbilityInput type="number" value={this.props.armorBonuses.energy} onChange={this.energyArmorUpdated}/></TableCell>
+                <TableCell compact={true} style={{textAlign: 'center'}}>{this.props.dexterityModifier}</TableCell>
+                <TableCell compact={true} style={{textAlign: 'center'}}><AbilityInput type="number" value={this.props.armorBonuses.misc} onChange={this.miscUpdated} /></TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell compact={true}>Kinetic Armor Class</TableCell>
+                <TableCell compact={true} style={{textAlign: 'center'}}><strong>{10 + this.props.armorBonuses.kinetic + this.props.dexterityModifier + this.props.armorBonuses.misc}</strong></TableCell>
+                <TableCell compact={true} style={{textAlign: 'center'}}>10</TableCell>
+                <TableCell compact={true} style={{textAlign: 'center'}}><AbilityInput type="number" value={this.props.armorBonuses.kinetic} onChange={this.kineticArmorUpdated} /></TableCell>
+                <TableCell compact={true} style={{textAlign: 'center'}}>{this.props.dexterityModifier}</TableCell>
+                <TableCell compact={true} style={{textAlign: 'center'}}><AbilityInput type="number" value={this.props.armorBonuses.misc} onChange={this.miscUpdated} /></TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell compact={true}>AC vs Combat Maneuvers</TableCell>
+                <TableCell compact={true} style={{textAlign: 'center'}}><AbilityInput label="Total" value={18 + this.props.armorBonuses.kinetic + this.props.dexterityModifier + this.props.armorBonuses.misc} disabled={true} /></TableCell>
+                <TableCell compact={true} style={{textAlign: 'center'}}><Icon style={styles.icons}>drag_handle</Icon></TableCell>
+                <TableCell compact={true} style={{textAlign: 'center'}}><AbilityInput label="Base" value="8" disabled={true} /></TableCell>
+                <TableCell compact={true} style={{textAlign: 'center'}}><Icon style={styles.icons}>add</Icon></TableCell>
+                <TableCell compact={true} style={{textAlign: 'center'}}><AbilityInput label="KAC" value={10 + this.props.armorBonuses.kinetic + this.props.dexterityModifier + this.props.armorBonuses.misc} disabled={true} /></TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
           <div>
-            <TextField label="Armor Worn" defaultValue={this.props.armorWorn} onBlur={this.armorWornUpdated} />
-            <AbilityInput label="Penalty" type="number" value={this.props.armorPenalty} onChange={this.armorPenaltyUpdated} />
-            <AbilityInput label="Max Dex" type="number" value={this.props.armorMaxDexterity} onChange={this.armorMaxDexterityUpdated} />
-            <AbilityInput label="Speed Adjust" type="number" value={this.props.armorSpeedAdjustment} onChange={this.armorSpeedAdjustmentUpdated} />
-          </div>
-          <div>
-            <FormLabel style={{marginRight:'5px'}}>EAC</FormLabel>
-            <AbilityInput label="Total" value={10 + this.props.armorBonuses.energy + this.props.dexterityModifier + this.props.armorBonuses.misc} disabled={true}/>
-            <Icon style={styles.icons}>drag_handle</Icon>
-            <AbilityInput value="10" disabled={true}/>
-            <Icon style={styles.icons}>add</Icon>
-            <AbilityInput label="Bonus" type="number" value={this.props.armorBonuses.energy} onChange={this.energyArmorUpdated}/>
-            <Icon style={styles.icons}>add</Icon>
-            <AbilityInput label="Dexterity" value={this.props.dexterityModifier} disabled={true} />
-            <Icon style={styles.icons}>add</Icon>
-            <AbilityInput label="Misc" type="number" value={this.props.armorBonuses.misc} onChange={this.miscUpdated} />
-          </div>
-          <div>
-            <FormLabel style={{marginRight:'5px'}}>KAC</FormLabel>
-            <AbilityInput label="Total" value={10 + this.props.armorBonuses.kinetic + this.props.dexterityModifier + this.props.armorBonuses.misc} disabled={true} />
-            <Icon style={styles.icons}>drag_handle</Icon>
-            <AbilityInput value="10" disabled={true} />
-            <Icon style={styles.icons}>add</Icon>
-            <AbilityInput label="Bonus" type="number" value={this.props.armorBonuses.kinetic} onChange={this.kineticArmorUpdated} />
-            <Icon style={styles.icons}>add</Icon>
-            <AbilityInput label="Dexterity" value={this.props.dexterityModifier} disabled={true} />
-            <Icon style={styles.icons}>add</Icon>
-            <AbilityInput label="Misc" type="number" value={this.props.armorBonuses.misc} onChange={this.miscUpdated} />
-          </div>
-          <div>
-            <FormLabel style={{marginRight:'5px'}}>AC vs Combat Maneuvers</FormLabel>
-            <AbilityInput label="Total" value={18 + this.props.armorBonuses.kinetic + this.props.dexterityModifier + this.props.armorBonuses.misc} disabled={true} />
-            <Icon style={styles.icons}>drag_handle</Icon>
-            <AbilityInput value="8" disabled={true} />
-            <Icon style={styles.icons}>add</Icon>
-            <AbilityInput label="KAC" value={10 + this.props.armorBonuses.kinetic + this.props.dexterityModifier + this.props.armorBonuses.misc} disabled={true} />
-          </div>
-          <div>
-            <AbilityInput label="DR" type="number" value={this.props.damageReduction} onChange={this.damageReductionUpdated} />
-            <TextField label="Resistances" value={this.props.resistances} onBlur={this.resistancesUpdated}/>
+            <TextField label="DR" value={this.props.damageReduction} onBlur={this.damageReductionUpdated} style={{marginRight: '10px'}}/>
+            <TextField label="Resistances" value={this.props.resistances} onBlur={this.resistancesUpdated} style={{marginLeft: '10px', width: '450px'}}/>
           </div>
         </CardContent>
       </Card>

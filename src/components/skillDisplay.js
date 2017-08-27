@@ -27,11 +27,11 @@ export default class SkillsDisplay extends Component {
         <TableCell disablePadding={true}>{trainedOnly}</TableCell>
         <TableCell disablePadding={true}><Checkbox checked={this.props.isClassSkill} disabled={true}/></TableCell>
         <TableCell compact={true}>{`${this.props.skill}${this.props.armorCheckPenaltyApplies ? '*' : ''} [${this.props.ability.substring(0,3).toUpperCase()}]`}</TableCell>
-        <TableCell compact={true}><strong>{totalToDisplay}</strong></TableCell>
-        <TableCell compact={true}><AbilityInput type="number" value={this.props.ranks} onChange={this.ranksUpdated}/></TableCell>
-        <TableCell compact={true}>{classBonus}</TableCell>
-        <TableCell compact={true}>{this.props.abilityModifier}</TableCell>
-        <TableCell compact={true}><AbilityInput type="number" value={this.props.miscModifier} onChange={this.miscModifierUpdated}/></TableCell>
+        <TableCell compact={true} style={{textAlign: 'center'}}><strong>{totalToDisplay}</strong></TableCell>
+        <TableCell compact={true} style={{textAlign: 'center'}}><AbilityInput type="number" value={this.props.ranks} onChange={this.ranksUpdated}/></TableCell>
+        <TableCell compact={true} style={{textAlign: 'center'}}>{classBonus}</TableCell>
+        <TableCell compact={true} style={{textAlign: 'center'}}>{this.props.abilityModifier}</TableCell>
+        <TableCell compact={true} style={{textAlign: 'center'}}><AbilityInput type="number" value={this.props.miscModifier} onChange={this.miscModifierUpdated}/></TableCell>
       </TableRow>);
   }
 }

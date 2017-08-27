@@ -33,11 +33,11 @@ class AbilityScore extends Component {
       <TableRow>
         <TableCell disablePadding={true}>{keyScore}</TableCell>
         <TableCell compact={true}>{this.props.abilityScore.name}</TableCell>
-        <TableCell compact={true}><strong>{this.props.abilityScore.score}</strong></TableCell>
-        <TableCell compact={true}><strong>{this.props.abilityScore.modifier}</strong></TableCell>    
-        <TableCell compact={true}><Checkbox checked={isRaceBonus} checkedIcon="add_box" onChange={this.defaultRacialModifierChanged} indeterminate={isRaceMinus} disabled={!this.props.canEditDefaultRaceBonus}/></TableCell>
-        <TableCell compact={true}><Checkbox checked={isThemeBonus} checkedIcon="add_box" onChange={this.defaultThemeModifierChanged} disabled={!this.props.canEditDefaultThemeBonus}/></TableCell>
-        <TableCell compact={true}>{this.props.abilityScore.pointsAssigned}</TableCell>
+        <TableCell compact={true} style={{textAlign: 'center'}}><strong>{this.props.abilityScore.score}</strong></TableCell>
+        <TableCell compact={true} style={{textAlign: 'center'}}><strong>{this.props.abilityScore.modifier}</strong></TableCell>    
+        <TableCell compact={true} style={{textAlign: 'center'}}><Checkbox checked={isRaceBonus} checkedIcon="add_box" onChange={this.defaultRacialModifierChanged} indeterminate={isRaceMinus} disabled={!this.props.canEditDefaultRaceBonus}/></TableCell>
+        <TableCell compact={true} style={{textAlign: 'center'}}><Checkbox checked={isThemeBonus} checkedIcon="add_box" onChange={this.defaultThemeModifierChanged} disabled={!this.props.canEditDefaultThemeBonus}/></TableCell>
+        <TableCell compact={true} style={{textAlign: 'center'}}>{this.props.abilityScore.pointsAssigned}</TableCell>
         <TableCell disablePadding={true}><Button color="primary" onClick={this.addPoint} dense={true}>+</Button></TableCell>
         <TableCell disablePadding={true}><Button color="accent" onClick={this.removePoint} dense={true}>-</Button></TableCell>   
       </TableRow>

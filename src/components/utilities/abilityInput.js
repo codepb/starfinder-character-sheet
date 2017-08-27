@@ -6,12 +6,13 @@ import DisabledTextField from './disabledTextField';
 // We can inject some CSS into the DOM.
 const styles = {
   input: {
-    width: 50,
+    width: '50px',
     textAlign: 'center'
   },
   inputDisabled: {
-    width: 40,
-    textAlign: 'center'
+    width: '40px',
+    textAlign: 'center',
+    marginRight:'13px'
   },
 };
 
@@ -23,7 +24,7 @@ export default function AbilityInput(props) {
     }
 
   return(
-    <TextField inputProps={{style:styles.input}} value={props.value} type={props.type} label={props.label} style={styles.input} onChange={props.onChange}/>
+    <TextField inputProps={{style:{...styles.input, ...props.inputStyles}}} value={props.value} type={props.type} label={props.label} style={{...styles.input, ...props.inputStyles}} onChange={props.onChange}/>
   );
 }
 

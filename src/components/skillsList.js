@@ -31,11 +31,11 @@ export default class SkillsList extends Component {
                 <TableCell disablePadding={true}/>
                 <TableCell disablePadding={true}/>
                 <TableCell compact={true}/>
-                <TableCell compact={true}>Total</TableCell>
-                <TableCell compact={true}>Ranks</TableCell>
-                <TableCell compact={true}>Class</TableCell>
-                <TableCell compact={true}>Ability</TableCell>
-                <TableCell compact={true}>Misc.</TableCell>
+                <TableCell compact={true} style={{textAlign: 'center'}}>Total</TableCell>
+                <TableCell compact={true} style={{textAlign: 'center'}}>Ranks</TableCell>
+                <TableCell compact={true} style={{textAlign: 'center'}}>Class</TableCell>
+                <TableCell compact={true} style={{textAlign: 'center'}}>Ability</TableCell>
+                <TableCell compact={true} style={{textAlign: 'center'}}>Misc.</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

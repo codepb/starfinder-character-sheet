@@ -14,6 +14,7 @@ class Class {
     [SavingThrows.REFLEX]: 0,
     [SavingThrows.WILL]: 0
   };
+  baseAttackBonus = 0;
 
   constructor(params){
     for (let i in params) {
@@ -59,7 +60,8 @@ export const ENVOY_CLASS = new Class({
     [SavingThrows.FORTITUDE]: 0,
     [SavingThrows.REFLEX]: 2,
     [SavingThrows.WILL]: 2
-  }
+  },
+  baseAttackBonus: 0
 });
 
 export const MECHANIC_CLASS = new Class({
@@ -81,7 +83,8 @@ export const MECHANIC_CLASS = new Class({
     [SavingThrows.FORTITUDE]: 2,
     [SavingThrows.REFLEX]: 2,
     [SavingThrows.WILL]: 0
-  }
+  },
+  baseAttackBonus: 0
 });
 
 export const MYSTIC_CLASS = new Class({
@@ -108,7 +111,8 @@ export const MYSTIC_CLASS = new Class({
     [SavingThrows.FORTITUDE]: 0,
     [SavingThrows.REFLEX]: 0,
     [SavingThrows.WILL]: 2
-  }
+  },
+  baseAttackBonus: 0
 });
 
 export const OPERATIVE_CLASS = new Class({
@@ -139,7 +143,8 @@ export const OPERATIVE_CLASS = new Class({
     [SavingThrows.FORTITUDE]: 0,
     [SavingThrows.REFLEX]: 2,
     [SavingThrows.WILL]: 2
-  }
+  },
+  baseAttackBonus: 0
 });
 
 export const SOLARIAN_CLASS = new Class({
@@ -164,7 +169,8 @@ export const SOLARIAN_CLASS = new Class({
     [SavingThrows.FORTITUDE]: 2,
     [SavingThrows.REFLEX]: 0,
     [SavingThrows.WILL]: 2
-  }
+  },
+  baseAttackBonus: 1
 });
 
 export const SOLDIER_DEX_CLASS = new Class({
@@ -187,7 +193,8 @@ export const SOLDIER_DEX_CLASS = new Class({
     [SavingThrows.FORTITUDE]: 2,
     [SavingThrows.REFLEX]: 0,
     [SavingThrows.WILL]: 2
-  }
+  },
+  baseAttackBonus: 1
 });
 
 export const SOLDIER_STR_CLASS = new Class({
@@ -210,7 +217,8 @@ export const SOLDIER_STR_CLASS = new Class({
     [SavingThrows.FORTITUDE]: 2,
     [SavingThrows.REFLEX]: 0,
     [SavingThrows.WILL]: 2
-  }
+  },
+  baseAttackBonus: 1
 });
 
 export const TECHNOMANCER_CLASS = new Class({
@@ -233,7 +241,8 @@ export const TECHNOMANCER_CLASS = new Class({
     [SavingThrows.FORTITUDE]: 0,
     [SavingThrows.REFLEX]: 0,
     [SavingThrows.WILL]: 2
-  }
+  },
+  baseAttackBonus: 0
 });
 
 const classes = {
