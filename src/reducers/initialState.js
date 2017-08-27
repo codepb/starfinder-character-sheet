@@ -34,7 +34,8 @@ export default {
         gender: '',
         homeWorld: '',
         alignment: '',
-        deity: ''
+        deity: '',
+        description: ''
     }),
     miscInitiative: 0,
     abilities: {

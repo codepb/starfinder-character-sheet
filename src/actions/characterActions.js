@@ -55,3 +55,10 @@ export function changeDeity(newValue){
     newValue
   };
 }
+
+export function changeDescription(newValue){
+  return {
+    type: types.CHANGE_DESCRIPTION,
+    newValue
+  };
+}

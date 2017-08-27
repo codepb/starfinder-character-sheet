@@ -19,8 +19,10 @@ export default function character(state = initialState.character, action) {
       return update(state, {homeWorld: {$set: action.newValue } });
     case CharacterActions.CHANGE_ALIGNMENT:
       return update(state, {alignment: {$set: action.newValue } });
-      case CharacterActions.CHANGE_DEITY:
+    case CharacterActions.CHANGE_DEITY:
       return update(state, {deity: {$set: action.newValue } });
+    case CharacterActions.CHANGE_DESCRIPTION:
+      return update(state, {description: {$set: action.newValue } });
     default:
       return state;
   }
