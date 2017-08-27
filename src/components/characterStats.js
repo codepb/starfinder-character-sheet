@@ -52,7 +52,7 @@ export default class CharacterStats extends Component {
           <AbilityInput label="Adjusted" type="number" value={this.props.adjustedSpeed} disabled={true}/>
         </div>
         <div>          
-          <TextField label="Gender" style={{width: '40px'}} defaultValue={this.props.character.gender} onBlur={this.genderBlurred} />
+          <TextField label="Gender" style={{width: '60px'}} defaultValue={this.props.character.gender} onBlur={this.genderBlurred} />
           <TextField label="Home World" defaultValue={this.props.character.homeWorld} onBlur={this.homeWorldBlurred} />
           <Select label="Alignment" value={this.props.character.alignment} options={this.props.alignmentOptions} onChange={this.alignmentChanged} />
           <TextField label="Deity" defaultValue={this.props.character.deity} onBlur={this.deityBlurred} />
