@@ -46,6 +46,7 @@ export default class SkillDisplay extends Component {
         <TableCell compact={true} style={{textAlign: 'center'}}><AbilityInput type="number" value={this.props.ranks} onChange={this.ranksUpdated}/></TableCell>
         <TableCell compact={true} style={{textAlign: 'center'}}>{classBonus}</TableCell>
         <TableCell compact={true} style={{textAlign: 'center'}}>{this.props.abilityModifier}</TableCell>
+        <TableCell compact={true} style={{textAlign: 'center'}}>{this.props.themeBonus}</TableCell>
         <TableCell compact={true} style={{textAlign: 'center'}}><AbilityInput type="number" value={this.props.miscModifier} onChange={this.miscModifierUpdated}/></TableCell>
       </TableRow>);
   }

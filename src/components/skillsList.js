@@ -26,6 +26,7 @@ export default class SkillsList extends Component {
                 <TableCell compact={true} style={{textAlign: 'center'}}>Ranks</TableCell>
                 <TableCell compact={true} style={{textAlign: 'center'}}>Class</TableCell>
                 <TableCell compact={true} style={{textAlign: 'center'}}>Ability</TableCell>
+                <TableCell compact={true} style={{textAlign: 'center'}}>Theme</TableCell>
                 <TableCell compact={true} style={{textAlign: 'center'}}>Misc.</TableCell>
               </TableRow>
             </TableHead>
