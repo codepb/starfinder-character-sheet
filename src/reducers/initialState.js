@@ -3,7 +3,7 @@ import * as Abilities from '../rules/abilities';
 import * as Races from '../rules/races';
 import * as ThemeTypes from '../rules/themes';
 import * as Classes from '../rules/classes';
-import skills from '../rules/skills';
+import skillsArray, * as Skills from '../rules/skills';
 import * as SavingThrows from '../rules/savingThrows';
 import * as AttackBonuses from '../rules/attackBonuses';
 
@@ -18,10 +18,11 @@ const abilityPoints = {
 
 const skillBonuses = {};
 
-for(let skill in skills) {
+for(let skill in skillsArray) {
     skillBonuses[skill] = {
         ranks: 0,
-        misc: 0
+        misc: 0,
+        isExtraClassSkill: false
     };
 }
 
@@ -52,8 +53,10 @@ export default {
     },
     currentHealth: { hitPoints: 10 , staminaPoints: 6, resolvePoints: 1 },
     skills: {
-        profession1Ability: Abilities.CHARISMA,
-        profession2Ability: Abilities.CHARISMA,
+        professions: {
+            [Skills.PROFESSION1]: { name: '', ability: Abilities.CHARISMA },
+            [Skills.PROFESSION2]: { name: '', ability: Abilities.CHARISMA },
+        },
         skillBonuses        
     },
     savingThrows: {

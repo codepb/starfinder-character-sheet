@@ -9,16 +9,7 @@ export default class SkillsList extends Component {
     const rows = []; 
     for (let skill in this.props.skills) {
       const skillDetails = this.props.skills[skill];
-      rows.push(<SkillDisplay key={skill} isTrainedOnly={skillDetails.isTrainedOnly}
-          skill={skill}
-          ability={skillDetails.ability}
-          isClassSkill={skillDetails.isClassSkill}
-          ranks={skillDetails.ranks}
-          abilityModifier={skillDetails.abilityModifier}
-          miscModifier={skillDetails.miscModifier}
-          skillActions={this.props.skillActions}
-          armorCheckPenalty={skillDetails.armorCheckPenalty}
-          armorCheckPenaltyApplies={skillDetails.armorCheckPenaltyApplies} />)
+      rows.push(<SkillDisplay key={skill} skill={skill} skillActions={this.props.skillActions} {...skillDetails} />);
     }
     return (
       <Card raised={true}>

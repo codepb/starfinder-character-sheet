@@ -27,8 +27,8 @@ export const MYSTICISM = 'Mysticism';
 export const PERCEPTION = 'Perception';
 export const PHYSICAL_SCIENCE = 'Physical Science';
 export const PILOTING = 'Piloting';
-export const PROFFESSION1 = 'Profession 1';
-export const PROFFESSION2 = 'Profession 2';
+export const PROFESSION1 = 'Profession1';
+export const PROFESSION2 = 'Profession2';
 export const SENSE_MOTIVE = 'Sense Motive';
 export const SLEIGHT_OF_HAND = 'Sleight of Hand';
 export const STEALTH = 'Stealth';
@@ -50,8 +50,8 @@ const skills = {
   [PERCEPTION]: new Skill({ability: Abilities.WISDOM}),
   [PHYSICAL_SCIENCE]: new Skill({ability: Abilities.INTELLIGENCE, trainedOnly: true}),
   [PILOTING]: new Skill({ability: Abilities.DEXTERITY}),
-  [PROFFESSION1]: new Skill({ability: Abilities.INTELLIGENCE, trainedOnly: true}),
-  [PROFFESSION2]: new Skill({ability: Abilities.INTELLIGENCE, trainedOnly: true}),
+  [PROFESSION1]: new Skill({ability: Abilities.INTELLIGENCE, trainedOnly: true}),
+  [PROFESSION2]: new Skill({ability: Abilities.INTELLIGENCE, trainedOnly: true}),
   [SENSE_MOTIVE]: new Skill({ability: Abilities.WISDOM}),
   [SLEIGHT_OF_HAND]: new Skill({ability: Abilities.DEXTERITY, trainedOnly: true, armorCheckPenaltyApplies: true}),
   [STEALTH]: new Skill({ability: Abilities.DEXTERITY, armorCheckPenaltyApplies: true}),

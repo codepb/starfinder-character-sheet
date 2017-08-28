@@ -3,8 +3,10 @@ import { TableRow, TableCell} from 'material-ui/Table';
 import Icon from 'material-ui/Icon';
 import Checkbox from 'material-ui/Checkbox';
 import AbilityInput from './utilities/abilityInput';
+import SkillLabel from './skillLabel';
 
-export default class SkillsDisplay extends Component {
+
+export default class SkillDisplay extends Component {
   ranksUpdated = (ev) => {
     const newValue = ev.target.value * 1;
     if(newValue >= 0) {
@@ -17,16 +19,29 @@ export default class SkillsDisplay extends Component {
     this.props.skillActions.updateMiscModifierForSkill(this.props.skill, newValue);
   }
 
+  professionNameChanged = (ev) => {
+    this.props.skillActions.updateProfessionName(this.props.skill, ev.target.value);
+  }
+
+  abilityChanged = (value) => {
+    this.props.skillActions.updateProfessionAbility(this.props.skill, value);
+  }
+
+  extraClassSkillChanged = (ev) => {
+    this.props.skillActions.updateExtraClassSkill(this.props.skill, ev.target.checked);
+  }
+
   render() {
+    const isClassSkill = this.props.isClassSkill || this.props.isExtraClassSkill;
     const trainedOnly = this.props.isTrainedOnly ? <Icon>chevron_right</Icon> : '';
-    const classBonus = this.props.isClassSkill && this.props.ranks > 0 ? 3 : 0;
+    const classBonus = isClassSkill && this.props.ranks > 0 ? 3 : 0;
     const total = this.props.ranks + classBonus + this.props.abilityModifier + this.props.miscModifier + this.props.armorCheckPenalty;
-    const totalToDisplay = this.props.isTrainedOnly && this.props.ranks === 0 ? '' : total;
+    const totalToDisplay = this.props.isTrainedOnly && this.props.ranks === 0 ? '' : total;    
     return (
       <TableRow>
         <TableCell disablePadding={true}>{trainedOnly}</TableCell>
-        <TableCell disablePadding={true}><Checkbox checked={this.props.isClassSkill} disabled={true}/></TableCell>
-        <TableCell compact={true}>{`${this.props.skill}${this.props.armorCheckPenaltyApplies ? '*' : ''} [${this.props.ability.substring(0,3).toUpperCase()}]`}</TableCell>
+        <TableCell disablePadding={true}><Checkbox checked={isClassSkill} disabled={this.props.isClassSkill} onChange={this.extraClassSkillChanged}/></TableCell>
+        <TableCell compact={true}><SkillLabel {...this.props} onAbilityChanged={this.props.skillActions.updateProfessionAbility} onProfessionNameChanged={this.props.skillActions.updateProfessionName}/></TableCell>
         <TableCell compact={true} style={{textAlign: 'center'}}><strong>{totalToDisplay}</strong></TableCell>
         <TableCell compact={true} style={{textAlign: 'center'}}><AbilityInput type="number" value={this.props.ranks} onChange={this.ranksUpdated}/></TableCell>
         <TableCell compact={true} style={{textAlign: 'center'}}>{classBonus}</TableCell>

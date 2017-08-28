@@ -8,6 +8,13 @@ export default function skills(state = initialState.skills, action) {
       return update(state, {skillBonuses: {[action.skill]: {ranks: { $set: action.newValue }}}});
     case SkillActions.UPDATE_MISC_MODIFIER_FOR_SKILL:
       return update(state, {skillBonuses: {[action.skill]: {misc: { $set: action.newValue }}}});
+    case SkillActions.UPDATE_PROFESSION_NAME:
+      return update(state, {professions: {[action.skill]: {name: { $set: action.newValue }}}});
+    case SkillActions.UPDATE_PROFESSION_ABILITY:
+      return update(state, {professions: {[action.skill]: {ability: { $set: action.newValue }}}});
+    case SkillActions.UPDATE_EXTRA_CLASS_SKILL:
+      console.log(action);
+      return update(state, {skillBonuses: {[action.skill]: {isExtraClassSkill: { $set: action.newValue }}}});
     default:
       return state;
   }

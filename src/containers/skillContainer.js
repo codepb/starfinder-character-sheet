@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import SkillsList from '../components/skillsList';
-import skills from '../rules/skills';
+import skillsArray, * as Skills from '../rules/skills';
 import classes from '../rules/classes';
 import * as Abilities from '../rules/abilities';
 import AbilityManager from '../models/abilityManager';
@@ -11,17 +11,23 @@ function mapStateToProps(state) {
   const skillsToMap = {};
   const abilityManager = new AbilityManager();
   const currentClass = classes[state.character.class];
-  for(let skill in skills) {
-    const skillDetails = skills[skill];    
+  for(let skill in skillsArray) {
+    const skillDetails = skillsArray[skill];   
+    const isProfession = skill === Skills.PROFESSION1 || skill === Skills.PROFESSION2;
+    let professionName = isProfession ? state.skills.professions[skill].name : '';
+    let ability = isProfession ? state.skills.professions[skill].ability : skillDetails.ability;
     skillsToMap[skill] = {
-      ability: skillDetails.ability,
+      ability: ability,
       isTrainedOnly: skillDetails.trainedOnly,
       ranks: state.skills.skillBonuses[skill].ranks,
-      abilityModifier: abilityManager.getAbilityScoreFromState(state, skillDetails.ability).modifier,
+      abilityModifier: abilityManager.getAbilityScoreFromState(state, ability).modifier,
       miscModifier: state.skills.skillBonuses[skill].misc,
       isClassSkill: currentClass.classSkills.includes(skill),
+      isExtraClassSkill: state.skills.skillBonuses[skill].isExtraClassSkill,
       armorCheckPenaltyApplies: skillDetails.armorCheckPenaltyApplies,
-      armorCheckPenalty: skillDetails.armorCheckPenaltyApplies ? state.armor.penalty : 0
+      armorCheckPenalty: skillDetails.armorCheckPenaltyApplies ? state.armor.penalty : 0,
+      isProfession: isProfession,
+      professionName: professionName
     }
   } 
     return {

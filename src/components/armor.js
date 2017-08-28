@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import { FormLabel } from 'material-ui/Form';
 import TextField from 'material-ui/TextField';
 import Icon from 'material-ui/Icon';
 import Card, { CardHeader, CardContent } from 'material-ui/Card';
 import Table, { TableHead, TableBody, TableRow, TableCell} from 'material-ui/Table';
-import Typography from 'material-ui/Typography';
 import AbilityInput from './utilities/abilityInput';
 
 

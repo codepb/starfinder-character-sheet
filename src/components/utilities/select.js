@@ -25,9 +25,14 @@ export default class Select extends Component {
   }
   
   render() {
+    const selectedOption = this.props.options.find(o => o.value === this.state.value);
+    let valueToDisplay = '';
+    if(typeof(selectedOption) !== 'undefined') {
+      valueToDisplay = selectedOption.label;
+    }
     return (
-      <span>
-        <TextField label={this.props.label} onClick={this.handleClick} value={this.state.value}/>
+      <span style={this.props.style}>
+        <TextField label={this.props.label} onClick={this.handleClick} value={valueToDisplay} style={this.props.style}/>
         <Menu anchorEl={this.state.anchorElement} open={this.state.open} onRequestClose={this.handleRequestClose}>
           {this.props.options.map((option, i) => <MenuItem value={option.value}
                                                             key={option.value}

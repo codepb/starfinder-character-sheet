@@ -15,3 +15,27 @@ export function updateRanksInSkill(skill, newValue){
     newValue
   };
 }
+
+export function updateProfessionName(skill, newValue){
+  return {
+    type: types.UPDATE_PROFESSION_NAME,
+    skill,
+    newValue
+  };
+}
+
+export function updateProfessionAbility(skill, newValue){
+  return {
+    type: types.UPDATE_PROFESSION_ABILITY,
+    skill,
+    newValue
+  };
+}
+
+export function updateExtraClassSkill(skill, newValue){
+  return {
+    type: types.UPDATE_EXTRA_CLASS_SKILL,
+    skill,
+    newValue
+  };
+}

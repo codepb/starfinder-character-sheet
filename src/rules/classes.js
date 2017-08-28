@@ -51,7 +51,7 @@ export const ENVOY_CLASS = new Class({
     Skills.MEDICINE,
     Skills.PERCEPTION,
     Skills.PILOTING,
-    Skills.PROFFESSION1,
+    Skills.PROFESSION1,
     Skills.SENSE_MOTIVE,
     Skills.SLEIGHT_OF_HAND,
     Skills.STEALTH
@@ -77,7 +77,7 @@ export const MECHANIC_CLASS = new Class({
     Skills.MEDICINE,
     Skills.PHYSICAL_SCIENCE,
     Skills.PILOTING,
-    Skills.PROFFESSION1
+    Skills.PROFESSION1
   ],
   savingThrows: {
     [SavingThrows.FORTITUDE]: 2,
@@ -103,7 +103,7 @@ export const MYSTIC_CLASS = new Class({
     Skills.MEDICINE,
     Skills.MYSTICISM,
     Skills.PERCEPTION,
-    Skills.PROFFESSION1,
+    Skills.PROFESSION1,
     Skills.SENSE_MOTIVE,
     Skills.SURVIVAL
   ],
@@ -133,7 +133,7 @@ export const OPERATIVE_CLASS = new Class({
     Skills.MEDICINE,
     Skills.PERCEPTION,
     Skills.PILOTING,
-    Skills.PROFFESSION1,
+    Skills.PROFESSION1,
     Skills.SENSE_MOTIVE,
     Skills.SLEIGHT_OF_HAND,
     Skills.STEALTH,
@@ -161,7 +161,7 @@ export const SOLARIAN_CLASS = new Class({
     Skills.MYSTICISM,
     Skills.PERCEPTION,
     Skills.PHYSICAL_SCIENCE,
-    Skills.PROFFESSION1,
+    Skills.PROFESSION1,
     Skills.SENSE_MOTIVE,
     Skills.STEALTH
   ],
@@ -186,7 +186,7 @@ export const SOLDIER_DEX_CLASS = new Class({
     Skills.INTIMIDATE,
     Skills.MEDICINE,
     Skills.PILOTING,
-    Skills.PROFFESSION1,
+    Skills.PROFESSION1,
     Skills.SURVIVAL
   ],
   savingThrows: {
@@ -210,7 +210,7 @@ export const SOLDIER_STR_CLASS = new Class({
     Skills.INTIMIDATE,
     Skills.MEDICINE,
     Skills.PILOTING,
-    Skills.PROFFESSION1,
+    Skills.PROFESSION1,
     Skills.SURVIVAL
   ],
   savingThrows: {
@@ -234,7 +234,7 @@ export const TECHNOMANCER_CLASS = new Class({
     Skills.MYSTICISM,
     Skills.PHYSICAL_SCIENCE,
     Skills.PILOTING,
-    Skills.PROFFESSION1,
+    Skills.PROFESSION1,
     Skills.SLEIGHT_OF_HAND
   ],
   savingThrows: {
