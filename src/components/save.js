@@ -9,6 +9,7 @@ export default class SaveButton extends Component {
   getFile = (callback) => {
     var input = document.createElement('input');
     input.setAttribute('type', 'file');
+    input.setAttribute('accept', '.json');
     input.addEventListener('change', () => {callback(input.files[0]);}, false);
     input.click();
   }
@@ -16,6 +17,7 @@ export default class SaveButton extends Component {
   load = () => {
     this.getFile((file) => {
       if (!file) {
+        alert('file not loaded');
         return;
       }
       const reader = new FileReader();
