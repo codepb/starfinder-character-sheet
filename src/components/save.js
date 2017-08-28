@@ -9,21 +9,28 @@ export default class SaveButton extends Component {
   getFile = (callback) => {
     var input = document.createElement('input');
     input.setAttribute('type', 'file');
-    input.setAttribute('accept', '.json');
-    input.addEventListener('change', () => {callback(input.files[0]);}, false);
+    input.setAttribute('accept', 'application/json');
+    input.addEventListener('change', () => {
+      callback(input.files[0], () => {
+        document.body.removeChild(input);
+      });
+    }, false);
+    input.setAttribute('style', 'opacity:0');
+    document.body.appendChild(input);
     input.click();
   }
 
   load = () => {
-    this.getFile((file) => {
+    this.getFile((file, callback) => {
       if (!file) {
-        alert('file not loaded');
+        callback();
         return;
       }
       const reader = new FileReader();
       reader.onload = (e) => {
         var contents = e.target.result;
         this.props.onLoad(contents);
+        callback();
       };
       reader.readAsText(file);
     });
