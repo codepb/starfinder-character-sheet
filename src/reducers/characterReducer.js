@@ -1,10 +1,13 @@
 import update from 'immutability-helper';
 import initialState from './initialState';
 import * as CharacterActions from '../actions/types/character';
+import { LOAD_STATE } from '../actions/types/load';
 
 export default function character(state = initialState.character, action) {
   
   switch (action.type) {
+    case LOAD_STATE:
+      return action.state.character;
     case CharacterActions.CHANGE_RACE:
       return update(state, {race: {$set: action.newRace } });
     case CharacterActions.CHANGE_THEME:

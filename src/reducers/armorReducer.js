@@ -1,9 +1,12 @@
 import update from 'immutability-helper';
 import initialState from './initialState';
 import * as ArmorBonusActions from '../actions/types/armor';
+import { LOAD_STATE } from '../actions/types/load';
 
 export default function armor(state = initialState.armor, action) {
   switch (action.type) {
+    case LOAD_STATE:
+      return action.state.armor;
     case ArmorBonusActions.UPDATE_MISC_ARMOR:
       return update(state, {bonuses: { misc: { $set: action.newValue }}});
     case ArmorBonusActions.UPDATE_DAMAGE_REDUCTION:

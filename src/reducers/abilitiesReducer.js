@@ -1,11 +1,14 @@
 import update from 'immutability-helper';
 import initialState from './initialState';
 import * as AbilityActions from '../actions/types/ability';
+import { LOAD_STATE } from '../actions/types/load';
 
 export default function abilities(state = initialState.abilities, action) {
   switch (action.type) {
+    case LOAD_STATE:
+      return action.state.abilities;
     case AbilityActions.ADD_POINT:
-    return update(state, {abilityPoints: {[action.ability]: { $apply: (x) => x + 1}}});   
+      return update(state, {abilityPoints: {[action.ability]: { $apply: (x) => x + 1}}});   
     case AbilityActions.REMOVE_POINT:
       return update(state, {abilityPoints: {[action.ability]: { $apply: (x) => x - 1}}});
     case AbilityActions.SET_DEFAULT_RACE_BONUS:

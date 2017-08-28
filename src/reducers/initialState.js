@@ -38,7 +38,7 @@ export default {
         deity: '',
         description: ''
     }),
-    miscInitiative: 0,
+    initiative: 0,
     abilities: {
         defaultThemeBonus: Abilities.STRENGTH,
         defaultRaceBonus: Abilities.STRENGTH,

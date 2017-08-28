@@ -10,11 +10,13 @@ import HealthContainer from './containers/healthContainer';
 import SkillContainer from './containers/skillContainer';
 import SavingThrowsContainer from './containers/savingThrowContainer';
 import AttackBonusContainer from './containers/attackBonusContainer';
+import SaveContainer from './containers/saveContainer';
 
 class App extends Component {
   render() {
     return (
       <Paper style={{padding: '20px', margin: '5px'}}>
+        <SaveContainer />
         <Grid container>
           <Grid item>
             <CharacterStatsContainer />

@@ -103,9 +103,6 @@ export const SPACEFARER_THEME = new Theme({
     [Abilities.CONSTITUTION] : 1,
   },
   classSkills: [
-    Skills.PILOTING
-  ],
-  classSkills: [
     Skills.PHYSICAL_SCIENCE
   ]
 });
