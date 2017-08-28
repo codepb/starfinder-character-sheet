@@ -9,7 +9,7 @@ export default class SaveButton extends Component {
   getFile = (callback) => {
     var input = document.createElement('input');
     input.setAttribute('type', 'file');
-    input.setAttribute('accept', 'application/json');
+    input.setAttribute('accept', '.json');
     input.addEventListener('change', () => {
       callback(input.files[0], () => {
         document.body.removeChild(input);
@@ -22,7 +22,8 @@ export default class SaveButton extends Component {
 
   load = () => {
     this.getFile((file, callback) => {
-      if (!file) {
+      if (!file || file.name.split('.').pop().toLowerCase() !== 'json') {
+        alert('file not correct format');
         callback();
         return;
       }
