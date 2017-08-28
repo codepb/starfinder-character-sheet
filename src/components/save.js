@@ -6,42 +6,28 @@ export default class SaveButton extends Component {
     this.props.onSave();
   }
 
-  getFile = (callback) => {
-    var input = document.createElement('input');
-    input.setAttribute('type', 'file');
-    input.setAttribute('accept', '.json');
-    input.addEventListener('change', () => {
-      callback(input.files[0], () => {
-        document.body.removeChild(input);
-      });
-    }, false);
-    input.setAttribute('style', 'opacity:0');
-    document.body.appendChild(input);
-    input.click();
-  }
-
-  load = () => {
-    this.getFile((file, callback) => {
-      if (!file || file.name.split('.').pop().toLowerCase() !== 'json') {
-        alert('file not correct format');
-        callback();
-        return;
-      }
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        var contents = e.target.result;
-        this.props.onLoad(contents);
-        callback();
-      };
-      reader.readAsText(file);
-    });
+  load = (ev) => {
+    const file = ev.target.files[0];
+    if (!file || file.name.split('.').pop().toLowerCase() !== 'json') {
+      alert('file not correct format');
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      var contents = e.target.result;
+      this.props.onLoad(contents);
+    };
+    reader.readAsText(file);
   }
 
   render() {
     return (
-      <div>
-        <Button raised={true} onClick={this.save}>Save</Button>
-        <Button raised={true} onClick={this.load}>Load</Button>
+      <div style={{marginBottom: '10px'}}>
+        <Button raised={true} onClick={this.save} style={{marginRight: '10px'}}>Save</Button>
+        <Button component="label" raised={true} style={{width:'56px'}}>
+          Load
+          <input type="file" accept=".json" onChange={this.load} style={{visibility: 'hidden', height: 0, width:0}}/>
+        </Button>
       </div>
     );
   }
