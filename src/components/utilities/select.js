@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
 import Menu, { MenuItem } from 'material-ui/Menu';
-import TextField from 'material-ui/TextField';
-
+import TextField from './textField';
 
 export default class Select extends Component {
-  state = {
-    value: this.props.value,
-    open: false,
-    anchorElement: undefined
+  constructor(props) {
+    super();
+    this.state = {
+      value: props.value,
+      open: false,
+      anchorElement: undefined
+    }
+  }
+
+  componentWillReceiveProps = (nextProps) => {
+    if(this.props.value !== nextProps.value) {
+      this.setState(previousState => { return {value: nextProps.value}});
+    }
   }
 
   handleClick = (ev) => {

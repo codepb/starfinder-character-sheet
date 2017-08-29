@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TextField from 'material-ui/TextField';
+import TextField from './utilities/textField';
 import { FormLabel } from 'material-ui/Form';
 import Grid from 'material-ui/Grid';
 import DisabledTextField from './utilities/disabledTextField';
@@ -48,7 +48,7 @@ export default class CharacterStats extends Component {
       <Grid container>
         <Grid item>        
           <div style={{marginBottom: '10px'}}>
-            <TextField label="Name" defaultValue={this.props.character.name}  onBlur={this.nameBlurred}/>
+            <TextField label="Name" value={this.props.character.name}  onBlur={this.nameBlurred}/>
             <Select label="Class"  value={this.props.character.class} options={this.props.classOptions} onChange={this.classChanged} />
             <Select label="Race" value={this.props.character.race} options={this.props.raceOptions} onChange={this.raceChanged} />
             <Select label="Theme"  value={this.props.character.theme} options={this.props.themeOptions} onChange={this.themeChanged} />        
@@ -58,14 +58,14 @@ export default class CharacterStats extends Component {
             <FormLabel style={{marginRight:'5px'}}>Speed</FormLabel>
             <AbilityInput label="Base" type="number" value={this.props.baseSpeed} disabled={true}/>
             <AbilityInput label="Adjusted" type="number" value={this.props.adjustedSpeed} disabled={true}/>       
-            <TextField label="Gender" style={{width: '60px'}} defaultValue={this.props.character.gender} onBlur={this.genderBlurred} />
-            <TextField label="Home World" defaultValue={this.props.character.homeWorld} onBlur={this.homeWorldBlurred} />
+            <TextField label="Gender" style={{width: '60px'}} value={this.props.character.gender} onBlur={this.genderBlurred} />
+            <TextField label="Home World" value={this.props.character.homeWorld} onBlur={this.homeWorldBlurred} />
             <Select label="Alignment" value={this.props.character.alignment} options={this.props.alignmentOptions} onChange={this.alignmentChanged} />
-            <TextField label="Deity" defaultValue={this.props.character.deity} onBlur={this.deityBlurred} />
+            <TextField label="Deity" value={this.props.character.deity} onBlur={this.deityBlurred} />
           </div>
         </Grid>
         <Grid item>
-          <TextField label="Description" defaultValue={this.props.character.description} onBlur={this.descriptionBlurred} multiline={true} rows="6" style={{width: '400px'}} />
+          <TextField label="Description" value={this.props.character.description} onBlur={this.descriptionBlurred} multiline={true} rows="6" style={{width: '400px'}} />
         </Grid>
       </Grid>
     );

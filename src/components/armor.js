@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import TextField from 'material-ui/TextField';
 import Icon from 'material-ui/Icon';
 import Card, { CardHeader, CardContent } from 'material-ui/Card';
 import Table, { TableHead, TableBody, TableRow, TableCell} from 'material-ui/Table';
 import AbilityInput from './utilities/abilityInput';
-
+import TextField from './utilities/textField';
 
 var styles = {
   icons: { verticalAlign: 'middle', color: 'rgba(0, 0, 0, 0.87)', fontSize: '20px' }
@@ -58,7 +57,7 @@ export default class Armor extends Component {
       <Card raised={true}>
         <CardHeader title="Armor" />
         <CardContent>
-          <TextField label="Armor Worn" defaultValue={this.props.armorWorn} onBlur={this.armorWornUpdated} style={{width: '300px', marginRight: '10px'}}/>
+          <TextField label="Armor Worn" value={this.props.armorWorn} onBlur={this.armorWornUpdated} style={{width: '300px', marginRight: '10px'}}/>
           <span style={{marginLeft: '10px', marginRight: '10px'}}><AbilityInput label="Penalty" type="number" value={this.props.armorPenalty} onChange={this.armorPenaltyUpdated} inputStyles={{width: '90px'}}/></span>
           <span style={{marginLeft: '10px', marginRight: '10px'}}><AbilityInput label="Max Dex" type="number" value={this.props.armorMaxDexterity} onChange={this.armorMaxDexterityUpdated} inputStyles={{width: '90px'}}/></span>
           <span style={{marginLeft: '10px', marginRight: '10px'}}><AbilityInput label="Speed Adj" type="number" value={this.props.armorSpeedAdjustment} onChange={this.armorSpeedAdjustmentUpdated} inputStyles={{width: '90px'}}/></span>
