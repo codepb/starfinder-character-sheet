@@ -4,7 +4,7 @@ import TextField from 'material-ui/TextField';
 export default class StateHandlingTextField extends Component {
   constructor(props) {
     super();
-    this.state = { value: props.value, onChange: props.onChange };
+    this.state = { value: props.value || '', onChange: props.onChange };
   }
 
   componentWillReceiveProps = (nextProps) => {
@@ -16,13 +16,15 @@ export default class StateHandlingTextField extends Component {
   updateValue = (ev) => {
     const newValue = ev.target.value;
     this.setState(previousState => { return {value: newValue}});
-    this.props.onChange(ev);
+    if(this.props.onChange && typeof(this.props.onChange) === 'function') {
+      this.props.onChange(ev);
+    }
   }
 
   render() {
     const {value, onChange, ...other} = this.props;
     return (
-      <TextField value={this.state.value} {...other} ref={(c) => this._input = c} onChange={this.updateValue}/>
+      <TextField value={this.state.value} {...other} onChange={this.updateValue}/>
     );
   }
 }

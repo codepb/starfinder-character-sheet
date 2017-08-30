@@ -68,6 +68,7 @@ export default {
         [AttackBonuses.MELEE]: { misc: 0 },
         [AttackBonuses.RANGED]: { misc: 0 },
         [AttackBonuses.THROWN]: { misc: 0 }
-    }
+    },
+    weapons: []
 
 }

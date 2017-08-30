@@ -7,6 +7,7 @@ import currentHealth from './currentHealthReducer';
 import skills from './skillReducer';
 import savingThrows from './savingThrowReducer';
 import attackBonuses from './attackBonusesReducer';
+import weapons from './weaponsReducer';
 
 const rootReducer = combineReducers({
     character,
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
     currentHealth,
     skills,
     savingThrows,
-    attackBonuses
+    attackBonuses,
+    weapons
 });
 
 export default rootReducer;

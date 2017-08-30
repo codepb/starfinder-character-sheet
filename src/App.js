@@ -11,6 +11,7 @@ import SkillContainer from './containers/skillContainer';
 import SavingThrowsContainer from './containers/savingThrowContainer';
 import AttackBonusContainer from './containers/attackBonusContainer';
 import SaveContainer from './containers/saveContainer';
+import WeaponsContainer from './containers/weaponsContainer';
 
 class App extends Component {
   render() {
@@ -46,6 +47,9 @@ class App extends Component {
             </div>
             <div style={{margin: '20px'}}>
               <AttackBonusContainer />
+            </div>
+            <div style={{margin: '20px'}}>
+              <WeaponsContainer />
             </div>
           </Grid>
         </Grid>
