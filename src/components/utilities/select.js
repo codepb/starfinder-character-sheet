@@ -25,13 +25,10 @@ export default class Select extends Component {
   }
 
   handleRequestClose = () => {
-    this.textInput.focus();
-    this.setState({ open: false });
-    
+    this.setState({ open: false });    
   };
 
   changed = (ev, value) => {
-    this.textInput.focus();
     this.setState({value: value, open: false}, () => {
       this.props.onChange(this.state.value);
     });
