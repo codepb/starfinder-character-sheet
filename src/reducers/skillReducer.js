@@ -16,7 +16,6 @@ export default function skills(state = initialState.skills, action) {
     case SkillActions.UPDATE_PROFESSION_ABILITY:
       return update(state, {professions: {[action.skill]: {ability: { $set: action.newValue }}}});
     case SkillActions.UPDATE_EXTRA_CLASS_SKILL:
-      console.log(action);
       return update(state, {skillBonuses: {[action.skill]: {isExtraClassSkill: { $set: action.newValue }}}});
     default:
       return state;

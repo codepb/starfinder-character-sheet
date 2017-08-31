@@ -7,7 +7,6 @@ export default function initiative(state = initialState.abilities, action) {
     case LOAD_STATE:
       return action.state.abilities || initialState.abilities;
     case AbilitiesActions.UPDATE_ABILITIES:
-    console.log(action);
       return action.newValue;
     default:
       return state;
