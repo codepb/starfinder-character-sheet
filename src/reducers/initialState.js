@@ -39,7 +39,7 @@ export default {
         description: ''
     }),
     initiative: 0,
-    abilities: {
+    abilityScores: {
         defaultThemeBonus: Abilities.STRENGTH,
         defaultRaceBonus: Abilities.STRENGTH,
         abilityPoints
@@ -69,6 +69,6 @@ export default {
         [AttackBonuses.RANGED]: { misc: 0 },
         [AttackBonuses.THROWN]: { misc: 0 }
     },
-    weapons: []
-
+    weapons: [],
+    abilities: ''
 }

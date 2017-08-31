@@ -16,15 +16,19 @@ export default class StateHandlingTextField extends Component {
   updateValue = (ev) => {
     const newValue = ev.target.value;
     this.setState(previousState => { return {value: newValue}});
-    if(this.props.onChange && typeof(this.props.onChange) === 'function') {
+    if (this.props.onChange && typeof(this.props.onChange) === 'function') {
       this.props.onChange(ev);
     }
+  }
+
+  focus = () => {
+    this.textInput.focus();
   }
 
   render() {
     const {value, onChange, ...other} = this.props;
     return (
-      <TextField value={this.state.value} {...other} onChange={this.updateValue}/>
+      <TextField value={this.state.value} {...other} onChange={this.updateValue} inputRef={(input) => { this.textInput = input; }}/>
     );
   }
 }

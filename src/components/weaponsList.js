@@ -28,7 +28,7 @@ export default class WeaponList extends Component {
     const rows = [];
     for(let weapon in this.props.weapons) {
       rows.push(
-        <Card style={{margin: '10px'}}>          
+        <Card key={weapon} style={{margin: '10px'}}>          
           <CardContent>
             <Typography type="title" gutterBottom={true}>{this.props.weapons[weapon].weapon}</Typography>
             <WeaponDisplay weapon={this.props.weapons[weapon]} displayWeaponName={false} disabled={true}/>

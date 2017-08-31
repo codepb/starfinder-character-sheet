@@ -20,8 +20,8 @@ function mapStateToProps(state) {
       canEditDefaultRaceBonus: currentRace.hasUnspecifiedModifiers,
       canEditDefaultThemeBonus: currentTheme.hasUnspecifiedModifiers,
       remainingPointsToSpent: abilityManager.getRemainingPointsToSpendFromState(state),
-      defaultRaceBonus: state.abilities.defaultRaceBonus,
-      defaultThemeBonus: state.abilities.defaultThemeBonus,
+      defaultRaceBonus: state.abilityScores.defaultRaceBonus,
+      defaultThemeBonus: state.abilityScores.defaultThemeBonus,
       keyAbility: currentClass.keyAbility
   };
 }

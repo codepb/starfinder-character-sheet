@@ -25,10 +25,13 @@ export default class Select extends Component {
   }
 
   handleRequestClose = () => {
+    this.textInput.focus();
     this.setState({ open: false });
+    
   };
 
   changed = (ev, value) => {
+    this.textInput.focus();
     this.setState({value: value, open: false}, () => {
       this.props.onChange(this.state.value);
     });
@@ -42,7 +45,7 @@ export default class Select extends Component {
     }
     return (
       <span style={this.props.style}>
-        <TextField label={this.props.label} onFocus={this.handleClick} value={valueToDisplay} style={this.props.style} disabled={this.props.disabled}/>
+        <TextField label={this.props.label} onFocus={this.handleClick} value={valueToDisplay} style={this.props.style} disabled={this.props.disabled} ref={(input) => { this.textInput = input; }}/>
         <Menu anchorEl={this.state.anchorElement} open={this.state.open} onRequestClose={this.handleRequestClose}>
           {this.props.options.map((option, i) => <MenuItem value={option.value}
                                                             key={option.value}

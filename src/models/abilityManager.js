@@ -12,7 +12,7 @@ export default class AbilityManager {
     if(!raceModifier) {
       raceModifier = 0;
     }
-    if (race.hasUnspecifiedModifiers && state.abilities.defaultRaceBonus === ability) {
+    if (race.hasUnspecifiedModifiers && state.abilityScores.defaultRaceBonus === ability) {
       raceModifier += race.abilityModifiers[UNSPECIFIED];
     }
     const theme = themes[state.character.theme];
@@ -20,10 +20,10 @@ export default class AbilityManager {
     if(!themeModifier) {
       themeModifier = 0;
     }
-    if (theme.hasUnspecifiedModifiers && state.abilities.defaultThemeBonus === ability) {
+    if (theme.hasUnspecifiedModifiers && state.abilityScores.defaultThemeBonus === ability) {
       themeModifier += theme.abilityModifiers[UNSPECIFIED];
     }
-    const pointsAssigned = state.abilities.abilityPoints[ability];
+    const pointsAssigned = state.abilityScores.abilityPoints[ability];
 
     return new AbilityScore({
       name: ability,
@@ -40,6 +40,6 @@ export default class AbilityManager {
   };
   
   getRemainingPointsToSpendFromState = (state) => {
-    return 10 - Object.values(state.abilities.abilityPoints).filter(a => a > 0).reduce((a,b) => a + b, 0);
+    return 10 - Object.values(state.abilityScores.abilityPoints).filter(a => a > 0).reduce((a,b) => a + b, 0);
   }
 }
