@@ -45,7 +45,7 @@ export default class Select extends Component {
     }
     return (
       <span style={this.props.style}>
-        <TextField label={this.props.label} onFocus={this.handleClick} value={valueToDisplay} style={this.props.style} disabled={this.props.disabled} inputRef={(input) => { this.textInput = input; }}/>
+        <TextField label={this.props.label} onFocus={this.handleClick} value={valueToDisplay} style={this.props.style} disabled={this.props.disabled} ref={(input) => { this.textInput = input; }}/>
         <Menu anchorEl={this.state.anchorElement} open={this.state.open} onRequestClose={this.handleRequestClose}>
           {this.props.options.map((option, i) => <MenuItem value={option.value}
                                                             key={option.value}
