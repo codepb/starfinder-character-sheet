@@ -4,13 +4,14 @@ import TextField from './textField';
 
 export default class Select extends PureComponent {
   constructor(props) {
-    super();
+    super(props);
     this.state = {
       value: props.value,
-      open: false,
-      anchorElement: undefined
+      open: false
     }
   }
+
+  anchorElement = null;
 
   componentWillReceiveProps = (nextProps) => {
     if(this.props.value !== nextProps.value) {
@@ -19,8 +20,12 @@ export default class Select extends PureComponent {
   }
 
   handleClick = (ev) => {
-    if(!this.props.disabled) {
-      this.setState({ open: true, anchorElement: ev.currentTarget });
+    if (this.state.ignoreFocusOnce) {
+      ev.stopPropagation();
+      this.setState({ ignoreFocusOnce: false });
+    } else if(!this.props.disabled) {
+      this.anchorElement = ev.currentTarget;
+      this.setState({ open: true });
     }
   }
 
@@ -29,7 +34,7 @@ export default class Select extends PureComponent {
   };
 
   changed = (ev, value) => {
-    this.setState({value: value, open: false}, () => {
+    this.setState({value: value, open: false, ignoreFocusOnce: true}, () => {
       this.props.onChange(this.state.value);
     });
   }
@@ -43,7 +48,7 @@ export default class Select extends PureComponent {
     return (
       <span style={this.props.style}>
         <TextField label={this.props.label} onFocus={this.handleClick} value={valueToDisplay} style={this.props.style} disabled={this.props.disabled} ref={(input) => { this.textInput = input; }}/>
-        <Menu anchorEl={this.state.anchorElement} open={this.state.open} onRequestClose={this.handleRequestClose}>
+        <Menu anchorEl={this.anchorElement} open={this.state.open} onRequestClose={this.handleRequestClose}>
           {this.props.options.map((option, i) => <MenuItem value={option.value}
                                                             key={option.value}
                                                             selected={option.value === this.state.value}
