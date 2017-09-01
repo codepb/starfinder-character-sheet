@@ -8,7 +8,7 @@ import Initiative from '../components/initiative';
 function mapStateToProps(state) {
   const abilityManager = new AbilityManager();
   return {
-      dexterityModifier: abilityManager.getAbilityScoreFromState(state, Abilities.DEXTERITY).modifier,
+      dexterityModifier: 1,// abilityManager.getAbilityScoreFromState(state, Abilities.DEXTERITY).modifier,
       miscInitiative: state.initiative
   };
 }

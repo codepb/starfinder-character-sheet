@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Menu, { MenuItem } from 'material-ui/Menu';
 import TextField from './textField';
 
-export default class Select extends Component {
+export default class Select extends PureComponent {
   constructor(props) {
     super();
     this.state = {

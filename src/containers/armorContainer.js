@@ -8,7 +8,7 @@ import AbilityManager from '../models/abilityManager';
 function mapStateToProps(state) {
   const abilityManager = new AbilityManager();  
     return {
-        dexterityModifier: Math.min(abilityManager.getAbilityScoreFromState(state, Abilities.DEXTERITY).modifier, state.armor.maxDexterity),
+        dexterityModifier: 1,// Math.min(abilityManager.getAbilityScoreFromState(state, Abilities.DEXTERITY).modifier, state.armor.maxDexterity),
         armorBonuses: getArmorBonusesFromState(state),
         damageReduction: state.armor.bonuses.damageReduction,
         resistances: state.armor.bonuses.resistances,

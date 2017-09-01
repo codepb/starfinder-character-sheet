@@ -4,17 +4,14 @@ export default class AbilityScore {
     raceModifier = 0;
     themeModifier = 0;
     pointsAssigned = 0;
-
-    get score() {
-        return this.baseScore + this.raceModifier + this.themeModifier + this.pointsAssigned;
-    }
-    get modifier() {
-        return Math.floor(this.score / 2 - 5);
-    }
+    score;
+    modifier;
 
     constructor(params) {
         for (let i in params) {
             this[i] = params[i];
         }
+        this.score = this.baseScore + this.raceModifier + this.themeModifier + this.pointsAssigned;
+        this.modifier = Math.floor(this.score / 2 - 5);
     }
 }

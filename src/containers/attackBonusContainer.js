@@ -13,7 +13,7 @@ function mapStateToProps(state) {
       const ability = attackBonusEnumeration[attackBonus];
       attackBonuses[attackBonus] = {
           miscModifier: state.attackBonuses[attackBonus].misc,
-          abilityModifier: abilityManager.getAbilityScoreFromState(state, ability).modifier,
+          abilityModifier: 1,//abilityManager.getAbilityScoreFromState(state, ability).modifier,
           baseAttackBonus: classes[state.character.class].baseAttackBonus
       }
   }

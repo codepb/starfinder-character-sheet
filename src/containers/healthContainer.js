@@ -11,8 +11,8 @@ function mapStateToProps(state) {
   const abilityManager = new AbilityManager();
     return {
       hitPoints: getHitPointsFromState(state),
-      staminaPoints: getStaminaPointsFromState(state, abilityManager),
-      resolvePoints: getResolvePointsFromState(state, abilityManager)
+      staminaPoints: 10,// getStaminaPointsFromState(state, abilityManager),
+      resolvePoints: 10,// getResolvePointsFromState(state, abilityManager)
     };
 }
 
@@ -28,7 +28,7 @@ function getHitPointsFromState(state) {
 function getStaminaPointsFromState(state, abilityManager) {
   const classContribution = classes[state.character.class].stamina;
   
-  const consitutionModifier = abilityManager.getAbilityScoreFromState(state, Abilities.CONSTITUTION).modifier;
+  const consitutionModifier = 1;// abilityManager.getAbilityScoreFromState(state, Abilities.CONSTITUTION).modifier;
   return {
     total: classContribution + consitutionModifier,
     current: state.currentHealth.staminaPoints
