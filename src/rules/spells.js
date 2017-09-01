@@ -263,3 +263,5 @@ const spells = [
   {name: 'Veil', description: 'Change appearance of a group of creatures.', level: 6, requiresResolve: false, class: classes.TECHNOMANCER},
   {name: 'Wall of Steel', description: 'Wall has 45 Hit Points per inch of thickness and hardness 15.', level: 6, requiresResolve: true, class: classes.TECHNOMANCER}  
 ]
+
+export default spells;
