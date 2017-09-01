@@ -16,8 +16,7 @@
         "redux-thunk": "^2.2.0",
         "typeface-roboto": "0.0.35"
     },
-    "homepage": "",
-    "x": "http://codepb.github.io/starfinder-character-sheet",
+    "homepage": "http://codepb.github.io/starfinder-character-sheet",
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
