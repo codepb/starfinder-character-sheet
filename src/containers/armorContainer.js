@@ -11,7 +11,7 @@ class ArmorContainer extends Component {
 
   render() {
     const {armorBonuses, armorWorn, armorPenalty, armorMaxDexterity, armorSpeedAdjustment, armorActions, currentRace, currentTheme, abilityScores} = this.props;
-    const dexterityModifier = Math.min(this.abilityManager.getAbilityScoreFromState(currentRace, currentTheme, abilityScores, Abilities.DEXTERITY).modifier, state.armor.maxDexterity);
+    const dexterityModifier = Math.min(this.abilityManager.getAbilityScoreFromState(currentRace, currentTheme, abilityScores, Abilities.DEXTERITY).modifier, armorMaxDexterity);
 
     return <Armor
               dexterityModifier={dexterityModifier}
@@ -27,7 +27,6 @@ class ArmorContainer extends Component {
 }
 
 function mapStateToProps(state) {
-  const abilityManager = new AbilityManager();  
     return {
       armorBonuses: state.armor.bonuses,
       damageReduction: state.armor.bonuses.damageReduction,
@@ -51,6 +50,6 @@ function mapDispatchToProps(dispatch) {
 const ConnectedArmorContainer = connect(
     mapStateToProps,
     mapDispatchToProps
-)(Armor);
+)(ArmorContainer);
 
 export default ConnectedArmorContainer;
