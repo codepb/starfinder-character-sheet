@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import Button from 'material-ui/Button';
+import IconButton from 'material-ui/IconButton';
 import Checkbox from 'material-ui/Checkbox';
 import Icon from 'material-ui/Icon';
 import { TableCell,  TableRow } from 'material-ui/Table';
@@ -38,8 +38,10 @@ class AbilityScore extends Component {
         <TableCell compact={true} style={{textAlign: 'center'}}><Checkbox checked={isRaceBonus} checkedIcon="add_box" onChange={this.defaultRacialModifierChanged} indeterminate={isRaceMinus} disabled={!this.props.canEditDefaultRaceBonus}/></TableCell>
         <TableCell compact={true} style={{textAlign: 'center'}}><Checkbox checked={isThemeBonus} checkedIcon="add_box" onChange={this.defaultThemeModifierChanged} disabled={!this.props.canEditDefaultThemeBonus}/></TableCell>
         <TableCell compact={true} style={{textAlign: 'center'}}>{this.props.abilityScore.pointsAssigned}</TableCell>
-        <TableCell disablePadding={true}><Button color="primary" onClick={this.addPoint} dense={true}>+</Button></TableCell>
-        <TableCell disablePadding={true}><Button color="accent" onClick={this.removePoint} dense={true}>-</Button></TableCell>   
+        <TableCell disablePadding={true}><IconButton onClick={this.addPoint} color="primary"><Icon>add</Icon></IconButton></TableCell>
+        <TableCell disablePadding={true}><IconButton onClick={this.removePoint} color="accent"><Icon>remove</Icon></IconButton>
+        
+        </TableCell>   
       </TableRow>
     );
   }
