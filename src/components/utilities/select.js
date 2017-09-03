@@ -30,7 +30,7 @@ export default class Select extends PureComponent {
   }
 
   handleRequestClose = () => {
-    this.setState({ open: false });    
+    this.setState({ open: false, ignoreFocusOnce: true });    
   };
 
   changed = (ev, value) => {
