@@ -2,24 +2,10 @@ import React, { Component } from 'react';
 import Table, { TableHead, TableBody, TableCell, TableRow } from 'material-ui/Table';
 import Card, { CardHeader, CardContent } from 'material-ui/Card';
 import Typography from 'material-ui/Typography';
-import AbilityScore from './abilityScore';
 
 export default class AbilityScores extends Component {
     render() {
-        const {abilityScores, canEditDefaultRaceBonus, canEditDefaultThemeBonus, defaultRaceBonus, defaultThemeBonus, keyAbility, remainingPointsToSpend, abilityScoreActions} = this.props;
-        const rows = [];
-        for (let ability in abilityScores) {
-            const abilityScore = abilityScores[ability];
-            rows.push(<AbilityScore
-                key={abilityScore.name}
-                canEditDefaultRaceBonus={canEditDefaultRaceBonus}
-                canEditDefaultThemeBonus={canEditDefaultThemeBonus}
-                isDefaultRaceBonus={defaultRaceBonus === ability}
-                isDefaultThemeBonus={defaultThemeBonus === ability}
-                isKey={ability === keyAbility}
-                abilityScoreActions={abilityScoreActions}
-                {...abilityScore} />);
-        }
+        const {children, remainingPointsToSpend} = this.props;
 
         return (
             <Card raised={true}>
@@ -40,7 +26,7 @@ export default class AbilityScores extends Component {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {rows}
+                                {children}
                             </TableBody>
                     </Table>
                     <Typography align='right'>Points Remaining: {remainingPointsToSpend}</Typography>

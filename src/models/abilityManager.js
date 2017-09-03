@@ -6,32 +6,42 @@ import { UNSPECIFIED } from '../rules/abilities';
 
 export default class AbilityManager {
   baseScore = 10;
-  getAbilityScoreFromState = (currentRace, currentTheme, abilityScores, ability) => {
+
+  getAbilityScore = (currentRace, currentTheme, abilityPoints, abilityName, isDefaultRaceBonus, isDefaultThemeBonus) => {
     const race = races[currentRace];
-    let raceModifier = race.abilityModifiers[ability];
+    let raceModifier = race.abilityModifiers[abilityName];
     if(!raceModifier) {
       raceModifier = 0;
     }
-    if (race.hasUnspecifiedModifiers && abilityScores.defaultRaceBonus === ability) {
+    if (race.hasUnspecifiedModifiers && isDefaultRaceBonus) {
       raceModifier += race.abilityModifiers[UNSPECIFIED];
     }
     const theme = themes[currentTheme];
-    let themeModifier = theme.abilityModifiers[ability];
+    let themeModifier = theme.abilityModifiers[abilityName];
     if(!themeModifier) {
       themeModifier = 0;
     }
-    if (theme.hasUnspecifiedModifiers && abilityScores.defaultThemeBonus === ability) {
+    if (theme.hasUnspecifiedModifiers && isDefaultThemeBonus) {
       themeModifier += theme.abilityModifiers[UNSPECIFIED];
     }
-    const pointsAssigned = abilityScores.abilityPoints[ability];
 
     return new AbilityScore({
-      name: ability,
+      name: abilityName,
       baseScore: this.baseScore,
       raceModifier,
       themeModifier,
-      pointsAssigned
+      abilityPoints
     });
+  }
+
+  getAbilityScoreFromState = (currentRace, currentTheme, abilityScores, ability) => {
+    return this.getAbilityScore(
+      currentRace,
+      currentTheme,
+      abilityScores.abilityPoints[ability],
+      ability,
+      abilityScores.defaultRaceBonus === ability,
+      abilityScores.defaultThemeBonus === ability);
   };
 
   getKeyAbilityScoreFromState = (currentClass, currentRace, currentTheme, abilityScores, ) => {
