@@ -13,7 +13,7 @@ function mapStateToProps(state) {
       const savingThrowDetails = savingThrowsEnumeration[savingThrow];
       savingThrows[savingThrow] = {
           miscModifier: state.savingThrows[savingThrow].misc,
-          abilityModifier: 1,//abilityManager.getAbilityScoreFromState(state, savingThrowDetails.associatedAbility).modifier,
+          abilityModifier: abilityManager.getAbilityScoreFromState(state.character.race, state.character.theme, state.character.abilityScores, savingThrowDetails.associatedAbility).modifier,
           base: classes[state.character.class].savingThrows[savingThrow]
       }
   }
