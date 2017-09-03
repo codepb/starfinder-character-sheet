@@ -38,7 +38,6 @@ function mapStateToProps(state) {
       armorSpeedAdjustment: state.armor.speedAdjustment,
       currentRace: state.character.race,
       currentTheme: state.character.theme,
-      currentClass: state.character.class,
       abilityScores: state.abilityScores
     };
 }
