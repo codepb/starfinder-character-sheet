@@ -6,7 +6,7 @@ import AbilityScore from './abilityScore';
 
 export default class AbilityScores extends Component {
     render() {
-        const {abilityScores, canEditDefaultRaceBonus, canEditDefaultThemeBonus, defaultRaceBonus, defaultThemeBonus, keyAbility, remainingPointsToSpent, abilityScoreActions} = this.props;
+        const {abilityScores, canEditDefaultRaceBonus, canEditDefaultThemeBonus, defaultRaceBonus, defaultThemeBonus, keyAbility, remainingPointsToSpend, abilityScoreActions} = this.props;
         const rows = [];
         for (let ability in abilityScores) {
             const abilityScore = abilityScores[ability];
@@ -43,7 +43,7 @@ export default class AbilityScores extends Component {
                                 {rows}
                             </TableBody>
                     </Table>
-                    <Typography align='right'>Points Remaining: {remainingPointsToSpent}</Typography>
+                    <Typography align='right'>Points Remaining: {remainingPointsToSpend}</Typography>
                 </CardContent>
             </Card>
         );
