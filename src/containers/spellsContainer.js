@@ -5,9 +5,10 @@ import SpellsList from '../components/spellList';
 import spells from '../rules/spells';
 
 function mapStateToProps(state) {
-  const knownSpells = spells.filter(s => state.spells.some(a => a.name === s.name && a.class === s.class));
+  const knownSpells = spells.filter(s => state.spells.known.some(a => a.name === s.name && a.class === s.class));
   return {
-      knownSpells: knownSpells
+      knownSpells: knownSpells,
+      levels: state.spells.levels
   };
 }
 

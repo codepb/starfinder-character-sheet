@@ -5,6 +5,7 @@ import Dialog, { DialogTitle, DialogContent, DialogContentText } from 'material-
 import KnownSpellDisplay from './knownSpellDisplay';
 import Select from './utilities/select';
 import * as classes from '../rules/classes';
+import AbilityInput from './utilities/abilityInput';
 
 export default class SpellLevel extends Component {
   constructor(props) {
@@ -57,6 +58,16 @@ export default class SpellLevel extends Component {
     this.cancelAddingSpell();
   }
 
+  updateSpellsPerDay = (ev) => {
+    const newValue = ev.target.value * 1;
+    this.props.updateSpellsPerDay(newValue);
+  }
+
+  updateSpellSlotsUsed = (ev) => {
+    const newValue = ev.target.value * 1;
+    this.props.updateSpellSlotsUsed(newValue);
+  }
+
   render() {
     const content = [];
     for (let knownSpell in this.props.knownSpells) {
@@ -65,10 +76,16 @@ export default class SpellLevel extends Component {
     }
 
     const classOptions = [classes.MYSTIC, classes.TECHNOMANCER].map(c => { return {label: c, value: c }});
+    const slotsInputs = this.props.showSpellSlots ? <div>
+      <AbilityInput label="Per Day" type="number" inputStyles={{width:100}} value={this.props.spellsPerDay} onChange={this.updateSpellsPerDay}/>
+      <AbilityInput label="Slots Used" type="number" inputStyles={{width:100}} value={this.props.spellSlotsUsed} onChange={this.updateSpellSlotsUsed}/>
+    </div>
+    : ''
     return (
       <Card style={{margin: 10}}>
         <CardHeader title={`Level ${this.props.level}`} />
         <CardContent>
+          {slotsInputs}
           {content}
           <Button onClick={this.showAddSpellDialog}>Add Spell</Button>
           <Dialog open={this.state.addSpellDialogOpen} onRequestClose={this.cancelAddingSpell} >

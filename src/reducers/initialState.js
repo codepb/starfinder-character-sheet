@@ -71,5 +71,15 @@ export default {
     },
     weapons: [],
     abilities: '',
-    spells: []
+    spells: {
+        levels: {
+            [1] : {spellsPerDay: 0, spellSlotsUsed: 0},
+            [2] : {spellsPerDay: 0, spellSlotsUsed: 0},
+            [3] : {spellsPerDay: 0, spellSlotsUsed: 0},
+            [4] : {spellsPerDay: 0, spellSlotsUsed: 0},
+            [5] : {spellsPerDay: 0, spellSlotsUsed: 0},
+            [6] : {spellsPerDay: 0, spellSlotsUsed: 0}
+        },
+        known: []
+    }
 }

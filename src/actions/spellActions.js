@@ -13,3 +13,19 @@ export function removeSpell(spell, spellClass) {
     spell: {name: spell, class: spellClass}
   }
 }
+
+export function updateSpellsPerDay(level, newValue) {
+  return {
+    type: types.UPDATE_SPELLS_PER_DAY,
+    level,
+    newValue
+  }
+}
+
+export function updateSpellSlotsUsed(level, newValue) {
+  return {
+    type: types.UPDATE_SPELLS_SLOTS_USED,
+    level,
+    newValue
+  }
+}
