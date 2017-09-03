@@ -30,7 +30,7 @@ export default class AbilityManager {
       baseScore: this.baseScore,
       raceModifier,
       themeModifier,
-      abilityPoints
+      pointsAssigned: abilityPoints
     });
   }
 
