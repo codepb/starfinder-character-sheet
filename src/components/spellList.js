@@ -9,7 +9,7 @@ export default class SpellList extends Component {
     const content = [];
     for (let level in levels) {
       const knownSpells = [];
-      if(level == 1) {
+      if(level === 1) {
         knownSpells.push(spells[0]);
       }
       content.push(<SpellLevel key={level} level={level} knownSpells={knownSpells}/>);
