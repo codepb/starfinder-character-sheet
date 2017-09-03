@@ -6,7 +6,7 @@ import { LOAD_STATE } from '../actions/types/load';
 export default function spells(state = initialState.spells, action) {
   switch (action.type) {
     case LOAD_STATE:
-      return action.state.spells;
+      return action.state.spells || initialState.spells;
     case SpellActions.ADD_SPELL:
       return update(state, { $push: [action.spell] });
     case SpellActions.REMOVE_SPELL:
