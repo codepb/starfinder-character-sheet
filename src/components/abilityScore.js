@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import Button from 'material-ui/Button';
+import IconButton from 'material-ui/IconButton';
 import Checkbox from 'material-ui/Checkbox';
 import Icon from 'material-ui/Icon';
 import { TableCell,  TableRow } from 'material-ui/Table';
@@ -37,8 +37,8 @@ export default class AbilityScore extends PureComponent {
         <TableCell compact={true} style={{textAlign: 'center'}}><Checkbox checked={isRaceBonus} checkedIcon="add_box" onChange={this.defaultRacialModifierChanged} indeterminate={isRaceMinus} disabled={!canEditDefaultRaceBonus}/></TableCell>
         <TableCell compact={true} style={{textAlign: 'center'}}><Checkbox checked={isThemeBonus} checkedIcon="add_box" onChange={this.defaultThemeModifierChanged} disabled={!canEditDefaultThemeBonus}/></TableCell>
         <TableCell compact={true} style={{textAlign: 'center'}}>{pointsAssigned}</TableCell>
-        <TableCell disablePadding={true}><Button color="primary" onClick={this.addPoint} dense={true}>+</Button></TableCell>
-        <TableCell disablePadding={true}><Button color="accent" onClick={this.removePoint} dense={true}>-</Button></TableCell>   
+        <TableCell disablePadding={true}><IconButton color="primary" onClick={this.addPoint}><Icon>add</Icon></IconButton></TableCell>
+        <TableCell disablePadding={true}><IconButton color="accent" onClick={this.removePoint}><Icon>remove</Icon></IconButton></TableCell>
       </TableRow>
     );
   }
