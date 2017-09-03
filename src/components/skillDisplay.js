@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { TableRow, TableCell} from 'material-ui/Table';
 import Icon from 'material-ui/Icon';
 import Checkbox from 'material-ui/Checkbox';
@@ -6,7 +6,7 @@ import AbilityInput from './utilities/abilityInput';
 import SkillLabel from './skillLabel';
 
 
-export default class SkillDisplay extends Component {
+export default class SkillDisplay extends PureComponent {
   ranksUpdated = (ev) => {
     const newValue = ev.target.value * 1;
     if(newValue >= 0) {

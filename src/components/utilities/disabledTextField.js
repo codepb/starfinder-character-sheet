@@ -10,11 +10,9 @@ const styles = {
   },
 };
 
-function DisabledTextInput(props) {
-  const inputProps = props.inputProps || {} ;
+function DisabledTextInput({classes, inputProps, value, label, style }) {
   return (
-    
-    <TextField InputProps={{classes: {inputDisabled: props.classes.inputDisabled}}} inputProps={inputProps} disabled={true} value={props.value} label={props.label} style={props.style}/>
+    <TextField InputProps={{classes: {inputDisabled: classes.inputDisabled}}} inputProps={inputProps} disabled={true} value={value} label={label} style={style}/>
   );
 }
 
@@ -24,6 +22,10 @@ DisabledTextInput.propTypes = {
   label: PropTypes.string,
   style: PropTypes.object,
   inputProps: PropTypes.object
+};
+
+DisabledTextInput.defaultProps = {
+  inputProps: {}
 };
 
 export default withStyles(styles)(DisabledTextInput);

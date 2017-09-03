@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Button from 'material-ui/Button';
 
-export default class SaveButton extends Component {
+export default class SaveButton extends PureComponent {
   save = (ev) => {
     this.props.onSave();
   }

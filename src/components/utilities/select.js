@@ -1,16 +1,17 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Menu, { MenuItem } from 'material-ui/Menu';
 import TextField from './textField';
 
-export default class Select extends Component {
+export default class Select extends PureComponent {
   constructor(props) {
-    super();
+    super(props);
     this.state = {
       value: props.value,
-      open: false,
-      anchorElement: undefined
+      open: false
     }
   }
+
+  anchorElement = null;
 
   componentWillReceiveProps = (nextProps) => {
     if(this.props.value !== nextProps.value) {
@@ -19,17 +20,21 @@ export default class Select extends Component {
   }
 
   handleClick = (ev) => {
-    if(!this.props.disabled) {
-      this.setState({ open: true, anchorElement: ev.currentTarget });
+    if (this.state.ignoreFocusOnce) {
+      ev.stopPropagation();
+      this.setState({ ignoreFocusOnce: false });
+    } else if(!this.props.disabled) {
+      this.anchorElement = ev.currentTarget;
+      this.setState({ open: true });
     }
   }
 
   handleRequestClose = () => {
-    this.setState({ open: false });    
+    this.setState({ open: false, ignoreFocusOnce: true });    
   };
 
   changed = (ev, value) => {
-    this.setState({value: value, open: false}, () => {
+    this.setState({value: value, open: false, ignoreFocusOnce: true}, () => {
       this.props.onChange(this.state.value);
     });
   }
@@ -43,7 +48,7 @@ export default class Select extends Component {
     return (
       <span style={this.props.style}>
         <TextField label={this.props.label} onFocus={this.handleClick} value={valueToDisplay} style={this.props.style} disabled={this.props.disabled} ref={(input) => { this.textInput = input; }}/>
-        <Menu anchorEl={this.state.anchorElement} open={this.state.open} onRequestClose={this.handleRequestClose}>
+        <Menu anchorEl={this.anchorElement} open={this.state.open} onRequestClose={this.handleRequestClose}>
           {this.props.options.map((option, i) => <MenuItem value={option.value}
                                                             key={option.value}
                                                             selected={option.value === this.state.value}

@@ -6,24 +6,24 @@ import { UNSPECIFIED } from '../rules/abilities';
 
 export default class AbilityManager {
   baseScore = 10;
-  getAbilityScoreFromState = (state, ability) => {
-    const race = races[state.character.race];
+  getAbilityScoreFromState = (currentRace, currentTheme, abilityScores, ability) => {
+    const race = races[currentRace];
     let raceModifier = race.abilityModifiers[ability];
     if(!raceModifier) {
       raceModifier = 0;
     }
-    if (race.hasUnspecifiedModifiers && state.abilityScores.defaultRaceBonus === ability) {
+    if (race.hasUnspecifiedModifiers && abilityScores.defaultRaceBonus === ability) {
       raceModifier += race.abilityModifiers[UNSPECIFIED];
     }
-    const theme = themes[state.character.theme];
+    const theme = themes[currentTheme];
     let themeModifier = theme.abilityModifiers[ability];
     if(!themeModifier) {
       themeModifier = 0;
     }
-    if (theme.hasUnspecifiedModifiers && state.abilityScores.defaultThemeBonus === ability) {
+    if (theme.hasUnspecifiedModifiers && abilityScores.defaultThemeBonus === ability) {
       themeModifier += theme.abilityModifiers[UNSPECIFIED];
     }
-    const pointsAssigned = state.abilityScores.abilityPoints[ability];
+    const pointsAssigned = abilityScores.abilityPoints[ability];
 
     return new AbilityScore({
       name: ability,
@@ -34,12 +34,12 @@ export default class AbilityManager {
     });
   };
 
-  getKeyAbilityScoreFromState = (state) => {
-    const keyAbility = classes[state.character.class].keyAbility;
-    return this.getAbilityScoreFromState(state, keyAbility);
+  getKeyAbilityScoreFromState = (currentClass, currentRace, currentTheme, abilityScores, ) => {
+    const keyAbility = classes[currentClass].keyAbility;
+    return this.getAbilityScoreFromState(currentRace, currentTheme, abilityScores, keyAbility);
   };
   
-  getRemainingPointsToSpendFromState = (state) => {
-    return 10 - Object.values(state.abilityScores.abilityPoints).filter(a => a > 0).reduce((a,b) => a + b, 0);
+  getRemainingPointsToSpendFromState = (abilityScores) => {
+    return 10 - Object.values(abilityScores.abilityPoints).filter(a => a > 0).reduce((a,b) => a + b, 0);
   }
 }

@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import TextField from 'material-ui/TextField';
 
-export default class StateHandlingTextField extends Component {
+export default class StateHandlingTextField extends PureComponent {
   constructor(props) {
     super();
-    this.state = { value: props.value || '', onChange: props.onChange };
+    this.state = { value: props.value || '' };
   }
 
   componentWillReceiveProps = (nextProps) => {
     if(this.props.value !== nextProps.value) {
-      this.setState(previousState => { return {value: nextProps.value}});
+      this.setState({value: nextProps.value});
     }
   }
 

@@ -48,7 +48,7 @@ export default class CharacterStats extends Component {
       <Grid container>
         <Grid item>        
           <div style={{marginBottom: '10px'}}>
-            <TextField label="Name" value={this.props.character.name}  onBlur={this.nameBlurred}/>
+            <TextField label="Name" value={this.props.character.name} onBlur={this.nameBlurred}/>
             <Select label="Class"  value={this.props.character.class} options={this.props.classOptions} onChange={this.classChanged} />
             <Select label="Race" value={this.props.character.race} options={this.props.raceOptions} onChange={this.raceChanged} />
             <Select label="Theme"  value={this.props.character.theme} options={this.props.themeOptions} onChange={this.themeChanged} />        

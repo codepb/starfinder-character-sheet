@@ -1,3 +1,4 @@
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import AbilityScores from '../components/abilityScores';
@@ -8,32 +9,44 @@ import * as Abilities from '../rules/abilities';
 import races from '../rules/races';
 import classes from '../rules/classes';
 
-function mapStateToProps(state) {
-  const abilityManager = new AbilityManager();
-  const currentRace = races[state.character.race];
-  const currentTheme = themes[state.character.theme];
-  const currentClass = classes[state.character.class];
+function getAbilityScoresFromState(currentRace, currentTheme, abilityScores, abilityManager) {
   return {
-      abilityScores: getAbilityScoresFromState(state, abilityManager),
-      currentRace: state.character.race,
-      currentTheme: state.character.theme,
-      canEditDefaultRaceBonus: currentRace.hasUnspecifiedModifiers,
-      canEditDefaultThemeBonus: currentTheme.hasUnspecifiedModifiers,
-      remainingPointsToSpent: abilityManager.getRemainingPointsToSpendFromState(state),
-      defaultRaceBonus: state.abilityScores.defaultRaceBonus,
-      defaultThemeBonus: state.abilityScores.defaultThemeBonus,
-      keyAbility: currentClass.keyAbility
-  };
+      [Abilities.STRENGTH]: abilityManager.getAbilityScoreFromState(currentRace, currentTheme, abilityScores, Abilities.STRENGTH),
+      [Abilities.DEXTERITY]: abilityManager.getAbilityScoreFromState(currentRace, currentTheme, abilityScores, Abilities.DEXTERITY),
+      [Abilities.CONSTITUTION]: abilityManager.getAbilityScoreFromState(currentRace, currentTheme, abilityScores, Abilities.CONSTITUTION),
+      [Abilities.INTELLIGENCE]: abilityManager.getAbilityScoreFromState(currentRace, currentTheme, abilityScores, Abilities.INTELLIGENCE),
+      [Abilities.WISDOM]: abilityManager.getAbilityScoreFromState(currentRace, currentTheme, abilityScores, Abilities.WISDOM),
+      [Abilities.CHARISMA]: abilityManager.getAbilityScoreFromState(currentRace, currentTheme, abilityScores, Abilities.CHARISMA),
+  }
 }
 
-function getAbilityScoresFromState(state, abilityManager) {
+class AbilityScoresContainer extends Component {
+  abilityManager = new AbilityManager();
+
+  render() {
+    const {currentRace, currentTheme, currentClass, abilityScores, abilityScoreActions} = this.props;
+    const theme = themes[currentTheme];
+    const race = races[currentRace];
+    const class_ = classes[currentClass];
+
+    return <AbilityScores 
+              abilityScores={getAbilityScoresFromState(currentRace, currentTheme, abilityScores, this.abilityManager)}
+              canEditDefaultRaceBonus={race.hasUnspecifiedModifiers}
+              canEditDefaultThemeBonus={theme.hasUnspecifiedModifiers}
+              remainingPointsToSpend={this.abilityManager.getRemainingPointsToSpendFromState(abilityScores)}
+              defaultRaceBonus={abilityScores.defaultRaceBonus}
+              defaultThemeBonus={abilityScores.defaultThemeBonus}
+              keyAbility={class_.keyAbility}
+              abilityScoreActions={abilityScoreActions} />;
+  }
+}
+
+function mapStateToProps(state) {
   return {
-      [Abilities.STRENGTH]: abilityManager.getAbilityScoreFromState(state, Abilities.STRENGTH),
-      [Abilities.DEXTERITY]: abilityManager.getAbilityScoreFromState(state, Abilities.DEXTERITY),
-      [Abilities.CONSTITUTION]: abilityManager.getAbilityScoreFromState(state, Abilities.CONSTITUTION),
-      [Abilities.INTELLIGENCE]: abilityManager.getAbilityScoreFromState(state, Abilities.INTELLIGENCE),
-      [Abilities.WISDOM]: abilityManager.getAbilityScoreFromState(state, Abilities.WISDOM),
-      [Abilities.CHARISMA]: abilityManager.getAbilityScoreFromState(state, Abilities.CHARISMA),
+    currentRace: state.character.race,
+    currentTheme: state.character.theme,
+    currentClass: state.character.class,
+    abilityScores: state.abilityScores
   }
 }
 
@@ -43,9 +56,9 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const AbilityScoresContainer = connect(
+const ConnectedAbilityScoresContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(AbilityScores);
+)(AbilityScoresContainer);
 
-export default AbilityScoresContainer;
+export default ConnectedAbilityScoresContainer;

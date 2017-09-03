@@ -16,15 +16,15 @@ const styles = {
   },
 };
 
-export default function AbilityInput(props) {  
-    if(props.disabled) {
-      return (
-        <DisabledTextField inputProps={{style: styles.inputDisabled}} label={props.label} value={props.value} style={styles.inputDisabled}/>
-      );
-    }
+export default function AbilityInput({disabled, label, value, type, inputStyles, onChange}) {  
+  if(disabled) {
+    return (
+      <DisabledTextField inputProps={{style: styles.inputDisabled}} label={label} value={value} style={styles.inputDisabled}/>
+    );
+  }
 
   return(
-    <TextField inputProps={{style:{...styles.input, ...props.inputStyles}}} value={props.value} type={props.type} label={props.label} style={{...styles.input, ...props.inputStyles}} onChange={props.onChange}/>
+    <TextField inputProps={{style:{...styles.input, ...inputStyles}}} value={value} type={type} label={label} style={{...styles.input, ...inputStyles}} onChange={onChange}/>
   );
 }
 
