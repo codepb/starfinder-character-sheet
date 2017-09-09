@@ -2,7 +2,7 @@
 const feats = [
   { name: 'Adaptive Fighting', prerequisites: 'Three or more combat feats', benefit: 'Once per day as a move action, gain the benefit of a combat feat you don’t have', isCombatFeat: true },
   { name: 'Amplified Glitch', prerequisites: 'Computers 3 ranks, Intimidate 3 ranks', benefit: 'Disrupt devices, causing targets to become shaken for 1 round or more', isCombatFeat: true },
-  { name: 'Antagonize', prerequisites: 'Diplomacy 5 ranks, Intimidate 5 ranks', benefit: 'Anger a foe, causing it to become off-target and take a ?2 penalty to skill checks for 1 round or more', isCombatFeat: false },
+  { name: 'Antagonize', prerequisites: 'Diplomacy 5 ranks, Intimidate 5 ranks', benefit: 'Anger a foe, causing it to become off-target and take a -2 penalty to skill checks for 1 round or more', isCombatFeat: false },
   { name: 'Barricade', prerequisites: 'Engineering 1 rank', benefit: 'Create your own fragile cover', isCombatFeat: true },
   { name: 'Basic Melee Weapon Proficiency', prerequisites: '—', benefit: 'No penalty to attacks with basic melee weapons', isCombatFeat: true },
   { name: 'Advanced Melee Weapon Proficiency', prerequisites: 'Basic Melee Weapon Proficiency', benefit: 'No penalty to attacks with advanced melee weapons', isCombatFeat: true },
@@ -16,7 +16,7 @@ const feats = [
   { name: 'Combat Casting', prerequisites: 'Ability to cast 2nd-level spells', benefit: '+2 bonus to AC and saves against attacks of opportunity when casting spells', isCombatFeat: true },
   { name: 'Connection Inkling', prerequisites: 'Wis 15, character level 5th, no mystic levels', benefit: 'Gain the ability to cast minor mystic spells', isCombatFeat: false },
   { name: 'Coordinated Shot', prerequisites: 'Base attack bonus +1', benefit: 'Allies gain a +1 bonus to ranged attacks against foes you threaten', isCombatFeat: true },
-  { name: 'Deadly Aim', prerequisites: 'Base attack bonus +1', benefit: 'Take a ?2 penalty to weapon attacks to deal extra damage', isCombatFeat: true },
+  { name: 'Deadly Aim', prerequisites: 'Base attack bonus +1', benefit: 'Take a -2 penalty to weapon attacks to deal extra damage', isCombatFeat: true },
   { name: 'Deflect Projectiles', prerequisites: 'Base attack bonus +8', benefit: 'Spend 1 Resolve Point to attempt to avoid a ranged attack', isCombatFeat: true },
   { name: 'Reflect Projectiles', prerequisites: 'Deflect Projectiles, base attack bonus +16', benefit: 'Spend 1 Resolve Point to attempt to redirect a ranged attack', isCombatFeat: true },
   { name: 'Diehard', prerequisites: '—', benefit: 'You can spend Resolve Points to stabilize and to stay in the fight in the same round', isCombatFeat: false },
