@@ -14,6 +14,7 @@ import SaveContainer from './containers/saveContainer';
 import WeaponsContainer from './containers/weaponsContainer';
 import AbilitiesContainer from './containers/abilitiesContainer';
 import SpellsContainer from './containers/spellsContainer';
+import FeatsContainer from './containers/featsContainer';
 
 class App extends Component {
   render() {
@@ -35,6 +36,9 @@ class App extends Component {
             </div>
             <div style={{margin: '20px'}}>
               <AbilitiesContainer />
+            </div>
+            <div style={{margin: '20px'}}>
+              <FeatsContainer />
             </div>
           </Grid>
           <Grid item>
@@ -59,6 +63,7 @@ class App extends Component {
             <div style={{margin: '20px'}}>
               <SpellsContainer />
             </div>
+            
           </Grid>
         </Grid>
       </Paper>

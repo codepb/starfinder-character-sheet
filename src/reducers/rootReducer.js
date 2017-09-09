@@ -10,6 +10,7 @@ import attackBonuses from './attackBonusesReducer';
 import weapons from './weaponsReducer';
 import abilities from './abilitiesReducer';
 import spells from './spellsReducer';
+import feats from './featsReducer';
 
 const rootReducer = combineReducers({
     character,
@@ -22,7 +23,8 @@ const rootReducer = combineReducers({
     attackBonuses,
     weapons,
     abilities,
-    spells
+    spells,
+    feats
 });
 
 export default rootReducer;
