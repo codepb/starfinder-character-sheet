@@ -17,6 +17,7 @@ import SpellsContainer from './containers/spellsContainer';
 import FeatsContainer from './containers/featsContainer';
 import LanguagesContainer from './containers/languagesContainer';
 import ExperienceContainer from './containers/experienceContainer';
+import WealthContainer from './containers/wealthContainer';
 
 class App extends Component {
   render() {
@@ -70,6 +71,9 @@ class App extends Component {
             </div>
             <div style={{margin: '20px'}}>
               <ExperienceContainer />
+            </div>
+            <div style={{margin: '20px'}}>
+              <WealthContainer />
             </div>
           </Grid>
         </Grid>
