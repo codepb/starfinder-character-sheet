@@ -1,26 +1,26 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as abilitiesActions from '../actions/abilitiesActions';
+import * as abilitiesActions from '../actions/languagesActions';
 import BasicTextField from '../components/basicTextField';
 
 function mapStateToProps(state) {
   return {
-      value: state.abilities,
-      rows: 40,
-      title: "Abilities"
+      value: state.languages,
+      rows: 5,
+      title: "Languages"
   };
 }
 
 function mapDispatchToProps(dispatch) {
   const actions = bindActionCreators(abilitiesActions, dispatch);
   return {
-    onChange: actions.updateAbilities
+    onChange: actions.updateLanguages
   };
 }
 
-const AbilitiesContainer = connect(
+const LanguagesContainer = connect(
     mapStateToProps,
     mapDispatchToProps
 )(BasicTextField);
 
-export default AbilitiesContainer;
+export default LanguagesContainer;

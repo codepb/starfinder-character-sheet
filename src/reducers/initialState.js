@@ -82,5 +82,6 @@ export default {
         },
         known: []
     },
-    feats: []
+    feats: [],
+    languages: ''
 }
