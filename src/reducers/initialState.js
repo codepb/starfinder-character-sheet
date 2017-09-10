@@ -84,7 +84,7 @@ export default {
     },
     feats: [],
     languages: '',
-    experience: { current: 0, nextLevel: 0 },
+    experience: { current: 0, nextLevel: 1300 },
     wealth: { money: 1000, other: '' },
     equipment: []
 }
