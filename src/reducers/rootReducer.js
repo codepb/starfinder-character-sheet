@@ -12,6 +12,7 @@ import abilities from './abilitiesReducer';
 import spells from './spellsReducer';
 import feats from './featsReducer';
 import languages from './languagesReducer';
+import experience from './experienceReducer';
 
 const rootReducer = combineReducers({
     character,
@@ -26,7 +27,8 @@ const rootReducer = combineReducers({
     abilities,
     spells,
     feats,
-    languages
+    languages,
+    experience
 });
 
 export default rootReducer;

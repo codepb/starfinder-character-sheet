@@ -16,6 +16,7 @@ import AbilitiesContainer from './containers/abilitiesContainer';
 import SpellsContainer from './containers/spellsContainer';
 import FeatsContainer from './containers/featsContainer';
 import LanguagesContainer from './containers/languagesContainer';
+import ExperienceContainer from './containers/experienceContainer';
 
 class App extends Component {
   render() {
@@ -67,7 +68,9 @@ class App extends Component {
             <div style={{margin: '20px'}}>
               <SpellsContainer />
             </div>
-            
+            <div style={{margin: '20px'}}>
+              <ExperienceContainer />
+            </div>
           </Grid>
         </Grid>
       </Paper>

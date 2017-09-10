@@ -83,5 +83,8 @@ export default {
         known: []
     },
     feats: [],
-    languages: ''
+    languages: '',
+    experience: { current: 0, nextLevel: 0 },
+    wealth: { money: 1000, other: 0 },
+    equipment: []
 }

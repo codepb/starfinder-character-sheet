@@ -77,7 +77,7 @@ export default class SpellLevel extends Component {
 
     const classOptions = [classes.MYSTIC, classes.TECHNOMANCER].map(c => { return {label: c, value: c }});
     const slotsInputs = this.props.showSpellSlots ? <div>
-      <AbilityInput label="Per Day" type="number" inputStyles={{width:100}} value={this.props.spellsPerDay} onChange={this.updateSpellsPerDay}/>
+      <AbilityInput label="Per Day" type="number" inputStyles={{width:100, marginRight: 10}} value={this.props.spellsPerDay} onChange={this.updateSpellsPerDay}/>
       <AbilityInput label="Slots Used" type="number" inputStyles={{width:100}} value={this.props.spellSlotsUsed} onChange={this.updateSpellSlotsUsed}/>
     </div>
     : ''
