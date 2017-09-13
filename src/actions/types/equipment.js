@@ -1,0 +1,2 @@
+export const ADD_EQUIPMENT = 'ADD_EQUIPMENT';
+export const REMOVE_EQUIPMENT = 'REMOVE_EQUIPMENT';

@@ -14,6 +14,7 @@ import feats from './featsReducer';
 import languages from './languagesReducer';
 import experience from './experienceReducer';
 import wealth from './wealthReducer';
+import equipment from './equipmentReducer';
 
 const rootReducer = combineReducers({
     character,
@@ -30,7 +31,8 @@ const rootReducer = combineReducers({
     feats,
     languages,
     experience,
-    wealth
+    wealth,
+    equipment
 });
 
 export default rootReducer;

@@ -3,7 +3,7 @@ import initialState from './initialState';
 import * as FeatActions from '../actions/types/feats';
 import { LOAD_STATE } from '../actions/types/load';
 
-export default function spells(state = initialState.feats, action) {
+export default function feats(state = initialState.feats, action) {
   switch (action.type) {
     case LOAD_STATE:
       return action.state.feats || initialState.feats;
