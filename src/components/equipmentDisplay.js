@@ -1,27 +1,25 @@
 import React, { Component } from 'react';
 import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
+import { TableRow, TableCell } from 'material-ui/Table';
 import Icon from 'material-ui/Icon';
 
 export default class EquipmentDisplay extends Component {
-  showDialog = () => {
-    this.setState(() => {return {dialogShown: true}});
-  }
-
-  hideDialog = () => {
-    this.setState(() => {return {dialogShown: false}});
-  }
-
   removeEquipment = () => {
     this.props.removeEquipment();
   }
 
   render() {
     return (
-      <div style={{cursor: 'pointer'}}>
-        <Typography type="subheading" onClick={this.showDialog} style={{display: 'inline-block', marginRight: 5}}>{this.props.equipment.name}</Typography>
-        <IconButton color="accent" style={{display: 'inline-block'}} onClick={this.removeEquipment}><Icon style={{fontSize: 12}}>clear</Icon></IconButton>
-      </div>
+      <TableRow>
+        <TableCell>{this.props.equipment.name}</TableCell>
+        <TableCell>{this.props.equipment.level}</TableCell>
+        <TableCell>{this.props.equipment.quantity}</TableCell>
+        <TableCell>{this.props.equipment.weight > 0.1 ? this.props.equipment.weight : 'L'}</TableCell>
+        <TableCell>
+          <IconButton color="accent" style={{display: 'inline-block'}} onClick={this.removeEquipment}><Icon style={{fontSize: 12}}>clear</Icon></IconButton>
+        </TableCell>
+      </TableRow>
     );
   }
 }
