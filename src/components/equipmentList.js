@@ -3,6 +3,7 @@ import Card, { CardHeader, CardContent } from 'material-ui/Card';
 import Button from 'material-ui/Button';
 import Dialog, { DialogTitle, DialogContent } from 'material-ui/Dialog';
 import Table, { TableHead, TableBody, TableRow, TableCell } from 'material-ui/Table';
+import Typography from 'material-ui/Typography';
 import TextField from './utilities/textField';
 import AbilityInput from './utilities/abilityInput';
 import Select from './utilities/select';
@@ -90,6 +91,7 @@ export default class EquipmentList extends Component {
             {content}
             </TableBody>
           </Table>
+          <Typography type="subtitle" style={{marginLeft:20, marginBottom: 5, marginTop:5}}>Total Bulk: {Math.floor(this.props.equipment.reduce((a,b) => { return a.weight + b.weight}))}</Typography>
           <Button onClick={this.showAddEquipmentDialog}>Add Equipment</Button>
           <Dialog open={this.state.dialogOpen} onRequestClose={this.cancelAddingEquipment} >
             <DialogTitle>Add Equipment</DialogTitle>
