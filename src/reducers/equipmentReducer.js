@@ -10,7 +10,7 @@ export default function equipment(state = initialState.equipment, action) {
     case EquipmentActions.ADD_EQUIPMENT:
       return update(state, { $push: [action.equipment] });
     case EquipmentActions.REMOVE_EQUIPMENT:
-      return state.filter(e => e.name !== action.equipment.name && e.level !== action.equipment.level );
+      return state.filter(e => !(e.name === action.equipment.name && e.level === action.equipment.level) );
     default:
       return state;
   }

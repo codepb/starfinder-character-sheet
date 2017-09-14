@@ -91,7 +91,7 @@ export default class EquipmentList extends Component {
             {content}
             </TableBody>
           </Table>
-          <Typography type="subtitle" style={{marginLeft:20, marginBottom: 5, marginTop:5}}>Total Bulk: {Math.floor(this.props.equipment.reduce((a,b) => { return a.weight + b.weight}))}</Typography>
+          <Typography type="subheading" style={{marginLeft:20, marginBottom: 5, marginTop:5}}>Total Bulk: {this.props.totalBulk}/{this.props.encumberanceThreshold} <strong>{this.props.encumberanceState}</strong></Typography>
           <Button onClick={this.showAddEquipmentDialog}>Add Equipment</Button>
           <Dialog open={this.state.dialogOpen} onRequestClose={this.cancelAddingEquipment} >
             <DialogTitle>Add Equipment</DialogTitle>

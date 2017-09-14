@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
 import { TableRow, TableCell } from 'material-ui/Table';
 import Icon from 'material-ui/Icon';
