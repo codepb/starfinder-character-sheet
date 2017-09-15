@@ -31,7 +31,7 @@ export default class WeaponList extends Component {
         <Card key={weapon} style={{margin: '10px'}}>          
           <CardContent>
             <Typography type="title" gutterBottom={true}>{this.props.weapons[weapon].weapon}</Typography>
-            <WeaponDisplay weapon={this.props.weapons[weapon]} displayWeaponName={false} disabled={true}/>
+            <WeaponDisplay weapon={this.props.weapons[weapon]} displayWeaponName={false} removeWeapon={() => this.props.weaponActions.removeWeapon(this.props.weapons[weapon])} disabled={true}/>
           </CardContent>
         </Card>);
     }

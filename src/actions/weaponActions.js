@@ -6,3 +6,10 @@ export function addWeapon(weapon) {
     weapon
   };
 }
+
+export function removeWeapon(weapon) {
+  return {
+    type: types.REMOVE_WEAPON,
+    weapon
+  };
+}

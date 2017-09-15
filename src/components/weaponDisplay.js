@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Button from 'material-ui/Button';
 import TextField from './utilities/textField';
 import AbilityInput from './utilities/abilityInput';
 import Select from './utilities/select';
@@ -92,6 +93,10 @@ export default class WeaponDisplay extends Component {
     this.props.onRequestClose(null);
   };
 
+  removeWeapon = () => {
+    this.props.removeWeapon();
+  }
+
   render() {
     const options = [
       {value: 'A', label: 'A'},
@@ -105,6 +110,7 @@ export default class WeaponDisplay extends Component {
     ];
     
     const weapon = this.props.weapon || {};
+    const remove = this.props.disabled ? <Button onClick={this.removeWeapon}>Remove</Button> : '';
     return (
       <div style={{maxWidth: '600px'}}>
         {this.props.displayWeaponName ? <TextField label="Weapon" value={weapon.weapon} onBlur={this.weaponChanged} disabled={this.props.disabled || false} /> : ''}
@@ -118,6 +124,7 @@ export default class WeaponDisplay extends Component {
         <AbilityInput type="number" value={weapon.usage} label="Usage" onChange={this.usageChanged}  disabled={this.props.disabled || false}/>          
         <TextField label="Special" value={weapon.special} onBlur={this.specialChanged} disabled={this.props.disabled || false}/>
         <Select label="Bulk" options={bulk} onChange={this.bulkChanged} value={weapon.bulk} disabled={this.props.disabled || false}/>
+        {remove}
       </div>
     );
   }

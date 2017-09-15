@@ -9,6 +9,9 @@ export default function weapons(state = initialState.weapons, action) {
       return action.state.weapons || initialState.weapons;
     case WeaponActions.ADD_WEAPON:
       return update(state, { $push: [action.weapon] });
+    case WeaponActions.REMOVE_WEAPON:
+    console.log(action.weapon, state);
+      return state.filter(w => !(w.weapon === action.weapon.weapon && w.level === action.weapon.level))
     default:
       return state;
   }
