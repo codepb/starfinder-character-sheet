@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TextField from './utilities/textField';
 import AbilityInput from './utilities/abilityInput';
 import Select from './utilities/select';
+import bulk from '../rules/bulk';
 
 export default class WeaponDisplay extends Component {
   static defaultProps = { displayWeaponName: true };
@@ -62,6 +63,11 @@ export default class WeaponDisplay extends Component {
     }
   }
 
+  bulkChanged = (value) => {
+    const newValue = value;
+    this.setState(() => { return { bulk: newValue }}, this.callOnChange);
+  }
+
   getWeaponFromState = () => {
     return {
       weapon: this.state.weapon,
@@ -73,7 +79,8 @@ export default class WeaponDisplay extends Component {
       type: this.state.type,
       ammo: this.state.ammo,
       usage: this.state.usage,
-      special: this.state.special
+      special: this.state.special,
+      bulk: this.state.bulk
     }
   }
 
@@ -110,6 +117,7 @@ export default class WeaponDisplay extends Component {
         <AbilityInput type="number" value={weapon.ammo} label="Ammo" onChange={this.ammoChanged}  disabled={this.props.disabled || false}/>
         <AbilityInput type="number" value={weapon.usage} label="Usage" onChange={this.usageChanged}  disabled={this.props.disabled || false}/>          
         <TextField label="Special" value={weapon.special} onBlur={this.specialChanged} disabled={this.props.disabled || false}/>
+        <Select label="Bulk" options={bulk} onChange={this.bulkChanged} value={weapon.bulk} disabled={this.props.disabled || false}/>
       </div>
     );
   }
