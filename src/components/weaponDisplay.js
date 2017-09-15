@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Button from 'material-ui/Button';
+import uuid from 'uuid/v4';
 import TextField from './utilities/textField';
 import AbilityInput from './utilities/abilityInput';
 import Select from './utilities/select';
@@ -7,6 +8,15 @@ import bulk from '../rules/bulk';
 
 export default class WeaponDisplay extends Component {
   static defaultProps = { displayWeaponName: true };
+
+  constructor(props) {
+    super();
+    if (!props.disabled) {
+      this.state = {
+        id: uuid()
+      }
+    }
+  }
   
   weaponChanged = (ev) => {
     const newWeapon = ev.target.value;
@@ -71,6 +81,7 @@ export default class WeaponDisplay extends Component {
 
   getWeaponFromState = () => {
     return {
+      id: this.state.id,
       weapon: this.state.weapon,
       level: this.state.level,
       attackBonus: this.state.attackBonus,
