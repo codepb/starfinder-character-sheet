@@ -8,6 +8,7 @@ import TextField from './utilities/textField';
 import AbilityInput from './utilities/abilityInput';
 import Select from './utilities/select';
 import EquipmentDisplay from './equipmentDisplay';
+import bulk from '../rules/bulk';
 
 export default class EquipmentList extends Component {
   constructor(props) {
@@ -67,12 +68,6 @@ export default class EquipmentList extends Component {
         removeEquipment={() => this.props.removeEquipment(equipment)}/>);
     }
 
-    const weights = [];
-    weights[0] = { label: 'L', value: 0.1 }
-    for(let i = 1; i <= 10; i++) {
-      weights[i] = { label: `${i}`, value: i };
-    }
-
     return (
       <Card raised={true}>
         <CardHeader title="Equipment" />
@@ -99,7 +94,7 @@ export default class EquipmentList extends Component {
               <TextField label="Name" value={this.state.selectedItem ? this.state.selectedItem.name : null} onBlur={this.setName} />
               <AbilityInput label="Quantity" type="number" value={this.state.selectedItem ? this.state.selectedItem.quantity : null} onChange={this.setQuantity} />
               <AbilityInput label="Level" type="number" value={this.state.selectedItem ? this.state.selectedItem.level : null} onChange={this.setLevel} />
-              <Select label="Weight" options={weights} onChange={this.setWeight} value={this.state.selectedItem ? this.state.selectedItem.weight : null}/>
+              <Select label="Weight" options={bulk} onChange={this.setWeight} value={this.state.selectedItem ? this.state.selectedItem.weight : null}/>
               <div>
                 <Button onClick={this.addEquipment}>Add Equipment</Button>
                 <Button onClick={this.cancelAddingEquipment}>Cancel</Button>

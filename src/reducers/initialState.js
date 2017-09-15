@@ -49,6 +49,8 @@ export default {
         penalty: 0,
         maxDexterity: 10,
         speedAdjustment: 0,
+        level: 1,
+        bulk: 0.1,
         bonuses: {misc: 0, damageReduction: '', resistances: '', energy: 0, kinetic: 0 }
     },
     currentHealth: { hitPoints: 10 , staminaPoints: 6, resolvePoints: 1 },

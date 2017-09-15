@@ -10,7 +10,7 @@ class ArmorContainer extends Component {
   abilityManager = new AbilityManager();
 
   render() {
-    const {armorBonuses, armorWorn, armorPenalty, armorMaxDexterity, armorSpeedAdjustment, armorActions, currentRace, currentTheme, abilityScores} = this.props;
+    const {armorLevel, armorBulk, armorBonuses, armorWorn, armorPenalty, armorMaxDexterity, armorSpeedAdjustment, armorActions, currentRace, currentTheme, abilityScores} = this.props;
     const dexterityModifier = Math.min(this.abilityManager.getAbilityScoreFromState(currentRace, currentTheme, abilityScores, Abilities.DEXTERITY).modifier, armorMaxDexterity);
 
     return <Armor
@@ -22,6 +22,8 @@ class ArmorContainer extends Component {
               armorPenalty={armorPenalty}
               armorMaxDexterity={armorMaxDexterity}
               armorSpeedAdjustment={armorSpeedAdjustment}
+              armorBulk={armorBulk}
+              armorLevel={armorLevel}
               armorActions={armorActions} />;
   }
 }
@@ -34,6 +36,8 @@ function mapStateToProps(state) {
       armorWorn: state.armor.name,
       armorPenalty: state.armor.penalty,
       armorMaxDexterity: state.armor.maxDexterity,
+      armorBulk: state.armor.bulk,
+      armorLevel: state.armor.level,
       armorSpeedAdjustment: state.armor.speedAdjustment,
       currentRace: state.character.race,
       currentTheme: state.character.theme,

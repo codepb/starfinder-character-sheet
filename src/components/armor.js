@@ -4,6 +4,8 @@ import Card, { CardHeader, CardContent } from 'material-ui/Card';
 import Table, { TableHead, TableBody, TableRow, TableCell} from 'material-ui/Table';
 import AbilityInput from './utilities/abilityInput';
 import TextField from './utilities/textField';
+import Select from './utilities/select';
+import bulk from '../rules/bulk';
 
 var styles = {
   icons: { verticalAlign: 'middle', color: 'rgba(0, 0, 0, 0.87)', fontSize: '20px' }
@@ -44,6 +46,14 @@ export default class Armor extends Component {
     this.props.armorActions.updateSpeedAdjustment(ev.target.value * 1);
   }
 
+  armorBulkUpdated = (value) => {
+    this.props.armorActions.updateBulk(value * 1);
+  }
+
+  armorLevelUpdated = (ev) => {
+    this.props.armorActions.updateLevel(ev.target.value * 1);
+  }
+
   energyArmorUpdated = (ev) => {
     this.props.armorActions.updateEnergyArmorBonus(ev.target.value * 1);
   }
@@ -58,9 +68,11 @@ export default class Armor extends Component {
         <CardHeader title="Armor" />
         <CardContent>
           <TextField label="Armor Worn" value={this.props.armorWorn} onBlur={this.armorWornUpdated} style={{width: '300px', marginRight: '10px'}}/>
-          <span style={{marginLeft: '10px', marginRight: '10px'}}><AbilityInput label="Penalty" type="number" value={this.props.armorPenalty} onChange={this.armorPenaltyUpdated} inputStyles={{width: '90px'}}/></span>
-          <span style={{marginLeft: '10px', marginRight: '10px'}}><AbilityInput label="Max Dex" type="number" value={this.props.armorMaxDexterity} onChange={this.armorMaxDexterityUpdated} inputStyles={{width: '90px'}}/></span>
-          <span style={{marginLeft: '10px', marginRight: '10px'}}><AbilityInput label="Speed Adj" type="number" value={this.props.armorSpeedAdjustment} onChange={this.armorSpeedAdjustmentUpdated} inputStyles={{width: '90px'}}/></span>
+          <span style={{marginLeft: '10px', marginRight: '10px'}}><AbilityInput label="Penalty" type="number" value={this.props.armorPenalty} onChange={this.armorPenaltyUpdated} inputStyles={{width: '80px'}}/></span>
+          <span style={{marginLeft: '10px', marginRight: '10px'}}><AbilityInput label="Max Dex" type="number" value={this.props.armorMaxDexterity} onChange={this.armorMaxDexterityUpdated} inputStyles={{width: '80px'}}/></span>
+          <span style={{marginLeft: '10px', marginRight: '10px'}}><AbilityInput label="Speed Adj" type="number" value={this.props.armorSpeedAdjustment} onChange={this.armorSpeedAdjustmentUpdated} inputStyles={{width: '80px'}}/></span>
+          <span style={{marginLeft: '10px', marginRight: '10px'}}><AbilityInput label="Level" type="number" value={this.props.armorLevel} onChange={this.armorLevelUpdated} inputStyles={{width: '40px'}}/></span>
+          <span style={{marginLeft: '10px', marginRight: '10px'}}><Select label="Bulk" options={bulk} onChange={this.armorBulkUpdated} value={this.props.armorBulk ? this.props.armorBulk : null}/></span>
           <Table>
             <TableHead>
               <TableRow>

@@ -49,6 +49,21 @@ export function updateSpeedAdjustment(newValue) {
   };
 }
 
+export function updateBulk(newValue) {
+  return {
+    type: types.UPDATE_ARMOR_BULK,
+    newValue
+  };
+}
+
+export function updateLevel(newValue) {
+  return {
+    type: types.UPDATE_ARMOR_LEVEL,
+    newValue
+  };
+}
+
+
 export function updateEnergyArmorBonus(newValue) {
   return {
     type: types.UPDATE_ENERGY_ARMOR_BONUS,

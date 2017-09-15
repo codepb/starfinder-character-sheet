@@ -9,15 +9,14 @@ export default class EquipmentDisplay extends Component {
   }
 
   render() {
+    const removeButton = this.props.equipment.canRemove ? <IconButton color="accent" style={{display: 'inline-block'}} onClick={this.removeEquipment}><Icon style={{fontSize: 12}}>clear</Icon></IconButton> : '';
     return (
       <TableRow>
         <TableCell>{this.props.equipment.name}</TableCell>
         <TableCell>{this.props.equipment.level}</TableCell>
         <TableCell>{this.props.equipment.quantity}</TableCell>
         <TableCell>{this.props.equipment.weight > 0.1 ? this.props.equipment.weight : 'L'}</TableCell>
-        <TableCell>
-          <IconButton color="accent" style={{display: 'inline-block'}} onClick={this.removeEquipment}><Icon style={{fontSize: 12}}>clear</Icon></IconButton>
-        </TableCell>
+        <TableCell>{removeButton}</TableCell>
       </TableRow>
     );
   }

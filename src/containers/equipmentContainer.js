@@ -24,8 +24,9 @@ function mapStateToProps(state) {
   } else if (totalBulk >= encumberanceThreshold) {
     encumberanceState = "encumbered";
   }
+  const equipment = [{ name: state.armor.name, quantity: 1, level: state.armor.level, bulk: state.armor.bulk, canRemove: false }, ...state.equipment.map(e => { return {...e, canRemove: true}})]
   return {
-      equipment: state.equipment,
+      equipment: equipment,
       totalBulk: totalBulk,
       encumberanceThreshold: encumberanceThreshold,
       encumberanceState: encumberanceState
