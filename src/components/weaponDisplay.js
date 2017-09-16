@@ -11,11 +11,14 @@ export default class WeaponDisplay extends Component {
 
   constructor(props) {
     super();
-    this.state = {
-      ...props.weapon
-    }
     if (!props.disabled) {
-      this.state.id = new uuid();
+      this.state = {
+        id: new uuid() 
+      }
+    } else if (props.weapon) {
+      this.state = {
+        ...props.weapon
+      }
     }
   }
   

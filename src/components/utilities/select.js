@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import { MenuItem } from 'material-ui/Menu';
 import Input, { InputLabel } from 'material-ui/Input';
 import { FormControl } from 'material-ui/Form';
 import SelectRootControl from 'material-ui/Select';
