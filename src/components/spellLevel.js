@@ -43,7 +43,7 @@ export default class SpellLevel extends Component {
     if(!spellsAtLevel) {
       return [];
     }
-    return spellsAtLevel.filter(s => s.class === selectedClass && !knownSpells.some(a => a.name === s.name));
+    return spellsAtLevel.filter(s => s.class === selectedClass && !(knownSpells && knownSpells.some(a => a.name === s.name)));
   }
 
   setSelectedSpell = (value) => {
