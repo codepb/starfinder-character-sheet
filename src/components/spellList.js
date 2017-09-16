@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Card, { CardHeader, CardContent } from 'material-ui/Card';
 import SpellLevel from './spellLevel';
 import spells from '../rules/spells';
+import ComponentContainer from './componentContainer';
 
 export default class SpellList extends Component {
   render() {
@@ -26,12 +26,9 @@ export default class SpellList extends Component {
     }
 
     return (
-      <Card raised={true}>
-        <CardHeader title="Spells" />
-        <CardContent>
+      <ComponentContainer title="Spells">
           {content}
-        </CardContent>
-      </Card>
+      </ComponentContainer>
     );
   }
 }

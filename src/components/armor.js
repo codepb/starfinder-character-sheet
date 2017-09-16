@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import Icon from 'material-ui/Icon';
-import Card, { CardHeader, CardContent } from 'material-ui/Card';
 import Table, { TableHead, TableBody, TableRow, TableCell} from 'material-ui/Table';
 import AbilityInput from './utilities/abilityInput';
 import TextField from './utilities/textField';
 import Select from './utilities/select';
 import bulk from '../rules/bulk';
+import ComponentContainer from './componentContainer';
 
 var styles = {
   icons: { verticalAlign: 'middle', color: 'rgba(0, 0, 0, 0.87)', fontSize: '20px' }
@@ -64,9 +64,7 @@ export default class Armor extends Component {
 
   render() {
     return (
-      <Card raised={true}>
-        <CardHeader title="Armor" />
-        <CardContent>
+      <ComponentContainer title="Armor">
           <TextField label="Armor Worn" value={this.props.armorWorn} onBlur={this.armorWornUpdated} style={{width: '300px', marginRight: '10px'}}/>
           <span style={{marginLeft: '10px', marginRight: '10px'}}><AbilityInput label="Penalty" type="number" value={this.props.armorPenalty} onChange={this.armorPenaltyUpdated} inputStyles={{width: '80px'}}/></span>
           <span style={{marginLeft: '10px', marginRight: '10px'}}><AbilityInput label="Max Dex" type="number" value={this.props.armorMaxDexterity} onChange={this.armorMaxDexterityUpdated} inputStyles={{width: '80px'}}/></span>
@@ -115,8 +113,7 @@ export default class Armor extends Component {
             <TextField label="DR" value={this.props.damageReduction} onBlur={this.damageReductionUpdated} style={{marginRight: '10px'}}/>
             <TextField label="Resistances" value={this.props.resistances} onBlur={this.resistancesUpdated} style={{marginLeft: '10px', width: '450px'}}/>
           </div>
-        </CardContent>
-      </Card>
+        </ComponentContainer>
     );
   }
 }

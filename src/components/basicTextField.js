@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Card, { CardHeader, CardContent } from 'material-ui/Card';
 import TextField from './utilities/textField';
+import ComponentContainer from './componentContainer';
 
 export default class BasicTextField extends Component {
   onChange = (ev) => {
@@ -9,12 +9,9 @@ export default class BasicTextField extends Component {
 
   render() {
     return (
-      <Card raised={true}>
-        <CardHeader title={this.props.title} />
-        <CardContent>
+      <ComponentContainer title={this.props.title}>
           <TextField multiline={true} value={this.props.value} rows={this.props.rows} onBlur={this.onChange} style={{width: '100%'}}/>
-        </CardContent>
-      </Card>
+      </ComponentContainer>
     );
   }
 }

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import Card, { CardHeader, CardContent } from 'material-ui/Card';
 import Button from 'material-ui/Button';
 import Dialog, { DialogTitle, DialogContent, DialogContentText } from 'material-ui/Dialog';
 import Select from './utilities/select';
 import FeatDisplay from './featDisplay';
 import feats from '../rules/feats';
+import ComponentContainer from './componentContainer';
 
 export default class FeatsList extends Component {
   constructor(props) {
@@ -47,9 +47,7 @@ export default class FeatsList extends Component {
     }
 
     return (
-      <Card raised={true}>
-        <CardHeader title="Feats" />
-        <CardContent>
+      <ComponentContainer title="Feats">
           {content}
           <Button onClick={this.showAddFeatDialog}>Add Feat</Button>
           <Dialog open={this.state.addFeatDialogOpen} onRequestClose={this.cancelAddingFeat} >
@@ -64,8 +62,7 @@ export default class FeatsList extends Component {
               <Button onClick={this.cancelAddingFeat}>Cancel</Button>              
             </DialogContent>
           </Dialog>
-        </CardContent>
-      </Card>
+      </ComponentContainer>
     );
   }
 }

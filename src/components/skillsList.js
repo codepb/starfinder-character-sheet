@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Table, { TableHead, TableBody, TableRow, TableCell} from 'material-ui/Table';
-import Card, { CardHeader, CardContent } from 'material-ui/Card';
 import Typography from 'material-ui/Typography';
 import SkillDisplay from './skillDisplay';
+import ComponentContainer from './componentContainer';
 
 export default class SkillsList extends Component {
   render() {
@@ -12,9 +12,7 @@ export default class SkillsList extends Component {
       rows.push(<SkillDisplay key={skill} skill={skill} skillActions={this.props.skillActions} {...skillDetails} />);
     }
     return (
-      <Card raised={true}>
-        <CardHeader title="Skills" />
-        <CardContent>
+      <ComponentContainer title="Skills">
           <Typography align='right'>Skill Ranks per Level: {this.props.skillRanksPerLevel}</Typography>
           <Table>
             <TableHead>
@@ -34,8 +32,7 @@ export default class SkillsList extends Component {
               {rows}
             </TableBody>
           </Table>
-        </CardContent>
-      </Card>
+      </ComponentContainer>
     );
   }
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Table, { TableHead, TableBody, TableRow, TableCell} from 'material-ui/Table';
-import Card, { CardHeader, CardContent } from 'material-ui/Card';
 import AttackBonusRow from './attackBonusRow';
+import ComponentContainer from './componentContainer';
 
 export default class SavingThrow extends Component {
   render() {
@@ -14,9 +14,7 @@ export default class SavingThrow extends Component {
     }
 
     return (
-      <Card raised={true}>
-        <CardHeader title="Attack Bonuses" />
-        <CardContent>
+      <ComponentContainer title="Attack Bonuses">
           <Table>
             <TableHead>
               <TableRow>
@@ -31,8 +29,7 @@ export default class SavingThrow extends Component {
               {rows}
             </TableBody>
           </Table>
-        </CardContent>
-      </Card>
+      </ComponentContainer>
     );
   }
 }

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Card, { CardHeader, CardContent } from 'material-ui/Card';
 import Button from 'material-ui/Button';
 import Dialog, { DialogTitle, DialogContent } from 'material-ui/Dialog';
 import Table, { TableHead, TableBody, TableRow, TableCell } from 'material-ui/Table';
@@ -9,6 +8,7 @@ import AbilityInput from './utilities/abilityInput';
 import Select from './utilities/select';
 import EquipmentDisplay from './equipmentDisplay';
 import bulk from '../rules/bulk';
+import ComponentContainer from './componentContainer';
 
 export default class EquipmentList extends Component {
   constructor(props) {
@@ -69,9 +69,7 @@ export default class EquipmentList extends Component {
     }
 
     return (
-      <Card raised={true}>
-        <CardHeader title="Equipment" />
-        <CardContent>
+      <ComponentContainer title="Equipment">
           <Table>
             <TableHead>
               <TableRow>
@@ -101,8 +99,7 @@ export default class EquipmentList extends Component {
               </div>           
             </DialogContent>
           </Dialog>
-        </CardContent>
-      </Card>
+      </ComponentContainer>
     );
   }
 }

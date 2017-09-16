@@ -5,6 +5,7 @@ import Grid from 'material-ui/Grid';
 import DisabledTextField from './utilities/disabledTextField';
 import Select from './utilities/select';
 import AbilityInput from './utilities/abilityInput';
+import ComponentContainer from './componentContainer';
 
 export default class CharacterStats extends Component {
   raceChanged = (value) => {
@@ -45,6 +46,7 @@ export default class CharacterStats extends Component {
 
   render() {
     return (
+      <ComponentContainer>
       <Grid container>
         <Grid item>        
           <div style={{marginBottom: '10px'}}>
@@ -68,6 +70,7 @@ export default class CharacterStats extends Component {
           <TextField label="Description" value={this.props.character.description} onBlur={this.descriptionBlurred} multiline={true} rows="6" style={{width: '400px'}} />
         </Grid>
       </Grid>
+      </ComponentContainer>
     );
   }
 }

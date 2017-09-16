@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Table, { TableHead, TableBody, TableRow, TableCell} from 'material-ui/Table';
-import Card, { CardHeader, CardContent } from 'material-ui/Card';
 import AbilityInput from './utilities/abilityInput';
+import ComponentContainer from './componentContainer';
 
 var styles = {
   textFld: { width: 60, textAlign: 'center' },
@@ -24,9 +24,7 @@ export default class Health extends Component {
 
   render() {
     return (
-      <Card raised={true}>
-        <CardHeader title="Health and Resolve" />
-        <CardContent>
+      <ComponentContainer title="Health and Resolve">
           <Table>
             <TableHead>
               <TableRow>
@@ -51,8 +49,7 @@ export default class Health extends Component {
           </TableRow>
           </TableBody>
           </Table>
-        </CardContent>
-      </Card>
+        </ComponentContainer>
     );
   }
 }

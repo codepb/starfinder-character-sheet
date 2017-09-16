@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import Card, { CardHeader, CardContent } from 'material-ui/Card';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
+import Card, { CardContent } from 'material-ui/Card';
 import WeaponDisplay from './weaponDisplay';
 import AddWeaponDialog from './addWeaponDialog';
+import ComponentContainer from './componentContainer';
 
 export default class WeaponList extends Component {
   constructor () {
@@ -36,15 +37,11 @@ export default class WeaponList extends Component {
         </Card>);
     }
     return (
-      <Card raised={true}>
-        <CardHeader title="Weapons" />
-        <CardContent>
+      <ComponentContainer title="Weapons">
           {rows}
           <Button onClick={this.openAddWeaponDialog}>Add Weapon</Button>
           <AddWeaponDialog open={this.state.dialogOpen} onRequestClose={this.handleRequestClose} />
-
-        </CardContent>
-      </Card>
+        </ComponentContainer>
     );
   }
 }

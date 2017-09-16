@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Table, { TableHead, TableBody, TableRow, TableCell} from 'material-ui/Table';
-import Card, { CardHeader, CardContent } from 'material-ui/Card';
 import SavingThrowRow from './savingThrowRow';
+import ComponentContainer from './componentContainer';
 
 export default class SavingThrow extends Component {
   render() {
@@ -16,9 +16,7 @@ export default class SavingThrow extends Component {
           savingThrowActions={this.props.savingThrowActions} />)
     }
     return (
-      <Card raised={true}>
-        <CardHeader title="Saving Throws" />
-        <CardContent>
+      <ComponentContainer title="Saving Throws">
           <Table>
             <TableHead>
               <TableRow>
@@ -33,8 +31,7 @@ export default class SavingThrow extends Component {
               {rows}
             </TableBody>
           </Table>
-        </CardContent>
-      </Card>
+      </ComponentContainer>
     );
   }
 }

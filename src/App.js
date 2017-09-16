@@ -23,62 +23,28 @@ import EquipmentContainer from './containers/equipmentContainer';
 class App extends Component {
   render() {
     return (
-      <Paper style={{padding: '20px', margin: '5px'}}>
+      <Paper style={{padding: 5, marginTop: 5, marginLeft: 5, marginRight: 5, paddingBottom: 10, width: 'calc(100% - 10px)'}}>
         <SaveContainer />
+        <CharacterStatsContainer />
         <Grid container>
           <Grid item>
-            <CharacterStatsContainer />
-          </Grid>
-        </Grid>
-        <Grid container>
-          <Grid item>
-            <div style={{margin: '20px'}}>
               <AbilityScoresContainer />
-            </div>
-            <div style={{margin: '20px'}}>
               <SkillContainer />
-            </div>
-            <div style={{margin: '20px'}}>
               <AbilitiesContainer />
-            </div>
-            <div style={{margin: '20px'}}>
               <FeatsContainer />
-            </div>
-            <div style={{margin: '20px'}}>
               <LanguagesContainer />
-            </div>
-            <div style={{margin: '20px'}}>
               <EquipmentContainer />
-            </div>
           </Grid>
           <Grid item>
-            <div style={{margin: '20px'}}>
               <InitiativeContainer />
-            </div>
-            <div style={{margin: '20px'}}>
               <HealthContainer />
-            </div>
-            <div style={{margin: '20px'}}>
               <ArmorContainer />
-            </div>
-            <div style={{margin: '20px'}}>
               <SavingThrowsContainer />
-            </div>
-            <div style={{margin: '20px'}}>
               <AttackBonusContainer />
-            </div>
-            <div style={{margin: '20px'}}>
               <WeaponsContainer />
-            </div>
-            <div style={{margin: '20px'}}>
               <SpellsContainer />
-            </div>
-            <div style={{margin: '20px'}}>
               <ExperienceContainer />
-            </div>
-            <div style={{margin: '20px'}}>
               <WealthContainer />
-            </div>
           </Grid>
         </Grid>
       </Paper>
