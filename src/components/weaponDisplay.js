@@ -13,7 +13,11 @@ export default class WeaponDisplay extends Component {
     super();
     if (!props.disabled) {
       this.state = {
-        id: uuid()
+        id: new uuid() 
+      }
+    } else if (props.weapon) {
+      this.state = {
+        ...props.weapon
       }
     }
   }
@@ -120,7 +124,7 @@ export default class WeaponDisplay extends Component {
       {value: 'So', label: 'So'}      
     ];
     
-    const weapon = this.props.weapon || {};
+    const weapon = this.state || {};
     const remove = this.props.disabled ? <Button onClick={this.removeWeapon}>Remove</Button> : '';
     return (
       <div style={{maxWidth: '600px'}}>

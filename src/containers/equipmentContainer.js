@@ -15,7 +15,6 @@ function mapStateToProps(state) {
   const isDefaultThemeBonus = state.abilityScores.defaultThemeBonus === abilityName;
   
   const abilityScore = abilityManager.getAbilityScore(currentRace, currentTheme, abilityPoints, abilityName, isDefaultRaceBonus, isDefaultThemeBonus).score;
-  console.log(abilityScore);
   const totalBulk = Math.floor(state.equipment.reduce((a,b) => { return a + b.weight}, 0));
   const encumberanceThreshold = abilityScore / 2;
   let encumberanceState = "unencumbered";
