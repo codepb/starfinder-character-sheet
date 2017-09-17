@@ -27,7 +27,7 @@ class App extends Component {
         <SaveContainer />
         <CharacterStatsContainer />
         <Grid container>
-          <Grid item>
+          <Grid item style={{maxWidth:1000}}>
               <AbilityScoresContainer />
               <SkillContainer />
               <AbilitiesContainer />
@@ -35,7 +35,7 @@ class App extends Component {
               <LanguagesContainer />
               <EquipmentContainer />
           </Grid>
-          <Grid item>
+          <Grid item style={{maxWidth:900}}>
               <InitiativeContainer />
               <HealthContainer />
               <ArmorContainer />
