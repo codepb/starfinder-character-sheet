@@ -23,11 +23,13 @@ import EquipmentContainer from './containers/equipmentContainer';
 class App extends Component {
   render() {
     return (
-      <Paper style={{padding: 5, marginTop: 5, marginLeft: 5, marginRight: 5, paddingBottom: 10, width: 'calc(100% - 10px)'}}>
+      <div style={{padding: 5, width: '100%', boxSizing: 'border-box'}}>
         <SaveContainer />
-        <CharacterStatsContainer />
-        <Grid container>
-          <Grid item style={{maxWidth:1000}}>
+        <div style={{maxWidth: 'calc(100% - 20px)'}}>
+        <CharacterStatsContainer/>
+        </div>
+        <Grid container style={{width: '100%', margin:0}}>
+          <Grid item style={{maxWidth: 'calc(100% - 20px)'}}>
               <AbilityScoresContainer />
               <SkillContainer />
               <AbilitiesContainer />
@@ -35,7 +37,7 @@ class App extends Component {
               <LanguagesContainer />
               <EquipmentContainer />
           </Grid>
-          <Grid item style={{maxWidth:900}}>
+          <Grid item style={{maxWidth: 'calc(100% - 20px)'}}>
               <InitiativeContainer />
               <HealthContainer />
               <ArmorContainer />
@@ -47,7 +49,7 @@ class App extends Component {
               <WealthContainer />
           </Grid>
         </Grid>
-      </Paper>
+      </div>
     );
   }
 }
