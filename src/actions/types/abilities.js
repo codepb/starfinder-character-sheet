@@ -1,1 +1,0 @@
-export const UPDATE_ABILITIES = 'UPDATE_ABILITIES';

@@ -3,30 +3,33 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "eslint": "^4.3.0",
-    "immutability-helper": "^2.3.1",
-    "material-ui": "^1.0.0-beta.10",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
-    "react-redux": "^5.0.6",
-    "react-scripts": "^1.0.11",
-    "redux": "^3.7.2",
-    "redux-localstorage": "^1.0.0-rc5",
-    "redux-multi": "^0.1.12",
-    "redux-thunk": "^2.2.0",
-    "typeface-roboto": "0.0.35",
-    "uuid": "^3.1.0"
+    "@types/jest": "^23.3.10",
+    "@types/node": "^10.12.11",
+    "@types/react": "^16.7.11",
+    "@types/react-dom": "^16.0.11",
+    "material-ui": "^0.20.2",
+    "prettier": "^1.15.3",
+    "react": "^16.7.0-alpha.2",
+    "react-dom": "^16.7.0-alpha.2",
+    "react-scripts": "2.1.1",
+    "typescript": "^3.2.1"
   },
-  "homepage": "http://codepb.github.io/starfinder-character-sheet",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
   "devDependencies": {
-    "gh-pages": "^1.0.0"
+    "gh-pages": "^2.0.1"
   }
 }
