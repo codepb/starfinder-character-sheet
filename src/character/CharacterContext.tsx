@@ -2,38 +2,33 @@ import * as React from "react";
 import useAbilityScores, { AbilityScores } from "./useAbilityScores";
 
 interface Character {
-  abilityScores: AbilityScores;
+  baseAbilityScores: AbilityScores;
 }
 
-const CharacterContext: React.Context<Character> = React.createContext({
-  abilityScores: {
-    strength: 10,
-    charisma: 10,
-    constitution: 10,
-    dexterity: 10,
-    intelligence: 10,
-    wisdom: 10
+const initialState: Character = {
+  baseAbilityScores: {
+    strength: 0,
+    charisma: 0,
+    constitution: 0,
+    dexterity: 0,
+    intelligence: 0,
+    wisdom: 0
   }
-});
+};
+
+const initialContext: [
+  Character,
+  React.Dispatch<React.SetStateAction<Character>>
+] = [initialState, () => {}];
+
+const CharacterContext: React.Context<
+  [Character, React.Dispatch<React.SetStateAction<Character>>]
+> = React.createContext(initialContext);
 
 const CharacterProvider: React.FC<React.Attributes> = ({ children }) => {
-  const getAbilityScores = (): AbilityScores => {
-    const [abilityScores, _] = useAbilityScores();
-    const scores: AbilityScores = {
-      strength: 10 + abilityScores.strength,
-      charisma: 10 + abilityScores.charisma,
-      constitution: 10 + abilityScores.constitution,
-      dexterity: 10 + abilityScores.dexterity,
-      intelligence: 10 + abilityScores.intelligence,
-      wisdom: 10 + abilityScores.wisdom
-    };
-    return scores;
-  };
-  const character: Character = {
-    abilityScores: getAbilityScores()
-  };
+  const [character, setCharacter] = React.useState(initialState);
   return (
-    <CharacterContext.Provider value={character}>
+    <CharacterContext.Provider value={[character, setCharacter]}>
       {children}
     </CharacterContext.Provider>
   );
