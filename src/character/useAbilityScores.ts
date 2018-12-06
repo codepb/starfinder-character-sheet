@@ -2,15 +2,14 @@ import * as React from "react";
 import { SetStateAction } from "react";
 import CharacterContext from "./CharacterContext";
 import AbilityScores from "../components/abilities/AbilityScores";
-import { object } from "prop-types";
 
 export interface AbilityScores {
-  strength: number;
-  dexterity: number;
-  constitution: number;
-  intelligence: number;
-  wisdom: number;
-  charisma: number;
+  strength?: number;
+  dexterity?: number;
+  constitution?: number;
+  intelligence?: number;
+  wisdom?: number;
+  charisma?: number;
 }
 
 const forEachKey = <T>(func: (key: keyof T) => any, obj: T): any =>
@@ -25,39 +24,41 @@ const sumPositiveObjectValues = obj => Object.values(obj).reduce(sumOfPositive);
 
 const useAbilityScores = (): {
   abilityScores: AbilityScores;
+  baseAbilityScores: AbilityScores;
+  pointsRemaining: number;
   increment: (key: keyof AbilityScores) => void;
   decrement: (key: keyof AbilityScores) => void;
 } => {
-  const [character, setCharacter] = React.useContext(CharacterContext);
+  const [{ baseAbilityScores }, { setBaseAbilityScores }] = React.useContext(
+    CharacterContext
+  );
   return {
     abilityScores: <AbilityScores>(
       forEachKey(
-        (key: keyof AbilityScores) => character.baseAbilityScores[key] + 10,
-        character.baseAbilityScores
+        (key: keyof AbilityScores) => baseAbilityScores[key]! + 10,
+        baseAbilityScores
       )
     ),
+    baseAbilityScores,
+    pointsRemaining: 10 - <number>sumPositiveObjectValues(baseAbilityScores),
     increment: (key: keyof AbilityScores) =>
-      setCharacter(character => {
+      setBaseAbilityScores(baseAbilityScores => {
         if (
-          sumPositiveObjectValues(character.baseAbilityScores) == 10 &&
-          character.baseAbilityScores[key] >= 0
+          sumPositiveObjectValues(baseAbilityScores) == 10 &&
+          baseAbilityScores[key]! >= 0
         ) {
-          return character;
+          return baseAbilityScores;
         }
         return {
-          baseAbilityScores: {
-            ...character.baseAbilityScores,
-            [key]: character.baseAbilityScores[key] + 1
-          }
+          ...baseAbilityScores,
+          [key]: baseAbilityScores[key]! + 1
         };
       }),
     decrement: (key: keyof AbilityScores) =>
-      setCharacter(character => {
+      setBaseAbilityScores(baseAbilityScores => {
         return {
-          baseAbilityScores: {
-            ...character.baseAbilityScores,
-            [key]: character.baseAbilityScores[key] - 1
-          }
+          ...baseAbilityScores,
+          [key]: baseAbilityScores[key]! - 1
         };
       })
   };

@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import "./App.css";
-import AbilityScoresContainer from "./containers/skills/AbilityScoresContainer";
 import { CharacterProvider } from "./character/CharacterContext";
+import CharacterSheetContainer from "./containers/character/CharacterSheetContainer";
 
 const App: React.FC = () => (
   <CharacterProvider>
-    <AbilityScoresContainer />
+    <CharacterSheetContainer />
   </CharacterProvider>
 );
 
