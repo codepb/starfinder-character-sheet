@@ -1,7 +1,6 @@
 import * as React from "react";
-import { SetStateAction } from "react";
 import CharacterContext from "./CharacterContext";
-import AbilityScores from "../components/abilities/AbilityScores";
+import { forEachKey } from "../helpers/objectHelpers";
 
 export interface AbilityScores {
   strength?: number;
@@ -12,11 +11,9 @@ export interface AbilityScores {
   charisma?: number;
 }
 
-const forEachKey = <T>(func: (key: keyof T) => any, obj: T): any =>
-  (<(keyof T)[]>Object.keys(obj)).reduce(
-    (a, b) => ({ ...a, [b]: func(b) }),
-    {}
-  );
+export interface AbilityScoreModifiers extends AbilityScores {
+  unspecified?: number;
+}
 
 const sumOfPositive = (a, b) => a + (b > 0 ? b : 0);
 

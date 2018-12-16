@@ -1,4 +1,4 @@
-import { AbilityScores } from "./useAbilityScores";
+import { AbilityScoreModifiers } from "./useAbilityScores";
 
 enum Race {
   ANDROID = "Android",
@@ -28,10 +28,6 @@ enum Size {
   huge,
   gargantuan,
   colossal
-}
-
-interface AbilityScoreModifiers extends AbilityScores {
-  unspecified?: number;
 }
 
 interface RaceDetails {
