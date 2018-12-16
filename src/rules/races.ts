@@ -1,4 +1,4 @@
-import { AbilityScoreModifiers } from "./useAbilityScores";
+import { AbilityScoreModifiers } from "../character/useAbilityScores";
 
 enum Race {
   ANDROID = "Android",

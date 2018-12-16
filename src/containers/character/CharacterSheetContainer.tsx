@@ -1,13 +1,15 @@
 import * as React from "react";
-import { Race } from "../../character/races";
+import { Race } from "../../rules/races";
 import AbilityScoresContainer from "../skills/AbilityScoresContainer";
-import { Theme } from "../../character/themes";
+import { Theme } from "../../rules/themes";
+import { Class } from "../../rules/classes";
 
 enum Page {
   start,
   theme,
   race,
-  abilityScores
+  abilityScores,
+  class
 }
 
 const CharacterSheetContainer: React.FC = () => {
@@ -35,6 +37,19 @@ const CharacterSheetContainer: React.FC = () => {
         <>
           <select>
             {Object.keys(Race).map(r => (
+              <option value={r} key={r}>
+                {r}
+              </option>
+            ))}
+          </select>
+          <button onClick={() => setPage(Page.class)}>Next</button>
+        </>
+      );
+    case Page.class:
+      return (
+        <>
+          <select>
+            {Object.keys(Class).map(r => (
               <option value={r} key={r}>
                 {r}
               </option>

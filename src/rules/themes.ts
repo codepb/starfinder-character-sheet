@@ -1,5 +1,5 @@
-import { AbilityScoreModifiers } from "./useAbilityScores";
-import { Skills } from "./useSkills";
+import { AbilityScoreModifiers } from "../character/useAbilityScores";
+import { Skills } from "../character/useSkills";
 
 enum Theme {
   ACE_PILOT = "Ace Pilot",

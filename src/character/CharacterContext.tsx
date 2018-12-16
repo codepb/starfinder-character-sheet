@@ -1,8 +1,8 @@
 import * as React from "react";
 import useAbilityScores, { AbilityScores } from "./useAbilityScores";
-import { Race } from "./races";
+import { Race } from "../rules/races";
 import { Skills } from "./useSkills";
-import { Theme } from "./themes";
+import { Theme } from "../rules/themes";
 
 interface Character {
   baseAbilityScores: AbilityScores;
