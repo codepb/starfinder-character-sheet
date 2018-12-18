@@ -3,14 +3,14 @@ import { Skills } from "../character/useSkills";
 import { SavingThrowModifiers, SavingThrow } from "./savingThrows";
 
 enum Class {
-  ENVOY = "Envoy",
-  MECHANIC = "Mechanic",
-  MYSTIC = "Mystic",
-  OPERATIVE = "Operative",
+  Envoy = "Envoy",
+  Mechanic = "Mechanic",
+  Mystic = "Mystic",
+  Operative = "Operative",
   SOLARIAN = "Solarian",
-  SOLDIER_DEX = "Soldier(DEX)",
-  SOLDIER_STR = "Soldier(STR)",
-  TECHNOMANCER = "Technomancer"
+  SoldierDex = "Soldier(DEX)",
+  SoldierStr = "Soldier(STR)",
+  Technomancer = "Technomancer"
 }
 
 interface ClassDefinition {
@@ -25,7 +25,7 @@ interface ClassDefinition {
 }
 
 const ENVOY_CLASS: ClassDefinition = {
-  name: Class.ENVOY,
+  name: Class.Envoy,
   hp: 6,
   stamina: 6,
   keyAbility: "charisma",
@@ -57,7 +57,7 @@ const ENVOY_CLASS: ClassDefinition = {
 };
 
 const MECHANIC_CLASS: ClassDefinition = {
-  name: Class.MECHANIC,
+  name: Class.Mechanic,
   hp: 6,
   stamina: 6,
   keyAbility: "intelligence",
@@ -80,7 +80,7 @@ const MECHANIC_CLASS: ClassDefinition = {
 };
 
 const MYSTIC_CLASS: ClassDefinition = {
-  name: Class.MYSTIC,
+  name: Class.Mystic,
   hp: 6,
   stamina: 6,
   keyAbility: "wisdom",
@@ -108,7 +108,7 @@ const MYSTIC_CLASS: ClassDefinition = {
 };
 
 const OPERATIVE_CLASS: ClassDefinition = {
-  name: Class.OPERATIVE,
+  name: Class.Operative,
   hp: 6,
   stamina: 6,
   keyAbility: "dexterity",
@@ -166,7 +166,7 @@ const SOLARIAN_CLASS: ClassDefinition = {
 };
 
 const SOLDIER_DEX_CLASS: ClassDefinition = {
-  name: Class.SOLDIER_DEX,
+  name: Class.SoldierDex,
   hp: 7,
   stamina: 7,
   keyAbility: "dexterity",
@@ -190,7 +190,7 @@ const SOLDIER_DEX_CLASS: ClassDefinition = {
 };
 
 const SOLDIER_STR_CLASS: ClassDefinition = {
-  name: Class.SOLDIER_STR,
+  name: Class.SoldierStr,
   hp: 7,
   stamina: 7,
   keyAbility: "strength",
@@ -214,7 +214,7 @@ const SOLDIER_STR_CLASS: ClassDefinition = {
 };
 
 const TECHNOMANCER_CLASS: ClassDefinition = {
-  name: Class.TECHNOMANCER,
+  name: Class.Technomancer,
   hp: 5,
   stamina: 5,
   keyAbility: "intelligence",
@@ -238,14 +238,14 @@ const TECHNOMANCER_CLASS: ClassDefinition = {
 };
 
 const classDefinitions = {
-  [Class.ENVOY]: ENVOY_CLASS,
-  [Class.MECHANIC]: MECHANIC_CLASS,
-  [Class.MYSTIC]: MYSTIC_CLASS,
-  [Class.OPERATIVE]: OPERATIVE_CLASS,
+  [Class.Envoy]: ENVOY_CLASS,
+  [Class.Mechanic]: MECHANIC_CLASS,
+  [Class.Mystic]: MYSTIC_CLASS,
+  [Class.Operative]: OPERATIVE_CLASS,
   [Class.SOLARIAN]: SOLARIAN_CLASS,
-  [Class.SOLDIER_DEX]: SOLDIER_DEX_CLASS,
-  [Class.SOLDIER_STR]: SOLDIER_STR_CLASS,
-  [Class.TECHNOMANCER]: TECHNOMANCER_CLASS
+  [Class.SoldierDex]: SOLDIER_DEX_CLASS,
+  [Class.SoldierStr]: SOLDIER_STR_CLASS,
+  [Class.Technomancer]: TECHNOMANCER_CLASS
 };
 
 export { Class, classDefinitions };
