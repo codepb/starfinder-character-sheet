@@ -1,8 +1,8 @@
 import * as React from "react";
-import { Race } from "../../rules/races";
 import AbilityScoresContainer from "../skills/AbilityScoresContainer";
-import { Theme } from "../../rules/themes";
-import { Class } from "../../rules/classes";
+import ThemeSelection from "../theme/ThemeSelection";
+import RaceSelection from "../race/RaceSelection";
+import ClassSelection from "../class/ClassSelection";
 
 enum Page {
   start,
@@ -20,44 +20,11 @@ const CharacterSheetContainer: React.FC = () => {
         <button onClick={() => setPage(Page.theme)}>Create Character</button>
       );
     case Page.theme:
-      return (
-        <>
-          <select>
-            {Object.keys(Theme).map(r => (
-              <option value={r} key={r}>
-                {r}
-              </option>
-            ))}
-          </select>
-          <button onClick={() => setPage(Page.race)}>Next</button>
-        </>
-      );
+      return <ThemeSelection onNext={() => setPage(Page.race)} />;
     case Page.race:
-      return (
-        <>
-          <select>
-            {Object.keys(Race).map(r => (
-              <option value={r} key={r}>
-                {r}
-              </option>
-            ))}
-          </select>
-          <button onClick={() => setPage(Page.class)}>Next</button>
-        </>
-      );
+      return <RaceSelection onNext={() => setPage(Page.class)} />;
     case Page.class:
-      return (
-        <>
-          <select>
-            {Object.keys(Class).map(r => (
-              <option value={r} key={r}>
-                {r}
-              </option>
-            ))}
-          </select>
-          <button onClick={() => setPage(Page.abilityScores)}>Next</button>
-        </>
-      );
+      return <ClassSelection onNext={() => setPage(Page.abilityScores)} />;
     case Page.abilityScores:
       return <AbilityScoresContainer />;
   }

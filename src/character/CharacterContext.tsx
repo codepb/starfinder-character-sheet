@@ -3,6 +3,7 @@ import useAbilityScores, { AbilityScores } from "./useAbilityScores";
 import { Race } from "../rules/races";
 import { Skills } from "./useSkills";
 import { Theme } from "../rules/themes";
+import { Class } from "../rules/classes";
 
 interface Character {
   baseAbilityScores: AbilityScores;
@@ -10,9 +11,10 @@ interface Character {
   basicStats: BasicStats;
 }
 
-interface BasicStats {
+export interface BasicStats {
   race: Race;
   theme: Theme;
+  class: Class;
 }
 
 interface CharacterUpdaters {
@@ -34,7 +36,8 @@ const initialBaseSkills: Skills = {};
 
 const initalBasicStats: BasicStats = {
   race: Race.ANDROID,
-  theme: Theme.THEMELESS
+  theme: Theme.THEMELESS,
+  class: Class.Envoy
 };
 
 const initialCharacter: Character = {
