@@ -28,6 +28,30 @@ export interface Skills {
   survival?: boolean;
 }
 
+export interface SkillLevels {
+  acrobatics?: number;
+  athletics?: number;
+  bluff?: number;
+  computers?: number;
+  culture?: number;
+  diplomacy?: number;
+  disguise?: number;
+  engineering?: number;
+  intimidate?: number;
+  lifeScience?: number;
+  medicine?: number;
+  mysticism?: number;
+  perception?: number;
+  physicalScience?: number;
+  piloting?: number;
+  profession1?: number;
+  profession2?: number;
+  senseMotive?: number;
+  sleightOfHand?: number;
+  stealth?: number;
+  survival?: number;
+}
+
 export interface SkillDefinition {
   ability: keyof AbilityScores;
   trainedOnly?: boolean;
@@ -87,7 +111,7 @@ const skillDefinitions: SkillDefinitions = {
 };
 
 const useSkills = (): {
-  skillLevels: Skills;
+  skillLevels: SkillLevels;
   baseSkills: Skills;
   checkSkill: (key: keyof Skills) => void;
   uncheckSkill: (key: keyof Skills) => void;
@@ -102,8 +126,8 @@ const useSkills = (): {
     }));
   };
   return {
-    skillLevels: <Skills>(
-      forEachKey((key: keyof Skills) => baseSkills[key], baseSkills)
+    skillLevels: <SkillLevels>(
+      forEachKey((key: keyof Skills) => (baseSkills[key] ? 1 : 0), baseSkills)
     ),
     baseSkills,
     checkSkill: (key: keyof Skills) => updateBaseSkill(key, true),
@@ -112,3 +136,5 @@ const useSkills = (): {
 };
 
 export default useSkills;
+
+export { skillDefinitions };

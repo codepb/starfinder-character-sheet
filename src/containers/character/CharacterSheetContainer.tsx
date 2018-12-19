@@ -1,15 +1,17 @@
 import * as React from "react";
-import AbilityScoresContainer from "../skills/AbilityScoresContainer";
+import AbilityScoresContainer from "../abilities/AbilityScoresContainer";
 import ThemeSelection from "../theme/ThemeSelection";
 import RaceSelection from "../race/RaceSelection";
 import ClassSelection from "../class/ClassSelection";
+import AssignSkillsContainer from "../skills/AssignSkillsContainer";
 
 enum Page {
   start,
   theme,
   race,
   abilityScores,
-  class
+  class,
+  skills
 }
 
 const CharacterSheetContainer: React.FC = () => {
@@ -26,7 +28,14 @@ const CharacterSheetContainer: React.FC = () => {
     case Page.class:
       return <ClassSelection onNext={() => setPage(Page.abilityScores)} />;
     case Page.abilityScores:
-      return <AbilityScoresContainer />;
+      return (
+        <>
+          <AbilityScoresContainer />
+          <button onClick={() => setPage(Page.skills)}>next</button>
+        </>
+      );
+    case Page.skills:
+      return <AssignSkillsContainer />;
   }
 };
 
