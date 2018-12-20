@@ -25,6 +25,8 @@ const sumPositiveObjectValues = obj => Object.values(obj).reduce(sumOfPositive);
 const useAbilityScores = (): {
   abilityScores: AbilityScores;
   baseAbilityScores: AbilityScores;
+  canIncrement: (keyof AbilityScores)[];
+  canDecrement: (keyof AbilityScores)[];
   pointsRemaining: number;
   increment: (key: keyof AbilityScores) => void;
   decrement: (key: keyof AbilityScores) => void;
@@ -38,39 +40,49 @@ const useAbilityScores = (): {
   ] = React.useContext(CharacterContext);
   const raceDetail = raceDetails[race];
   const themeDetail = themeDetails[theme];
+  const abilityScores = <AbilityScores>(
+    forEachKey(
+      (key: keyof AbilityScores) =>
+        baseAbilityScores[key]! +
+        10 +
+        (raceDetail.abilityModifiers[key] || 0) +
+        (themeDetail.abilityModifiers[key] || 0),
+      baseAbilityScores
+    )
+  );
+  const canIncrement = (key: keyof AbilityScores) =>
+    abilityScores[key]! < 18 &&
+    (sumPositiveObjectValues(baseAbilityScores) < 10 ||
+      baseAbilityScores[key]! < 0);
+  const canDecrement = (key: keyof AbilityScores) => abilityScores[key]! > 0;
+  const abilityKeys = Object.keys(baseAbilityScores) as (keyof AbilityScores)[];
   return {
-    abilityScores: <AbilityScores>(
-      forEachKey(
-        (key: keyof AbilityScores) =>
-          baseAbilityScores[key]! +
-          10 +
-          (raceDetail.abilityModifiers[key] || 0) +
-          (themeDetail.abilityModifiers[key] || 0),
-        baseAbilityScores
-      )
-    ),
+    abilityScores,
     baseAbilityScores,
+    canIncrement: abilityKeys.filter(canIncrement),
+    canDecrement: abilityKeys.filter(canDecrement),
     pointsRemaining: 10 - <number>sumPositiveObjectValues(baseAbilityScores),
     increment: (key: keyof AbilityScores) =>
       setBaseAbilityScores(baseAbilityScores => {
-        if (
-          sumPositiveObjectValues(baseAbilityScores) == 10 &&
-          baseAbilityScores[key]! >= 0
-        ) {
-          return baseAbilityScores;
+        if (canIncrement(key)) {
+          return {
+            ...baseAbilityScores,
+            [key]: baseAbilityScores[key]! + 1
+          };
         }
-        return {
-          ...baseAbilityScores,
-          [key]: baseAbilityScores[key]! + 1
-        };
+        return baseAbilityScores;
       }),
-    decrement: (key: keyof AbilityScores) =>
-      setBaseAbilityScores(baseAbilityScores => {
-        return {
-          ...baseAbilityScores,
-          [key]: baseAbilityScores[key]! - 1
-        };
-      })
+    decrement: (key: keyof AbilityScores) => {
+      if (canDecrement(key)) {
+        setBaseAbilityScores(baseAbilityScores => {
+          return {
+            ...baseAbilityScores,
+            [key]: baseAbilityScores[key]! - 1
+          };
+        });
+      }
+      return baseAbilityScores;
+    }
   };
 };
 

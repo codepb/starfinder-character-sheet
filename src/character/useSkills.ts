@@ -3,6 +3,7 @@ import { SetStateAction } from "react";
 import CharacterContext from "./CharacterContext";
 import { forEachKey } from "../helpers/objectHelpers";
 import { AbilityScores } from "./useAbilityScores";
+import { classDefinitions } from "../rules/classes";
 
 export interface Skills {
   acrobatics?: boolean;
@@ -113,12 +114,18 @@ const skillDefinitions: SkillDefinitions = {
 const useSkills = (): {
   skillLevels: SkillLevels;
   baseSkills: Skills;
+  classSkills: (keyof Skills)[];
   checkSkill: (key: keyof Skills) => void;
   uncheckSkill: (key: keyof Skills) => void;
 } => {
-  const [{ baseSkills }, { setBaseSkills }] = React.useContext(
-    CharacterContext
-  );
+  const [
+    {
+      baseSkills,
+      basicStats: { class: characterClass }
+    },
+    { setBaseSkills }
+  ] = React.useContext(CharacterContext);
+  const classDefinition = classDefinitions[characterClass];
   const updateBaseSkill = (key: keyof Skills, newValue: boolean) => {
     setBaseSkills(baseSkills => ({
       ...baseSkills,
@@ -130,6 +137,7 @@ const useSkills = (): {
       forEachKey((key: keyof Skills) => (baseSkills[key] ? 1 : 0), baseSkills)
     ),
     baseSkills,
+    classSkills: classDefinition.classSkills,
     checkSkill: (key: keyof Skills) => updateBaseSkill(key, true),
     uncheckSkill: (key: keyof Skills) => updateBaseSkill(key, false)
   };

@@ -8,7 +8,9 @@ const AbilityScoresContainer: React.FC = () => {
     baseAbilityScores,
     pointsRemaining,
     increment,
-    decrement
+    decrement,
+    canDecrement,
+    canIncrement
   } = useAbilityScores();
   return (
     <AbilitiyScores
@@ -17,6 +19,8 @@ const AbilityScoresContainer: React.FC = () => {
       pointsRemaining={pointsRemaining}
       onIncrement={increment}
       onDecrement={decrement}
+      canIncrement={canIncrement}
+      canDecrement={canDecrement}
     />
   );
 };

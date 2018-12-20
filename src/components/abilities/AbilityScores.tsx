@@ -7,6 +7,8 @@ interface AbilityScoresProps {
   pointsRemaining: number;
   onIncrement: (abilityScore: keyof AbilityScoresType) => void;
   onDecrement: (abilityScore: keyof AbilityScoresType) => void;
+  canIncrement: (keyof AbilityScoresType)[];
+  canDecrement: (keyof AbilityScoresType)[];
 }
 
 const AbilityScores: React.FC<AbilityScoresProps> = ({
@@ -14,7 +16,9 @@ const AbilityScores: React.FC<AbilityScoresProps> = ({
   baseAbilityScores,
   pointsRemaining,
   onIncrement,
-  onDecrement
+  onDecrement,
+  canIncrement,
+  canDecrement
 }) => (
   <>
     <table>
@@ -26,6 +30,9 @@ const AbilityScores: React.FC<AbilityScoresProps> = ({
             <td>
               <button
                 onClick={() => onIncrement(key as keyof AbilityScoresType)}
+                disabled={
+                  !canIncrement.includes(key as keyof AbilityScoresType)
+                }
               >
                 +
               </button>
@@ -33,6 +40,9 @@ const AbilityScores: React.FC<AbilityScoresProps> = ({
             <td>
               <button
                 onClick={() => onDecrement(key as keyof AbilityScoresType)}
+                disabled={
+                  !canDecrement.includes(key as keyof AbilityScoresType)
+                }
               >
                 -
               </button>
