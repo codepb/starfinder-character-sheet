@@ -1,14 +1,20 @@
 import * as React from "react";
-import { Skills, skillDefinitions } from "../../character/useSkills";
+import {
+  Skills,
+  skillDefinitions,
+  SkillLevels
+} from "../../character/useSkills";
 
 interface AssignSkillsProps {
   skills: Skills;
+  skillLevels: SkillLevels;
   classSkills: (keyof Skills)[];
   onSkillChange: (key: keyof Skills, checked: boolean) => void;
 }
 
 const AssignSkills: React.FC<AssignSkillsProps> = ({
   skills,
+  skillLevels,
   classSkills,
   onSkillChange
 }) => (
@@ -20,6 +26,7 @@ const AssignSkills: React.FC<AssignSkillsProps> = ({
             {classSkills.includes(k as keyof Skills) ? "*" : " "}
             {k}
           </label>{" "}
+          <span>{skillLevels[k]}</span>
           <input
             id={`skill-${k}`}
             type="checkbox"

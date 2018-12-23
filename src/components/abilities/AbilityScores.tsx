@@ -3,6 +3,7 @@ import { AbilityScores as AbilityScoresType } from "../../character/useAbilitySc
 
 interface AbilityScoresProps {
   abilityScores: AbilityScoresType;
+  abilityModifiers: AbilityScoresType;
   baseAbilityScores: AbilityScoresType;
   pointsRemaining: number;
   onIncrement: (abilityScore: keyof AbilityScoresType) => void;
@@ -14,6 +15,7 @@ interface AbilityScoresProps {
 const AbilityScores: React.FC<AbilityScoresProps> = ({
   abilityScores,
   baseAbilityScores,
+  abilityModifiers,
   pointsRemaining,
   onIncrement,
   onDecrement,
@@ -27,6 +29,7 @@ const AbilityScores: React.FC<AbilityScoresProps> = ({
           <tr key={key}>
             <td>{key}</td>
             <td>{value}</td>
+            <td>{abilityModifiers[key]}</td>
             <td>
               <button
                 onClick={() => onIncrement(key as keyof AbilityScoresType)}

@@ -13,7 +13,7 @@ enum Class {
   Technomancer = "Technomancer"
 }
 
-interface ClassDefinition {
+export interface ClassDefinition {
   name: Class;
   hp: number;
   stamina: number;

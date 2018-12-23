@@ -2,8 +2,8 @@ import * as React from "react";
 import { SetStateAction } from "react";
 import CharacterContext from "./CharacterContext";
 import { forEachKey } from "../helpers/objectHelpers";
-import { AbilityScores } from "./useAbilityScores";
-import { classDefinitions } from "../rules/classes";
+import useAbilityScores, { AbilityScores } from "./useAbilityScores";
+import { classDefinitions, ClassDefinition } from "../rules/classes";
 
 export interface Skills {
   acrobatics?: boolean;
@@ -111,6 +111,19 @@ const skillDefinitions: SkillDefinitions = {
   survival: { ability: "wisdom" }
 };
 
+const calculateSkillLevel = (
+  baseSkills: Skills,
+  classDefinition: ClassDefinition,
+  abilityModifiers: AbilityScores
+) => (skill: keyof Skills) => {
+  const classSkillModifier = classDefinition.classSkills.includes(skill)
+    ? 3
+    : 0;
+  const abilityModifier =
+    abilityModifiers[skillDefinitions[skill].ability] || 0;
+  return baseSkills[skill] ? 1 + classSkillModifier + abilityModifier : 0;
+};
+
 const useSkills = (): {
   skillLevels: SkillLevels;
   baseSkills: Skills;
@@ -132,10 +145,16 @@ const useSkills = (): {
       [key]: newValue
     }));
   };
+  const { abilityModifiers } = useAbilityScores();
+  const calculateSkill = calculateSkillLevel(
+    baseSkills,
+    classDefinition,
+    abilityModifiers
+  );
+  const skillLevels = <SkillLevels>forEachKey(calculateSkill, skillDefinitions);
+  console.log(skillLevels, baseSkills);
   return {
-    skillLevels: <SkillLevels>(
-      forEachKey((key: keyof Skills) => (baseSkills[key] ? 1 : 0), baseSkills)
-    ),
+    skillLevels,
     baseSkills,
     classSkills: classDefinition.classSkills,
     checkSkill: (key: keyof Skills) => updateBaseSkill(key, true),

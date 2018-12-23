@@ -4,6 +4,10 @@ import { forEachKey } from "../helpers/objectHelpers";
 import { classDefinitions } from "../rules/classes";
 import { raceDetails } from "../rules/races";
 import { themeDetails } from "../rules/themes";
+import {
+  calculateAbilityScore,
+  calculateAbilityModifier
+} from "../rules/abilities";
 
 export interface AbilityScores {
   strength?: number;
@@ -24,6 +28,7 @@ const sumPositiveObjectValues = obj => Object.values(obj).reduce(sumOfPositive);
 
 const useAbilityScores = (): {
   abilityScores: AbilityScores;
+  abilityModifiers: AbilityScores;
   baseAbilityScores: AbilityScores;
   canIncrement: (keyof AbilityScores)[];
   canDecrement: (keyof AbilityScores)[];
@@ -38,15 +43,15 @@ const useAbilityScores = (): {
     },
     { setBaseAbilityScores }
   ] = React.useContext(CharacterContext);
-  const raceDetail = raceDetails[race];
-  const themeDetail = themeDetails[theme];
   const abilityScores = <AbilityScores>(
     forEachKey(
-      (key: keyof AbilityScores) =>
-        baseAbilityScores[key]! +
-        10 +
-        (raceDetail.abilityModifiers[key] || 0) +
-        (themeDetail.abilityModifiers[key] || 0),
+      calculateAbilityScore(baseAbilityScores, race, theme),
+      baseAbilityScores
+    )
+  );
+  const abilityModifiers = <AbilityScores>(
+    forEachKey(
+      calculateAbilityModifier(baseAbilityScores, race, theme),
       baseAbilityScores
     )
   );
@@ -58,6 +63,7 @@ const useAbilityScores = (): {
   const abilityKeys = Object.keys(baseAbilityScores) as (keyof AbilityScores)[];
   return {
     abilityScores,
+    abilityModifiers,
     baseAbilityScores,
     canIncrement: abilityKeys.filter(canIncrement),
     canDecrement: abilityKeys.filter(canDecrement),

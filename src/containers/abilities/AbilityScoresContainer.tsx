@@ -5,6 +5,7 @@ import useAbilityScores from "../../character/useAbilityScores";
 const AbilityScoresContainer: React.FC = () => {
   const {
     abilityScores,
+    abilityModifiers,
     baseAbilityScores,
     pointsRemaining,
     increment,
@@ -15,6 +16,7 @@ const AbilityScoresContainer: React.FC = () => {
   return (
     <AbilitiyScores
       abilityScores={abilityScores}
+      abilityModifiers={abilityModifiers}
       baseAbilityScores={baseAbilityScores}
       pointsRemaining={pointsRemaining}
       onIncrement={increment}
