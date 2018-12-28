@@ -31,7 +31,7 @@ const AssignSkills: React.FC<AssignSkillsProps> = ({
             id={`skill-${k}`}
             type="checkbox"
             value={k}
-            checked={skills[k]}
+            checked={skills[k] || false}
             onChange={event => {
               onSkillChange(k as keyof Skills, event.target.checked);
             }}

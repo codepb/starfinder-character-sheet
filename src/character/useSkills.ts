@@ -152,7 +152,6 @@ const useSkills = (): {
     abilityModifiers
   );
   const skillLevels = <SkillLevels>forEachKey(calculateSkill, skillDefinitions);
-  console.log(skillLevels, baseSkills);
   return {
     skillLevels,
     baseSkills,

@@ -20,7 +20,11 @@ export interface BasicStats {
 }
 
 export interface Details {
+  deity: string;
+  description: string;
   alignment: Alignment;
+  homeWorld: string;
+  languages: string[];
 }
 
 interface CharacterUpdaters {
@@ -48,7 +52,11 @@ const initalBasicStats: BasicStats = {
 };
 
 const initialDetails: Details = {
-  alignment: Alignment.lawfulGood
+  deity: "",
+  description: "",
+  alignment: Alignment.lawfulGood,
+  homeWorld: "",
+  languages: [""]
 };
 
 const initialCharacter: Character = {
