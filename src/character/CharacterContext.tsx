@@ -4,11 +4,13 @@ import { Race } from "../rules/races";
 import { Skills } from "./useSkills";
 import { Theme } from "../rules/themes";
 import { Class } from "../rules/classes";
+import Alignment from "../rules/alignments";
 
 interface Character {
   baseAbilityScores: AbilityScores;
   baseSkills: Skills;
   basicStats: BasicStats;
+  details: Details;
 }
 
 export interface BasicStats {
@@ -17,10 +19,15 @@ export interface BasicStats {
   class: Class;
 }
 
+export interface Details {
+  alignment: Alignment;
+}
+
 interface CharacterUpdaters {
   setBaseAbilityScores: React.Dispatch<React.SetStateAction<AbilityScores>>;
   setBasicStats: React.Dispatch<React.SetStateAction<BasicStats>>;
   setBaseSkills: React.Dispatch<React.SetStateAction<Skills>>;
+  setDetails: React.Dispatch<React.SetStateAction<Details>>;
 }
 
 const initialBaseAbilityScores: AbilityScores = {
@@ -40,10 +47,15 @@ const initalBasicStats: BasicStats = {
   class: Class.Envoy
 };
 
+const initialDetails: Details = {
+  alignment: Alignment.lawfulGood
+};
+
 const initialCharacter: Character = {
   baseAbilityScores: initialBaseAbilityScores,
   baseSkills: initialBaseSkills,
-  basicStats: initalBasicStats
+  basicStats: initalBasicStats,
+  details: initialDetails
 };
 
 const initialContext: [Character, CharacterUpdaters] = [
@@ -51,7 +63,8 @@ const initialContext: [Character, CharacterUpdaters] = [
   {
     setBaseAbilityScores: () => {},
     setBaseSkills: () => {},
-    setBasicStats: () => {}
+    setBasicStats: () => {},
+    setDetails: () => {}
   }
 ];
 
@@ -65,18 +78,21 @@ const CharacterProvider: React.FC<React.Attributes> = ({ children }) => {
   );
   const [baseSkills, setBaseSkills] = React.useState(initialBaseSkills);
   const [basicStats, setBasicStats] = React.useState(initalBasicStats);
+  const [details, setDetails] = React.useState(initialDetails);
   return (
     <CharacterContext.Provider
       value={[
         {
           baseAbilityScores,
           baseSkills,
-          basicStats
+          basicStats,
+          details
         },
         {
           setBaseAbilityScores,
           setBaseSkills,
-          setBasicStats
+          setBasicStats,
+          setDetails
         }
       ]}
     >

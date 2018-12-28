@@ -1,4 +1,5 @@
 import * as React from "react";
+import Select from "../form/Select";
 
 interface SelectionPageProps {
   options: string[];
@@ -14,13 +15,7 @@ const SelectionPage: React.FC<SelectionPageProps> = ({
   onChange
 }) => (
   <>
-    <select onChange={onChange} value={value}>
-      {options.map(r => (
-        <option value={r} key={r}>
-          {r}
-        </option>
-      ))}
-    </select>
+    <Select options={options} value={value} onChange={onChange} />
     <button onClick={onNext}>Next</button>
   </>
 );
