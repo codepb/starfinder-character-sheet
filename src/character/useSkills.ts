@@ -128,6 +128,7 @@ const useSkills = (): {
   skillLevels: SkillLevels;
   baseSkills: Skills;
   classSkills: (keyof Skills)[];
+  trainedSkills: (keyof Skills)[];
   checkSkill: (key: keyof Skills) => void;
   uncheckSkill: (key: keyof Skills) => void;
 } => {
@@ -156,6 +157,9 @@ const useSkills = (): {
     skillLevels,
     baseSkills,
     classSkills: classDefinition.classSkills,
+    trainedSkills: (Object.keys(baseSkills) as (keyof Skills)[]).filter(
+      k => baseSkills[k]
+    ),
     checkSkill: (key: keyof Skills) => updateBaseSkill(key, true),
     uncheckSkill: (key: keyof Skills) => updateBaseSkill(key, false)
   };
