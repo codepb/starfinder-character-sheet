@@ -1,4 +1,5 @@
 import { AbilityScoreModifiers } from "../character/useAbilityScores";
+import Size from "./Size";
 
 enum Race {
   ANDROID = "Android",
@@ -16,18 +17,6 @@ enum Race {
   HALF_ELF = "Half-Elf",
   HALF_ORC = "Half-Orc",
   HALFLING = "Halfling"
-}
-
-enum Size {
-  fine,
-  diminutive,
-  tiny,
-  small,
-  medium,
-  large,
-  huge,
-  gargantuan,
-  colossal
 }
 
 interface RaceDetails {

@@ -5,6 +5,7 @@ import RaceSelection from "../race/RaceSelection";
 import ClassSelection from "../class/ClassSelection";
 import AssignSkillsContainer from "../skills/AssignSkillsContainer";
 import CharacterDetails from "../characterDetails/CharacterDetails";
+import CharacterDisplayContainer from "./CharacterDisplayContainer";
 
 enum Page {
   start,
@@ -13,7 +14,8 @@ enum Page {
   abilityScores,
   class,
   skills,
-  characterDetails
+  characterDetails,
+  sheet
 }
 
 const CharacterSheetContainer: React.FC = () => {
@@ -44,7 +46,18 @@ const CharacterSheetContainer: React.FC = () => {
         </>
       );
     case Page.characterDetails:
-      return <CharacterDetails />;
+      return (
+        <>
+          <CharacterDetails />
+          <button onClick={() => setPage(Page.sheet)}>next</button>
+        </>
+      );
+    case Page.sheet:
+      return (
+        <>
+          <CharacterDisplayContainer />
+        </>
+      );
   }
 };
 

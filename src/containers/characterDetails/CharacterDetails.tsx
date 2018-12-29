@@ -5,6 +5,8 @@ import DeitySelection from "../../components/characterDetails/DeitySelection";
 import DescriptionInput from "../../components/characterDetails/DescriptionInput";
 import HomeWorldSelection from "../../components/characterDetails/HomeWorldSelection";
 import LanguagesInput from "../../components/characterDetails/LanguagesInput";
+import NameInput from "../../components/characterDetails/NameInput";
+import SizeSelection from "../../components/characterDetails/SizeSelection";
 
 const CharacterDetails: React.FC = () => {
   const {
@@ -13,15 +15,43 @@ const CharacterDetails: React.FC = () => {
     setDeity,
     setDescription,
     setHomeWorld,
-    setLanguages
+    setLanguages,
+    setName,
+    setSize
   } = useDetails();
   return (
     <>
-      <AlignmentSelection value={details.alignment} onChange={setAlignment} />
-      <DeitySelection value={details.deity} onChange={setDeity} />
-      <DescriptionInput value={details.description} onChange={setDescription} />
-      <HomeWorldSelection value={details.homeWorld} onChange={setHomeWorld} />
-      <LanguagesInput value={details.languages} onChange={setLanguages} />
+      <div>
+        <label>Name: </label>
+        <NameInput value={details.name} onChange={setName} />
+      </div>
+      <div>
+        <label>Alignment: </label>
+        <AlignmentSelection value={details.alignment} onChange={setAlignment} />
+      </div>
+      <div>
+        <label>Deity: </label>
+        <DeitySelection value={details.deity} onChange={setDeity} />
+      </div>
+      <div>
+        <label>Description: </label>
+        <DescriptionInput
+          value={details.description}
+          onChange={setDescription}
+        />
+      </div>
+      <div>
+        <label>Home World: </label>
+        <HomeWorldSelection value={details.homeWorld} onChange={setHomeWorld} />
+      </div>
+      <div>
+        <label>Languages: </label>
+        <LanguagesInput value={details.languages} onChange={setLanguages} />
+      </div>
+      <div>
+        <label>Size: </label>
+        <SizeSelection value={details.size} onChange={setSize} />
+      </div>
     </>
   );
 };

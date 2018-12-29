@@ -5,6 +5,7 @@ import { Skills } from "./useSkills";
 import { Theme } from "../rules/themes";
 import { Class } from "../rules/classes";
 import Alignment from "../rules/alignments";
+import Size from "../rules/Size";
 
 interface Character {
   baseAbilityScores: AbilityScores;
@@ -25,6 +26,8 @@ export interface Details {
   alignment: Alignment;
   homeWorld: string;
   languages: string[];
+  name: string;
+  size: Size;
 }
 
 interface CharacterUpdaters {
@@ -56,7 +59,9 @@ const initialDetails: Details = {
   description: "",
   alignment: Alignment.lawfulGood,
   homeWorld: "",
-  languages: [""]
+  languages: [""],
+  name: "",
+  size: Size.medium
 };
 
 const initialCharacter: Character = {

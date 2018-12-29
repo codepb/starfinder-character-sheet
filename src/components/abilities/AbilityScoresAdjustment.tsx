@@ -1,7 +1,7 @@
 import * as React from "react";
 import { AbilityScores as AbilityScoresType } from "../../character/useAbilityScores";
 
-interface AbilityScoresProps {
+interface AbilityScoresAdjustmentProps {
   abilityScores: AbilityScoresType;
   abilityModifiers: AbilityScoresType;
   baseAbilityScores: AbilityScoresType;
@@ -12,7 +12,7 @@ interface AbilityScoresProps {
   canDecrement: (keyof AbilityScoresType)[];
 }
 
-const AbilityScores: React.FC<AbilityScoresProps> = ({
+const AbilityScoresAdjustment: React.FC<AbilityScoresAdjustmentProps> = ({
   abilityScores,
   baseAbilityScores,
   abilityModifiers,
@@ -59,4 +59,4 @@ const AbilityScores: React.FC<AbilityScoresProps> = ({
   </>
 );
 
-export default AbilityScores;
+export default AbilityScoresAdjustment;
