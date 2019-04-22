@@ -33,20 +33,18 @@ const SkillsDisplay: React.FC<SkillsDisplayProps> = ({
           skillDefinitions[k].trainedOnly &&
           !trainedSkills.includes(k as keyof Skills);
         return (
-          <React.Fragment key={k}>
-            <div
-              key={k}
-              className={classnames({
-                [classes.unusable]: unusable
-              })}
-            >
-              <label htmlFor={`skill-${k}`}>
-                {classSkills.includes(k as keyof Skills) ? "*" : " "}
-                {k}
-              </label>{" "}
-              <span>{unusable ? "" : skillLevels[k]}</span>
-            </div>
-          </React.Fragment>
+          <div
+            key={k}
+            className={classnames({
+              [classes.unusable]: unusable
+            })}
+          >
+            <label>
+              {classSkills.includes(k as keyof Skills) ? "*" : " "}
+              {k}
+            </label>{" "}
+            <span>{unusable ? "" : skillLevels[k]}</span>
+          </div>
         );
       })}
     </>

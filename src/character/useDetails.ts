@@ -1,5 +1,5 @@
 import * as React from "react";
-import CharacterContext, { BasicStats, Details } from "./CharacterContext";
+import CharacterContext, { Details } from "./CharacterContext";
 import Alignment from "../rules/alignments";
 import Size from "../rules/Size";
 
