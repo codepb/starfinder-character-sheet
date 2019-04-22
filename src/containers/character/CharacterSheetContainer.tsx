@@ -6,6 +6,8 @@ import ClassSelection from "../class/ClassSelection";
 import AssignSkillsContainer from "../skills/AssignSkillsContainer";
 import CharacterDetails from "../characterDetails/CharacterDetails";
 import CharacterDisplayContainer from "./CharacterDisplayContainer";
+import { useState, useContext } from "react";
+import CharacterContext from "../../character/CharacterContext";
 
 enum Page {
   start,
@@ -19,7 +21,10 @@ enum Page {
 }
 
 const CharacterSheetContainer: React.FC = () => {
-  const [page, setPage] = React.useState(Page.start);
+  const [character] = useContext(CharacterContext);
+  const [page, setPage] = useState(
+    character.characterCreated ? Page.sheet : Page.start
+  );
   switch (page) {
     case Page.start:
       return (
