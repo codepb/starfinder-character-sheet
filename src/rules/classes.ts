@@ -2,7 +2,7 @@ import { AbilityScores } from "../character/useAbilityScores";
 import { Skills } from "../character/useSkills";
 import { SavingThrowModifiers, SavingThrow } from "./savingThrows";
 
-enum Class {
+export enum Class {
   Envoy = "Envoy",
   Mechanic = "Mechanic",
   Mystic = "Mystic",
@@ -248,4 +248,4 @@ const classDefinitions = {
   [Class.Technomancer]: TECHNOMANCER_CLASS
 };
 
-export { Class, classDefinitions };
+export { classDefinitions };

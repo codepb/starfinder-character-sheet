@@ -1,5 +1,6 @@
 import * as React from "react";
 import { FC } from "react";
+import Container from "../layout/Container";
 
 interface HealthAndResolveProps {
   stamina: number;
@@ -13,7 +14,7 @@ const HealthAndResolve: FC<HealthAndResolveProps> = ({
   resolve
 }) => {
   return (
-    <>
+    <Container>
       <div>
         <label>Stamina</label> <span>{stamina}</span>
       </div>
@@ -23,7 +24,7 @@ const HealthAndResolve: FC<HealthAndResolveProps> = ({
       <div>
         <label>Resolve</label> <span>{resolve}</span>
       </div>
-    </>
+    </Container>
   );
 };
 

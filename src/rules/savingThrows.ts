@@ -1,6 +1,6 @@
 import { AbilityScores } from "../character/useAbilityScores";
 
-enum SavingThrow {
+export enum SavingThrow {
   FORTITUDE = "fortitude",
   REFLEX = "reflex",
   WILL = "will"
@@ -32,4 +32,4 @@ const SavingThrowDefinitions = {
   }
 };
 
-export { SavingThrow, SavingThrowDefinitions };
+export { SavingThrowDefinitions };

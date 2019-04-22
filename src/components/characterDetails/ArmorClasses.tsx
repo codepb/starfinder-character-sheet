@@ -1,5 +1,6 @@
 import * as React from "react";
 import { FC } from "react";
+import Container from "../layout/Container";
 
 interface ArmorClassesProps {
   kinetic: number;
@@ -13,7 +14,7 @@ const ArmorClasses: FC<ArmorClassesProps> = ({
   combatManeuvers
 }) => {
   return (
-    <>
+    <Container>
       <div>
         <label>Kinetic</label> <span>{kinetic}</span>
       </div>
@@ -23,7 +24,7 @@ const ArmorClasses: FC<ArmorClassesProps> = ({
       <div>
         <label>AC vs Combat Maneuvers</label> <span>{combatManeuvers}</span>
       </div>
-    </>
+    </Container>
   );
 };
 

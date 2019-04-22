@@ -1,7 +1,7 @@
 import { AbilityScoreModifiers } from "../character/useAbilityScores";
 import { Skills } from "../character/useSkills";
 
-enum Theme {
+export enum Theme {
   ACE_PILOT = "Ace Pilot",
   BOUNTY_HUNTER = "Bounty Hunter",
   ICON = "Icon",
@@ -113,4 +113,4 @@ const themeDetails = {
   [Theme.THEMELESS]: THEMELESS_THEME
 };
 
-export { Theme, themeDetails };
+export { themeDetails };

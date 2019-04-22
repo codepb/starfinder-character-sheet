@@ -1,7 +1,7 @@
 import { AbilityScoreModifiers } from "../character/useAbilityScores";
 import Size from "./Size";
 
-enum Race {
+export enum Race {
   ANDROID = "Android",
   HUMAN = "Human",
   KASATHA = "Kasatha",
@@ -200,4 +200,4 @@ const raceDetails = {
   [Race.HALFLING]: HALFLING_RACE
 };
 
-export { Race, raceDetails };
+export { raceDetails };

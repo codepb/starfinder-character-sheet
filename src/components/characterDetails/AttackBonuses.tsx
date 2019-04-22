@@ -1,6 +1,8 @@
 import * as React from "react";
 import { FC } from "react";
-import { rollD20 } from "../../services/dice";
+import { alertRoll } from "../../services/dice";
+import Container from "../layout/Container";
+import { Button } from "@material-ui/core";
 
 interface AttackBonusesProps {
   melee: number;
@@ -8,36 +10,28 @@ interface AttackBonusesProps {
   thrown: number;
 }
 
-const makeAttackRoll = (modifier: number) => () => {
-  const roll = rollD20();
-  return `${roll} + ${modifier} -> ${roll + modifier}`;
-};
-
-const makeAndAlertAttackRoll = (modifier: number) => () =>
-  alert(makeAttackRoll(modifier)());
-
 const AttackBonuses: FC<AttackBonusesProps> = ({ melee, ranged, thrown }) => {
   return (
-    <>
+    <Container>
       <div>
         <label>Melee</label> <span>{melee}</span>{" "}
-        <button onClick={makeAndAlertAttackRoll(melee)}>
-          Make attack roll
-        </button>
+        <Button color="primary" onClick={alertRoll(melee)}>
+          Roll
+        </Button>
       </div>
       <div>
         <label>Ranged</label> <span>{ranged}</span>{" "}
-        <button onClick={makeAndAlertAttackRoll(ranged)}>
-          Make attack roll
-        </button>
+        <Button color="primary" onClick={alertRoll(ranged)}>
+          Roll
+        </Button>
       </div>
       <div>
         <label>Thrown</label> <span>{thrown}</span>{" "}
-        <button onClick={makeAndAlertAttackRoll(thrown)}>
-          Make attack roll
-        </button>
+        <Button color="primary" onClick={alertRoll(thrown)}>
+          Roll
+        </Button>
       </div>
-    </>
+    </Container>
   );
 };
 
