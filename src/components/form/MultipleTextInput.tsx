@@ -1,8 +1,12 @@
 import * as React from "react";
+import { TextField, Button, IconButton } from "@material-ui/core";
+import RemoveIcon from "@material-ui/icons/Remove";
 
 interface MultipleTextInput {
   value: string[];
   onChange?: (value: string[]) => void;
+  label: string;
+  id: string;
 }
 
 const updateItem = (array: string[], index: number, newItem: string) =>
@@ -15,26 +19,36 @@ const addEmptyToEnd = (array: string[]) => [...array, ""];
 
 const MultipleTextInput: React.FC<MultipleTextInput> = ({
   value,
-  onChange
+  onChange,
+  label,
+  id
 }) => {
   return (
     <>
       {value.map((d, i) => (
         <div key={i}>
-          <input
+          <TextField
+            label={label}
+            id={`${id}-${i}`}
             value={d}
             onChange={e =>
               onChange && onChange(updateItem(value, i, e.target.value))
             }
           />
-          <button onClick={() => onChange && onChange(removeItem(value, i))}>
-            remove
-          </button>
+          <IconButton
+            color="secondary"
+            onClick={() => onChange && onChange(removeItem(value, i))}
+          >
+            <RemoveIcon fontSize="small" />
+          </IconButton>
         </div>
       ))}
-      <button onClick={() => onChange && onChange(addEmptyToEnd(value))}>
-        add
-      </button>
+      <Button
+        color="primary"
+        onClick={() => onChange && onChange(addEmptyToEnd(value))}
+      >
+        Add
+      </Button>
     </>
   );
 };

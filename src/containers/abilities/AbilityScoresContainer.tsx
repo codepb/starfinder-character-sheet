@@ -1,6 +1,7 @@
 import * as React from "react";
 import AbilitiyScores from "../../components/abilities/AbilityScoresAdjustment";
 import useAbilityScores from "../../character/useAbilityScores";
+import Container from "../../components/layout/Container";
 
 const AbilityScoresContainer: React.FC = () => {
   const {

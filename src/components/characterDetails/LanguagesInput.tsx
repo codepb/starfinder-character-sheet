@@ -7,7 +7,12 @@ interface LanguagesInputProps {
 }
 
 const LanguagesInput: React.FC<LanguagesInputProps> = ({ value, onChange }) => (
-  <MultipleTextInput value={value} onChange={onChange} />
+  <MultipleTextInput
+    label="Language"
+    id="language-input"
+    value={value}
+    onChange={onChange}
+  />
 );
 
 export default LanguagesInput;

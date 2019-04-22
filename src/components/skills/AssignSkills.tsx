@@ -4,6 +4,7 @@ import {
   skillDefinitions,
   SkillLevels
 } from "../../character/useSkills";
+import { Checkbox } from "@material-ui/core";
 
 interface AssignSkillsProps {
   skills: Skills;
@@ -18,28 +19,32 @@ const AssignSkills: React.FC<AssignSkillsProps> = ({
   classSkills,
   onSkillChange
 }) => (
-  <>
-    {Object.keys(skillDefinitions).map(k => (
-      <React.Fragment key={k}>
-        <div key={k}>
-          <label htmlFor={`skill-${k}`}>
-            {classSkills.includes(k as keyof Skills) ? "*" : " "}
-            {k}
-          </label>{" "}
-          <span>{skillLevels[k]}</span>
-          <input
-            id={`skill-${k}`}
-            type="checkbox"
-            value={k}
-            checked={skills[k] || false}
-            onChange={event => {
-              onSkillChange(k as keyof Skills, event.target.checked);
-            }}
-          />
-        </div>
-      </React.Fragment>
-    ))}
-  </>
+  <table>
+    <tbody>
+      {Object.keys(skillDefinitions).map(k => (
+        <React.Fragment key={k}>
+          <tr key={k}>
+            <td>{classSkills.includes(k as keyof Skills) ? "*" : " "}</td>
+            <td>
+              <label htmlFor={`skill-${k}`}>{k}</label>
+            </td>
+            <td>{skillLevels[k]}</td>
+            <td>
+              <Checkbox
+                id={`skill-${k}`}
+                color="primary"
+                value={k}
+                checked={skills[k] || false}
+                onChange={event => {
+                  onSkillChange(k as keyof Skills, event.target.checked);
+                }}
+              />
+            </td>
+          </tr>
+        </React.Fragment>
+      ))}
+    </tbody>
+  </table>
 );
 
 export default AssignSkills;

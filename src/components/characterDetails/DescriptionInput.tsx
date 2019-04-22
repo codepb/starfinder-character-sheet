@@ -1,4 +1,5 @@
 import * as React from "react";
+import { TextField } from "@material-ui/core";
 
 interface DescriptionInputProps {
   value: string;
@@ -9,7 +10,11 @@ const DescriptionInput: React.FC<DescriptionInputProps> = ({
   value,
   onChange
 }) => (
-  <textarea
+  <TextField
+    id="description-input"
+    label="Description"
+    multiline
+    rowsMax={4}
     value={value}
     onChange={e => onChange && onChange(e.target.value)}
   />

@@ -42,7 +42,7 @@ const AbilityScoreModifiers: React.FC<AbilityScoreModifiersProps> = ({
         {Object.entries(abilityScores).map(([key, value]) => (
           <TableRow key={key}>
             <TableCell className={classes.ability}>{key}</TableCell>
-            <TableCell align="left" className={classes.modifier}>
+            <TableCell className={classes.modifier}>
               {formatModifier(abilityModifiers[key])}
             </TableCell>
             <TableCell>{value}</TableCell>

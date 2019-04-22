@@ -1,6 +1,7 @@
 import * as React from "react";
 import AssignSkills from "../../components/skills/AssignSkills";
 import useSkills from "../../character/useSkills";
+import Container from "../../components/layout/Container";
 
 const AssignSkillsContainer: React.FC = () => {
   const {

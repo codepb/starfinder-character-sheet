@@ -8,16 +8,26 @@ import CharacterDetails from "../characterDetails/CharacterDetails";
 import CharacterDisplayContainer from "./CharacterDisplayContainer";
 import { useState, useContext } from "react";
 import CharacterContext from "../../character/CharacterContext";
+import {
+  Button,
+  Stepper,
+  Step,
+  StepLabel,
+  StepContent,
+  Typography
+} from "@material-ui/core";
+import Container from "../../components/layout/Container";
+import StepperButtons from "../../components/characterCreation/StepperButtons";
 
 enum Page {
-  start,
-  theme,
-  race,
-  abilityScores,
-  class,
-  skills,
-  characterDetails,
-  sheet
+  theme = 0,
+  race = 1,
+  class = 2,
+  abilityScores = 3,
+  skills = 4,
+  characterDetails = 5,
+  start = 6,
+  sheet = 7
 }
 
 const CharacterSheetContainer: React.FC = () => {
@@ -28,40 +38,76 @@ const CharacterSheetContainer: React.FC = () => {
   switch (page) {
     case Page.start:
       return (
-        <button onClick={() => setPage(Page.theme)}>Create Character</button>
-      );
-    case Page.theme:
-      return <ThemeSelection onNext={() => setPage(Page.race)} />;
-    case Page.race:
-      return <RaceSelection onNext={() => setPage(Page.class)} />;
-    case Page.class:
-      return <ClassSelection onNext={() => setPage(Page.abilityScores)} />;
-    case Page.abilityScores:
-      return (
-        <>
-          <AbilityScoresContainer />
-          <button onClick={() => setPage(Page.skills)}>next</button>
-        </>
-      );
-    case Page.skills:
-      return (
-        <>
-          <AssignSkillsContainer />
-          <button onClick={() => setPage(Page.characterDetails)}>next</button>
-        </>
-      );
-    case Page.characterDetails:
-      return (
-        <>
-          <CharacterDetails />
-          <button onClick={() => setPage(Page.sheet)}>next</button>
-        </>
+        <Button onClick={() => setPage(Page.theme)}>Create Character</Button>
       );
     case Page.sheet:
       return (
         <>
           <CharacterDisplayContainer />
         </>
+      );
+    default:
+      const activeStep = Number(page);
+      return (
+        <Container>
+          <Typography variant="h4">Create Character</Typography>
+          <Stepper activeStep={activeStep} orientation="vertical">
+            <Step>
+              <StepLabel>Theme</StepLabel>
+              <StepContent>
+                <ThemeSelection onNext={() => setPage(Page.race)} />
+              </StepContent>
+            </Step>
+            <Step>
+              <StepLabel>Race</StepLabel>
+              <StepContent>
+                <RaceSelection
+                  onNext={() => setPage(Page.class)}
+                  onPrevious={() => setPage(Page.theme)}
+                />
+              </StepContent>
+            </Step>
+            <Step>
+              <StepLabel>Class</StepLabel>
+              <StepContent>
+                <ClassSelection
+                  onNext={() => setPage(Page.abilityScores)}
+                  onPrevious={() => setPage(Page.race)}
+                />
+              </StepContent>
+            </Step>
+            <Step>
+              <StepLabel>Abilities</StepLabel>
+              <StepContent>
+                <AbilityScoresContainer />
+                <StepperButtons
+                  onNext={() => setPage(Page.skills)}
+                  onPrevious={() => setPage(Page.class)}
+                />
+              </StepContent>
+            </Step>
+            <Step>
+              <StepLabel>Skills</StepLabel>
+              <StepContent>
+                <AssignSkillsContainer />
+                <StepperButtons
+                  onNext={() => setPage(Page.characterDetails)}
+                  onPrevious={() => setPage(Page.abilityScores)}
+                />
+              </StepContent>
+            </Step>
+            <Step>
+              <StepLabel>Details</StepLabel>
+              <StepContent>
+                <CharacterDetails />
+                <StepperButtons
+                  onNext={() => setPage(Page.sheet)}
+                  onPrevious={() => setPage(Page.skills)}
+                />
+              </StepContent>
+            </Step>
+          </Stepper>
+        </Container>
       );
   }
 };

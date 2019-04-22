@@ -1,4 +1,5 @@
 import * as React from "react";
+import { TextField } from "@material-ui/core";
 
 interface HomeWorldSelectionProps {
   value: string;
@@ -9,7 +10,12 @@ const HomeWorldSelection: React.FC<HomeWorldSelectionProps> = ({
   value,
   onChange
 }) => (
-  <input value={value} onChange={e => onChange && onChange(e.target.value)} />
+  <TextField
+    id="homeworld-input"
+    label="Home World"
+    value={value}
+    onChange={e => onChange && onChange(e.target.value)}
+  />
 );
 
 export default HomeWorldSelection;

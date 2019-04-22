@@ -12,6 +12,8 @@ const AlignmentSelection: React.FC<AlignmentSelectionProps> = ({
   onChange
 }) => (
   <Select
+    id="alignment-select"
+    label="Alignment"
     options={Object.values(Alignment)}
     value={value}
     onChange={e => onChange && onChange(e.target.value as Alignment)}

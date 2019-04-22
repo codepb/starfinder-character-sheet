@@ -1,5 +1,8 @@
 import * as React from "react";
 import { AbilityScores as AbilityScoresType } from "../../character/useAbilityScores";
+import { IconButton } from "@material-ui/core";
+import AddIcon from "@material-ui/icons/Add";
+import RemoveIcon from "@material-ui/icons/Remove";
 
 interface AbilityScoresAdjustmentProps {
   abilityScores: AbilityScoresType;
@@ -31,24 +34,28 @@ const AbilityScoresAdjustment: React.FC<AbilityScoresAdjustmentProps> = ({
             <td>{value}</td>
             <td>{abilityModifiers[key]}</td>
             <td>
-              <button
+              <IconButton
                 onClick={() => onIncrement(key as keyof AbilityScoresType)}
+                color="primary"
+                aria-label="Add"
                 disabled={
                   !canIncrement.includes(key as keyof AbilityScoresType)
                 }
               >
-                +
-              </button>
+                <AddIcon fontSize="small" />
+              </IconButton>
             </td>
             <td>
-              <button
+              <IconButton
                 onClick={() => onDecrement(key as keyof AbilityScoresType)}
+                color="secondary"
+                aria-label="Subtract"
                 disabled={
                   !canDecrement.includes(key as keyof AbilityScoresType)
                 }
               >
-                -
-              </button>
+                <RemoveIcon fontSize="small" />
+              </IconButton>
             </td>
             <td>{baseAbilityScores[key]}</td>
           </tr>
