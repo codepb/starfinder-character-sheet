@@ -3,8 +3,7 @@ import { SavingThrow } from "../rules/savingThrows";
 import { classDefinitions, Class } from "../rules/classes";
 import { SavingThrows } from "../character/useSavingThrows";
 import { Skills } from "../character/useSkills";
-import CharacterContext from "../character/CharacterContext";
-import { useContext } from "react";
+import useAbilityScores from "../character/useAbilityScores";
 
 const getLevelModifiers = (className: Class, level: number) => {
   console.log(classDefinitions, classDefinitions[className], className);
@@ -74,9 +73,7 @@ const useClassHealthAndStamina = () => {
 };
 
 const useKeyAbilityScore = () => {
-  const [{ baseAbilityScores: abilityModifiers }] = useContext(
-    CharacterContext
-  );
+  const { abilityModifiers } = useAbilityScores();
   const levels = useLevels();
   return levels.reduce((rv, [currClass]) => {
     return Math.max(
