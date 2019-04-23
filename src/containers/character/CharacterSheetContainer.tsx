@@ -103,6 +103,7 @@ const CharacterSheetContainer: React.FC = () => {
                 <StepperButtons
                   onNext={() => setPage(Page.sheet)}
                   onPrevious={() => setPage(Page.skills)}
+                  final
                 />
               </StepContent>
             </Step>

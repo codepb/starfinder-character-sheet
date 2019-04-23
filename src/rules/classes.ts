@@ -13,6 +13,11 @@ export enum Class {
   Technomancer = "Technomancer"
 }
 
+interface levelModifiers {
+  baseAttackBonus: number;
+  savingThrows: SavingThrowModifiers;
+}
+
 export interface ClassDefinition {
   name: Class;
   hp: number;
@@ -20,8 +25,7 @@ export interface ClassDefinition {
   keyAbility: keyof AbilityScores;
   skillRanksPerLevel: number;
   classSkills: (keyof Skills)[];
-  savingThrows: SavingThrowModifiers;
-  baseAttackBonus: number;
+  levelModifiers: levelModifiers[];
 }
 
 const ENVOY_CLASS: ClassDefinition = {
@@ -48,12 +52,168 @@ const ENVOY_CLASS: ClassDefinition = {
     "sleightOfHand",
     "stealth"
   ],
-  savingThrows: {
-    [SavingThrow.FORTITUDE]: 0,
-    [SavingThrow.REFLEX]: 2,
-    [SavingThrow.WILL]: 2
-  },
-  baseAttackBonus: 0
+  levelModifiers: [
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 0,
+        [SavingThrow.REFLEX]: 2,
+        [SavingThrow.WILL]: 2
+      },
+      baseAttackBonus: 0
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 0,
+        [SavingThrow.REFLEX]: 3,
+        [SavingThrow.WILL]: 3
+      },
+      baseAttackBonus: 1
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 1,
+        [SavingThrow.REFLEX]: 3,
+        [SavingThrow.WILL]: 3
+      },
+      baseAttackBonus: 2
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 1,
+        [SavingThrow.REFLEX]: 4,
+        [SavingThrow.WILL]: 4
+      },
+      baseAttackBonus: 3
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 1,
+        [SavingThrow.REFLEX]: 4,
+        [SavingThrow.WILL]: 4
+      },
+      baseAttackBonus: 3
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 2,
+        [SavingThrow.REFLEX]: 5,
+        [SavingThrow.WILL]: 5
+      },
+      baseAttackBonus: 4
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 2,
+        [SavingThrow.REFLEX]: 5,
+        [SavingThrow.WILL]: 5
+      },
+      baseAttackBonus: 5
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 2,
+        [SavingThrow.REFLEX]: 6,
+        [SavingThrow.WILL]: 6
+      },
+      baseAttackBonus: 6
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 3,
+        [SavingThrow.REFLEX]: 6,
+        [SavingThrow.WILL]: 6
+      },
+      baseAttackBonus: 6
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 3,
+        [SavingThrow.REFLEX]: 7,
+        [SavingThrow.WILL]: 7
+      },
+      baseAttackBonus: 7
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 3,
+        [SavingThrow.REFLEX]: 7,
+        [SavingThrow.WILL]: 7
+      },
+      baseAttackBonus: 8
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 4,
+        [SavingThrow.REFLEX]: 8,
+        [SavingThrow.WILL]: 8
+      },
+      baseAttackBonus: 9
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 4,
+        [SavingThrow.REFLEX]: 8,
+        [SavingThrow.WILL]: 8
+      },
+      baseAttackBonus: 9
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 4,
+        [SavingThrow.REFLEX]: 9,
+        [SavingThrow.WILL]: 9
+      },
+      baseAttackBonus: 10
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 5,
+        [SavingThrow.REFLEX]: 9,
+        [SavingThrow.WILL]: 9
+      },
+      baseAttackBonus: 11
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 5,
+        [SavingThrow.REFLEX]: 10,
+        [SavingThrow.WILL]: 10
+      },
+      baseAttackBonus: 12
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 5,
+        [SavingThrow.REFLEX]: 10,
+        [SavingThrow.WILL]: 10
+      },
+      baseAttackBonus: 12
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 6,
+        [SavingThrow.REFLEX]: 11,
+        [SavingThrow.WILL]: 11
+      },
+      baseAttackBonus: 13
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 6,
+        [SavingThrow.REFLEX]: 11,
+        [SavingThrow.WILL]: 11
+      },
+      baseAttackBonus: 14
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 6,
+        [SavingThrow.REFLEX]: 12,
+        [SavingThrow.WILL]: 12
+      },
+      baseAttackBonus: 15
+    }
+  ]
 };
 
 const MECHANIC_CLASS: ClassDefinition = {
@@ -71,12 +231,168 @@ const MECHANIC_CLASS: ClassDefinition = {
     "piloting",
     "profession1"
   ],
-  savingThrows: {
-    [SavingThrow.FORTITUDE]: 2,
-    [SavingThrow.REFLEX]: 2,
-    [SavingThrow.WILL]: 0
-  },
-  baseAttackBonus: 0
+  levelModifiers: [
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 2,
+        [SavingThrow.REFLEX]: 2,
+        [SavingThrow.WILL]: 0
+      },
+      baseAttackBonus: 0
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 3,
+        [SavingThrow.REFLEX]: 3,
+        [SavingThrow.WILL]: 0
+      },
+      baseAttackBonus: 1
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 3,
+        [SavingThrow.REFLEX]: 3,
+        [SavingThrow.WILL]: 1
+      },
+      baseAttackBonus: 2
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 4,
+        [SavingThrow.REFLEX]: 4,
+        [SavingThrow.WILL]: 1
+      },
+      baseAttackBonus: 3
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 4,
+        [SavingThrow.REFLEX]: 4,
+        [SavingThrow.WILL]: 1
+      },
+      baseAttackBonus: 3
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 5,
+        [SavingThrow.REFLEX]: 5,
+        [SavingThrow.WILL]: 2
+      },
+      baseAttackBonus: 4
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 5,
+        [SavingThrow.REFLEX]: 5,
+        [SavingThrow.WILL]: 2
+      },
+      baseAttackBonus: 5
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 6,
+        [SavingThrow.REFLEX]: 6,
+        [SavingThrow.WILL]: 2
+      },
+      baseAttackBonus: 6
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 6,
+        [SavingThrow.REFLEX]: 6,
+        [SavingThrow.WILL]: 3
+      },
+      baseAttackBonus: 6
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 7,
+        [SavingThrow.REFLEX]: 7,
+        [SavingThrow.WILL]: 3
+      },
+      baseAttackBonus: 7
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 7,
+        [SavingThrow.REFLEX]: 7,
+        [SavingThrow.WILL]: 3
+      },
+      baseAttackBonus: 8
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 8,
+        [SavingThrow.REFLEX]: 8,
+        [SavingThrow.WILL]: 4
+      },
+      baseAttackBonus: 9
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 8,
+        [SavingThrow.REFLEX]: 8,
+        [SavingThrow.WILL]: 4
+      },
+      baseAttackBonus: 9
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 9,
+        [SavingThrow.REFLEX]: 9,
+        [SavingThrow.WILL]: 4
+      },
+      baseAttackBonus: 10
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 9,
+        [SavingThrow.REFLEX]: 9,
+        [SavingThrow.WILL]: 5
+      },
+      baseAttackBonus: 11
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 10,
+        [SavingThrow.REFLEX]: 10,
+        [SavingThrow.WILL]: 5
+      },
+      baseAttackBonus: 12
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 10,
+        [SavingThrow.REFLEX]: 10,
+        [SavingThrow.WILL]: 5
+      },
+      baseAttackBonus: 12
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 11,
+        [SavingThrow.REFLEX]: 11,
+        [SavingThrow.WILL]: 6
+      },
+      baseAttackBonus: 13
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 11,
+        [SavingThrow.REFLEX]: 11,
+        [SavingThrow.WILL]: 6
+      },
+      baseAttackBonus: 14
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 12,
+        [SavingThrow.REFLEX]: 12,
+        [SavingThrow.WILL]: 6
+      },
+      baseAttackBonus: 15
+    }
+  ]
 };
 
 const MYSTIC_CLASS: ClassDefinition = {
@@ -99,12 +415,168 @@ const MYSTIC_CLASS: ClassDefinition = {
     "senseMotive",
     "survival"
   ],
-  savingThrows: {
-    [SavingThrow.FORTITUDE]: 0,
-    [SavingThrow.REFLEX]: 0,
-    [SavingThrow.WILL]: 2
-  },
-  baseAttackBonus: 0
+  levelModifiers: [
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 0,
+        [SavingThrow.REFLEX]: 0,
+        [SavingThrow.WILL]: 2
+      },
+      baseAttackBonus: 0
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 0,
+        [SavingThrow.REFLEX]: 0,
+        [SavingThrow.WILL]: 3
+      },
+      baseAttackBonus: 1
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 1,
+        [SavingThrow.REFLEX]: 1,
+        [SavingThrow.WILL]: 3
+      },
+      baseAttackBonus: 2
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 1,
+        [SavingThrow.REFLEX]: 1,
+        [SavingThrow.WILL]: 4
+      },
+      baseAttackBonus: 3
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 1,
+        [SavingThrow.REFLEX]: 1,
+        [SavingThrow.WILL]: 4
+      },
+      baseAttackBonus: 3
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 2,
+        [SavingThrow.REFLEX]: 2,
+        [SavingThrow.WILL]: 5
+      },
+      baseAttackBonus: 4
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 2,
+        [SavingThrow.REFLEX]: 2,
+        [SavingThrow.WILL]: 5
+      },
+      baseAttackBonus: 5
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 2,
+        [SavingThrow.REFLEX]: 2,
+        [SavingThrow.WILL]: 6
+      },
+      baseAttackBonus: 6
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 3,
+        [SavingThrow.REFLEX]: 3,
+        [SavingThrow.WILL]: 6
+      },
+      baseAttackBonus: 6
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 3,
+        [SavingThrow.REFLEX]: 3,
+        [SavingThrow.WILL]: 7
+      },
+      baseAttackBonus: 7
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 3,
+        [SavingThrow.REFLEX]: 3,
+        [SavingThrow.WILL]: 7
+      },
+      baseAttackBonus: 8
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 4,
+        [SavingThrow.REFLEX]: 4,
+        [SavingThrow.WILL]: 8
+      },
+      baseAttackBonus: 9
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 4,
+        [SavingThrow.REFLEX]: 4,
+        [SavingThrow.WILL]: 8
+      },
+      baseAttackBonus: 9
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 4,
+        [SavingThrow.REFLEX]: 4,
+        [SavingThrow.WILL]: 9
+      },
+      baseAttackBonus: 10
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 5,
+        [SavingThrow.REFLEX]: 5,
+        [SavingThrow.WILL]: 9
+      },
+      baseAttackBonus: 11
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 5,
+        [SavingThrow.REFLEX]: 5,
+        [SavingThrow.WILL]: 10
+      },
+      baseAttackBonus: 12
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 5,
+        [SavingThrow.REFLEX]: 5,
+        [SavingThrow.WILL]: 10
+      },
+      baseAttackBonus: 12
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 6,
+        [SavingThrow.REFLEX]: 6,
+        [SavingThrow.WILL]: 11
+      },
+      baseAttackBonus: 13
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 6,
+        [SavingThrow.REFLEX]: 6,
+        [SavingThrow.WILL]: 11
+      },
+      baseAttackBonus: 14
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 6,
+        [SavingThrow.REFLEX]: 6,
+        [SavingThrow.WILL]: 12
+      },
+      baseAttackBonus: 15
+    }
+  ]
 };
 
 const OPERATIVE_CLASS: ClassDefinition = {
@@ -131,12 +603,168 @@ const OPERATIVE_CLASS: ClassDefinition = {
     "stealth",
     "survival"
   ],
-  savingThrows: {
-    [SavingThrow.FORTITUDE]: 0,
-    [SavingThrow.REFLEX]: 2,
-    [SavingThrow.WILL]: 2
-  },
-  baseAttackBonus: 0
+  levelModifiers: [
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 0,
+        [SavingThrow.REFLEX]: 2,
+        [SavingThrow.WILL]: 2
+      },
+      baseAttackBonus: 0
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 0,
+        [SavingThrow.REFLEX]: 3,
+        [SavingThrow.WILL]: 3
+      },
+      baseAttackBonus: 1
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 1,
+        [SavingThrow.REFLEX]: 3,
+        [SavingThrow.WILL]: 3
+      },
+      baseAttackBonus: 2
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 1,
+        [SavingThrow.REFLEX]: 4,
+        [SavingThrow.WILL]: 4
+      },
+      baseAttackBonus: 3
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 1,
+        [SavingThrow.REFLEX]: 4,
+        [SavingThrow.WILL]: 4
+      },
+      baseAttackBonus: 3
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 2,
+        [SavingThrow.REFLEX]: 5,
+        [SavingThrow.WILL]: 5
+      },
+      baseAttackBonus: 4
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 2,
+        [SavingThrow.REFLEX]: 5,
+        [SavingThrow.WILL]: 5
+      },
+      baseAttackBonus: 5
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 2,
+        [SavingThrow.REFLEX]: 6,
+        [SavingThrow.WILL]: 6
+      },
+      baseAttackBonus: 6
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 3,
+        [SavingThrow.REFLEX]: 6,
+        [SavingThrow.WILL]: 6
+      },
+      baseAttackBonus: 6
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 3,
+        [SavingThrow.REFLEX]: 7,
+        [SavingThrow.WILL]: 7
+      },
+      baseAttackBonus: 7
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 3,
+        [SavingThrow.REFLEX]: 7,
+        [SavingThrow.WILL]: 7
+      },
+      baseAttackBonus: 8
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 4,
+        [SavingThrow.REFLEX]: 8,
+        [SavingThrow.WILL]: 8
+      },
+      baseAttackBonus: 9
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 4,
+        [SavingThrow.REFLEX]: 8,
+        [SavingThrow.WILL]: 8
+      },
+      baseAttackBonus: 9
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 4,
+        [SavingThrow.REFLEX]: 9,
+        [SavingThrow.WILL]: 9
+      },
+      baseAttackBonus: 10
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 5,
+        [SavingThrow.REFLEX]: 9,
+        [SavingThrow.WILL]: 9
+      },
+      baseAttackBonus: 11
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 5,
+        [SavingThrow.REFLEX]: 10,
+        [SavingThrow.WILL]: 10
+      },
+      baseAttackBonus: 12
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 5,
+        [SavingThrow.REFLEX]: 10,
+        [SavingThrow.WILL]: 10
+      },
+      baseAttackBonus: 12
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 6,
+        [SavingThrow.REFLEX]: 11,
+        [SavingThrow.WILL]: 11
+      },
+      baseAttackBonus: 13
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 6,
+        [SavingThrow.REFLEX]: 11,
+        [SavingThrow.WILL]: 11
+      },
+      baseAttackBonus: 14
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 6,
+        [SavingThrow.REFLEX]: 12,
+        [SavingThrow.WILL]: 12
+      },
+      baseAttackBonus: 15
+    }
+  ]
 };
 
 const SOLARIAN_CLASS: ClassDefinition = {
@@ -157,12 +785,168 @@ const SOLARIAN_CLASS: ClassDefinition = {
     "senseMotive",
     "stealth"
   ],
-  savingThrows: {
-    [SavingThrow.FORTITUDE]: 2,
-    [SavingThrow.REFLEX]: 0,
-    [SavingThrow.WILL]: 2
-  },
-  baseAttackBonus: 1
+  levelModifiers: [
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 2,
+        [SavingThrow.REFLEX]: 0,
+        [SavingThrow.WILL]: 2
+      },
+      baseAttackBonus: 1
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 3,
+        [SavingThrow.REFLEX]: 0,
+        [SavingThrow.WILL]: 3
+      },
+      baseAttackBonus: 2
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 3,
+        [SavingThrow.REFLEX]: 1,
+        [SavingThrow.WILL]: 3
+      },
+      baseAttackBonus: 3
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 4,
+        [SavingThrow.REFLEX]: 1,
+        [SavingThrow.WILL]: 4
+      },
+      baseAttackBonus: 4
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 4,
+        [SavingThrow.REFLEX]: 1,
+        [SavingThrow.WILL]: 4
+      },
+      baseAttackBonus: 5
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 5,
+        [SavingThrow.REFLEX]: 2,
+        [SavingThrow.WILL]: 5
+      },
+      baseAttackBonus: 6
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 5,
+        [SavingThrow.REFLEX]: 2,
+        [SavingThrow.WILL]: 5
+      },
+      baseAttackBonus: 7
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 6,
+        [SavingThrow.REFLEX]: 2,
+        [SavingThrow.WILL]: 6
+      },
+      baseAttackBonus: 8
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 6,
+        [SavingThrow.REFLEX]: 3,
+        [SavingThrow.WILL]: 6
+      },
+      baseAttackBonus: 9
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 7,
+        [SavingThrow.REFLEX]: 3,
+        [SavingThrow.WILL]: 7
+      },
+      baseAttackBonus: 10
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 7,
+        [SavingThrow.REFLEX]: 3,
+        [SavingThrow.WILL]: 7
+      },
+      baseAttackBonus: 11
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 8,
+        [SavingThrow.REFLEX]: 4,
+        [SavingThrow.WILL]: 8
+      },
+      baseAttackBonus: 12
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 8,
+        [SavingThrow.REFLEX]: 4,
+        [SavingThrow.WILL]: 8
+      },
+      baseAttackBonus: 13
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 9,
+        [SavingThrow.REFLEX]: 4,
+        [SavingThrow.WILL]: 9
+      },
+      baseAttackBonus: 14
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 9,
+        [SavingThrow.REFLEX]: 5,
+        [SavingThrow.WILL]: 9
+      },
+      baseAttackBonus: 15
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 10,
+        [SavingThrow.REFLEX]: 5,
+        [SavingThrow.WILL]: 10
+      },
+      baseAttackBonus: 16
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 10,
+        [SavingThrow.REFLEX]: 5,
+        [SavingThrow.WILL]: 10
+      },
+      baseAttackBonus: 17
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 11,
+        [SavingThrow.REFLEX]: 6,
+        [SavingThrow.WILL]: 11
+      },
+      baseAttackBonus: 18
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 11,
+        [SavingThrow.REFLEX]: 6,
+        [SavingThrow.WILL]: 11
+      },
+      baseAttackBonus: 19
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 12,
+        [SavingThrow.REFLEX]: 6,
+        [SavingThrow.WILL]: 12
+      },
+      baseAttackBonus: 20
+    }
+  ]
 };
 
 const SOLDIER_DEX_CLASS: ClassDefinition = {
@@ -181,12 +965,168 @@ const SOLDIER_DEX_CLASS: ClassDefinition = {
     "profession1",
     "survival"
   ],
-  savingThrows: {
-    [SavingThrow.FORTITUDE]: 2,
-    [SavingThrow.REFLEX]: 0,
-    [SavingThrow.WILL]: 2
-  },
-  baseAttackBonus: 1
+  levelModifiers: [
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 2,
+        [SavingThrow.REFLEX]: 0,
+        [SavingThrow.WILL]: 2
+      },
+      baseAttackBonus: 1
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 3,
+        [SavingThrow.REFLEX]: 0,
+        [SavingThrow.WILL]: 3
+      },
+      baseAttackBonus: 2
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 3,
+        [SavingThrow.REFLEX]: 1,
+        [SavingThrow.WILL]: 3
+      },
+      baseAttackBonus: 3
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 4,
+        [SavingThrow.REFLEX]: 1,
+        [SavingThrow.WILL]: 4
+      },
+      baseAttackBonus: 4
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 4,
+        [SavingThrow.REFLEX]: 1,
+        [SavingThrow.WILL]: 4
+      },
+      baseAttackBonus: 5
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 5,
+        [SavingThrow.REFLEX]: 2,
+        [SavingThrow.WILL]: 5
+      },
+      baseAttackBonus: 6
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 5,
+        [SavingThrow.REFLEX]: 2,
+        [SavingThrow.WILL]: 5
+      },
+      baseAttackBonus: 7
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 6,
+        [SavingThrow.REFLEX]: 2,
+        [SavingThrow.WILL]: 6
+      },
+      baseAttackBonus: 8
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 6,
+        [SavingThrow.REFLEX]: 3,
+        [SavingThrow.WILL]: 6
+      },
+      baseAttackBonus: 9
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 7,
+        [SavingThrow.REFLEX]: 3,
+        [SavingThrow.WILL]: 7
+      },
+      baseAttackBonus: 10
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 7,
+        [SavingThrow.REFLEX]: 3,
+        [SavingThrow.WILL]: 7
+      },
+      baseAttackBonus: 11
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 8,
+        [SavingThrow.REFLEX]: 4,
+        [SavingThrow.WILL]: 8
+      },
+      baseAttackBonus: 12
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 8,
+        [SavingThrow.REFLEX]: 4,
+        [SavingThrow.WILL]: 8
+      },
+      baseAttackBonus: 13
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 9,
+        [SavingThrow.REFLEX]: 4,
+        [SavingThrow.WILL]: 9
+      },
+      baseAttackBonus: 14
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 9,
+        [SavingThrow.REFLEX]: 5,
+        [SavingThrow.WILL]: 9
+      },
+      baseAttackBonus: 15
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 10,
+        [SavingThrow.REFLEX]: 5,
+        [SavingThrow.WILL]: 10
+      },
+      baseAttackBonus: 16
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 10,
+        [SavingThrow.REFLEX]: 5,
+        [SavingThrow.WILL]: 10
+      },
+      baseAttackBonus: 17
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 11,
+        [SavingThrow.REFLEX]: 6,
+        [SavingThrow.WILL]: 11
+      },
+      baseAttackBonus: 18
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 11,
+        [SavingThrow.REFLEX]: 6,
+        [SavingThrow.WILL]: 11
+      },
+      baseAttackBonus: 19
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 12,
+        [SavingThrow.REFLEX]: 6,
+        [SavingThrow.WILL]: 12
+      },
+      baseAttackBonus: 20
+    }
+  ]
 };
 
 const SOLDIER_STR_CLASS: ClassDefinition = {
@@ -205,12 +1145,168 @@ const SOLDIER_STR_CLASS: ClassDefinition = {
     "profession1",
     "survival"
   ],
-  savingThrows: {
-    [SavingThrow.FORTITUDE]: 2,
-    [SavingThrow.REFLEX]: 0,
-    [SavingThrow.WILL]: 2
-  },
-  baseAttackBonus: 1
+  levelModifiers: [
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 2,
+        [SavingThrow.REFLEX]: 0,
+        [SavingThrow.WILL]: 2
+      },
+      baseAttackBonus: 1
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 3,
+        [SavingThrow.REFLEX]: 0,
+        [SavingThrow.WILL]: 3
+      },
+      baseAttackBonus: 2
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 3,
+        [SavingThrow.REFLEX]: 1,
+        [SavingThrow.WILL]: 3
+      },
+      baseAttackBonus: 3
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 4,
+        [SavingThrow.REFLEX]: 1,
+        [SavingThrow.WILL]: 4
+      },
+      baseAttackBonus: 4
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 4,
+        [SavingThrow.REFLEX]: 1,
+        [SavingThrow.WILL]: 4
+      },
+      baseAttackBonus: 5
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 5,
+        [SavingThrow.REFLEX]: 2,
+        [SavingThrow.WILL]: 5
+      },
+      baseAttackBonus: 6
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 5,
+        [SavingThrow.REFLEX]: 2,
+        [SavingThrow.WILL]: 5
+      },
+      baseAttackBonus: 7
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 6,
+        [SavingThrow.REFLEX]: 2,
+        [SavingThrow.WILL]: 6
+      },
+      baseAttackBonus: 8
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 6,
+        [SavingThrow.REFLEX]: 3,
+        [SavingThrow.WILL]: 6
+      },
+      baseAttackBonus: 9
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 7,
+        [SavingThrow.REFLEX]: 3,
+        [SavingThrow.WILL]: 7
+      },
+      baseAttackBonus: 10
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 7,
+        [SavingThrow.REFLEX]: 3,
+        [SavingThrow.WILL]: 7
+      },
+      baseAttackBonus: 11
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 8,
+        [SavingThrow.REFLEX]: 4,
+        [SavingThrow.WILL]: 8
+      },
+      baseAttackBonus: 12
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 8,
+        [SavingThrow.REFLEX]: 4,
+        [SavingThrow.WILL]: 8
+      },
+      baseAttackBonus: 13
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 9,
+        [SavingThrow.REFLEX]: 4,
+        [SavingThrow.WILL]: 9
+      },
+      baseAttackBonus: 14
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 9,
+        [SavingThrow.REFLEX]: 5,
+        [SavingThrow.WILL]: 9
+      },
+      baseAttackBonus: 15
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 10,
+        [SavingThrow.REFLEX]: 5,
+        [SavingThrow.WILL]: 10
+      },
+      baseAttackBonus: 16
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 10,
+        [SavingThrow.REFLEX]: 5,
+        [SavingThrow.WILL]: 10
+      },
+      baseAttackBonus: 17
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 11,
+        [SavingThrow.REFLEX]: 6,
+        [SavingThrow.WILL]: 11
+      },
+      baseAttackBonus: 18
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 11,
+        [SavingThrow.REFLEX]: 6,
+        [SavingThrow.WILL]: 11
+      },
+      baseAttackBonus: 19
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 12,
+        [SavingThrow.REFLEX]: 6,
+        [SavingThrow.WILL]: 12
+      },
+      baseAttackBonus: 20
+    }
+  ]
 };
 
 const TECHNOMANCER_CLASS: ClassDefinition = {
@@ -229,12 +1325,168 @@ const TECHNOMANCER_CLASS: ClassDefinition = {
     "profession1",
     "sleightOfHand"
   ],
-  savingThrows: {
-    [SavingThrow.FORTITUDE]: 0,
-    [SavingThrow.REFLEX]: 0,
-    [SavingThrow.WILL]: 2
-  },
-  baseAttackBonus: 0
+  levelModifiers: [
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 0,
+        [SavingThrow.REFLEX]: 0,
+        [SavingThrow.WILL]: 2
+      },
+      baseAttackBonus: 0
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 0,
+        [SavingThrow.REFLEX]: 0,
+        [SavingThrow.WILL]: 3
+      },
+      baseAttackBonus: 1
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 1,
+        [SavingThrow.REFLEX]: 1,
+        [SavingThrow.WILL]: 3
+      },
+      baseAttackBonus: 2
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 1,
+        [SavingThrow.REFLEX]: 1,
+        [SavingThrow.WILL]: 4
+      },
+      baseAttackBonus: 3
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 1,
+        [SavingThrow.REFLEX]: 1,
+        [SavingThrow.WILL]: 4
+      },
+      baseAttackBonus: 3
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 2,
+        [SavingThrow.REFLEX]: 2,
+        [SavingThrow.WILL]: 5
+      },
+      baseAttackBonus: 4
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 2,
+        [SavingThrow.REFLEX]: 2,
+        [SavingThrow.WILL]: 5
+      },
+      baseAttackBonus: 5
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 2,
+        [SavingThrow.REFLEX]: 2,
+        [SavingThrow.WILL]: 6
+      },
+      baseAttackBonus: 6
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 3,
+        [SavingThrow.REFLEX]: 3,
+        [SavingThrow.WILL]: 6
+      },
+      baseAttackBonus: 6
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 3,
+        [SavingThrow.REFLEX]: 3,
+        [SavingThrow.WILL]: 7
+      },
+      baseAttackBonus: 7
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 3,
+        [SavingThrow.REFLEX]: 3,
+        [SavingThrow.WILL]: 7
+      },
+      baseAttackBonus: 8
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 4,
+        [SavingThrow.REFLEX]: 4,
+        [SavingThrow.WILL]: 8
+      },
+      baseAttackBonus: 9
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 4,
+        [SavingThrow.REFLEX]: 4,
+        [SavingThrow.WILL]: 8
+      },
+      baseAttackBonus: 9
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 4,
+        [SavingThrow.REFLEX]: 4,
+        [SavingThrow.WILL]: 9
+      },
+      baseAttackBonus: 10
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 5,
+        [SavingThrow.REFLEX]: 5,
+        [SavingThrow.WILL]: 9
+      },
+      baseAttackBonus: 11
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 5,
+        [SavingThrow.REFLEX]: 5,
+        [SavingThrow.WILL]: 10
+      },
+      baseAttackBonus: 12
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 5,
+        [SavingThrow.REFLEX]: 5,
+        [SavingThrow.WILL]: 10
+      },
+      baseAttackBonus: 12
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 6,
+        [SavingThrow.REFLEX]: 6,
+        [SavingThrow.WILL]: 11
+      },
+      baseAttackBonus: 13
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 6,
+        [SavingThrow.REFLEX]: 6,
+        [SavingThrow.WILL]: 11
+      },
+      baseAttackBonus: 14
+    },
+    {
+      savingThrows: {
+        [SavingThrow.FORTITUDE]: 6,
+        [SavingThrow.REFLEX]: 6,
+        [SavingThrow.WILL]: 12
+      },
+      baseAttackBonus: 15
+    }
+  ]
 };
 
 const classDefinitions = {

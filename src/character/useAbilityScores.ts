@@ -22,9 +22,9 @@ export interface AbilityScoreModifiers extends AbilityScores {
   unspecified?: number;
 }
 
-const sumOfPositive = (a, b) => a + (b > 0 ? b : 0);
-
-const sumPositiveObjectValues = obj => Object.values(obj).reduce(sumOfPositive);
+const sumOfPositive = (a: number, b: number) => a + (b > 0 ? b : 0);
+const sumPositiveObjectValues = (obj: AbilityScores) =>
+  Object.values(obj).reduce(sumOfPositive);
 
 const useAbilityScores = (): {
   abilityScores: AbilityScores;
@@ -55,6 +55,7 @@ const useAbilityScores = (): {
       baseAbilityScores
     )
   );
+
   const canIncrement = (key: keyof AbilityScores) =>
     abilityScores[key]! < 18 &&
     (sumPositiveObjectValues(baseAbilityScores) < 10 ||

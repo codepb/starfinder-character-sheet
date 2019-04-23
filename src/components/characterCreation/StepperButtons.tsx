@@ -16,12 +16,14 @@ const styles: Record<string, CSSProperties> = {
 interface StepperButtonsProps {
   onNext?(): void;
   onPrevious?(): void;
+  final?: boolean;
   classes: Record<string, string>;
 }
 
 const StepperButtons: React.FC<StepperButtonsProps> = ({
   onPrevious,
   onNext,
+  final,
   classes
 }) => (
   <div className={classes.container}>
@@ -29,7 +31,6 @@ const StepperButtons: React.FC<StepperButtonsProps> = ({
       <Button
         className={classes.previous}
         variant="contained"
-        color="primary"
         onClick={onPrevious}
       >
         Back
@@ -42,7 +43,7 @@ const StepperButtons: React.FC<StepperButtonsProps> = ({
         color="primary"
         onClick={onNext}
       >
-        Next
+        {final ? "Finish" : "Next"}
       </Button>
     )}
   </div>

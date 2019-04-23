@@ -1,6 +1,5 @@
 import useAbilityScores from "./useAbilityScores";
-import useBasicStats from "./useBasicStats";
-import { classDefinitions } from "../rules/classes";
+import { useBaseAttackBonus } from "../services/classService";
 
 export interface AttackBonuses {
   ranged: number;
@@ -10,8 +9,7 @@ export interface AttackBonuses {
 
 const useAttackBonuses = (): AttackBonuses => {
   const { abilityModifiers } = useAbilityScores();
-  const { basicStats } = useBasicStats();
-  const baseAttackBonus = classDefinitions[basicStats.class].baseAttackBonus;
+  const baseAttackBonus = useBaseAttackBonus();
   return {
     ranged: baseAttackBonus + (abilityModifiers.dexterity || 0),
     melee: baseAttackBonus + (abilityModifiers.strength || 0),

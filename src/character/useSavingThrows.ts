@@ -1,6 +1,5 @@
 import useAbilityScores from "./useAbilityScores";
-import useBasicStats from "./useBasicStats";
-import { classDefinitions } from "../rules/classes";
+import { useClassSavingThrows } from "../services/classService";
 
 export interface SavingThrows {
   fortitude: number;
@@ -10,15 +9,11 @@ export interface SavingThrows {
 
 const useSavingThrows = (): SavingThrows => {
   const { abilityModifiers } = useAbilityScores();
-  const { basicStats } = useBasicStats();
-  const characterClass = classDefinitions[basicStats.class];
+  const savingThrows = useClassSavingThrows();
   return {
-    fortitude:
-      characterClass.savingThrows.fortitude +
-      (abilityModifiers.constitution || 0),
-    reflex:
-      characterClass.savingThrows.reflex + (abilityModifiers.dexterity || 0),
-    will: characterClass.savingThrows.will + (abilityModifiers.wisdom || 0)
+    fortitude: savingThrows.fortitude + (abilityModifiers.constitution || 0),
+    reflex: savingThrows.reflex + (abilityModifiers.dexterity || 0),
+    will: savingThrows.will + (abilityModifiers.wisdom || 0)
   };
 };
 

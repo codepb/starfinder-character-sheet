@@ -1,9 +1,8 @@
 import * as React from "react";
-import { SetStateAction } from "react";
 import CharacterContext from "./CharacterContext";
 import { forEachKey } from "../helpers/objectHelpers";
 import useAbilityScores, { AbilityScores } from "./useAbilityScores";
-import { classDefinitions, ClassDefinition } from "../rules/classes";
+import { useClassSkills } from "../services/classService";
 
 export interface Skills {
   acrobatics?: boolean;
@@ -113,12 +112,10 @@ const skillDefinitions: SkillDefinitions = {
 
 const calculateSkillLevel = (
   baseSkills: Skills,
-  classDefinition: ClassDefinition,
+  classSkills: (keyof Skills)[],
   abilityModifiers: AbilityScores
 ) => (skill: keyof Skills) => {
-  const classSkillModifier = classDefinition.classSkills.includes(skill)
-    ? 3
-    : 0;
+  const classSkillModifier = classSkills.includes(skill) ? 3 : 0;
   const abilityModifier =
     abilityModifiers[skillDefinitions[skill].ability] || 0;
   return baseSkills[skill] ? 1 + classSkillModifier + abilityModifier : 0;
@@ -132,14 +129,10 @@ const useSkills = (): {
   checkSkill: (key: keyof Skills) => void;
   uncheckSkill: (key: keyof Skills) => void;
 } => {
-  const [
-    {
-      baseSkills,
-      basicStats: { class: characterClass }
-    },
-    { setBaseSkills }
-  ] = React.useContext(CharacterContext);
-  const classDefinition = classDefinitions[characterClass];
+  const [{ baseSkills }, { setBaseSkills }] = React.useContext(
+    CharacterContext
+  );
+  const classSkills = useClassSkills();
   const updateBaseSkill = (key: keyof Skills, newValue: boolean) => {
     setBaseSkills(baseSkills => ({
       ...baseSkills,
@@ -149,14 +142,14 @@ const useSkills = (): {
   const { abilityModifiers } = useAbilityScores();
   const calculateSkill = calculateSkillLevel(
     baseSkills,
-    classDefinition,
+    classSkills,
     abilityModifiers
   );
   const skillLevels = <SkillLevels>forEachKey(calculateSkill, skillDefinitions);
   return {
     skillLevels,
     baseSkills,
-    classSkills: classDefinition.classSkills,
+    classSkills: classSkills,
     trainedSkills: (Object.keys(baseSkills) as (keyof Skills)[]).filter(
       k => baseSkills[k]
     ),

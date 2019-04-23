@@ -1,5 +1,5 @@
 import * as React from "react";
-import useAbilityScores, { AbilityScores } from "./useAbilityScores";
+import { AbilityScores } from "./useAbilityScores";
 import { Race } from "../rules/races";
 import { Skills } from "./useSkills";
 import { Theme } from "../rules/themes";
@@ -19,7 +19,7 @@ interface Character {
 export interface BasicStats {
   race: Race;
   theme: Theme;
-  class: Class;
+  classLevels: Record<Class, number>;
 }
 
 export interface Details {
@@ -59,7 +59,7 @@ const initialBaseSkills: Skills = persistedCharacter[1] || {};
 const initalBasicStats: BasicStats = persistedCharacter[2] || {
   race: Race.ANDROID,
   theme: Theme.THEMELESS,
-  class: Class.Envoy
+  classLevels: { [Class.Envoy]: 1 }
 };
 
 const initialDetails: Details = persistedCharacter[3] || {

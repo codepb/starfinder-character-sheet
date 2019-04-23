@@ -2,6 +2,10 @@ import { classDefinitions } from "../rules/classes";
 import useAbilityScores from "./useAbilityScores";
 import { raceDetails } from "../rules/races";
 import useBasicStats from "./useBasicStats";
+import {
+  useClassHealthAndStamina,
+  useKeyAbilityScore
+} from "../services/classService";
 
 const useHealth = (): {
   stamina: number;
@@ -10,12 +14,13 @@ const useHealth = (): {
 } => {
   const { basicStats } = useBasicStats();
   const { abilityModifiers } = useAbilityScores();
-  const characterClass = classDefinitions[basicStats.class];
+  const healthAndStamina = useClassHealthAndStamina();
   const race = raceDetails[basicStats.race];
+  const keyAbilityScore = useKeyAbilityScore();
   return {
-    stamina: characterClass.stamina + (abilityModifiers.constitution || 0),
-    health: characterClass.hp + race.hp,
-    resolve: 1 + (abilityModifiers[characterClass.keyAbility] || 0)
+    stamina: healthAndStamina.stamina + (abilityModifiers.constitution || 0),
+    health: healthAndStamina.hp + race.hp,
+    resolve: 1 + keyAbilityScore
   };
 };
 

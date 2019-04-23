@@ -6,7 +6,8 @@ import { Race } from "../rules/races";
 
 const useBasicStats = (): {
   basicStats: BasicStats;
-  setClass: (newClass: Class) => void;
+  setInitialClass: (newClass: Class) => void;
+  addClassLevel: (newClass: Class) => void;
   setTheme: (newTheme: Theme) => void;
   setRace: (newRace: Race) => void;
 } => {
@@ -15,7 +16,28 @@ const useBasicStats = (): {
   );
   return {
     basicStats,
-    setClass: newClass => setBasicStats({ ...basicStats, class: newClass }),
+    setInitialClass: newClass =>
+      setBasicStats(prev => {
+        const classLevels = Object.keys(prev.classLevels).reduce(
+          (rv, key) => ({ ...rv, [key]: 0 }),
+          {} as Record<Class, number>
+        );
+        return {
+          ...prev,
+          classLevels: {
+            ...classLevels,
+            [newClass]: 1
+          }
+        };
+      }),
+    addClassLevel: newClass =>
+      setBasicStats(prev => ({
+        ...prev,
+        classLevels: {
+          ...prev.classLevels,
+          [newClass]: (prev.classLevels[newClass] || 0) + 1
+        }
+      })),
     setTheme: newTheme => setBasicStats({ ...basicStats, theme: newTheme }),
     setRace: newRace => setBasicStats({ ...basicStats, race: newRace })
   };

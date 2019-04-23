@@ -14,16 +14,18 @@ const ClassSelection: React.FC<ClassSelectionProps> = ({
   onPrevious
 }) => {
   const {
-    basicStats: { class: characterClass },
-    setClass
+    basicStats: { classLevels },
+    setInitialClass
   } = useBasicStats();
+  const characterClass =
+    Object.keys(classLevels).find(k => classLevels[k] > 0) || Class.Envoy;
   return (
     <SelectionPage
       id="class-select"
       label="Class"
       options={Object.values(Class)}
       value={characterClass}
-      onChange={event => setClass(event.target.value as Class)}
+      onChange={event => setInitialClass(event.target.value as Class)}
       onNext={onNext}
       onPrevious={onPrevious}
     />
