@@ -16,18 +16,13 @@ const useBasicStats = (): {
   );
   return {
     basicStats,
-    setInitialClass: newClass =>
+    setInitialClass: (newClass: Class) =>
       setBasicStats(prev => {
-        const classLevels = Object.keys(prev.classLevels).reduce(
-          (rv, key) => ({ ...rv, [key]: 0 }),
-          {} as Record<Class, number>
-        );
         return {
           ...prev,
           classLevels: {
-            ...classLevels,
             [newClass]: 1
-          }
+          } as Record<Class, number>
         };
       }),
     addClassLevel: newClass =>
