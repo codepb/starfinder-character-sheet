@@ -16,5 +16,6 @@
     "jsx": "preserve",
     "lib": ["es2017", "dom"]
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["node_modules"]
 }

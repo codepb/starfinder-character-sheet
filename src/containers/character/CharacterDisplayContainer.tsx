@@ -14,23 +14,59 @@ import AttackBonuses from "../../components/characterDetails/AttackBonuses";
 import useAttackBonuses from "../../character/useAttackBonuses";
 import useArmorClasses from "../../character/useArmorClasses";
 import ArmorClasses from "../../components/characterDetails/ArmorClasses";
-import { Grid, withStyles, Typography } from "@material-ui/core";
+import { Grid, Typography, Button } from "@material-ui/core";
 import useDetails from "../../character/useDetails";
+import { useLevels } from "../../services/classService";
+import { useState } from "react";
+import AddLevel from "../../components/levels/AddLevel";
+import { Class } from "../../rules/classes";
+
+enum Page {
+  Sheet,
+  AddLevel
+}
 
 const CharacterDisplayContainer: React.FC = () => {
   const { abilityScores, abilityModifiers } = useAbilityScores();
   const { skillLevels, classSkills, trainedSkills } = useSkills();
+  const [page, setPage] = useState(Page.Sheet);
   const healthAndResolve = useHealth();
   const savingThrows = useSavingThrows();
   const initiative = useInitiative();
   const attackBonsues = useAttackBonuses();
   const armorClasses = useArmorClasses();
   const { details } = useDetails();
+  const levels = useLevels();
+  const [levelClass, setLevelClass] = useState(levels[0][0]);
+  const { addClassLevel } = useBasicStats();
+  if (page === Page.AddLevel) {
+    return (
+      <AddLevel
+        classes={Object.values(Class)}
+        currentClass={levelClass}
+        onChange={(selectedClass: string) =>
+          setLevelClass(selectedClass as Class)
+        }
+        onConfirm={() => {
+          addClassLevel(levelClass);
+          setPage(Page.Sheet);
+        }}
+        onGoBack={() => setPage(Page.Sheet)}
+      />
+    );
+  }
+
   return (
     <>
       <Typography variant="h3" align="center">
         {details.name}
       </Typography>
+      <Typography align="center">
+        {levels
+          .map(([characterClass, level]) => `${characterClass}(${level})`)
+          .join(" / ")}
+      </Typography>
+      <Button onClick={() => setPage(Page.AddLevel)}>Add Level</Button>
       <Grid container spacing={24}>
         <Grid item md={6} xs={12}>
           <Initiative initiative={initiative} />

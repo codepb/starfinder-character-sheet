@@ -6,7 +6,6 @@ import { Skills } from "../character/useSkills";
 import useAbilityScores from "../character/useAbilityScores";
 
 const getLevelModifiers = (className: Class, level: number) => {
-  console.log(classDefinitions, classDefinitions[className], className);
   return classDefinitions[className].levelModifiers[level - 1];
 };
 
@@ -21,7 +20,6 @@ const useClassSavingThrows = (): SavingThrows => {
   return useLevels().reduce(
     (rv, [currClass, currLevel]) => {
       const levelModifiers = getLevelModifiers(currClass as Class, currLevel);
-      console.log(levelModifiers, currClass, currLevel);
       return {
         [SavingThrow.FORTITUDE]:
           rv[SavingThrow.FORTITUDE] +
@@ -53,9 +51,10 @@ const useLevels = (): [Class, number][] => {
   if (!basicStats.classLevels) {
     return [];
   }
-  return Object.entries(basicStats.classLevels).filter(
-    (key, value) => value > 0
+  const filteredClasses = Object.entries(basicStats.classLevels).filter(
+    ([, value]) => value > 0
   ) as [Class, number][];
+  return filteredClasses;
 };
 
 const useClassHealthAndStamina = () => {
@@ -94,6 +93,7 @@ const useClassSkills = () => {
 };
 
 export {
+  useLevels,
   useBaseAttackBonus,
   useClassSavingThrows,
   useClassHealthAndStamina,
