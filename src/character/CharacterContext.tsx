@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 
 interface Character {
   baseAbilityScores: AbilityScores;
-  baseSkills: Skills;
+  skills: Skills[];
   basicStats: BasicStats;
   details: Details;
   characterCreated: boolean;
@@ -40,7 +40,7 @@ const persistedCharacter =
 interface CharacterUpdaters {
   setBaseAbilityScores: React.Dispatch<React.SetStateAction<AbilityScores>>;
   setBasicStats: React.Dispatch<React.SetStateAction<BasicStats>>;
-  setBaseSkills: React.Dispatch<React.SetStateAction<Skills>>;
+  setSkills: React.Dispatch<React.SetStateAction<Skills[]>>;
   setDetails: React.Dispatch<React.SetStateAction<Details>>;
   setCharacterCreated: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -54,7 +54,7 @@ const initialBaseAbilityScores: AbilityScores = persistedCharacter[0] || {
   wisdom: 0
 };
 
-const initialBaseSkills: Skills = persistedCharacter[1] || {};
+const initialSkills: Skills[] = persistedCharacter[1] || [];
 
 const initalBasicStats: BasicStats = persistedCharacter[2] || {
   race: Race.ANDROID,
@@ -74,7 +74,7 @@ const initialDetails: Details = persistedCharacter[3] || {
 
 const initialCharacter: Character = {
   baseAbilityScores: initialBaseAbilityScores,
-  baseSkills: initialBaseSkills,
+  skills: initialSkills,
   basicStats: initalBasicStats,
   details: initialDetails,
   characterCreated: false
@@ -84,7 +84,7 @@ const initialContext: [Character, CharacterUpdaters] = [
   initialCharacter,
   {
     setBaseAbilityScores: () => {},
-    setBaseSkills: () => {},
+    setSkills: () => {},
     setBasicStats: () => {},
     setDetails: () => {},
     setCharacterCreated: () => {}
@@ -99,14 +99,14 @@ const CharacterProvider: React.FC<React.Attributes> = ({ children }) => {
   const [baseAbilityScores, setBaseAbilityScores] = useState(
     initialBaseAbilityScores
   );
-  const [baseSkills, setBaseSkills] = useState(initialBaseSkills);
+  const [skills, setSkills] = useState(initialSkills);
   const [basicStats, setBasicStats] = useState(initalBasicStats);
   const [details, setDetails] = useState(initialDetails);
   const [characterCreated, setCharacterCreated] = useState(
     persistedCharacterJSON != null
   );
 
-  const characterState = [baseAbilityScores, baseSkills, basicStats, details];
+  const characterState = [baseAbilityScores, skills, basicStats, details];
 
   useEffect(() => {
     localStorage.setItem("character", JSON.stringify(characterState));
@@ -116,14 +116,14 @@ const CharacterProvider: React.FC<React.Attributes> = ({ children }) => {
       value={[
         {
           baseAbilityScores,
-          baseSkills,
+          skills,
           basicStats,
           details,
           characterCreated
         },
         {
           setBaseAbilityScores,
-          setBaseSkills,
+          setSkills,
           setBasicStats,
           setDetails,
           setCharacterCreated

@@ -3,6 +3,7 @@ import CharacterContext from "./CharacterContext";
 import { forEachKey } from "../helpers/objectHelpers";
 import useAbilityScores, { AbilityScores } from "./useAbilityScores";
 import { useClassSkills } from "../services/classService";
+import { object } from "prop-types";
 
 export interface Skills {
   acrobatics?: boolean;
@@ -110,15 +111,22 @@ const skillDefinitions: SkillDefinitions = {
   survival: { ability: "wisdom" }
 };
 
+const getSkillLevel = (skills: Skills[], skill: keyof Skills) => {
+  return skills.map(s => s[skill]).reduce((rv, curr) => rv + (curr ? 1 : 0), 0);
+};
+
 const calculateSkillLevel = (
-  baseSkills: Skills,
+  skills: Skills[],
   classSkills: (keyof Skills)[],
   abilityModifiers: AbilityScores
 ) => (skill: keyof Skills) => {
   const classSkillModifier = classSkills.includes(skill) ? 3 : 0;
   const abilityModifier =
     abilityModifiers[skillDefinitions[skill].ability] || 0;
-  return baseSkills[skill] ? 1 + classSkillModifier + abilityModifier : 0;
+  const totalSkillLevel = getSkillLevel(skills, skill);
+  return totalSkillLevel > 0
+    ? totalSkillLevel + classSkillModifier + abilityModifier
+    : abilityModifier;
 };
 
 const useSkills = (): {
@@ -129,29 +137,32 @@ const useSkills = (): {
   checkSkill: (key: keyof Skills) => void;
   uncheckSkill: (key: keyof Skills) => void;
 } => {
-  const [{ baseSkills }, { setBaseSkills }] = React.useContext(
-    CharacterContext
-  );
+  const [{ skills }, { setSkills }] = React.useContext(CharacterContext);
   const classSkills = useClassSkills();
   const updateBaseSkill = (key: keyof Skills, newValue: boolean) => {
-    setBaseSkills(baseSkills => ({
-      ...baseSkills,
-      [key]: newValue
-    }));
+    setSkills(skills => {
+      const newSkills = [...skills];
+      newSkills[0] = { ...newSkills[0], [key]: newValue };
+      return newSkills;
+    });
   };
   const { abilityModifiers } = useAbilityScores();
   const calculateSkill = calculateSkillLevel(
-    baseSkills,
+    skills,
     classSkills,
     abilityModifiers
   );
   const skillLevels = <SkillLevels>forEachKey(calculateSkill, skillDefinitions);
   return {
     skillLevels,
-    baseSkills,
+    baseSkills: skills[0] || {},
     classSkills: classSkills,
-    trainedSkills: (Object.keys(baseSkills) as (keyof Skills)[]).filter(
-      k => baseSkills[k]
+    trainedSkills: skills.reduce(
+      (rv, curr) => [
+        ...rv,
+        ...(Object.keys(curr).filter(k => curr[k]) as (keyof Skills)[])
+      ],
+      [] as (keyof Skills)[]
     ),
     checkSkill: (key: keyof Skills) => updateBaseSkill(key, true),
     uncheckSkill: (key: keyof Skills) => updateBaseSkill(key, false)
