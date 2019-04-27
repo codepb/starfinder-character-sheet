@@ -3,7 +3,6 @@ import CharacterContext from "./CharacterContext";
 import { forEachKey } from "../helpers/objectHelpers";
 import useAbilityScores, { AbilityScores } from "./useAbilityScores";
 import { useClassSkills } from "../services/classService";
-import { object } from "prop-types";
 
 export interface Skills {
   acrobatics?: boolean;
@@ -131,18 +130,19 @@ const calculateSkillLevel = (
 
 const useSkills = (): {
   skillLevels: SkillLevels;
+  skills: Skills[];
   baseSkills: Skills;
   classSkills: (keyof Skills)[];
   trainedSkills: (keyof Skills)[];
-  checkSkill: (key: keyof Skills) => void;
-  uncheckSkill: (key: keyof Skills) => void;
+  checkSkill: (key: keyof Skills, level?: number) => void;
+  uncheckSkill: (key: keyof Skills, level?: number) => void;
 } => {
   const [{ skills }, { setSkills }] = React.useContext(CharacterContext);
   const classSkills = useClassSkills();
-  const updateBaseSkill = (key: keyof Skills, newValue: boolean) => {
+  const updateSkill = (key: keyof Skills, newValue: boolean, level: number) => {
     setSkills(skills => {
       const newSkills = [...skills];
-      newSkills[0] = { ...newSkills[0], [key]: newValue };
+      newSkills[level - 1] = { ...newSkills[level - 1], [key]: newValue };
       return newSkills;
     });
   };
@@ -155,6 +155,7 @@ const useSkills = (): {
   const skillLevels = <SkillLevels>forEachKey(calculateSkill, skillDefinitions);
   return {
     skillLevels,
+    skills,
     baseSkills: skills[0] || {},
     classSkills: classSkills,
     trainedSkills: skills.reduce(
@@ -164,8 +165,10 @@ const useSkills = (): {
       ],
       [] as (keyof Skills)[]
     ),
-    checkSkill: (key: keyof Skills) => updateBaseSkill(key, true),
-    uncheckSkill: (key: keyof Skills) => updateBaseSkill(key, false)
+    checkSkill: (key: keyof Skills, level?: number) =>
+      updateSkill(key, true, level || 1),
+    uncheckSkill: (key: keyof Skills, level?: number) =>
+      updateSkill(key, false, level || 1)
   };
 };
 

@@ -20,15 +20,25 @@ import { useLevels } from "../../services/classService";
 import { useState } from "react";
 import AddLevel from "../../components/levels/AddLevel";
 import { Class } from "../../rules/classes";
+import AssignSkills from "../../components/skills/AssignSkills";
+import NotesContainer from "../notes/NotesContainer";
 
 enum Page {
   Sheet,
-  AddLevel
+  AddLevel,
+  AddSkills
 }
 
 const CharacterDisplayContainer: React.FC = () => {
   const { abilityScores, abilityModifiers } = useAbilityScores();
-  const { skillLevels, classSkills, trainedSkills } = useSkills();
+  const {
+    skillLevels,
+    classSkills,
+    trainedSkills,
+    skills,
+    checkSkill,
+    uncheckSkill
+  } = useSkills();
   const [page, setPage] = useState(Page.Sheet);
   const healthAndResolve = useHealth();
   const savingThrows = useSavingThrows();
@@ -39,6 +49,8 @@ const CharacterDisplayContainer: React.FC = () => {
   const levels = useLevels();
   const [levelClass, setLevelClass] = useState(levels[0][0]);
   const { addClassLevel } = useBasicStats();
+
+  const currentLevel = levels.reduce((rv, curr) => curr[1] + rv, 0);
   if (page === Page.AddLevel) {
     return (
       <AddLevel
@@ -49,10 +61,28 @@ const CharacterDisplayContainer: React.FC = () => {
         }
         onConfirm={() => {
           addClassLevel(levelClass);
-          setPage(Page.Sheet);
+          setPage(Page.AddSkills);
         }}
         onGoBack={() => setPage(Page.Sheet)}
       />
+    );
+  }
+
+  if (page === Page.AddSkills) {
+    return (
+      <>
+        <AssignSkills
+          skillLevels={skillLevels}
+          skills={skills[currentLevel - 1] || {}}
+          onSkillChange={(key, value) => {
+            value
+              ? checkSkill(key, currentLevel)
+              : uncheckSkill(key, currentLevel);
+          }}
+          classSkills={classSkills}
+        />
+        <Button onClick={() => setPage(Page.Sheet)}>Finish</Button>
+      </>
     );
   }
 
@@ -98,6 +128,9 @@ const CharacterDisplayContainer: React.FC = () => {
             classSkills={classSkills}
             trainedSkills={trainedSkills}
           />
+        </Grid>
+        <Grid item md={6} xs={12}>
+          <NotesContainer />
         </Grid>
       </Grid>
     </>

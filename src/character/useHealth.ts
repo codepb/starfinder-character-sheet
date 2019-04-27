@@ -1,4 +1,3 @@
-import { classDefinitions } from "../rules/classes";
 import useAbilityScores from "./useAbilityScores";
 import { raceDetails } from "../rules/races";
 import useBasicStats from "./useBasicStats";
