@@ -12,7 +12,8 @@ import {
   TableRow,
   TableCell,
   Button,
-  TableBody
+  TableBody,
+  TextField
 } from "@material-ui/core";
 import { alertRoll } from "../../services/dice";
 
@@ -26,6 +27,13 @@ const styles = {
   },
   skillName: {
     paddingLeft: 5
+  },
+  misc: {
+    width: 40,
+    margin: 0
+  },
+  miscInput: {
+    fontSize: "0.8125rem"
   }
 };
 
@@ -33,6 +41,8 @@ interface SkillsDisplayProps {
   skillLevels: SkillLevels;
   classSkills: (keyof Skills)[];
   trainedSkills: (keyof Skills)[];
+  miscSkills: SkillLevels;
+  updateMiscSkill(key: keyof Skills, value: number);
   classes: any;
 }
 
@@ -40,6 +50,8 @@ const SkillsDisplay: React.FC<SkillsDisplayProps> = ({
   skillLevels,
   classSkills,
   trainedSkills,
+  miscSkills,
+  updateMiscSkill,
   classes
 }) => {
   return (
@@ -57,12 +69,34 @@ const SkillsDisplay: React.FC<SkillsDisplayProps> = ({
                   [classes.unusable]: unusable
                 })}
               >
-                <TableCell className={classes.classSkill}>
+                <TableCell className={classes.classSkill} padding="dense">
                   {classSkills.includes(k as keyof Skills) ? "*" : ""}
                 </TableCell>
-                <TableCell className={classes.skillName}>{k}</TableCell>
-                <TableCell>{unusable ? "" : skillLevels[k]}</TableCell>
-                <TableCell>
+                <TableCell className={classes.skillName} padding="dense">
+                  {k}
+                </TableCell>
+                <TableCell padding="dense">
+                  {unusable ? "" : skillLevels[k]}
+                </TableCell>
+                <TableCell padding="dense">
+                  <TextField
+                    className={classes.misc}
+                    type="number"
+                    value={miscSkills[k] || 0}
+                    onChange={e =>
+                      updateMiscSkill(k as keyof Skills, Number(e.target.value))
+                    }
+                    InputLabelProps={{
+                      shrink: true
+                    }}
+                    InputProps={{
+                      disableUnderline: true,
+                      className: classes.miscInput
+                    }}
+                    margin="normal"
+                  />
+                </TableCell>
+                <TableCell padding="dense">
                   {unusable ? (
                     ""
                   ) : (

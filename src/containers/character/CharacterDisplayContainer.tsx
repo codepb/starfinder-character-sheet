@@ -37,7 +37,9 @@ const CharacterDisplayContainer: React.FC = () => {
     trainedSkills,
     skills,
     checkSkill,
-    uncheckSkill
+    uncheckSkill,
+    miscSkills,
+    updateMiscSkill
   } = useSkills();
   const [page, setPage] = useState(Page.Sheet);
   const healthAndResolve = useHealth();
@@ -127,6 +129,8 @@ const CharacterDisplayContainer: React.FC = () => {
             skillLevels={skillLevels}
             classSkills={classSkills}
             trainedSkills={trainedSkills}
+            miscSkills={miscSkills}
+            updateMiscSkill={updateMiscSkill}
           />
         </Grid>
         <Grid item md={6} xs={12}>

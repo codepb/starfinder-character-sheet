@@ -135,8 +135,10 @@ const useSkills = (): {
   baseSkills: Skills;
   classSkills: (keyof Skills)[];
   trainedSkills: (keyof Skills)[];
-  checkSkill: (key: keyof Skills, level?: number) => void;
-  uncheckSkill: (key: keyof Skills, level?: number) => void;
+  miscSkills: SkillLevels;
+  updateMiscSkill(key: keyof Skills, value: number): void;
+  checkSkill(key: keyof Skills, level?: number): void;
+  uncheckSkill(key: keyof Skills, level?: number): void;
 } => {
   const [{ skills }, { setSkills }] = React.useContext(CharacterContext);
   const classSkills = useClassSkills();
@@ -166,6 +168,12 @@ const useSkills = (): {
       ],
       [] as (keyof Skills)[]
     ),
+    miscSkills: skills.misc,
+    updateMiscSkill: (key: keyof Skills, value: number) =>
+      setSkills(skills => {
+        const newMiscSkills = { ...skills.misc, [key]: value };
+        return { levels: skills.levels, misc: newMiscSkills };
+      }),
     checkSkill: (key: keyof Skills, level?: number) =>
       updateSkill(key, true, level || 1),
     uncheckSkill: (key: keyof Skills, level?: number) =>
