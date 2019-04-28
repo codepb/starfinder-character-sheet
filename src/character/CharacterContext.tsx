@@ -1,7 +1,7 @@
 import * as React from "react";
 import { AbilityScores } from "./useAbilityScores";
 import { Race } from "../rules/races";
-import { Skills } from "./useSkills";
+import { Skills, SkillLevels } from "./useSkills";
 import { Theme } from "../rules/themes";
 import { Class } from "../rules/classes";
 import Alignment from "../rules/alignments";
@@ -9,9 +9,14 @@ import Size from "../rules/Size";
 import { useEffect, useState } from "react";
 import { mergeDeep } from "../helpers/objectHelpers";
 
+export interface SkillsLevels {
+  levels: Skills[];
+  misc: SkillLevels;
+}
+
 interface Character {
   baseAbilityScores: AbilityScores;
-  skills: Skills[];
+  skills: SkillsLevels;
   basicStats: BasicStats;
   details: Details;
   characterCreated: boolean;
@@ -42,7 +47,7 @@ const persistedCharacter =
 interface CharacterUpdaters {
   setBaseAbilityScores: React.Dispatch<React.SetStateAction<AbilityScores>>;
   setBasicStats: React.Dispatch<React.SetStateAction<BasicStats>>;
-  setSkills: React.Dispatch<React.SetStateAction<Skills[]>>;
+  setSkills: React.Dispatch<React.SetStateAction<SkillsLevels>>;
   setDetails: React.Dispatch<React.SetStateAction<Details>>;
   setCharacterCreated: React.Dispatch<React.SetStateAction<boolean>>;
   setNotes: React.Dispatch<React.SetStateAction<string>>;
@@ -60,7 +65,10 @@ const initialBaseAbilityScores: AbilityScores = mergeDeep(
   persistedCharacter[0]
 );
 
-const initialSkills: Skills[] = persistedCharacter[1] || [];
+const initialSkills: SkillsLevels = mergeDeep(
+  { levels: [], misc: {} },
+  persistedCharacter[1]
+);
 
 const initalBasicStats: BasicStats = mergeDeep(
   {

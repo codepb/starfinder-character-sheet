@@ -1,5 +1,5 @@
 import * as React from "react";
-import CharacterContext from "./CharacterContext";
+import CharacterContext, { SkillsLevels } from "./CharacterContext";
 import { forEachKey } from "../helpers/objectHelpers";
 import useAbilityScores, { AbilityScores } from "./useAbilityScores";
 import { useClassSkills } from "../services/classService";
@@ -115,17 +115,18 @@ const getSkillLevel = (skills: Skills[], skill: keyof Skills) => {
 };
 
 const calculateSkillLevel = (
-  skills: Skills[],
+  skills: SkillsLevels,
   classSkills: (keyof Skills)[],
   abilityModifiers: AbilityScores
 ) => (skill: keyof Skills) => {
   const classSkillModifier = classSkills.includes(skill) ? 3 : 0;
   const abilityModifier =
     abilityModifiers[skillDefinitions[skill].ability] || 0;
-  const totalSkillLevel = getSkillLevel(skills, skill);
+  const totalSkillLevel = getSkillLevel(skills.levels, skill);
+  const misc = skills.misc[skill] || 0;
   return totalSkillLevel > 0
-    ? totalSkillLevel + classSkillModifier + abilityModifier
-    : abilityModifier;
+    ? totalSkillLevel + classSkillModifier + abilityModifier + misc
+    : abilityModifier + misc;
 };
 
 const useSkills = (): {
@@ -141,9 +142,9 @@ const useSkills = (): {
   const classSkills = useClassSkills();
   const updateSkill = (key: keyof Skills, newValue: boolean, level: number) => {
     setSkills(skills => {
-      const newSkills = [...skills];
+      const newSkills = [...skills.levels];
       newSkills[level - 1] = { ...newSkills[level - 1], [key]: newValue };
-      return newSkills;
+      return { levels: newSkills, misc: skills.misc };
     });
   };
   const { abilityModifiers } = useAbilityScores();
@@ -155,10 +156,10 @@ const useSkills = (): {
   const skillLevels = <SkillLevels>forEachKey(calculateSkill, skillDefinitions);
   return {
     skillLevels,
-    skills,
-    baseSkills: skills[0] || {},
+    skills: skills.levels,
+    baseSkills: skills.levels[0] || {},
     classSkills: classSkills,
-    trainedSkills: skills.reduce(
+    trainedSkills: skills.levels.reduce(
       (rv, curr) => [
         ...rv,
         ...(Object.keys(curr).filter(k => curr[k]) as (keyof Skills)[])
