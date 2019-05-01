@@ -9,7 +9,7 @@ const DisplayAbilityScoresContainer: React.FC = () => {
     miscAbilityScores,
     setMisc
   } = useAbilityScores();
-  console.log(miscAbilityScores);
+
   return (
     <AbilityScoreModifiers
       abilityScores={abilityScores}
