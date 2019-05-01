@@ -14,8 +14,13 @@ export interface SkillsLevels {
   misc: SkillLevels;
 }
 
+export interface AbilityLevels {
+  levels: AbilityScores[];
+  misc: AbilityScores;
+}
+
 interface Character {
-  baseAbilityScores: AbilityScores;
+  abilityLevels: AbilityLevels;
   skills: SkillsLevels;
   basicStats: BasicStats;
   details: Details;
@@ -45,7 +50,7 @@ const persistedCharacter =
   persistedCharacterJSON != null ? JSON.parse(persistedCharacterJSON) : [];
 
 interface CharacterUpdaters {
-  setBaseAbilityScores: React.Dispatch<React.SetStateAction<AbilityScores>>;
+  setAbilityLevels: React.Dispatch<React.SetStateAction<AbilityLevels>>;
   setBasicStats: React.Dispatch<React.SetStateAction<BasicStats>>;
   setSkills: React.Dispatch<React.SetStateAction<SkillsLevels>>;
   setDetails: React.Dispatch<React.SetStateAction<Details>>;
@@ -53,14 +58,26 @@ interface CharacterUpdaters {
   setNotes: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const initialBaseAbilityScores: AbilityScores = mergeDeep(
+const initialAbilityLevels: AbilityLevels = mergeDeep(
   {
-    strength: 0,
-    charisma: 0,
-    constitution: 0,
-    dexterity: 0,
-    intelligence: 0,
-    wisdom: 0
+    levels: [
+      {
+        strength: 0,
+        charisma: 0,
+        constitution: 0,
+        dexterity: 0,
+        intelligence: 0,
+        wisdom: 0
+      }
+    ],
+    misc: {
+      strength: 0,
+      charisma: 0,
+      constitution: 0,
+      dexterity: 0,
+      intelligence: 0,
+      wisdom: 0
+    }
   },
   persistedCharacter[0]
 );
@@ -95,7 +112,7 @@ const initialDetails: Details = mergeDeep(
 const initialNotes: string = persistedCharacter[4] || "";
 
 const initialCharacter: Character = {
-  baseAbilityScores: initialBaseAbilityScores,
+  abilityLevels: initialAbilityLevels,
   skills: initialSkills,
   basicStats: initalBasicStats,
   details: initialDetails,
@@ -106,7 +123,7 @@ const initialCharacter: Character = {
 const initialContext: [Character, CharacterUpdaters] = [
   initialCharacter,
   {
-    setBaseAbilityScores: () => {},
+    setAbilityLevels: () => {},
     setSkills: () => {},
     setBasicStats: () => {},
     setDetails: () => {},
@@ -120,9 +137,7 @@ const CharacterContext: React.Context<
 > = React.createContext(initialContext);
 
 const CharacterProvider: React.FC<React.Attributes> = ({ children }) => {
-  const [baseAbilityScores, setBaseAbilityScores] = useState(
-    initialBaseAbilityScores
-  );
+  const [abilityLevels, setAbilityLevels] = useState(initialAbilityLevels);
   const [skills, setSkills] = useState(initialSkills);
   const [basicStats, setBasicStats] = useState(initalBasicStats);
   const [details, setDetails] = useState(initialDetails);
@@ -131,13 +146,7 @@ const CharacterProvider: React.FC<React.Attributes> = ({ children }) => {
   );
   const [notes, setNotes] = useState(initialNotes);
 
-  const characterState = [
-    baseAbilityScores,
-    skills,
-    basicStats,
-    details,
-    notes
-  ];
+  const characterState = [abilityLevels, skills, basicStats, details, notes];
 
   useEffect(() => {
     localStorage.setItem("character", JSON.stringify(characterState));
@@ -146,7 +155,7 @@ const CharacterProvider: React.FC<React.Attributes> = ({ children }) => {
     <CharacterContext.Provider
       value={[
         {
-          baseAbilityScores,
+          abilityLevels,
           skills,
           basicStats,
           details,
@@ -154,7 +163,7 @@ const CharacterProvider: React.FC<React.Attributes> = ({ children }) => {
           notes
         },
         {
-          setBaseAbilityScores,
+          setAbilityLevels: setAbilityLevels,
           setSkills,
           setBasicStats,
           setDetails,

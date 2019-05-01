@@ -1,9 +1,6 @@
 import * as React from "react";
 import CharacterContext from "./CharacterContext";
 import { forEachKey } from "../helpers/objectHelpers";
-import { classDefinitions } from "../rules/classes";
-import { raceDetails } from "../rules/races";
-import { themeDetails } from "../rules/themes";
 import {
   calculateAbilityScore,
   calculateAbilityModifier
@@ -30,65 +27,103 @@ const useAbilityScores = (): {
   abilityScores: AbilityScores;
   abilityModifiers: AbilityScores;
   baseAbilityScores: AbilityScores;
+  miscAbilityScores: AbilityScores;
   canIncrement: (keyof AbilityScores)[];
   canDecrement: (keyof AbilityScores)[];
   pointsRemaining: number;
   increment: (key: keyof AbilityScores) => void;
   decrement: (key: keyof AbilityScores) => void;
+  setMisc: (key: keyof AbilityScores, value: number) => void;
 } => {
   const [
     {
-      baseAbilityScores,
+      abilityLevels,
       basicStats: { race, theme }
     },
-    { setBaseAbilityScores }
+    { setAbilityLevels }
   ] = React.useContext(CharacterContext);
   const abilityScores = <AbilityScores>(
     forEachKey(
-      calculateAbilityScore(baseAbilityScores, race, theme),
-      baseAbilityScores
+      calculateAbilityScore(abilityLevels, race, theme),
+      abilityLevels.misc
     )
   );
   const abilityModifiers = <AbilityScores>(
     forEachKey(
-      calculateAbilityModifier(baseAbilityScores, race, theme),
-      baseAbilityScores
+      calculateAbilityModifier(abilityLevels, race, theme),
+      abilityLevels.misc
     )
   );
 
   const canIncrement = (key: keyof AbilityScores) =>
     abilityScores[key]! < 18 &&
-    (sumPositiveObjectValues(baseAbilityScores) < 10 ||
-      baseAbilityScores[key]! < 0);
+    (sumPositiveObjectValues(abilityLevels.levels[0]) < 10 ||
+      abilityLevels.levels[0][key]! < 0);
   const canDecrement = (key: keyof AbilityScores) => abilityScores[key]! > 0;
-  const abilityKeys = Object.keys(baseAbilityScores) as (keyof AbilityScores)[];
+  const abilityKeys = Object.keys(
+    abilityLevels.misc
+  ) as (keyof AbilityScores)[];
+  const baseAbilityScores = abilityLevels.levels[0];
   return {
     abilityScores,
     abilityModifiers,
     baseAbilityScores,
+    miscAbilityScores: abilityLevels.misc,
     canIncrement: abilityKeys.filter(canIncrement),
     canDecrement: abilityKeys.filter(canDecrement),
     pointsRemaining: 10 - <number>sumPositiveObjectValues(baseAbilityScores),
     increment: (key: keyof AbilityScores) =>
-      setBaseAbilityScores(baseAbilityScores => {
+      setAbilityLevels(abilityLevels => {
         if (canIncrement(key)) {
+          const newLevels = [...abilityLevels.levels];
+          newLevels[0] = {
+            ...(abilityLevels.levels[0] || {
+              strength: 0,
+              charisma: 0,
+              constitution: 0,
+              dexterity: 0,
+              intelligence: 0,
+              wisdom: 0
+            }),
+            [key]: abilityLevels.levels[0][key]! + 1
+          };
           return {
-            ...baseAbilityScores,
-            [key]: baseAbilityScores[key]! + 1
+            levels: newLevels,
+            misc: abilityLevels.misc
           };
         }
-        return baseAbilityScores;
+        return abilityLevels;
       }),
-    decrement: (key: keyof AbilityScores) => {
-      if (canDecrement(key)) {
-        setBaseAbilityScores(baseAbilityScores => {
-          return {
-            ...baseAbilityScores,
-            [key]: baseAbilityScores[key]! - 1
+    decrement: (key: keyof AbilityScores) =>
+      setAbilityLevels(abilityLevels => {
+        if (canDecrement(key)) {
+          const newLevels = [...abilityLevels.levels];
+          newLevels[0] = {
+            ...(abilityLevels.levels[0] || {
+              strength: 0,
+              charisma: 0,
+              constitution: 0,
+              dexterity: 0,
+              intelligence: 0,
+              wisdom: 0
+            }),
+            [key]: abilityLevels.levels[0][key]! - 1
           };
-        });
-      }
-      return baseAbilityScores;
+          return {
+            levels: newLevels,
+            misc: { ...abilityLevels.misc }
+          };
+        }
+        return abilityLevels;
+      }),
+    setMisc: (key: keyof AbilityScores, value: number) => {
+      setAbilityLevels(abilityLevels => ({
+        levels: [...abilityLevels.levels],
+        misc: {
+          ...abilityLevels.misc,
+          [key]: value
+        }
+      }));
     }
   };
 };

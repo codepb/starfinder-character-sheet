@@ -1,8 +1,4 @@
 import * as React from "react";
-import AbilityScoreModifiers from "../../components/abilities/AbilityScoreModifiers";
-import useAbilityScores from "../../character/useAbilityScores";
-import SkillsDisplay from "../../components/skills/SkillsDisplay";
-import useSkills from "../../character/useSkills";
 import useBasicStats from "../../character/useBasicStats";
 import useHealth from "../../character/useHealth";
 import HealthAndResolve from "../../components/characterDetails/HealthAndResolve";
@@ -15,7 +11,6 @@ import useAttackBonuses from "../../character/useAttackBonuses";
 import useArmorClasses from "../../character/useArmorClasses";
 import ArmorClasses from "../../components/characterDetails/ArmorClasses";
 import {
-  Grid,
   Typography,
   Button,
   AppBar,
@@ -32,6 +27,7 @@ import NotesContainer from "../notes/NotesContainer";
 import AssignSkillsContainer from "../skills/AssignSkillsContainer";
 import DisplaySkillsContainer from "../skills/DisplaySkillsContainer";
 import Container from "../../components/layout/Container";
+import DisplayAbilityScoresContainer from "../abilities/DisplayAbilityScoresContainer";
 
 enum Page {
   Sheet,
@@ -40,7 +36,6 @@ enum Page {
 }
 
 const CharacterDisplayContainer: React.FC = () => {
-  const { abilityScores, abilityModifiers } = useAbilityScores();
   const [page, setPage] = useState(Page.Sheet);
   const [tab, setTab] = useState(0);
   const healthAndResolve = useHealth();
@@ -109,10 +104,7 @@ const CharacterDisplayContainer: React.FC = () => {
       </AppBar>
       {tab === 0 && (
         <Container>
-          <AbilityScoreModifiers
-            abilityScores={abilityScores}
-            abilityModifiers={abilityModifiers}
-          />
+          <DisplayAbilityScoresContainer />
           <Divider />
           <SavingThrows {...savingThrows} />
         </Container>

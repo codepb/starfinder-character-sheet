@@ -1,39 +1,55 @@
 import * as React from "react";
 import { FC } from "react";
-import Container from "../layout/Container";
-import { sendAlert } from "../layout/Alert";
 import { alertRoll } from "../../services/dice";
-import { Button } from "@material-ui/core";
+import { Button, Grid, Typography } from "@material-ui/core";
+import withStyles, { CSSProperties } from "@material-ui/core/styles/withStyles";
+
+type Classes = "container";
+
+const styles: Record<Classes, CSSProperties> = {
+  container: {
+    textAlign: "center"
+  }
+};
 
 interface SavingThrowsProps {
   fortitude: number;
   reflex: number;
   will: number;
+  classes: Record<Classes, string>;
 }
 
-const SavingThrows: FC<SavingThrowsProps> = ({ fortitude, reflex, will }) => {
+const SavingThrows: FC<SavingThrowsProps> = ({
+  fortitude,
+  reflex,
+  will,
+  classes
+}) => {
   return (
-    <>
-      <div>
-        <label>Fortitude</label> <span>{fortitude}</span>
-        <Button color="primary" onClick={alertRoll(fortitude)}>
-          Roll
-        </Button>
-      </div>
-      <div>
-        <label>Reflex</label> <span>{reflex}</span>
-        <Button color="primary" onClick={alertRoll(reflex)}>
-          Roll
-        </Button>
-      </div>
-      <div>
-        <label>Will</label> <span>{will}</span>
-        <Button color="primary" onClick={alertRoll(will)}>
-          Roll
-        </Button>
-      </div>
-    </>
+    <div className={classes.container}>
+      <Typography variant="h5">Saving Throws</Typography>
+      <Grid container>
+        <Grid item xs={4}>
+          <label>Fortitude</label> <span>{fortitude}</span>
+          <Button color="primary" onClick={alertRoll(fortitude)}>
+            Roll
+          </Button>
+        </Grid>
+        <Grid item xs={4}>
+          <label>Reflex</label> <span>{reflex}</span>
+          <Button color="primary" onClick={alertRoll(reflex)}>
+            Roll
+          </Button>
+        </Grid>
+        <Grid item xs={4}>
+          <label>Will</label> <span>{will}</span>
+          <Button color="primary" onClick={alertRoll(will)}>
+            Roll
+          </Button>
+        </Grid>
+      </Grid>
+    </div>
   );
 };
 
-export default SavingThrows;
+export default withStyles(styles)(SavingThrows);
