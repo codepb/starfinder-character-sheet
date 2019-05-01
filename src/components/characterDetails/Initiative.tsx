@@ -10,14 +10,12 @@ interface InitiativeProps {
 
 const Initiative: FC<InitiativeProps> = ({ initiative }) => {
   return (
-    <Container>
-      <div>
-        <label>Initiative</label> <span>{initiative}</span>
-        <Button color="primary" onClick={alertRoll(initiative)}>
-          Roll
-        </Button>
-      </div>
-    </Container>
+    <div>
+      <label>Initiative</label> <span>{initiative}</span>
+      <Button color="primary" onClick={alertRoll(initiative)}>
+        Roll
+      </Button>
+    </div>
   );
 };
 

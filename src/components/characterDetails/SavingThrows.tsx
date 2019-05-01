@@ -13,7 +13,7 @@ interface SavingThrowsProps {
 
 const SavingThrows: FC<SavingThrowsProps> = ({ fortitude, reflex, will }) => {
   return (
-    <Container>
+    <>
       <div>
         <label>Fortitude</label> <span>{fortitude}</span>
         <Button color="primary" onClick={alertRoll(fortitude)}>
@@ -32,7 +32,7 @@ const SavingThrows: FC<SavingThrowsProps> = ({ fortitude, reflex, will }) => {
           Roll
         </Button>
       </div>
-    </Container>
+    </>
   );
 };
 

@@ -13,7 +13,8 @@ import {
   TableCell,
   Button,
   TableBody,
-  TextField
+  TextField,
+  TableHead
 } from "@material-ui/core";
 import { alertRoll } from "../../services/dice";
 
@@ -26,7 +27,11 @@ const styles = {
     paddingRight: 5
   },
   skillName: {
-    paddingLeft: 5
+    paddingLeft: 5,
+    fontWeight: "bold"
+  },
+  skillValue: {
+    fontWeight: "bold"
   },
   misc: {
     width: 40,
@@ -57,6 +62,15 @@ const SkillsDisplay: React.FC<SkillsDisplayProps> = ({
   return (
     <Container>
       <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell padding="dense" />
+            <TableCell padding="dense" />
+            <TableCell padding="dense">Total</TableCell>
+            <TableCell padding="dense">Misc.</TableCell>
+            <TableCell padding="dense" />
+          </TableRow>
+        </TableHead>
         <TableBody>
           {Object.keys(skillDefinitions).map(k => {
             const unusable =
@@ -75,7 +89,7 @@ const SkillsDisplay: React.FC<SkillsDisplayProps> = ({
                 <TableCell className={classes.skillName} padding="dense">
                   {k}
                 </TableCell>
-                <TableCell padding="dense">
+                <TableCell padding="dense" className={classes.skillValue}>
                   {unusable ? "" : skillLevels[k]}
                 </TableCell>
                 <TableCell padding="dense">

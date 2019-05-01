@@ -111,7 +111,9 @@ const skillDefinitions: SkillDefinitions = {
 };
 
 const getSkillLevel = (skills: Skills[], skill: keyof Skills) => {
-  return skills.map(s => s[skill]).reduce((rv, curr) => rv + (curr ? 1 : 0), 0);
+  return skills
+    .map(s => (s || {})[skill])
+    .reduce((rv, curr) => rv + (curr ? 1 : 0), 0);
 };
 
 const calculateSkillLevel = (
@@ -122,6 +124,7 @@ const calculateSkillLevel = (
   const classSkillModifier = classSkills.includes(skill) ? 3 : 0;
   const abilityModifier =
     abilityModifiers[skillDefinitions[skill].ability] || 0;
+  console.log(skills);
   const totalSkillLevel = getSkillLevel(skills.levels, skill);
   const misc = skills.misc[skill] || 0;
   return totalSkillLevel > 0
@@ -164,7 +167,7 @@ const useSkills = (): {
     trainedSkills: skills.levels.reduce(
       (rv, curr) => [
         ...rv,
-        ...(Object.keys(curr).filter(k => curr[k]) as (keyof Skills)[])
+        ...(Object.keys(curr || {}).filter(k => curr[k]) as (keyof Skills)[])
       ],
       [] as (keyof Skills)[]
     ),

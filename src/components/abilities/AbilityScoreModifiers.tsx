@@ -1,7 +1,6 @@
 import * as React from "react";
 import injectSheet from "react-jss";
 import { AbilityScores as AbilityScoresType } from "../../character/useAbilityScores";
-import Container from "../layout/Container";
 import {
   Table,
   TableBody,
@@ -36,29 +35,24 @@ const AbilityScoreModifiers: React.FC<AbilityScoreModifiersProps> = ({
   abilityModifiers,
   classes
 }) => (
-  <Container>
-    <Table>
-      <TableBody>
-        {Object.entries(abilityScores).map(([key, value]) => (
-          <TableRow key={key}>
-            <TableCell className={classes.ability}>{key}</TableCell>
-            <TableCell className={classes.modifier}>
-              {formatModifier(abilityModifiers[key])}
-            </TableCell>
-            <TableCell>{value}</TableCell>
-            <TableCell>
-              <Button
-                color="primary"
-                onClick={alertRoll(abilityModifiers[key])}
-              >
-                Roll
-              </Button>
-            </TableCell>
-          </TableRow>
-        ))}
-      </TableBody>
-    </Table>
-  </Container>
+  <Table>
+    <TableBody>
+      {Object.entries(abilityScores).map(([key, value]) => (
+        <TableRow key={key}>
+          <TableCell className={classes.ability}>{key}</TableCell>
+          <TableCell className={classes.modifier}>
+            {formatModifier(abilityModifiers[key])}
+          </TableCell>
+          <TableCell>{value}</TableCell>
+          <TableCell>
+            <Button color="primary" onClick={alertRoll(abilityModifiers[key])}>
+              Roll
+            </Button>
+          </TableCell>
+        </TableRow>
+      ))}
+    </TableBody>
+  </Table>
 );
 
 export default injectSheet(styles)(AbilityScoreModifiers);

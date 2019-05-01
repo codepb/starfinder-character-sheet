@@ -1,24 +1,29 @@
 import * as React from "react";
 import AssignSkills from "../../components/skills/AssignSkills";
 import useSkills from "../../character/useSkills";
-import Container from "../../components/layout/Container";
 
-const AssignSkillsContainer: React.FC = () => {
+interface AssignSkillsContainerProps {
+  level?: number;
+}
+
+const AssignSkillsContainer: React.FC<AssignSkillsContainerProps> = ({
+  level = 1
+}) => {
   const {
-    baseSkills,
     skillLevels,
     classSkills,
     checkSkill,
-    uncheckSkill
+    uncheckSkill,
+    skills
   } = useSkills();
   return (
     <AssignSkills
-      skills={baseSkills}
       skillLevels={skillLevels}
-      classSkills={classSkills}
+      skills={skills[level - 1] || {}}
       onSkillChange={(key, value) => {
-        value ? checkSkill(key) : uncheckSkill(key);
+        value ? checkSkill(key, level) : uncheckSkill(key, level);
       }}
+      classSkills={classSkills}
     />
   );
 };

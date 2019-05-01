@@ -18,7 +18,6 @@ const NotesContainer: React.FC<HasClasses<Classes>> = ({ classes }) => {
 
   return (
     <Container>
-      <Typography variant="h4">Notes</Typography>
       <TextField
         id="notes-text-input"
         value={notes}

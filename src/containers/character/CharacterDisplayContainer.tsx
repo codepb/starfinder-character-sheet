@@ -14,14 +14,24 @@ import AttackBonuses from "../../components/characterDetails/AttackBonuses";
 import useAttackBonuses from "../../character/useAttackBonuses";
 import useArmorClasses from "../../character/useArmorClasses";
 import ArmorClasses from "../../components/characterDetails/ArmorClasses";
-import { Grid, Typography, Button } from "@material-ui/core";
+import {
+  Grid,
+  Typography,
+  Button,
+  AppBar,
+  Tabs,
+  Tab,
+  Divider
+} from "@material-ui/core";
 import useDetails from "../../character/useDetails";
 import { useLevels } from "../../services/classService";
 import { useState } from "react";
 import AddLevel from "../../components/levels/AddLevel";
 import { Class } from "../../rules/classes";
-import AssignSkills from "../../components/skills/AssignSkills";
 import NotesContainer from "../notes/NotesContainer";
+import AssignSkillsContainer from "../skills/AssignSkillsContainer";
+import DisplaySkillsContainer from "../skills/DisplaySkillsContainer";
+import Container from "../../components/layout/Container";
 
 enum Page {
   Sheet,
@@ -31,17 +41,8 @@ enum Page {
 
 const CharacterDisplayContainer: React.FC = () => {
   const { abilityScores, abilityModifiers } = useAbilityScores();
-  const {
-    skillLevels,
-    classSkills,
-    trainedSkills,
-    skills,
-    checkSkill,
-    uncheckSkill,
-    miscSkills,
-    updateMiscSkill
-  } = useSkills();
   const [page, setPage] = useState(Page.Sheet);
+  const [tab, setTab] = useState(0);
   const healthAndResolve = useHealth();
   const savingThrows = useSavingThrows();
   const initiative = useInitiative();
@@ -73,16 +74,7 @@ const CharacterDisplayContainer: React.FC = () => {
   if (page === Page.AddSkills) {
     return (
       <>
-        <AssignSkills
-          skillLevels={skillLevels}
-          skills={skills[currentLevel - 1] || {}}
-          onSkillChange={(key, value) => {
-            value
-              ? checkSkill(key, currentLevel)
-              : uncheckSkill(key, currentLevel);
-          }}
-          classSkills={classSkills}
-        />
+        <AssignSkillsContainer level={currentLevel} />
         <Button onClick={() => setPage(Page.Sheet)}>Finish</Button>
       </>
     );
@@ -99,44 +91,48 @@ const CharacterDisplayContainer: React.FC = () => {
           .join(" / ")}
       </Typography>
       <Button onClick={() => setPage(Page.AddLevel)}>Add Level</Button>
-      <Grid container spacing={24}>
-        <Grid item md={6} xs={12}>
-          <Initiative initiative={initiative} />
-        </Grid>
-
-        <Grid item md={6} xs={12}>
-          <HealthAndResolve {...healthAndResolve} />
-        </Grid>
-
-        <Grid item md={6} xs={12}>
-          <SavingThrows {...savingThrows} />
-        </Grid>
-
-        <Grid item md={6} xs={12}>
+      <AppBar position="static" color="default">
+        <Tabs
+          value={tab}
+          onChange={(e, value) => setTab(value)}
+          indicatorColor="primary"
+          textColor="primary"
+          variant="scrollable"
+          scrollButtons="auto"
+        >
+          <Tab label="Abilities" />
+          <Tab label="Skills" />
+          <Tab label="Attack" />
+          <Tab label="Health &amp; Defense" />
+          <Tab label="Notes" />
+        </Tabs>
+      </AppBar>
+      {tab === 0 && (
+        <Container>
           <AbilityScoreModifiers
             abilityScores={abilityScores}
             abilityModifiers={abilityModifiers}
           />
-        </Grid>
-        <Grid item md={6} xs={12}>
+          <Divider />
+          <SavingThrows {...savingThrows} />
+        </Container>
+      )}
+      {tab === 1 && <DisplaySkillsContainer />}
+      {tab === 2 && (
+        <Container>
+          <Initiative initiative={initiative} />
+          <Divider />
           <AttackBonuses {...attackBonsues} />
-        </Grid>
-        <Grid item md={6} xs={12}>
+        </Container>
+      )}
+      {tab === 3 && (
+        <>
+          <HealthAndResolve {...healthAndResolve} />
+
           <ArmorClasses {...armorClasses} />
-        </Grid>
-        <Grid item md={6} xs={12}>
-          <SkillsDisplay
-            skillLevels={skillLevels}
-            classSkills={classSkills}
-            trainedSkills={trainedSkills}
-            miscSkills={miscSkills}
-            updateMiscSkill={updateMiscSkill}
-          />
-        </Grid>
-        <Grid item md={6} xs={12}>
-          <NotesContainer />
-        </Grid>
-      </Grid>
+        </>
+      )}
+      {tab === 4 && <NotesContainer />}
     </>
   );
 };
