@@ -28,6 +28,7 @@ import AssignSkillsContainer from "../skills/AssignSkillsContainer";
 import DisplaySkillsContainer from "../skills/DisplaySkillsContainer";
 import Container from "../../components/layout/Container";
 import DisplayAbilityScoresContainer from "../abilities/DisplayAbilityScoresContainer";
+import DisplayCharacterDetails from "../characterDetails/DisplayCharacterDetails";
 
 enum Page {
   Sheet,
@@ -95,6 +96,7 @@ const CharacterDisplayContainer: React.FC = () => {
           variant="scrollable"
           scrollButtons="auto"
         >
+          <Tab label="Details" />
           <Tab label="Abilities" />
           <Tab label="Skills" />
           <Tab label="Attack" />
@@ -102,29 +104,30 @@ const CharacterDisplayContainer: React.FC = () => {
           <Tab label="Notes" />
         </Tabs>
       </AppBar>
-      {tab === 0 && (
+      {tab === 0 && <DisplayCharacterDetails />}
+      {tab === 1 && (
         <Container>
           <DisplayAbilityScoresContainer />
           <Divider />
           <SavingThrows {...savingThrows} />
         </Container>
       )}
-      {tab === 1 && <DisplaySkillsContainer />}
-      {tab === 2 && (
+      {tab === 2 && <DisplaySkillsContainer />}
+      {tab === 3 && (
         <Container>
           <Initiative initiative={initiative} />
           <Divider />
           <AttackBonuses {...attackBonsues} />
         </Container>
       )}
-      {tab === 3 && (
+      {tab === 4 && (
         <>
           <HealthAndResolve {...healthAndResolve} />
 
           <ArmorClasses {...armorClasses} />
         </>
       )}
-      {tab === 4 && <NotesContainer />}
+      {tab === 5 && <NotesContainer />}
     </>
   );
 };
