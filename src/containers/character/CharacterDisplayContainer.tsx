@@ -46,7 +46,7 @@ const CharacterDisplayContainer: React.FC = () => {
   const initiative = useInitiative();
   const attackBonsues = useAttackBonuses();
   const armorClasses = useArmorClasses();
-  const { details } = useDetails();
+  const { details, race, theme } = useDetails();
   const levels = useLevels();
   const [levelClass, setLevelClass] = useState(levels[0][0]);
   const { addClassLevel } = useBasicStats();
@@ -95,15 +95,16 @@ const CharacterDisplayContainer: React.FC = () => {
         {details.name}
       </Typography>
       <Typography align="center">
+        {race}, {theme},{" "}
         {levels
           .map(([characterClass, level]) => `${characterClass}(${level})`)
-          .join(" / ")}
+          .join("/")}
       </Typography>
       <Button onClick={() => setPage(Page.AddLevel)}>Add Level</Button>
       <AppBar position="static" color="default">
         <Tabs
           value={tab}
-          onChange={(e, value) => setTab(value)}
+          onChange={(_, value) => setTab(value)}
           indicatorColor="primary"
           textColor="primary"
           variant="scrollable"
