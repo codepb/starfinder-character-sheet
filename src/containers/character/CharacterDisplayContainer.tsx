@@ -29,10 +29,12 @@ import DisplaySkillsContainer from "../skills/DisplaySkillsContainer";
 import Container from "../../components/layout/Container";
 import DisplayAbilityScoresContainer from "../abilities/DisplayAbilityScoresContainer";
 import DisplayCharacterDetails from "../characterDetails/DisplayCharacterDetails";
+import LevelUpAbilityScoresContainer from "../abilities/LevelUpAbilityScoresContainer";
 
 enum Page {
   Sheet,
   AddLevel,
+  AddAbilities,
   AddSkills
 }
 
@@ -51,6 +53,8 @@ const CharacterDisplayContainer: React.FC = () => {
 
   const currentLevel = levels.reduce((rv, curr) => curr[1] + rv, 0);
   if (page === Page.AddLevel) {
+    const levelIsMultipleOfFive = (currentLevel + 1) % 5 === 0;
+    console.log(currentLevel);
     return (
       <AddLevel
         classes={Object.values(Class)}
@@ -60,10 +64,19 @@ const CharacterDisplayContainer: React.FC = () => {
         }
         onConfirm={() => {
           addClassLevel(levelClass);
-          setPage(Page.AddSkills);
+          setPage(levelIsMultipleOfFive ? Page.AddAbilities : Page.AddSkills);
         }}
         onGoBack={() => setPage(Page.Sheet)}
       />
+    );
+  }
+
+  if (page === Page.AddAbilities) {
+    return (
+      <>
+        <LevelUpAbilityScoresContainer level={currentLevel} />
+        <Button onClick={() => setPage(Page.AddSkills)}>Next</Button>
+      </>
     );
   }
 

@@ -28,12 +28,18 @@ const useAbilityScores = (): {
   abilityModifiers: AbilityScores;
   baseAbilityScores: AbilityScores;
   miscAbilityScores: AbilityScores;
+  abilityLevels: AbilityScores[];
   canIncrement: (keyof AbilityScores)[];
   canDecrement: (keyof AbilityScores)[];
   pointsRemaining: number;
   increment: (key: keyof AbilityScores) => void;
   decrement: (key: keyof AbilityScores) => void;
   setMisc: (key: keyof AbilityScores, value: number) => void;
+  setLevelAbility: (
+    key: keyof AbilityScores,
+    selected: boolean,
+    level: number
+  ) => void;
 } => {
   const [
     {
@@ -69,6 +75,7 @@ const useAbilityScores = (): {
     abilityModifiers,
     baseAbilityScores,
     miscAbilityScores: abilityLevels.misc,
+    abilityLevels: abilityLevels.levels,
     canIncrement: abilityKeys.filter(canIncrement),
     canDecrement: abilityKeys.filter(canDecrement),
     pointsRemaining: 10 - <number>sumPositiveObjectValues(baseAbilityScores),
@@ -124,6 +131,33 @@ const useAbilityScores = (): {
           [key]: value
         }
       }));
+    },
+    setLevelAbility: (
+      key: keyof AbilityScores,
+      selected: boolean,
+      level: number
+    ) => {
+      const index = Math.floor(level / 5);
+      setAbilityLevels(abilityLevels => {
+        const abilityScore =
+          calculateAbilityScore(abilityLevels, race, theme)(key) -
+          (abilityLevels.misc[key] || 0);
+
+        const amountToIncrease = abilityScore > 16 ? 1 : 2;
+
+        const newLevels = [...abilityLevels.levels];
+        newLevels[index] = {
+          ...(abilityLevels.levels[index] || {}),
+          [key]: selected ? amountToIncrease : 0
+        };
+
+        return {
+          levels: newLevels,
+          misc: {
+            ...abilityLevels.misc
+          }
+        };
+      });
     }
   };
 };
