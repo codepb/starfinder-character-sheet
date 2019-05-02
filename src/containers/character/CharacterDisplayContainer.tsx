@@ -32,6 +32,7 @@ import DisplayCharacterDetails from "../characterDetails/DisplayCharacterDetails
 import LevelUpAbilityScoresContainer from "../abilities/LevelUpAbilityScoresContainer";
 import SavingThrowsContainer from "../characterDetails/SavingThrowsContainer";
 import InitiativeContainer from "../characterDetails/InitiativeContainer";
+import AttackBonusesContainer from "../characterDetails/AttackBonusesContainer";
 
 enum Page {
   Sheet,
@@ -131,7 +132,7 @@ const CharacterDisplayContainer: React.FC = () => {
         <Container>
           <InitiativeContainer />
           <Divider />
-          <AttackBonuses {...attackBonsues} />
+          <AttackBonusesContainer />
         </Container>
       )}
       {tab === 4 && (
