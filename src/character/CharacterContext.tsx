@@ -8,6 +8,7 @@ import Alignment from "../rules/alignments";
 import Size from "../rules/Size";
 import { useEffect, useState } from "react";
 import { mergeDeep } from "../helpers/objectHelpers";
+import { save, load } from "../services/storageService";
 
 export interface SkillsLevels {
   levels: Skills[];
@@ -19,13 +20,16 @@ export interface AbilityLevels {
   misc: AbilityScores;
 }
 
-interface Character {
+export interface Character {
   abilityLevels: AbilityLevels;
   skills: SkillsLevels;
   basicStats: BasicStats;
   details: Details;
-  characterCreated: boolean;
   notes: string;
+}
+
+interface CharacterWithCreated extends Character {
+  characterCreated: boolean;
 }
 
 export interface BasicStats {
@@ -44,10 +48,10 @@ export interface Details {
   size: Size;
 }
 
-const persistedCharacterJSON = localStorage.getItem("character");
+const loadedCharacter = load();
 
 const persistedCharacter =
-  persistedCharacterJSON != null ? JSON.parse(persistedCharacterJSON) : [];
+  loadedCharacter != null ? loadedCharacter : ({} as Character);
 
 interface CharacterUpdaters {
   setAbilityLevels: React.Dispatch<React.SetStateAction<AbilityLevels>>;
@@ -79,12 +83,12 @@ const initialAbilityLevels: AbilityLevels = mergeDeep(
       wisdom: 0
     }
   },
-  persistedCharacter[0]
+  persistedCharacter.abilityLevels
 );
 
 const initialSkills: SkillsLevels = mergeDeep(
   { levels: [], misc: {} },
-  persistedCharacter[1]
+  persistedCharacter.skills
 );
 
 const initalBasicStats: BasicStats = mergeDeep(
@@ -93,7 +97,7 @@ const initalBasicStats: BasicStats = mergeDeep(
     theme: Theme.THEMELESS,
     classLevels: { [Class.Envoy]: 1 }
   },
-  persistedCharacter[2]
+  persistedCharacter.basicStats
 );
 
 const initialDetails: Details = mergeDeep(
@@ -106,12 +110,12 @@ const initialDetails: Details = mergeDeep(
     name: "",
     size: Size.medium
   },
-  persistedCharacter[3]
+  persistedCharacter.details
 );
 
-const initialNotes: string = persistedCharacter[4] || "";
+const initialNotes: string = persistedCharacter.notes || "";
 
-const initialCharacter: Character = {
+const initialCharacter: CharacterWithCreated = {
   abilityLevels: initialAbilityLevels,
   skills: initialSkills,
   basicStats: initalBasicStats,
@@ -120,7 +124,7 @@ const initialCharacter: Character = {
   notes: initialNotes
 };
 
-const initialContext: [Character, CharacterUpdaters] = [
+const initialContext: [CharacterWithCreated, CharacterUpdaters] = [
   initialCharacter,
   {
     setAbilityLevels: () => {},
@@ -133,7 +137,7 @@ const initialContext: [Character, CharacterUpdaters] = [
 ];
 
 const CharacterContext: React.Context<
-  [Character, CharacterUpdaters]
+  [CharacterWithCreated, CharacterUpdaters]
 > = React.createContext(initialContext);
 
 const CharacterProvider: React.FC<React.Attributes> = ({ children }) => {
@@ -142,25 +146,22 @@ const CharacterProvider: React.FC<React.Attributes> = ({ children }) => {
   const [basicStats, setBasicStats] = useState(initalBasicStats);
   const [details, setDetails] = useState(initialDetails);
   const [characterCreated, setCharacterCreated] = useState(
-    persistedCharacterJSON != null
+    loadedCharacter != null
   );
   const [notes, setNotes] = useState(initialNotes);
 
   const characterState = [abilityLevels, skills, basicStats, details, notes];
+  const character = { abilityLevels, skills, basicStats, details, notes };
 
   useEffect(() => {
-    localStorage.setItem("character", JSON.stringify(characterState));
+    save(character);
   }, characterState);
   return (
     <CharacterContext.Provider
       value={[
         {
-          abilityLevels,
-          skills,
-          basicStats,
-          details,
-          characterCreated,
-          notes
+          ...character,
+          characterCreated
         },
         {
           setAbilityLevels: setAbilityLevels,

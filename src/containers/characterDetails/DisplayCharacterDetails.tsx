@@ -36,21 +36,11 @@ const DisplayCharacterDetails: React.FC<DisplayCharacterDetailsProps> = ({
           <strong>Alignment:</strong> {details.alignment}
         </div>
         <div>
-          <strong>Languages:</strong>{" "}
-          <List dense>
-            {(details.languages || []).map(l => (
-              <ListItem>
-                <ListItemText>{l}</ListItemText>
-              </ListItem>
-            ))}
-          </List>
+          <strong>Languages:</strong> {(details.languages || []).join(", ")}
         </div>
       </section>
       <section className={classes.description}>
-        <div>
-          <strong>Description:</strong>
-        </div>
-        {details.description}
+        <strong>Description:</strong> {details.description}
       </section>
     </Container>
   );
