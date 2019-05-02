@@ -9,6 +9,9 @@ import Size from "../rules/Size";
 import { useEffect, useState } from "react";
 import { mergeDeep } from "../helpers/objectHelpers";
 import { save, load } from "../services/storageService";
+import { SavingThrows } from "./useSavingThrows";
+import { AttackBonuses } from "./useAttackBonuses";
+import { ArmorClasses } from "./useArmorClasses";
 
 export interface SkillsLevels {
   levels: Skills[];
@@ -26,6 +29,7 @@ export interface Character {
   basicStats: BasicStats;
   details: Details;
   notes: string;
+  misc: MiscBonuses;
 }
 
 interface CharacterWithCreated extends Character {
@@ -48,6 +52,13 @@ export interface Details {
   size: Size;
 }
 
+export interface MiscBonuses {
+  initiative: number;
+  savingThrows: SavingThrows;
+  attackBonuses: AttackBonuses;
+  armorClasses: ArmorClasses;
+}
+
 const loadedCharacter = load();
 
 const persistedCharacter =
@@ -60,6 +71,7 @@ interface CharacterUpdaters {
   setDetails: React.Dispatch<React.SetStateAction<Details>>;
   setCharacterCreated: React.Dispatch<React.SetStateAction<boolean>>;
   setNotes: React.Dispatch<React.SetStateAction<string>>;
+  setMisc: React.Dispatch<React.SetStateAction<MiscBonuses>>;
 }
 
 const initialAbilityLevels: AbilityLevels = mergeDeep(
@@ -115,13 +127,35 @@ const initialDetails: Details = mergeDeep(
 
 const initialNotes: string = persistedCharacter.notes || "";
 
+const initialMisc: MiscBonuses = mergeDeep(
+  {
+    initiative: 0,
+    savingThrows: {
+      fortitude: 0,
+      reflex: 0,
+      will: 0
+    },
+    attackBonuses: {
+      melee: 0,
+      ranged: 0,
+      thrown: 0
+    },
+    armorClasses: {
+      energy: 0,
+      kinetic: 0
+    }
+  },
+  persistedCharacter.misc
+);
+
 const initialCharacter: CharacterWithCreated = {
   abilityLevels: initialAbilityLevels,
   skills: initialSkills,
   basicStats: initalBasicStats,
   details: initialDetails,
   characterCreated: false,
-  notes: initialNotes
+  notes: initialNotes,
+  misc: initialMisc
 };
 
 const initialContext: [CharacterWithCreated, CharacterUpdaters] = [
@@ -132,7 +166,8 @@ const initialContext: [CharacterWithCreated, CharacterUpdaters] = [
     setBasicStats: () => {},
     setDetails: () => {},
     setCharacterCreated: () => {},
-    setNotes: () => {}
+    setNotes: () => {},
+    setMisc: () => {}
   }
 ];
 
@@ -149,9 +184,17 @@ const CharacterProvider: React.FC<React.Attributes> = ({ children }) => {
     loadedCharacter != null
   );
   const [notes, setNotes] = useState(initialNotes);
+  const [misc, setMisc] = useState(initialMisc);
 
-  const characterState = [abilityLevels, skills, basicStats, details, notes];
-  const character = { abilityLevels, skills, basicStats, details, notes };
+  const characterState = [
+    abilityLevels,
+    skills,
+    basicStats,
+    details,
+    notes,
+    misc
+  ];
+  const character = { abilityLevels, skills, basicStats, details, notes, misc };
 
   useEffect(() => {
     save(character);
@@ -169,7 +212,8 @@ const CharacterProvider: React.FC<React.Attributes> = ({ children }) => {
           setBasicStats,
           setDetails,
           setCharacterCreated,
-          setNotes
+          setNotes,
+          setMisc
         }
       ]}
     >

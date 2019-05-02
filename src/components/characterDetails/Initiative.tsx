@@ -1,21 +1,42 @@
 import * as React from "react";
 import { FC } from "react";
-import Container from "../layout/Container";
 import { alertRoll } from "../../services/dice";
-import { Button } from "@material-ui/core";
+import {
+  Button,
+  Table,
+  TableBody,
+  TableRow,
+  TableCell
+} from "@material-ui/core";
+import MiscTableCell from "../layout/MiscTableCell";
 
 interface InitiativeProps {
   initiative: number;
+  misc: number;
+
+  onMiscChange(value: number): void;
 }
 
-const Initiative: FC<InitiativeProps> = ({ initiative }) => {
+const Initiative: FC<InitiativeProps> = ({
+  initiative,
+  misc,
+  onMiscChange
+}) => {
   return (
-    <div>
-      <label>Initiative</label> <span>{initiative}</span>
-      <Button color="primary" onClick={alertRoll(initiative)}>
-        Roll
-      </Button>
-    </div>
+    <Table>
+      <TableBody>
+        <TableRow>
+          <TableCell>Initiative</TableCell>
+          <TableCell>{initiative}</TableCell>
+          <MiscTableCell value={misc} onChange={onMiscChange} />
+          <TableCell>
+            <Button color="primary" onClick={alertRoll(initiative)}>
+              Roll
+            </Button>
+          </TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
   );
 };
 
