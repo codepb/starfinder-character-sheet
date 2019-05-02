@@ -33,6 +33,7 @@ import LevelUpAbilityScoresContainer from "../abilities/LevelUpAbilityScoresCont
 import SavingThrowsContainer from "../characterDetails/SavingThrowsContainer";
 import InitiativeContainer from "../characterDetails/InitiativeContainer";
 import AttackBonusesContainer from "../characterDetails/AttackBonusesContainer";
+import ArmorClassesContainer from "../characterDetails/ArmorClassesContainer";
 
 enum Page {
   Sheet,
@@ -45,8 +46,6 @@ const CharacterDisplayContainer: React.FC = () => {
   const [page, setPage] = useState(Page.Sheet);
   const [tab, setTab] = useState(0);
   const healthAndResolve = useHealth();
-  const attackBonsues = useAttackBonuses();
-  const armorClasses = useArmorClasses();
   const { details, race, theme } = useDetails();
   const levels = useLevels();
   const [levelClass, setLevelClass] = useState(levels[0][0]);
@@ -136,11 +135,11 @@ const CharacterDisplayContainer: React.FC = () => {
         </Container>
       )}
       {tab === 4 && (
-        <>
+        <Container>
           <HealthAndResolve {...healthAndResolve} />
-
-          <ArmorClasses {...armorClasses} />
-        </>
+          <Divider />
+          <ArmorClassesContainer />
+        </Container>
       )}
       {tab === 5 && <NotesContainer />}
     </>

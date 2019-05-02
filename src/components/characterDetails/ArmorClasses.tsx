@@ -1,30 +1,44 @@
 import * as React from "react";
 import { FC } from "react";
-import Container from "../layout/Container";
+import { Table, TableBody, TableRow, TableCell } from "@material-ui/core";
+import MiscTableCell from "../layout/MiscTableCell";
+import { ArmorClasses as ArmorClassesType } from "../../character/useArmorClasses";
 
 interface ArmorClassesProps {
   kinetic: number;
   energy: number;
-  combatManeuvers: number;
+  misc: ArmorClassesType;
+
+  onMiscChange(key: keyof ArmorClassesType, value: number): void;
 }
 
 const ArmorClasses: FC<ArmorClassesProps> = ({
   kinetic,
   energy,
-  combatManeuvers
+  misc,
+  onMiscChange
 }) => {
   return (
-    <Container>
-      <div>
-        <label>Kinetic</label> <span>{kinetic}</span>
-      </div>
-      <div>
-        <label>Energy</label> <span>{energy}</span>
-      </div>
-      <div>
-        <label>AC vs Combat Maneuvers</label> <span>{combatManeuvers}</span>
-      </div>
-    </Container>
+    <Table>
+      <TableBody>
+        <TableRow>
+          <TableCell>Kinetic</TableCell>
+          <TableCell>{kinetic}</TableCell>
+          <MiscTableCell
+            value={misc.kinetic}
+            onChange={value => onMiscChange("kinetic", value)}
+          />
+        </TableRow>
+        <TableRow>
+          <TableCell>Energy</TableCell>
+          <TableCell>{energy}</TableCell>
+          <MiscTableCell
+            value={misc.energy}
+            onChange={value => onMiscChange("energy", value)}
+          />
+        </TableRow>
+      </TableBody>
+    </Table>
   );
 };
 
