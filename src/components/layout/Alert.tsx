@@ -5,9 +5,17 @@ import Container from "./Container";
 
 let callback = (_node: ReactNode) => {};
 
+let closeCallback = () => {};
+
 const sendAlert = (node: ReactNode | string) => {
   if (callback) {
     callback(node);
+  }
+};
+
+const closeAlert = () => {
+  if (closeCallback) {
+    closeCallback();
   }
 };
 
@@ -19,8 +27,10 @@ const Alert: React.FC = () => {
       setChildren(node);
       setOpen(true);
     };
+    closeCallback = () => setOpen(false);
     return () => {
       callback = (_node: ReactNode | string) => {};
+      closeCallback = () => {};
     };
   });
   return (
@@ -32,4 +42,4 @@ const Alert: React.FC = () => {
 
 export default Alert;
 
-export { sendAlert };
+export { sendAlert, closeAlert };

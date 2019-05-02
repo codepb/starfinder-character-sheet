@@ -30,6 +30,7 @@ export interface Character {
   details: Details;
   notes: string;
   misc: MiscBonuses;
+  damage: HealthAndResolve;
 }
 
 interface CharacterWithCreated extends Character {
@@ -72,6 +73,7 @@ interface CharacterUpdaters {
   setCharacterCreated: React.Dispatch<React.SetStateAction<boolean>>;
   setNotes: React.Dispatch<React.SetStateAction<string>>;
   setMisc: React.Dispatch<React.SetStateAction<MiscBonuses>>;
+  setDamage: React.Dispatch<React.SetStateAction<HealthAndResolve>>;
 }
 
 const initialAbilityLevels: AbilityLevels = mergeDeep(
@@ -148,6 +150,21 @@ const initialMisc: MiscBonuses = mergeDeep(
   persistedCharacter.misc
 );
 
+export interface HealthAndResolve {
+  health: number;
+  stamina: number;
+  resolve: number;
+}
+
+const initialDamage: HealthAndResolve = mergeDeep(
+  {
+    health: 0,
+    stamina: 0,
+    resolve: 0
+  },
+  persistedCharacter.damage
+);
+
 const initialCharacter: CharacterWithCreated = {
   abilityLevels: initialAbilityLevels,
   skills: initialSkills,
@@ -155,7 +172,8 @@ const initialCharacter: CharacterWithCreated = {
   details: initialDetails,
   characterCreated: false,
   notes: initialNotes,
-  misc: initialMisc
+  misc: initialMisc,
+  damage: initialDamage
 };
 
 const initialContext: [CharacterWithCreated, CharacterUpdaters] = [
@@ -167,7 +185,8 @@ const initialContext: [CharacterWithCreated, CharacterUpdaters] = [
     setDetails: () => {},
     setCharacterCreated: () => {},
     setNotes: () => {},
-    setMisc: () => {}
+    setMisc: () => {},
+    setDamage: () => {}
   }
 ];
 
@@ -185,6 +204,7 @@ const CharacterProvider: React.FC<React.Attributes> = ({ children }) => {
   );
   const [notes, setNotes] = useState(initialNotes);
   const [misc, setMisc] = useState(initialMisc);
+  const [damage, setDamage] = useState(initialDamage);
 
   const characterState = [
     abilityLevels,
@@ -192,9 +212,18 @@ const CharacterProvider: React.FC<React.Attributes> = ({ children }) => {
     basicStats,
     details,
     notes,
-    misc
+    misc,
+    damage
   ];
-  const character = { abilityLevels, skills, basicStats, details, notes, misc };
+  const character = {
+    abilityLevels,
+    skills,
+    basicStats,
+    details,
+    notes,
+    misc,
+    damage
+  };
 
   useEffect(() => {
     save(character);
@@ -213,7 +242,8 @@ const CharacterProvider: React.FC<React.Attributes> = ({ children }) => {
           setDetails,
           setCharacterCreated,
           setNotes,
-          setMisc
+          setMisc,
+          setDamage
         }
       ]}
     >
