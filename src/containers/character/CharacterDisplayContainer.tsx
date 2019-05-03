@@ -1,23 +1,6 @@
 import * as React from "react";
 import useBasicStats from "../../character/useBasicStats";
-import useHealth from "../../character/useHealth";
-import HealthAndResolve from "../../components/characterDetails/HealthAndResolve";
-import useInitiative from "../../character/useInitiative";
-import Initiative from "../../components/characterDetails/Initiative";
-import SavingThrows from "../../components/characterDetails/SavingThrows";
-import useSavingThrows from "../../character/useSavingThrows";
-import AttackBonuses from "../../components/characterDetails/AttackBonuses";
-import useAttackBonuses from "../../character/useAttackBonuses";
-import useArmorClasses from "../../character/useArmorClasses";
-import ArmorClasses from "../../components/characterDetails/ArmorClasses";
-import {
-  Typography,
-  Button,
-  AppBar,
-  Tabs,
-  Tab,
-  Divider
-} from "@material-ui/core";
+import { Typography, Button, AppBar, Tabs, Tab } from "@material-ui/core";
 import useDetails from "../../character/useDetails";
 import { useLevels } from "../../services/classService";
 import { useState } from "react";
@@ -48,21 +31,24 @@ enum Page {
 const tabs = [
   <DisplayCharacterDetails />,
   <Container>
+    <Typography variant="h6">Ability Scores</Typography>
     <DisplayAbilityScoresContainer />
-    <Divider />
+    <Typography variant="h6">Saving Throws</Typography>
     <SavingThrowsContainer />
   </Container>,
   <DisplaySkillsContainer />,
   <Container>
+    <Typography variant="h6">Initiative</Typography>
     <InitiativeContainer />
-    <Divider />
+    <Typography variant="h6">Attack Bonuses</Typography>
     <AttackBonusesContainer />
   </Container>,
   <Container>
+    <Typography variant="h6">Health and Resolve</Typography>
     <HealthAndResolveContainer />
-    <Divider />
+    <Typography variant="h6">Armor Classes</Typography>
     <ArmorClassesContainer />
-    <Divider />
+    <Typography variant="h6">Armor</Typography>
     <ArmorContainer />
   </Container>,
   <Container>
