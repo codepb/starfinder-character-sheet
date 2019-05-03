@@ -35,6 +35,7 @@ import InitiativeContainer from "../characterDetails/InitiativeContainer";
 import AttackBonusesContainer from "../characterDetails/AttackBonusesContainer";
 import ArmorClassesContainer from "../characterDetails/ArmorClassesContainer";
 import HealthAndResolveContainer from "../characterDetails/HealthAndResolveContainer";
+import FeatsContainer from "../characterDetails/FeatsContainer";
 
 enum Page {
   Sheet,
@@ -42,6 +43,30 @@ enum Page {
   AddAbilities,
   AddSkills
 }
+
+const tabs = [
+  <DisplayCharacterDetails />,
+  <Container>
+    <DisplayAbilityScoresContainer />
+    <Divider />
+    <SavingThrowsContainer />
+  </Container>,
+  <DisplaySkillsContainer />,
+  <Container>
+    <InitiativeContainer />
+    <Divider />
+    <AttackBonusesContainer />
+  </Container>,
+  <Container>
+    <HealthAndResolveContainer />
+    <Divider />
+    <ArmorClassesContainer />
+  </Container>,
+  <Container>
+    <FeatsContainer />
+  </Container>,
+  <NotesContainer />
+];
 
 const CharacterDisplayContainer: React.FC = () => {
   const [page, setPage] = useState(Page.Sheet);
@@ -115,33 +140,11 @@ const CharacterDisplayContainer: React.FC = () => {
           <Tab label="Skills" />
           <Tab label="Attack" />
           <Tab label="Health &amp; Defense" />
+          <Tab label="Feats" />
           <Tab label="Notes" />
         </Tabs>
       </AppBar>
-      {tab === 0 && <DisplayCharacterDetails />}
-      {tab === 1 && (
-        <Container>
-          <DisplayAbilityScoresContainer />
-          <Divider />
-          <SavingThrowsContainer />
-        </Container>
-      )}
-      {tab === 2 && <DisplaySkillsContainer />}
-      {tab === 3 && (
-        <Container>
-          <InitiativeContainer />
-          <Divider />
-          <AttackBonusesContainer />
-        </Container>
-      )}
-      {tab === 4 && (
-        <Container>
-          <HealthAndResolveContainer />
-          <Divider />
-          <ArmorClassesContainer />
-        </Container>
-      )}
-      {tab === 5 && <NotesContainer />}
+      {tabs[tab]}
     </>
   );
 };

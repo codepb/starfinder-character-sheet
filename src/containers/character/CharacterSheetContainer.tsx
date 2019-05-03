@@ -18,6 +18,8 @@ import {
 } from "@material-ui/core";
 import Container from "../../components/layout/Container";
 import StepperButtons from "../../components/characterCreation/StepperButtons";
+import FeatsContainer from "../characterDetails/FeatsContainer";
+import FeatSelection from "../feats/FeatSelection";
 
 enum Page {
   theme = 0,
@@ -25,9 +27,10 @@ enum Page {
   class = 2,
   abilityScores = 3,
   skills = 4,
-  characterDetails = 5,
-  start = 6,
-  sheet = 7
+  feats = 5,
+  characterDetails = 6,
+  start = 7,
+  sheet = 8
 }
 
 const CharacterSheetContainer: React.FC = () => {
@@ -91,8 +94,18 @@ const CharacterSheetContainer: React.FC = () => {
               <StepContent>
                 <AssignSkillsContainer />
                 <StepperButtons
-                  onNext={() => setPage(Page.characterDetails)}
+                  onNext={() => setPage(Page.feats)}
                   onPrevious={() => setPage(Page.abilityScores)}
+                />
+              </StepContent>
+            </Step>
+            <Step>
+              <StepLabel>Feats</StepLabel>
+              <StepContent>
+                <FeatSelection />
+                <StepperButtons
+                  onNext={() => setPage(Page.characterDetails)}
+                  onPrevious={() => setPage(Page.skills)}
                 />
               </StepContent>
             </Step>
@@ -102,7 +115,7 @@ const CharacterSheetContainer: React.FC = () => {
                 <CharacterDetails />
                 <StepperButtons
                   onNext={() => setPage(Page.sheet)}
-                  onPrevious={() => setPage(Page.skills)}
+                  onPrevious={() => setPage(Page.feats)}
                   final
                 />
               </StepContent>
