@@ -5,7 +5,7 @@ enum ArmorWeight {
   heavy
 }
 
-interface Armor {
+export interface Armor {
   model: string;
   level: number;
   price: number;

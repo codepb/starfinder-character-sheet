@@ -13,6 +13,7 @@ import { SavingThrows } from "./useSavingThrows";
 import { AttackBonuses } from "./useAttackBonuses";
 import { ArmorClasses } from "./useArmorClasses";
 import { FeatName } from "../rules/feats";
+import { Armor } from "../rules/armor";
 
 export interface SkillsLevels {
   levels: Skills[];
@@ -24,6 +25,11 @@ export interface AbilityLevels {
   misc: AbilityScores;
 }
 
+export interface OwnedArmor extends Armor {
+  equipped: boolean;
+  id: string;
+}
+
 export interface Character {
   abilityLevels: AbilityLevels;
   skills: SkillsLevels;
@@ -33,6 +39,7 @@ export interface Character {
   misc: MiscBonuses;
   damage: HealthAndResolve;
   feats: FeatName[];
+  armor: OwnedArmor[];
 }
 
 interface CharacterWithCreated extends Character {
@@ -77,6 +84,7 @@ interface CharacterUpdaters {
   setMisc: React.Dispatch<React.SetStateAction<MiscBonuses>>;
   setDamage: React.Dispatch<React.SetStateAction<HealthAndResolve>>;
   setFeats: React.Dispatch<React.SetStateAction<FeatName[]>>;
+  setArmor: React.Dispatch<React.SetStateAction<OwnedArmor[]>>;
 }
 
 const initialAbilityLevels: AbilityLevels = mergeDeep(
@@ -170,6 +178,8 @@ const initialDamage: HealthAndResolve = mergeDeep(
 
 const initialFeats: FeatName[] = persistedCharacter.feats || [];
 
+const initialArmor: OwnedArmor[] = persistedCharacter.armor || [];
+
 const initialCharacter: CharacterWithCreated = {
   abilityLevels: initialAbilityLevels,
   skills: initialSkills,
@@ -179,7 +189,8 @@ const initialCharacter: CharacterWithCreated = {
   notes: initialNotes,
   misc: initialMisc,
   damage: initialDamage,
-  feats: initialFeats
+  feats: initialFeats,
+  armor: initialArmor
 };
 
 const initialContext: [CharacterWithCreated, CharacterUpdaters] = [
@@ -193,7 +204,8 @@ const initialContext: [CharacterWithCreated, CharacterUpdaters] = [
     setNotes: () => {},
     setMisc: () => {},
     setDamage: () => {},
-    setFeats: () => {}
+    setFeats: () => {},
+    setArmor: () => {}
   }
 ];
 
@@ -213,6 +225,7 @@ const CharacterProvider: React.FC<React.Attributes> = ({ children }) => {
   const [misc, setMisc] = useState(initialMisc);
   const [damage, setDamage] = useState(initialDamage);
   const [feats, setFeats] = useState(initialFeats);
+  const [armor, setArmor] = useState(initialArmor);
 
   const characterState = [
     abilityLevels,
@@ -222,7 +235,8 @@ const CharacterProvider: React.FC<React.Attributes> = ({ children }) => {
     notes,
     misc,
     damage,
-    feats
+    feats,
+    armor
   ];
   const character = {
     abilityLevels,
@@ -232,7 +246,8 @@ const CharacterProvider: React.FC<React.Attributes> = ({ children }) => {
     notes,
     misc,
     damage,
-    feats
+    feats,
+    armor
   };
 
   useEffect(() => {
@@ -254,7 +269,8 @@ const CharacterProvider: React.FC<React.Attributes> = ({ children }) => {
           setNotes,
           setMisc,
           setDamage,
-          setFeats
+          setFeats,
+          setArmor
         }
       ]}
     >

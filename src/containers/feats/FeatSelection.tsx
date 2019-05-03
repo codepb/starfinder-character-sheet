@@ -6,7 +6,6 @@ import Select from "../../components/form/Select";
 import FeatsContainer from "../characterDetails/FeatsContainer";
 import { Button } from "@material-ui/core";
 import FeatDetails from "../../components/characterDetails/FeatDetails";
-import StepperButtons from "../../components/characterCreation/StepperButtons";
 
 const FeatSelection: React.FC = () => {
   const { addFeat } = useFeats();

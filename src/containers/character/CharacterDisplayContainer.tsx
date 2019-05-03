@@ -36,6 +36,7 @@ import AttackBonusesContainer from "../characterDetails/AttackBonusesContainer";
 import ArmorClassesContainer from "../characterDetails/ArmorClassesContainer";
 import HealthAndResolveContainer from "../characterDetails/HealthAndResolveContainer";
 import FeatsContainer from "../characterDetails/FeatsContainer";
+import ArmorContainer from "../defense/ArmorContainer";
 
 enum Page {
   Sheet,
@@ -61,6 +62,8 @@ const tabs = [
     <HealthAndResolveContainer />
     <Divider />
     <ArmorClassesContainer />
+    <Divider />
+    <ArmorContainer />
   </Container>,
   <Container>
     <FeatsContainer />

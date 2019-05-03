@@ -10,7 +10,8 @@ const styles: StyleRulesCallback<string> = theme => ({
     ...theme.mixins.gutters(),
     paddingTop: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 2,
-    height: "100%"
+    height: "100%",
+    position: "relative"
   }
 });
 
