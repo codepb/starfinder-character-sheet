@@ -7,6 +7,7 @@ import { sendAlert, closeAlert } from "../../components/layout/Alert";
 import armors, { Armor } from "../../rules/armor";
 import { useState } from "react";
 import Select from "../../components/form/Select";
+import DisplayValue from "../../components/layout/DisplayValue";
 
 type Classes = "addButton";
 
@@ -21,18 +22,10 @@ const styles = (theme: Theme): Record<Classes, CSSProperties> => ({
 const ArmorDetails: React.FC<{ armor: Armor }> = ({ armor }) => (
   <>
     <Typography variant="h5">{armor.model}</Typography>
-    <div>
-      <strong>Kinetic Armor Class:</strong> {armor.kacBonus}
-    </div>
-    <div>
-      <strong>Energy Armor Class:</strong> {armor.eacBonus}
-    </div>
-    <div>
-      <strong>Level:</strong> {armor.level}
-    </div>
-    <div>
-      <strong>Price:</strong> {armor.price}
-    </div>
+    <DisplayValue label="Kinetic Armor Class">{armor.kacBonus}</DisplayValue>
+    <DisplayValue label="Energy Armor Class">{armor.eacBonus}</DisplayValue>
+    <DisplayValue label="Level">{armor.level}</DisplayValue>
+    <DisplayValue label="Price">{armor.price}</DisplayValue>
   </>
 );
 
@@ -79,7 +72,7 @@ const ArmorContainer: React.FC<{ classes: Record<Classes, string> }> = ({
     <>
       {armor.map(a => (
         <div key={a.id}>
-          <Typography variant="h6">{a.model}</Typography>
+          <ArmorDetails armor={a} />
           {a.equipped ? (
             <Button color="primary" onClick={() => unequipArmor(a.id)}>
               Unequip

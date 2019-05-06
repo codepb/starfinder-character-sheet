@@ -4,6 +4,7 @@ import { FC } from "react";
 import { HealthAndResolve as HealthAndResolveType } from "../../character/CharacterContext";
 import { Button, TextField } from "@material-ui/core";
 import { sendAlert, closeAlert } from "../layout/Alert";
+import DisplayValue from "../layout/DisplayValue";
 
 interface HealthAndResolveProps {
   maxStamina: number;
@@ -52,15 +53,15 @@ const HealthAndResolve: FC<HealthAndResolveProps> = ({
 }) => {
   return (
     <>
-      <div>
-        Stamina: <strong>{maxStamina - damage.stamina}</strong>/{maxStamina}
-      </div>
-      <div>
-        Health: <strong>{maxHealth - damage.health}</strong>/{maxHealth}
-      </div>
-      <div>
-        Resolve: <strong>{maxResolve - damage.resolve}</strong>/{maxResolve}
-      </div>
+      <DisplayValue label="Stamina">
+        {maxStamina - damage.stamina}/{maxStamina}
+      </DisplayValue>
+      <DisplayValue label="Health">
+        {maxHealth - damage.health}/{maxHealth}
+      </DisplayValue>
+      <DisplayValue label="Resolve">
+        {maxResolve - damage.resolve}/{maxResolve}
+      </DisplayValue>
       <Button
         color="primary"
         onClick={() =>

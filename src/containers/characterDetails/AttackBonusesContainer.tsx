@@ -1,6 +1,7 @@
 import * as React from "react";
 import useAttackBonuses from "../../character/useAttackBonuses";
 import AttackBonuses from "../../components/characterDetails/AttackBonuses";
+import { Typography } from "@material-ui/core";
 
 const AttackBonusesContainer: React.FC = () => {
   const {
@@ -21,9 +22,9 @@ const AttackBonusesContainer: React.FC = () => {
         misc={misc}
         onMiscChange={setMiscAttackBonuses}
       />
-      <div>
+      <Typography component="div">
         Base Attack Bonus: <strong>{baseAttackBonus}</strong>
-      </div>
+      </Typography>
     </>
   );
 };

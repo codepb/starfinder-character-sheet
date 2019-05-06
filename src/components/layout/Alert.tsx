@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Dialog } from "@material-ui/core";
+import { Dialog, Typography } from "@material-ui/core";
 import { ReactNode, useState, useEffect } from "react";
 import Container from "./Container";
 
@@ -35,7 +35,13 @@ const Alert: React.FC = () => {
   });
   return (
     <Dialog open={open} onClose={() => setOpen(false)}>
-      <Container>{children}</Container>
+      <Container>
+        {typeof children === "string" ? (
+          <Typography>{children}</Typography>
+        ) : (
+          children
+        )}
+      </Container>
     </Dialog>
   );
 };

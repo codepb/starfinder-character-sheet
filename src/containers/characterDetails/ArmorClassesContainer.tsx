@@ -1,8 +1,7 @@
 import * as React from "react";
-import useAttackBonuses from "../../character/useAttackBonuses";
-import AttackBonuses from "../../components/characterDetails/AttackBonuses";
 import ArmorClasses from "../../components/characterDetails/ArmorClasses";
 import useArmorClasses from "../../character/useArmorClasses";
+import { Typography } from "@material-ui/core";
 
 const ArmorClassesContainer: React.FC = () => {
   const {
@@ -21,9 +20,9 @@ const ArmorClassesContainer: React.FC = () => {
         misc={misc}
         onMiscChange={setMiscArmorClasses}
       />
-      <div>
+      <Typography>
         AC vs Combat Maneuvers: <strong>{combatManeuvers}</strong>
-      </div>
+      </Typography>
     </>
   );
 };

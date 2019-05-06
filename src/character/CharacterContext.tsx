@@ -51,6 +51,7 @@ export interface OwnedWeapon {
   bulk: number;
   special: string;
   powered: boolean;
+  currentCharge?: number;
 }
 
 export interface Equipment {

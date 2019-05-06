@@ -1,5 +1,11 @@
 import * as React from "react";
-import { List, ListItem, IconButton, Button } from "@material-ui/core";
+import {
+  List,
+  ListItem,
+  IconButton,
+  Button,
+  Typography
+} from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import feats, { FeatName } from "../../rules/feats";
 import { sendAlert } from "../layout/Alert";
@@ -20,17 +26,19 @@ const Feats: React.FC<FeatsProps> = ({ selectedFeats, onRemoveFeat }) => (
           sendAlert(<FeatDetails feat={feats.find(feat => feat.name === f)!} />)
         }
       >
-        {f}{" "}
-        <Button
-          aria-label="Delete"
-          color="secondary"
-          onClick={e => {
-            e.stopPropagation();
-            onRemoveFeat(f);
-          }}
-        >
-          <DeleteIcon fontSize="small" />
-        </Button>
+        <Typography>
+          {f}{" "}
+          <Button
+            aria-label="Delete"
+            color="secondary"
+            onClick={e => {
+              e.stopPropagation();
+              onRemoveFeat(f);
+            }}
+          >
+            <DeleteIcon fontSize="small" />
+          </Button>
+        </Typography>
       </ListItem>
     ))}
   </List>

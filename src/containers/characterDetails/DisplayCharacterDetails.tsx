@@ -3,6 +3,7 @@ import useDetails from "../../character/useDetails";
 import { withStyles, List, ListItem, ListItemText } from "@material-ui/core";
 import { CSSProperties } from "@material-ui/core/styles/withStyles";
 import Container from "../../components/layout/Container";
+import DisplayValue from "../../components/layout/DisplayValue";
 
 type Classes = "description";
 
@@ -23,24 +24,16 @@ const DisplayCharacterDetails: React.FC<DisplayCharacterDetailsProps> = ({
   return (
     <Container>
       <section>
-        <div>
-          <strong>Size:</strong> {details.size}
-        </div>
-        <div>
-          <strong>Home World:</strong> {details.homeWorld}
-        </div>
-        <div>
-          <strong>Deity:</strong> {details.deity}
-        </div>
-        <div>
-          <strong>Alignment:</strong> {details.alignment}
-        </div>
-        <div>
-          <strong>Languages:</strong> {(details.languages || []).join(", ")}
-        </div>
+        <DisplayValue label="Size">{details.size}</DisplayValue>
+        <DisplayValue label="Home World">{details.homeWorld}</DisplayValue>
+        <DisplayValue label="Deity">{details.deity}</DisplayValue>
+        <DisplayValue label="Alignment">{details.alignment}</DisplayValue>
+        <DisplayValue label="Languages">
+          {(details.languages || []).join(", ")}
+        </DisplayValue>
       </section>
       <section className={classes.description}>
-        <strong>Description:</strong> {details.description}
+        <DisplayValue label="Description">{details.description}</DisplayValue>
       </section>
     </Container>
   );

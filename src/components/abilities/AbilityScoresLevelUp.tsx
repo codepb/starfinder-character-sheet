@@ -3,7 +3,13 @@ import {
   AbilityScores as AbilityScoresType,
   AbilityScores
 } from "../../character/useAbilityScores";
-import { Checkbox, Table } from "@material-ui/core";
+import {
+  Checkbox,
+  Table,
+  TableBody,
+  TableRow,
+  TableCell
+} from "@material-ui/core";
 
 interface AbilityScoresLevelUpProps {
   abilityScores: AbilityScoresType;
@@ -22,13 +28,13 @@ const AbilityScoresLevelUp: React.FC<AbilityScoresLevelUpProps> = ({
 }) => (
   <>
     <Table>
-      <tbody>
+      <TableBody>
         {Object.entries(abilityScores).map(([key, value]) => (
-          <tr key={key}>
-            <td>{key}</td>
-            <td>{value}</td>
-            <td>{abilityModifiers[key]}</td>
-            <td>
+          <TableRow key={key}>
+            <TableCell>{key}</TableCell>
+            <TableCell>{value}</TableCell>
+            <TableCell>{abilityModifiers[key]}</TableCell>
+            <TableCell>
               <Checkbox
                 id={`ability-${key}`}
                 color="primary"
@@ -44,10 +50,10 @@ const AbilityScoresLevelUp: React.FC<AbilityScoresLevelUpProps> = ({
                   );
                 }}
               />
-            </td>
-          </tr>
+            </TableCell>
+          </TableRow>
         ))}
-      </tbody>
+      </TableBody>
     </Table>
     <div>Abilities Remaining: {abilitiesRemaining}</div>
   </>
