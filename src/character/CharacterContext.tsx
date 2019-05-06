@@ -30,6 +30,36 @@ export interface OwnedArmor extends Armor {
   id: string;
 }
 
+export enum WeaponType {
+  Melee,
+  Ranged,
+  Other
+}
+
+export interface OwnedWeapon {
+  id: string;
+  type: WeaponType;
+  name: string;
+  level: number;
+  price: number;
+  damage: string;
+  damageType: string;
+  range: number;
+  critical: string;
+  capacity?: number;
+  usage?: number;
+  bulk: number;
+  special: string;
+  powered: boolean;
+}
+
+export interface Equipment {
+  id: string;
+  name: string;
+  bulk: number;
+  level?: number;
+}
+
 export interface Character {
   abilityLevels: AbilityLevels;
   skills: SkillsLevels;
@@ -40,6 +70,8 @@ export interface Character {
   damage: HealthAndResolve;
   feats: FeatName[];
   armor: OwnedArmor[];
+  weapons: OwnedWeapon[];
+  equipment: Equipment[];
 }
 
 interface CharacterWithCreated extends Character {
@@ -85,6 +117,8 @@ interface CharacterUpdaters {
   setDamage: React.Dispatch<React.SetStateAction<HealthAndResolve>>;
   setFeats: React.Dispatch<React.SetStateAction<FeatName[]>>;
   setArmor: React.Dispatch<React.SetStateAction<OwnedArmor[]>>;
+  setWeapons: React.Dispatch<React.SetStateAction<OwnedWeapon[]>>;
+  setEquipment: React.Dispatch<React.SetStateAction<Equipment[]>>;
 }
 
 const initialAbilityLevels: AbilityLevels = mergeDeep(
@@ -180,6 +214,10 @@ const initialFeats: FeatName[] = persistedCharacter.feats || [];
 
 const initialArmor: OwnedArmor[] = persistedCharacter.armor || [];
 
+const initialWeapons: OwnedWeapon[] = persistedCharacter.weapons || [];
+
+const initialEquipment: Equipment[] = persistedCharacter.equipment || [];
+
 const initialCharacter: CharacterWithCreated = {
   abilityLevels: initialAbilityLevels,
   skills: initialSkills,
@@ -190,7 +228,9 @@ const initialCharacter: CharacterWithCreated = {
   misc: initialMisc,
   damage: initialDamage,
   feats: initialFeats,
-  armor: initialArmor
+  armor: initialArmor,
+  weapons: initialWeapons,
+  equipment: initialEquipment
 };
 
 const initialContext: [CharacterWithCreated, CharacterUpdaters] = [
@@ -205,7 +245,9 @@ const initialContext: [CharacterWithCreated, CharacterUpdaters] = [
     setMisc: () => {},
     setDamage: () => {},
     setFeats: () => {},
-    setArmor: () => {}
+    setArmor: () => {},
+    setWeapons: () => {},
+    setEquipment: () => {}
   }
 ];
 
@@ -226,6 +268,8 @@ const CharacterProvider: React.FC<React.Attributes> = ({ children }) => {
   const [damage, setDamage] = useState(initialDamage);
   const [feats, setFeats] = useState(initialFeats);
   const [armor, setArmor] = useState(initialArmor);
+  const [weapons, setWeapons] = useState(initialWeapons);
+  const [equipment, setEquipment] = useState(initialEquipment);
 
   const characterState = [
     abilityLevels,
@@ -236,7 +280,9 @@ const CharacterProvider: React.FC<React.Attributes> = ({ children }) => {
     misc,
     damage,
     feats,
-    armor
+    armor,
+    weapons,
+    equipment
   ];
   const character = {
     abilityLevels,
@@ -247,7 +293,9 @@ const CharacterProvider: React.FC<React.Attributes> = ({ children }) => {
     misc,
     damage,
     feats,
-    armor
+    armor,
+    weapons,
+    equipment
   };
 
   useEffect(() => {
@@ -270,7 +318,9 @@ const CharacterProvider: React.FC<React.Attributes> = ({ children }) => {
           setMisc,
           setDamage,
           setFeats,
-          setArmor
+          setArmor,
+          setWeapons,
+          setEquipment
         }
       ]}
     >
