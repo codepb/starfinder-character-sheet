@@ -22,12 +22,12 @@ interface WeaponsContainerProps {
 }
 
 const WeaponsContainer: React.FC<WeaponsContainerProps> = ({ classes }) => {
-  const { weapons } = useWeapons();
+  const { weapons, removeWeapon } = useWeapons();
 
   return (
     <>
       {weapons.map(w => (
-        <Weapon key={w.id} weapon={w} />
+        <Weapon key={w.id} weapon={w} onRemoveWeapon={removeWeapon} />
       ))}
       <Fab
         className={classes.addButton}

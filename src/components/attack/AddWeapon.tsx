@@ -87,7 +87,7 @@ const AddWeapon: React.FC<AddWeaponProps> = ({
       control={
         <Checkbox
           checked={weapon.powered}
-          onChange={e => ({ ...weapon, powered: e.target.checked })}
+          onChange={e => onChange({ ...weapon, powered: e.target.checked })}
           value="powered"
         />
       }
