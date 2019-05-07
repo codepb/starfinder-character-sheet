@@ -21,6 +21,7 @@ import HealthAndResolveContainer from "../characterDetails/HealthAndResolveConta
 import FeatsContainer from "../characterDetails/FeatsContainer";
 import ArmorContainer from "../defense/ArmorContainer";
 import WeaponsContainer from "../attack/WeaponsContainer";
+import EquipmentContainer from "../equipment/EquipmentContainer";
 
 enum Page {
   Sheet,
@@ -53,6 +54,9 @@ const tabs = [
     <ArmorClassesContainer />
     <Typography variant="h6">Armor</Typography>
     <ArmorContainer />
+  </Container>,
+  <Container>
+    <EquipmentContainer />
   </Container>,
   <Container>
     <FeatsContainer />
@@ -132,6 +136,7 @@ const CharacterDisplayContainer: React.FC = () => {
           <Tab label="Skills" />
           <Tab label="Attack" />
           <Tab label="Health &amp; Defense" />
+          <Tab label="Equipment" />
           <Tab label="Feats" />
           <Tab label="Notes" />
         </Tabs>

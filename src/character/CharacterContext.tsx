@@ -59,6 +59,7 @@ export interface Equipment {
   name: string;
   bulk: number;
   level?: number;
+  price: number;
 }
 
 export interface Character {
