@@ -127,7 +127,7 @@ const EquipmentContainer: React.FC<{ classes: Record<Classes, string> }> = ({
           ))}
         </TableBody>
       </Table>
-      <Typography variant="h6">Equipment</Typography>
+      <Typography variant="h6">Armor</Typography>
       <Table>
         <TableHead>
           <TableRow>
