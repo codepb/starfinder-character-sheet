@@ -14,6 +14,7 @@ import { AttackBonuses } from "./useAttackBonuses";
 import { ArmorClasses } from "./useArmorClasses";
 import { FeatName } from "../rules/feats";
 import { Armor } from "../rules/armor";
+import spells from "../rules/spells";
 
 export interface SkillsLevels {
   levels: Skills[];
@@ -62,6 +63,21 @@ export interface Equipment {
   price: number;
 }
 
+interface SpellLevel {
+  knownSpells: string[];
+  spellsCast: number;
+}
+
+export type KnownSpells = [
+  SpellLevel,
+  SpellLevel,
+  SpellLevel,
+  SpellLevel,
+  SpellLevel,
+  SpellLevel,
+  SpellLevel
+];
+
 export interface Character {
   abilityLevels: AbilityLevels;
   skills: SkillsLevels;
@@ -74,6 +90,7 @@ export interface Character {
   armor: OwnedArmor[];
   weapons: OwnedWeapon[];
   equipment: Equipment[];
+  spells: KnownSpells;
 }
 
 interface CharacterWithCreated extends Character {
@@ -121,6 +138,7 @@ interface CharacterUpdaters {
   setArmor: React.Dispatch<React.SetStateAction<OwnedArmor[]>>;
   setWeapons: React.Dispatch<React.SetStateAction<OwnedWeapon[]>>;
   setEquipment: React.Dispatch<React.SetStateAction<Equipment[]>>;
+  setSpells: React.Dispatch<React.SetStateAction<KnownSpells>>;
 }
 
 const initialAbilityLevels: AbilityLevels = mergeDeep(
@@ -220,6 +238,16 @@ const initialWeapons: OwnedWeapon[] = persistedCharacter.weapons || [];
 
 const initialEquipment: Equipment[] = persistedCharacter.equipment || [];
 
+const initialSpells: KnownSpells = persistedCharacter.spells || [
+  { knownSpells: [], spellsCast: 0 },
+  { knownSpells: [], spellsCast: 0 },
+  { knownSpells: [], spellsCast: 0 },
+  { knownSpells: [], spellsCast: 0 },
+  { knownSpells: [], spellsCast: 0 },
+  { knownSpells: [], spellsCast: 0 },
+  { knownSpells: [], spellsCast: 0 }
+];
+
 const initialCharacter: CharacterWithCreated = {
   abilityLevels: initialAbilityLevels,
   skills: initialSkills,
@@ -232,7 +260,8 @@ const initialCharacter: CharacterWithCreated = {
   feats: initialFeats,
   armor: initialArmor,
   weapons: initialWeapons,
-  equipment: initialEquipment
+  equipment: initialEquipment,
+  spells: initialSpells
 };
 
 const initialContext: [CharacterWithCreated, CharacterUpdaters] = [
@@ -249,7 +278,8 @@ const initialContext: [CharacterWithCreated, CharacterUpdaters] = [
     setFeats: () => {},
     setArmor: () => {},
     setWeapons: () => {},
-    setEquipment: () => {}
+    setEquipment: () => {},
+    setSpells: () => {}
   }
 ];
 
@@ -272,6 +302,7 @@ const CharacterProvider: React.FC<React.Attributes> = ({ children }) => {
   const [armor, setArmor] = useState(initialArmor);
   const [weapons, setWeapons] = useState(initialWeapons);
   const [equipment, setEquipment] = useState(initialEquipment);
+  const [spells, setSpells] = useState(initialSpells);
 
   const characterState = [
     abilityLevels,
@@ -284,7 +315,8 @@ const CharacterProvider: React.FC<React.Attributes> = ({ children }) => {
     feats,
     armor,
     weapons,
-    equipment
+    equipment,
+    spells
   ];
   const character = {
     abilityLevels,
@@ -297,7 +329,8 @@ const CharacterProvider: React.FC<React.Attributes> = ({ children }) => {
     feats,
     armor,
     weapons,
-    equipment
+    equipment,
+    spells
   };
 
   useEffect(() => {
@@ -322,7 +355,8 @@ const CharacterProvider: React.FC<React.Attributes> = ({ children }) => {
           setFeats,
           setArmor,
           setWeapons,
-          setEquipment
+          setEquipment,
+          setSpells
         }
       ]}
     >
