@@ -63,9 +63,14 @@ export interface Equipment {
   price: number;
 }
 
-interface SpellLevel {
+interface SpellLevelDetails {
   knownSpells: string[];
   spellsCast: number;
+}
+
+export interface SpellLevel {
+  mystic: SpellLevelDetails;
+  technomancer: SpellLevelDetails;
 }
 
 export type KnownSpells = [
@@ -239,13 +244,34 @@ const initialWeapons: OwnedWeapon[] = persistedCharacter.weapons || [];
 const initialEquipment: Equipment[] = persistedCharacter.equipment || [];
 
 const initialSpells: KnownSpells = persistedCharacter.spells || [
-  { knownSpells: [], spellsCast: 0 },
-  { knownSpells: [], spellsCast: 0 },
-  { knownSpells: [], spellsCast: 0 },
-  { knownSpells: [], spellsCast: 0 },
-  { knownSpells: [], spellsCast: 0 },
-  { knownSpells: [], spellsCast: 0 },
-  { knownSpells: [], spellsCast: 0 }
+  {
+    mystic: { knownSpells: [], spellsCast: 0 },
+    technomancer: { knownSpells: [], spellsCast: 0 }
+  },
+  {
+    mystic: { knownSpells: [], spellsCast: 0 },
+    technomancer: { knownSpells: [], spellsCast: 0 }
+  },
+  {
+    mystic: { knownSpells: [], spellsCast: 0 },
+    technomancer: { knownSpells: [], spellsCast: 0 }
+  },
+  {
+    mystic: { knownSpells: [], spellsCast: 0 },
+    technomancer: { knownSpells: [], spellsCast: 0 }
+  },
+  {
+    mystic: { knownSpells: [], spellsCast: 0 },
+    technomancer: { knownSpells: [], spellsCast: 0 }
+  },
+  {
+    mystic: { knownSpells: [], spellsCast: 0 },
+    technomancer: { knownSpells: [], spellsCast: 0 }
+  },
+  {
+    mystic: { knownSpells: [], spellsCast: 0 },
+    technomancer: { knownSpells: [], spellsCast: 0 }
+  }
 ];
 
 const initialCharacter: CharacterWithCreated = {

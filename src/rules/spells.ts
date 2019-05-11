@@ -3,43 +3,43 @@ import { Class } from "./classes";
 type SpellLevel = 0 | 1 | 2 | 3 | 4 | 5 | 6;
 
 enum SpellSchool {
-  Necromancy,
-  Divination,
-  Evocation,
-  Transmutation,
-  Abjuration,
-  Enchantment,
-  Conjuration,
-  Illusion,
-  Universal
+  Necromancy = "Necromancy",
+  Divination = "Divination",
+  Evocation = "Evocation",
+  Transmutation = "Trasmutation",
+  Abjuration = "Abjuration",
+  Enchantment = "Enchantment",
+  Conjuration = "Conjuration",
+  Illusion = "Illusion",
+  Universal = "Universal"
 }
 
 enum SpellDescriptor {
-  Scrying,
-  Electricity,
-  Curse,
-  Acid,
-  MindAffecting,
-  Charm,
-  Compulsion,
-  LanguageDependent,
-  SenseDependent,
-  Creation,
-  Death,
-  Teleportation,
-  Fire,
-  Emotion,
-  Fear,
-  Force,
-  Cold,
-  Pain,
-  Disease,
-  Poison,
-  Radiation,
-  Healing,
-  Calling,
-  Shadow,
-  Sonic
+  Scrying = "Scrying",
+  Electricity = "Electricity",
+  Curse = "Curse",
+  Acid = "Acid",
+  MindAffecting = "Mind Affecting",
+  Charm = "Charm",
+  Compulsion = "Compulsion",
+  LanguageDependent = "Language Dependent",
+  SenseDependent = "Sense Dependent",
+  Creation = "Creation",
+  Death = "Death",
+  Teleportation = "Teleportation",
+  Fire = "Fire",
+  Emotion = "Emotion",
+  Fear = "Fear",
+  Force = "Force",
+  Cold = "Cold",
+  Pain = "Pain",
+  Disease = "Disease",
+  Poison = "Poison",
+  Radiation = "Radiation",
+  Healing = "Healing",
+  Calling = "Calling",
+  Shadow = "Shadow",
+  Sonic = "Sonic"
 }
 
 type RuleSource = "Core Rulebook";
@@ -70,7 +70,10 @@ interface SpellDefinition {
 const spells: { [key: string]: SpellDefinition } = {
   "Animate Dead": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 4},{class: Class.Technomancer, level: 4}],
+    Classes: [
+      { class: Class.Mystic, level: 4 },
+      { class: Class.Technomancer, level: 4 }
+    ],
     SpellListDescription:
       "Create controlled undead creatures out of target corpses.",
     Duration: "Instantaneous",
@@ -87,7 +90,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Arcane Eye": {
     CastingTime: "10 minutes",
-    Classes: [{class: Class.Technomancer, level: 4}],
+    Classes: [{ class: Class.Technomancer, level: 4 }],
     SpellListDescription:
       "Invisible floating eye moves 30 feet per round and sends you visual information.",
     Descriptor: [SpellDescriptor.Scrying],
@@ -105,7 +108,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Arcane Sight": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 3}],
+    Classes: [{ class: Class.Technomancer, level: 3 }],
     SpellListDescription: "Magical sources become visible to you.",
     Duration: "(CASTERLEVEL) minutes (D)",
     Level: 3,
@@ -118,7 +121,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Arcing Surge": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 3}],
+    Classes: [{ class: Class.Technomancer, level: 3 }],
     SpellListDescription: "Deal 10d6 electricity damage in a 120-foot line.",
     Descriptor: [SpellDescriptor.Electricity],
     Duration: "(CASTERLEVEL) minutes (D)",
@@ -135,7 +138,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   Augury: {
     CastingTime: "1 minute",
-    Classes: [{class: Class.Mystic, level: 2}],
+    Classes: [{ class: Class.Mystic, level: 2 }],
     SpellListDescription: "Learn whether an action will be good or bad.",
     Duration: "Instantaneous",
     Level: 2,
@@ -148,7 +151,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Battle Junkbot": {
     CastingTime: "1 round",
-    Classes: [{class: Class.Technomancer, level: 6}],
+    Classes: [{ class: Class.Technomancer, level: 6 }],
     SpellListDescription:
       "Create a temporary robot from random junk turning it into a deadly combatant.",
     Duration: "(CASTERLEVEL) rounds",
@@ -165,7 +168,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Bestow Curse": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 3}],
+    Classes: [{ class: Class.Mystic, level: 3 }],
     SpellListDescription:
       "Target takes -4 penalty to attack rolls saves and checks or 50% chance of not acting on each of its turns.",
     Descriptor: [SpellDescriptor.Curse],
@@ -183,7 +186,10 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Break Enchantment": {
     CastingTime: "1 minute",
-    Classes: [{class: Class.Mystic, level: 5},{class: Class.Technomancer, level: 5}],
+    Classes: [
+      { class: Class.Mystic, level: 5 },
+      { class: Class.Technomancer, level: 5 }
+    ],
     SpellListDescription:
       "Free creatures from curses enchantments and transmutations.",
     Duration: "Instantaneous",
@@ -201,7 +207,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Call Cosmos": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 5}],
+    Classes: [{ class: Class.Mystic, level: 5 }],
     SpellListDescription:
       "Rain cosmic particles on targets dealing 4d6 fire damage and 3d6 cold damage.",
     Duration: "(CASTERLEVEL) rounds (D)",
@@ -218,7 +224,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Caustic Conversion": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 2}],
+    Classes: [{ class: Class.Technomancer, level: 2 }],
     SpellListDescription:
       "Fling magical nanites as a ranged attack that deals 4d4 acid damage to one target plus 5 additional damage in subsequent rounds.",
     Descriptor: [SpellDescriptor.Acid],
@@ -236,7 +242,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Chain Surge": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 6}],
+    Classes: [{ class: Class.Technomancer, level: 6 }],
     SpellListDescription:
       "Deal 13d12 electricity damage to primary target and up to 10 secondary targets; one of the primary target's electrical devices stops functioning for 1 round.",
     Descriptor: [SpellDescriptor.Electricity],
@@ -255,7 +261,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Charm Monster": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 3}],
+    Classes: [{ class: Class.Mystic, level: 3 }],
     SpellListDescription:
       "Make one creature believe it is your ally for (CASTERLEVEL) days.",
     Descriptor: [SpellDescriptor.Charm, SpellDescriptor.MindAffecting],
@@ -273,7 +279,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Charm Person": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 1}],
+    Classes: [{ class: Class.Mystic, level: 1 }],
     SpellListDescription:
       "Make one humanoid creature believe that it is your ally.",
     Descriptor: [SpellDescriptor.Charm, SpellDescriptor.MindAffecting],
@@ -291,7 +297,10 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Clairaudience/Clairvoyance": {
     CastingTime: "10 minutes",
-    Classes: [{class: Class.Mystic, level: 3},{class: Class.Technomancer, level: 3}],
+    Classes: [
+      { class: Class.Mystic, level: 3 },
+      { class: Class.Technomancer, level: 3 }
+    ],
     SpellListDescription:
       "Hear or see at a distance for (CASTERLEVEL) minutes.",
     Descriptor: [SpellDescriptor.Scrying],
@@ -309,7 +318,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   Command: {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 1}],
+    Classes: [{ class: Class.Mystic, level: 1 }],
     SpellListDescription: "One creature obeys a select command for 1 round.",
     Descriptor: [
       SpellDescriptor.Compulsion,
@@ -330,7 +339,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Command (Greater)": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 5}],
+    Classes: [{ class: Class.Mystic, level: 5 }],
     SpellListDescription:
       "Up to (CASTERLEVEL) creatures obey select command for (CASTERLEVEL) rounds.",
     Descriptor: [
@@ -353,7 +362,10 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Command Undead": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 2},{class: Class.Technomancer, level: 2}],
+    Classes: [
+      { class: Class.Mystic, level: 2 },
+      { class: Class.Technomancer, level: 2 }
+    ],
     SpellListDescription: "Undead creature obeys your commands.",
     Descriptor: [SpellDescriptor.SenseDependent],
     Duration: "(CASTERLEVEL) days",
@@ -369,7 +381,7 @@ const spells: { [key: string]: SpellDefinition } = {
     TargetsEffectArea: "One undead creature"
   },
   "Commune with Nature": {
-    Classes: [{class: Class.Mystic, level: 5}],
+    Classes: [{ class: Class.Mystic, level: 5 }],
     Level: 5,
     CastingTime: "10 minutes",
     SpellListDescription: "Learn about terrain for (CASTERLEVEL) miles.",
@@ -383,7 +395,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Comprehend Languages": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 1}],
+    Classes: [{ class: Class.Technomancer, level: 1 }],
     SpellListDescription:
       "You understand all spoken signed and written or tactile languages.",
     Duration: "(CASTERLEVEL*10) minutes (D)",
@@ -397,7 +409,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   Confusion: {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 4}],
+    Classes: [{ class: Class.Mystic, level: 4 }],
     SpellListDescription: "Targets behave randomly for (CASTERLEVEL) rounds.",
     Descriptor: [SpellDescriptor.Compulsion, SpellDescriptor.MindAffecting],
     Duration: "(CASTERLEVEL) rounds",
@@ -414,7 +426,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Confusion (Lesser)": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 1}],
+    Classes: [{ class: Class.Mystic, level: 1 }],
     SpellListDescription: "One living creature is confused for 1 round.",
     Descriptor: [SpellDescriptor.Compulsion, SpellDescriptor.MindAffecting],
     Duration: "1 round",
@@ -431,7 +443,10 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Contact Other Plane": {
     CastingTime: "10 minutes",
-    Classes: [{class: Class.Mystic, level: 5},{class: Class.Technomancer, level: 5}],
+    Classes: [
+      { class: Class.Mystic, level: 5 },
+      { class: Class.Technomancer, level: 5 }
+    ],
     SpellListDescription: "Ask questions of extraplanar entity.",
     Duration: "Concentration",
     Level: 5,
@@ -444,7 +459,10 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Control Gravity": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 6},{class: Class.Technomancer, level: 6}],
+    Classes: [
+      { class: Class.Mystic, level: 6 },
+      { class: Class.Technomancer, level: 6 }
+    ],
     SpellListDescription: "Alter gravity in an area.",
     Duration: "(CASTERLEVEL) rounds (D)",
     Level: 6,
@@ -460,7 +478,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Control Machines": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 5}],
+    Classes: [{ class: Class.Technomancer, level: 5 }],
     SpellListDescription:
       "Command technological constructs within range telepathically.",
     Duration: "Concentration up to (CASTERLEVEL) rounds",
@@ -478,7 +496,10 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Control Undead": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 6},{class: Class.Technomancer, level: 6}],
+    Classes: [
+      { class: Class.Mystic, level: 6 },
+      { class: Class.Technomancer, level: 6 }
+    ],
     SpellListDescription:
       "Undead creatures follow your commands and don't attack you.",
     Duration: "(CASTERLEVEL) minutes",
@@ -496,7 +517,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Corrosive Haze": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 4}],
+    Classes: [{ class: Class.Technomancer, level: 4 }],
     SpellListDescription:
       "Cloud deals 4d8 acid damage per round plus 10 additional damage.",
     Descriptor: [SpellDescriptor.Acid],
@@ -514,7 +535,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Cosmic Eddy": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 4}],
+    Classes: [{ class: Class.Mystic, level: 4 }],
     SpellListDescription:
       "Whirlwind deals 4d6 damage and knocks creatures prone.",
     Duration: "(CASTERLEVEL) rounds (D)",
@@ -531,7 +552,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Creation (Level 4)": {
     CastingTime: "1 minute",
-    Classes: [{class: Class.Technomancer, level: 4}],
+    Classes: [{ class: Class.Technomancer, level: 4 }],
     SpellListDescription: "Create one object made of vegetable matter.",
     Descriptor: [SpellDescriptor.Creation],
     Duration: "See text",
@@ -549,7 +570,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Creation (Level 5)": {
     CastingTime: "1 minute",
-    Classes: [{class: Class.Technomancer, level: 5}],
+    Classes: [{ class: Class.Technomancer, level: 5 }],
     SpellListDescription:
       "Create a single object made of vegetable or mineral matter.",
     Descriptor: [SpellDescriptor.Creation],
@@ -568,7 +589,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Crush Skull": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 5}],
+    Classes: [{ class: Class.Mystic, level: 5 }],
     SpellListDescription: "Deal 18d8 damage to living creature's head.",
     Descriptor: [SpellDescriptor.Death],
     Duration: "Instantaneous",
@@ -585,7 +606,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Dancing Lights": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 0}],
+    Classes: [{ class: Class.Technomancer, level: 0 }],
     SpellListDescription: "Create and direct up to four lights.",
     Duration: "1 minute (D)",
     Level: 0,
@@ -601,7 +622,10 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   Darkvision: {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 2},{class: Class.Technomancer, level: 2}],
+    Classes: [
+      { class: Class.Mystic, level: 2 },
+      { class: Class.Technomancer, level: 2 }
+    ],
     SpellListDescription: "Grant ability to see 60 feet in total darkness.",
     Duration: "(CASTERLEVEL) hours",
     Level: 2,
@@ -617,7 +641,10 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   Daze: {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 0},{class: Class.Technomancer, level: 0}],
+    Classes: [
+      { class: Class.Mystic, level: 0 },
+      { class: Class.Technomancer, level: 0 }
+    ],
     SpellListDescription: "Humanoid creature of CR 3 or lower is dazed.",
     Descriptor: [SpellDescriptor.Compulsion, SpellDescriptor.MindAffecting],
     Duration: "1 round",
@@ -634,7 +661,10 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Daze Monster": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 2},{class: Class.Technomancer, level: 2}],
+    Classes: [
+      { class: Class.Mystic, level: 2 },
+      { class: Class.Technomancer, level: 2 }
+    ],
     SpellListDescription: "Target living creature of CR 5 or lower is dazed.",
     Descriptor: [SpellDescriptor.Compulsion, SpellDescriptor.MindAffecting],
     Duration: "1 round",
@@ -651,7 +681,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Death Ward": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 4}],
+    Classes: [{ class: Class.Mystic, level: 4 }],
     SpellListDescription:
       "Target gains +4 bonus to saves against death spells and is immune to negative energy and gaining negative levels.",
     Duration: "(CASTERLEVEL) minutes",
@@ -668,7 +698,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Deep Slumber": {
     CastingTime: "1 round",
-    Classes: [{class: Class.Mystic, level: 3}],
+    Classes: [{ class: Class.Mystic, level: 3 }],
     SpellListDescription:
       "Put a number of creatures whose CRs total 8 or less to sleep.",
     Descriptor: [SpellDescriptor.Compulsion, SpellDescriptor.MindAffecting],
@@ -687,7 +717,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Destruction Protocol": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 4}],
+    Classes: [{ class: Class.Technomancer, level: 4 }],
     SpellListDescription:
       "Turn nonhostile technological construct against your foes.",
     Duration: "Concentration up to (CASTERLEVEL) rounds",
@@ -705,7 +735,10 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Detect Affliction": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 0},{class: Class.Technomancer, level: 0}],
+    Classes: [
+      { class: Class.Mystic, level: 0 },
+      { class: Class.Technomancer, level: 0 }
+    ],
     SpellListDescription:
       "Determine whether a creature or object has been poisoned is diseased is cursed or is suffering a similar affliction.",
     Duration: "Instantaneous",
@@ -722,7 +755,10 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Detect Magic": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 0},{class: Class.Technomancer, level: 0}],
+    Classes: [
+      { class: Class.Mystic, level: 0 },
+      { class: Class.Technomancer, level: 0 }
+    ],
     SpellListDescription: "Detect spells and magic items within 60 feet.",
     Duration: "Concentration up to (CASTERLEVEL) minutes",
     Level: 0,
@@ -738,7 +774,10 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Detect Radiation": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 1},{class: Class.Technomancer, level: 1}],
+    Classes: [
+      { class: Class.Mystic, level: 1 },
+      { class: Class.Technomancer, level: 1 }
+    ],
     SpellListDescription: "Detect radiation within 120 feet.",
     Duration: "(CASTERLEVEL*10) minutes",
     Level: 1,
@@ -754,7 +793,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Detect Tech": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 1}],
+    Classes: [{ class: Class.Technomancer, level: 1 }],
     SpellListDescription:
       "Detect technological items with charges or that replenish charges within 60 feet.",
     Duration: "Instantaneous",
@@ -771,7 +810,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Detect Thoughts": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 1}],
+    Classes: [{ class: Class.Mystic, level: 1 }],
     SpellListDescription: "Listen to surface thoughts.",
     Descriptor: [SpellDescriptor.MindAffecting],
     Duration: "Concentration up to (CASTERLEVEL) minutes",
@@ -788,7 +827,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Dimension Door": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 4}],
+    Classes: [{ class: Class.Technomancer, level: 4 }],
     SpellListDescription: "Teleport a short distance.",
     Descriptor: [SpellDescriptor.Teleportation],
     Duration: "Instantaneous",
@@ -806,7 +845,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Discern Lies": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 4}],
+    Classes: [{ class: Class.Mystic, level: 4 }],
     SpellListDescription: "Reveal deliberate falsehoods.",
     Duration: "Concentration up to (CASTERLEVEL) rounds",
     Level: 4,
@@ -823,7 +862,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   Discharge: {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 3}],
+    Classes: [{ class: Class.Technomancer, level: 3 }],
     SpellListDescription:
       "Disrupts or depowers one target technological item or construct.",
     Duration: "Instantaneous",
@@ -840,7 +879,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Discharge (Greater)": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 6}],
+    Classes: [{ class: Class.Technomancer, level: 6 }],
     SpellListDescription:
       "Disrupts or depowers multiple technological items or constructs.",
     Duration: "Instantaneous",
@@ -858,7 +897,10 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Disguise Self": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 1},{class: Class.Technomancer, level: 1}],
+    Classes: [
+      { class: Class.Mystic, level: 1 },
+      { class: Class.Technomancer, level: 1 }
+    ],
     SpellListDescription: "Change your appearance.",
     Duration: "(CASTERLEVEL*10) minutes (D)",
     Level: 1,
@@ -871,7 +913,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   Disintegrate: {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 6}],
+    Classes: [{ class: Class.Technomancer, level: 6 }],
     SpellListDescription: "Ray reduces one creature or object to dust.",
     Duration: "Instantaneous",
     Level: 6,
@@ -888,7 +930,10 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Dismissal (Level 4)": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 4},{class: Class.Technomancer, level: 4}],
+    Classes: [
+      { class: Class.Mystic, level: 4 },
+      { class: Class.Technomancer, level: 4 }
+    ],
     SpellListDescription: "Force a creature to return to its native plane.",
     Duration: "Instantaneous",
     Level: 4,
@@ -904,7 +949,10 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Dismissal (Level 5)": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 5},{class: Class.Technomancer, level: 5}],
+    Classes: [
+      { class: Class.Mystic, level: 5 },
+      { class: Class.Technomancer, level: 5 }
+    ],
     SpellListDescription:
       "Force extraplanar creatures whose total CR is no greater than (CASTERLEVEL+2) to return to their native planes.",
     Duration: "Instantaneous",
@@ -921,7 +969,10 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Dispel Magic": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 3},{class: Class.Technomancer, level: 3}],
+    Classes: [
+      { class: Class.Mystic, level: 3 },
+      { class: Class.Technomancer, level: 3 }
+    ],
     SpellListDescription: "Cancel one magical spell or effect.",
     Duration: "Instantaneous",
     Level: 3,
@@ -937,7 +988,10 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Dispel Magic (Greater)": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 5},{class: Class.Technomancer, level: 5}],
+    Classes: [
+      { class: Class.Mystic, level: 5 },
+      { class: Class.Technomancer, level: 5 }
+    ],
     SpellListDescription: "Cancel multiple spells or effects.",
     Duration: "Instantaneous",
     Level: 5,
@@ -954,7 +1008,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   Displacement: {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 3}],
+    Classes: [{ class: Class.Technomancer, level: 3 }],
     SpellListDescription: "Attacks miss target 50% of the time.",
     Duration: "(CASTERLEVEL) rounds (D)",
     Level: 3,
@@ -970,7 +1024,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   Divination: {
     CastingTime: "10 minutes",
-    Classes: [{class: Class.Mystic, level: 4}],
+    Classes: [{ class: Class.Mystic, level: 4 }],
     SpellListDescription: "Gain useful advice for specific proposed actions.",
     Duration: "Instantaneous",
     Level: 4,
@@ -983,7 +1037,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Dominate Person": {
     CastingTime: "1 round",
-    Classes: [{class: Class.Mystic, level: 5}],
+    Classes: [{ class: Class.Mystic, level: 5 }],
     SpellListDescription: "Control humanoid telepathically.",
     Descriptor: [SpellDescriptor.Compulsion, SpellDescriptor.MindAffecting],
     Duration: "(CASTERLEVEL) days; see text",
@@ -1000,7 +1054,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Energy Ray": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 0}],
+    Classes: [{ class: Class.Technomancer, level: 0 }],
     SpellListDescription: "Ray deals 1d3 acid cold electricity or fire damage.",
     Descriptor: [SpellDescriptor.Creation],
     Duration: "Instantaneous",
@@ -1017,7 +1071,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   Enervation: {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 4}],
+    Classes: [{ class: Class.Mystic, level: 4 }],
     SpellListDescription: "Ray imposes 2 negative levels.",
     Duration: "Instantaneous",
     Level: 4,
@@ -1033,7 +1087,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Enshrining Refuge": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 6}],
+    Classes: [{ class: Class.Mystic, level: 6 }],
     SpellListDescription:
       "Targets can't attack or be attacked but can exist comfortably.",
     Duration: "(CASTERLEVEL) rounds (D)",
@@ -1050,7 +1104,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Entropic Grasp": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 3}],
+    Classes: [{ class: Class.Technomancer, level: 3 }],
     SpellListDescription:
       "Touch decays a construct or nonmagical manufactured item once per round for (CASTERLEVEL) rounds.",
     Duration: "See text",
@@ -1068,7 +1122,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   Erase: {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 1}],
+    Classes: [{ class: Class.Technomancer, level: 1 }],
     SpellListDescription:
       "Remove writings of either magical or mundane nature.",
     Duration: "Instantaneous",
@@ -1085,7 +1139,10 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Ethereal Jaunt": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 6},{class: Class.Technomancer, level: 6}],
+    Classes: [
+      { class: Class.Mystic, level: 6 },
+      { class: Class.Technomancer, level: 6 }
+    ],
     SpellListDescription: "You become ethereal for 1 round per level.",
     Duration: "(CASTERLEVEL) rounds (D)",
     Level: 6,
@@ -1098,7 +1155,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Explosive Blast": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 3}],
+    Classes: [{ class: Class.Technomancer, level: 3 }],
     SpellListDescription:
       "Deal 9d6 fire damage to creatures in a 20-foot radius.",
     Descriptor: [SpellDescriptor.Fire],
@@ -1116,7 +1173,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   Fatigue: {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 0}],
+    Classes: [{ class: Class.Mystic, level: 0 }],
     SpellListDescription: "Touched creature is fatigued.",
     Duration: "(CASTERLEVEL) rounds",
     Level: 0,
@@ -1132,8 +1189,8 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   Fear: {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: [1,2,3,4]}],
-    Level: [1,2,3,4],
+    Classes: [{ class: Class.Mystic, level: [1, 2, 3, 4] }],
+    Level: [1, 2, 3, 4],
     SpellListDescription:
       "All targets within a cone are panicked for 1 minute.",
     Descriptor: [
@@ -1154,7 +1211,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Fear (Level 1)": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 1}],
+    Classes: [{ class: Class.Mystic, level: 1 }],
     SpellListDescription:
       "Frighten a single living creature that's of CR 4 or lower for 1d4 rounds.",
     Descriptor: [
@@ -1176,7 +1233,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Fear (Level 2)": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 2}],
+    Classes: [{ class: Class.Mystic, level: 2 }],
     SpellListDescription:
       "Frighten multiple creatures of CR 4 or lower for 1 minute.",
     Descriptor: [
@@ -1198,7 +1255,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Fear (Level 3)": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 3}],
+    Classes: [{ class: Class.Mystic, level: 3 }],
     SpellListDescription:
       "Targets of CR 8 or lower within a cone are panicked for 1 minute.",
     Descriptor: [
@@ -1220,7 +1277,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Fear (Level 4)": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 4}],
+    Classes: [{ class: Class.Mystic, level: 4 }],
     SpellListDescription:
       "All targets within a cone are panicked for 1 minute.",
     Descriptor: [
@@ -1242,7 +1299,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   Feeblemind: {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 5}],
+    Classes: [{ class: Class.Mystic, level: 5 }],
     SpellListDescription:
       "Target's Intelligence and Charisma scores drop to 1.",
     Descriptor: [SpellDescriptor.Compulsion, SpellDescriptor.MindAffecting],
@@ -1260,7 +1317,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Flesh to Stone": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 6}],
+    Classes: [{ class: Class.Mystic, level: 6 }],
     SpellListDescription: "Turn a creature into a statue.",
     Duration: "Instantaneous",
     Level: 6,
@@ -1276,7 +1333,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Flight (Level 1)": {
     CastingTime: "1 standard action; see text",
-    Classes: [{class: Class.Technomancer, level: 1}],
+    Classes: [{ class: Class.Technomancer, level: 1 }],
     SpellListDescription: "(CASTERLEVEL) creatures or objects fall slowly.",
     Duration: "See text",
     Level: 1,
@@ -1292,7 +1349,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Flight (Level 2)": {
     CastingTime: "1 standard action; see text",
-    Classes: [{class: Class.Technomancer, level: 2}],
+    Classes: [{ class: Class.Technomancer, level: 2 }],
     SpellListDescription: "Target moves up and down at your direction.",
     Duration: "See text",
     Level: 2,
@@ -1308,7 +1365,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Flight (Level 3)": {
     CastingTime: "1 standard action; see text",
-    Classes: [{class: Class.Technomancer, level: 3}],
+    Classes: [{ class: Class.Technomancer, level: 3 }],
     SpellListDescription: "Target flies at a speed of 60 feet.",
     Duration: "See text",
     Level: 3,
@@ -1324,7 +1381,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Flight (Level 4)": {
     CastingTime: "1 standard action; see text",
-    Classes: [{class: Class.Technomancer, level: 4}],
+    Classes: [{ class: Class.Technomancer, level: 4 }],
     SpellListDescription: "Target flies at a speed of 70 feet.",
     Duration: "See text",
     Level: 4,
@@ -1340,7 +1397,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Flight (Level 5)": {
     CastingTime: "1 standard action; see text",
-    Classes: [{class: Class.Technomancer, level: 5}],
+    Classes: [{ class: Class.Technomancer, level: 5 }],
     SpellListDescription:
       "You can fly at a speed of 70 feet and can hustle over long distances.",
     Duration: "See text",
@@ -1357,7 +1414,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Flight (Level 6)": {
     CastingTime: "1 standard action; see text",
-    Classes: [{class: Class.Technomancer, level: 6}],
+    Classes: [{ class: Class.Technomancer, level: 6 }],
     SpellListDescription: "Multiple targets can fly at a speed of 60 feet.",
     Duration: "See text",
     Level: 6,
@@ -1373,7 +1430,10 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Fog Cloud": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 2},{class: Class.Technomancer, level: 2}],
+    Classes: [
+      { class: Class.Mystic, level: 2 },
+      { class: Class.Technomancer, level: 2 }
+    ],
     SpellListDescription: "Create a fog that obscures vision.",
     Descriptor: [SpellDescriptor.Creation],
     Duration: "(CASTERLEVEL*10) minutes",
@@ -1390,7 +1450,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Force Blast": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 2}],
+    Classes: [{ class: Class.Mystic, level: 2 }],
     SpellListDescription:
       "Cone deals 2d6 force damage and bull rushes creatures.",
     Descriptor: [SpellDescriptor.Force],
@@ -1408,7 +1468,10 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Ghost Sound": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 0},{class: Class.Technomancer, level: 0}],
+    Classes: [
+      { class: Class.Mystic, level: 0 },
+      { class: Class.Technomancer, level: 0 }
+    ],
     SpellListDescription: "Create minor illusory sounds.",
     Duration: "(CASTERLEVEL) rounds (D)",
     Level: 0,
@@ -1424,7 +1487,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Grave Words": {
     CastingTime: "1 minute",
-    Classes: [{class: Class.Mystic, level: 0}],
+    Classes: [{ class: Class.Mystic, level: 0 }],
     SpellListDescription: "Force a corpse to babble.",
     Descriptor: [SpellDescriptor.LanguageDependent],
     Duration: "1 round",
@@ -1441,7 +1504,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Gravitational Singularity": {
     CastingTime: "1 round",
-    Classes: [{class: Class.Mystic, level: 6}],
+    Classes: [{ class: Class.Mystic, level: 6 }],
     SpellListDescription:
       "Particle with infinite density pulls creatures and objects into it dealing 12d6 damage each round to those inside.",
     Descriptor: [SpellDescriptor.Creation],
@@ -1459,7 +1522,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   Grease: {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 1}],
+    Classes: [{ class: Class.Technomancer, level: 1 }],
     SpellListDescription: "Make a 10-ft. square or one object slippery.",
     Descriptor: [SpellDescriptor.Creation],
     Duration: "(CASTERLEVEL) minutes (D)",
@@ -1476,7 +1539,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Handy Junkbot": {
     CastingTime: "1 round",
-    Classes: [{class: Class.Technomancer, level: 3}],
+    Classes: [{ class: Class.Technomancer, level: 3 }],
     SpellListDescription:
       "Create a temporary robot made of junk to perform Computers Engineering Piloting and Sleight of Hand tasks.",
     Duration: "(CASTERLEVEL) rounds",
@@ -1493,7 +1556,10 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   Haste: {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 3},{class: Class.Technomancer, level: 3}],
+    Classes: [
+      { class: Class.Mystic, level: 3 },
+      { class: Class.Technomancer, level: 3 }
+    ],
     SpellListDescription: "(CASTERLEVEL) creatures move and act faster.",
     Duration: "(CASTERLEVEL) rounds",
     Level: 3,
@@ -1510,7 +1576,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Healing Junkbot": {
     CastingTime: "1 round",
-    Classes: [{class: Class.Technomancer, level: 3}],
+    Classes: [{ class: Class.Technomancer, level: 3 }],
     SpellListDescription:
       "Robot made of junk can perform Medicine tasks and drag unconscious creature to safety.",
     Duration: "(CASTERLEVEL) rounds",
@@ -1527,7 +1593,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Heat Leech": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 5}],
+    Classes: [{ class: Class.Technomancer, level: 5 }],
     SpellListDescription: "Deal 13d8 cold damage to creatures in a cone.",
     Descriptor: [SpellDescriptor.Cold],
     Duration: "Instantaneous; see text",
@@ -1544,7 +1610,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Hold Monster": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 4}],
+    Classes: [{ class: Class.Mystic, level: 4 }],
     SpellListDescription: "Paralyze one creature.",
     Descriptor: [SpellDescriptor.Compulsion, SpellDescriptor.MindAffecting],
     Duration: "(CASTERLEVEL) rounds (D)",
@@ -1561,7 +1627,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Hold Person": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 2}],
+    Classes: [{ class: Class.Mystic, level: 2 }],
     SpellListDescription: "Paralyze one humanoid.",
     Descriptor: [SpellDescriptor.Compulsion, SpellDescriptor.MindAffecting],
     Duration: "(CASTERLEVEL) rounds (D)",
@@ -1578,7 +1644,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Hold Portal": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 1}],
+    Classes: [{ class: Class.Technomancer, level: 1 }],
     SpellListDescription: "Hold a door shut.",
     Duration: "(CASTERLEVEL) minutes (D)",
     Level: 1,
@@ -1594,7 +1660,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Hologram Memory": {
     CastingTime: "1 full action",
-    Classes: [{class: Class.Mystic, level: 3}],
+    Classes: [{ class: Class.Mystic, level: 3 }],
     SpellListDescription:
       "Extract a creature's memory and replay it as a hologram.",
     Duration: "Instantaneous",
@@ -1611,7 +1677,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Holographic Image (Level 1)": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 1}],
+    Classes: [{ class: Class.Technomancer, level: 1 }],
     SpellListDescription: "Create a silent hologram of your design.",
     Duration: "See text",
     Level: 1,
@@ -1627,7 +1693,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Holographic Image (Level 2)": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 2}],
+    Classes: [{ class: Class.Technomancer, level: 2 }],
     SpellListDescription: "Create a hologram with some sound of your design.",
     Duration: "See text",
     Level: 2,
@@ -1643,7 +1709,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Holographic Image (Level 3)": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 3}],
+    Classes: [{ class: Class.Technomancer, level: 3 }],
     SpellListDescription:
       "Create a hologram with sound smell and thermal effects of your design that lasts as long as you concentrate plus 3 additional rounds.",
     Duration: "See text",
@@ -1660,7 +1726,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Holographic Image (Level 4)": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 4}],
+    Classes: [{ class: Class.Technomancer, level: 4 }],
     SpellListDescription:
       "Create a hologram with sound smell and thermal effects that follows a script determined by you.",
     Duration: "See text",
@@ -1677,7 +1743,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Holographic Image (Level 5)": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 5}],
+    Classes: [{ class: Class.Technomancer, level: 5 }],
     SpellListDescription:
       "Create a detailed hologram that is permanent or is triggered by conditions you set.",
     Duration: "See text",
@@ -1694,7 +1760,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Holographic Image (Level 6)": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 6}],
+    Classes: [{ class: Class.Technomancer, level: 6 }],
     SpellListDescription:
       "Illusory double of your likeness can talk and cast spells.",
     Duration: "See text",
@@ -1711,7 +1777,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Holographic Terrain": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 5}],
+    Classes: [{ class: Class.Technomancer, level: 5 }],
     SpellListDescription:
       "Create a large hologram that depicts terrain and structures.",
     Duration: "(CASTERLEVEL*2) hours (D)",
@@ -1728,7 +1794,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Hurl Forcedisk": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 2}],
+    Classes: [{ class: Class.Mystic, level: 2 }],
     SpellListDescription:
       "Disc deals 3d6 force damage to one target then ricochets to other targets dealing 2d6 force damage.",
     Descriptor: [SpellDescriptor.Force],
@@ -1746,7 +1812,10 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   Identify: {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 1},{class: Class.Technomancer, level: 1}],
+    Classes: [
+      { class: Class.Mystic, level: 1 },
+      { class: Class.Technomancer, level: 1 }
+    ],
     SpellListDescription:
       "Gain a +10 bonus to identify items of a magic or technological nature.",
     Duration: "(CASTERLEVEL) rounds (D)",
@@ -1763,7 +1832,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Implant Data": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 2}],
+    Classes: [{ class: Class.Technomancer, level: 2 }],
     SpellListDescription:
       "Embed one piece of data per level in a target computer or system.",
     Duration: "(CASTERLEVEL) hours or until triggered; see text",
@@ -1780,7 +1849,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Inflict Pain": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 2}],
+    Classes: [{ class: Class.Mystic, level: 2 }],
     SpellListDescription:
       "Wracking pain imposes -2 penalty to ability checks attack rolls and skill checks on one target.",
     Descriptor: [SpellDescriptor.MindAffecting, SpellDescriptor.Pain],
@@ -1798,7 +1867,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Inflict Pain (Mass)": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 6}],
+    Classes: [{ class: Class.Mystic, level: 6 }],
     SpellListDescription:
       "Wracking pain imposes -2 penalty to ability checks attack rolls and skill checks on (CASTERLEVEL) targets.",
     Descriptor: [SpellDescriptor.MindAffecting, SpellDescriptor.Pain],
@@ -1817,7 +1886,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Inject Nanobots": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 2}],
+    Classes: [{ class: Class.Technomancer, level: 2 }],
     SpellListDescription:
       "Touch deals 4d8 damage to target and causes the confused condition.",
     Duration: "Instantaneous and (CASTERLEVEL) rounds; see text",
@@ -1834,7 +1903,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Instant Virus": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 3}],
+    Classes: [{ class: Class.Technomancer, level: 3 }],
     SpellListDescription: "Inflict technological construct with disease.",
     Duration: "Instantaneous; see text",
     Level: 3,
@@ -1850,7 +1919,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Interplanetary Teleport": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 6}],
+    Classes: [{ class: Class.Technomancer, level: 6 }],
     SpellListDescription: "Teleport between planets.",
     Descriptor: [SpellDescriptor.Teleportation],
     Duration: "Instantaneous",
@@ -1868,7 +1937,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   Invisibility: {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 2}],
+    Classes: [{ class: Class.Technomancer, level: 2 }],
     SpellListDescription:
       "Target is invisible for (CASTERLEVEL) minutes or until it attacks.",
     Duration: "(CASTERLEVEL) minutes (D)",
@@ -1886,7 +1955,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Invisibility (Greater)": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 4}],
+    Classes: [{ class: Class.Technomancer, level: 4 }],
     SpellListDescription:
       "Target is invisible for (CASTERLEVEL) rounds even if it attacks.",
     Duration: "(CASTERLEVEL) rounds (D)",
@@ -1903,7 +1972,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Invisibility (Mass)": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 6}],
+    Classes: [{ class: Class.Technomancer, level: 6 }],
     SpellListDescription:
       "Multiple targets are invisible for (CASTERLEVEL) minuts or until one target attacks or moves away from other targets affected by spell.",
     Duration: "(CASTERLEVEL) minutes (D)",
@@ -1921,7 +1990,10 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   Irradiate: {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 3},{class: Class.Technomancer, level: 3}],
+    Classes: [
+      { class: Class.Mystic, level: 3 },
+      { class: Class.Technomancer, level: 3 }
+    ],
     SpellListDescription: "Flood area with dangerous radiation.",
     Descriptor: [
       SpellDescriptor.Creation,
@@ -1943,7 +2015,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Jolting Surge": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 1}],
+    Classes: [{ class: Class.Technomancer, level: 1 }],
     SpellListDescription: "Touch deals 4d6 electricity damage.",
     Descriptor: [SpellDescriptor.Electricity],
     Duration: "Instantaneous",
@@ -1960,7 +2032,10 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Keen Senses": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 1},{class: Class.Technomancer, level: 1}],
+    Classes: [
+      { class: Class.Mystic, level: 1 },
+      { class: Class.Technomancer, level: 1 }
+    ],
     SpellListDescription:
       "Target gains low-light vision and a +2 bonus to Perception checks.",
     Duration: "(CASTERLEVEL) minutes (D)",
@@ -1977,7 +2052,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   Knock: {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 2}],
+    Classes: [{ class: Class.Technomancer, level: 2 }],
     SpellListDescription: "Opens a locked or magically sealed door.",
     Duration: "Instantaneous; see text",
     Level: 2,
@@ -1994,7 +2069,10 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Life Bubble": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 1},{class: Class.Technomancer, level: 1}],
+    Classes: [
+      { class: Class.Mystic, level: 1 },
+      { class: Class.Technomancer, level: 1 }
+    ],
     SpellListDescription:
       "Encase targeted creatures with a shell of tolerable atmosphere.",
     Duration: "(CASTERLEVEL) days",
@@ -2012,7 +2090,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Logic Bomb": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 2}],
+    Classes: [{ class: Class.Technomancer, level: 2 }],
     SpellListDescription:
       "Target computer deals 6d6 energy damage to the first creature that tries and fails to use it.",
     Duration: "(CASTERLEVEL) days or until triggered",
@@ -2029,7 +2107,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Magic Missile": {
     CastingTime: "1 standard action; see text",
-    Classes: [{class: Class.Technomancer, level: 1}],
+    Classes: [{ class: Class.Technomancer, level: 1 }],
     SpellListDescription: "Two missiles deal 1d4+1 force damage.",
     Descriptor: [SpellDescriptor.Force],
     Duration: "Instantaneous",
@@ -2047,7 +2125,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Make Whole": {
     CastingTime: "10 minutes",
-    Classes: [{class: Class.Technomancer, level: 2}],
+    Classes: [{ class: Class.Technomancer, level: 2 }],
     SpellListDescription: "Restore 5d6 Hit Points to an object or construct.",
     Duration: "Instantaneous",
     Level: 2,
@@ -2064,7 +2142,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   Mending: {
     CastingTime: "10 minutes",
-    Classes: [{class: Class.Technomancer, level: 0}],
+    Classes: [{ class: Class.Technomancer, level: 0 }],
     SpellListDescription: "Restore 1d4 Hit Points to an object or construct.",
     Duration: "Instantaneous",
     Level: 0,
@@ -2080,7 +2158,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Microbot Assault": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 2}],
+    Classes: [{ class: Class.Technomancer, level: 2 }],
     SpellListDescription: "Cloud of tiny robots harasses creatures within it.",
     Descriptor: [SpellDescriptor.Creation],
     Duration: "Concentration + 1 round",
@@ -2097,7 +2175,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Mind Link": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 1}],
+    Classes: [{ class: Class.Mystic, level: 1 }],
     SpellListDescription:
       "Instantly and telepathically communicate information to a creature.",
     Descriptor: [SpellDescriptor.MindAffecting],
@@ -2115,7 +2193,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Mind Probe": {
     CastingTime: "1 minute",
-    Classes: [{class: Class.Mystic, level: 4}],
+    Classes: [{ class: Class.Mystic, level: 4 }],
     SpellListDescription:
       "Potentially access a target creature's memories and its knowledge.",
     Descriptor: [SpellDescriptor.MindAffecting],
@@ -2133,7 +2211,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Mind Thrust (Level 1)": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 1}],
+    Classes: [{ class: Class.Mystic, level: 1 }],
     SpellListDescription: "Mentally deal 2d10 damage to one target.",
     Descriptor: [SpellDescriptor.MindAffecting],
     Duration: "Instantaneous",
@@ -2150,7 +2228,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Mind Thrust (Level 2)": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 2}],
+    Classes: [{ class: Class.Mystic, level: 2 }],
     SpellListDescription: "Mentally deal 4d10 damage to one target.",
     Descriptor: [SpellDescriptor.MindAffecting],
     Duration: "Instantaneous",
@@ -2167,7 +2245,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Mind Thrust (Level 3)": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 3}],
+    Classes: [{ class: Class.Mystic, level: 3 }],
     SpellListDescription: "Mentally deal 7d10 damage to one target.",
     Descriptor: [SpellDescriptor.MindAffecting],
     Duration: "Instantaneous",
@@ -2184,7 +2262,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Mind Thrust (Level 4)": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 4}],
+    Classes: [{ class: Class.Mystic, level: 4 }],
     SpellListDescription:
       "Mentally deal 10d10 damage to and fatigue a single target.",
     Descriptor: [SpellDescriptor.MindAffecting],
@@ -2202,7 +2280,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Mind Thrust (Level 5)": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 5}],
+    Classes: [{ class: Class.Mystic, level: 5 }],
     SpellListDescription:
       "Mentally deal 15d10 damage to and exhaust one target.",
     Descriptor: [SpellDescriptor.MindAffecting],
@@ -2220,7 +2298,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Mind Thrust (Level 6)": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 6}],
+    Classes: [{ class: Class.Mystic, level: 6 }],
     SpellListDescription:
       "Mentally deal 17d10 damage to exhaust and stun one target.",
     Descriptor: [SpellDescriptor.MindAffecting],
@@ -2253,7 +2331,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Mirror Image": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 2}],
+    Classes: [{ class: Class.Technomancer, level: 2 }],
     SpellListDescription: "Create decoy duplicates of yourself.",
     Duration: "(CASTERLEVEL) minutes",
     Level: 2,
@@ -2266,7 +2344,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   Mislead: {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 5}],
+    Classes: [{ class: Class.Technomancer, level: 5 }],
     SpellListDescription:
       "Make yourself invisible and create an illusory double of your likeness.",
     Duration: "(CASTERLEVEL) rounds (D) and concentration + 3 rounds; see text",
@@ -2283,7 +2361,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Modify Memory": {
     CastingTime: "1 round; see text",
-    Classes: [{class: Class.Mystic, level: 5}],
+    Classes: [{ class: Class.Mystic, level: 5 }],
     SpellListDescription: "Change 5 minutes of target's memories.",
     Descriptor: [SpellDescriptor.Compulsion, SpellDescriptor.MindAffecting],
     Duration: "Permanent",
@@ -2300,7 +2378,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Mystic Cure (Level 1)": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 1}],
+    Classes: [{ class: Class.Mystic, level: 1 }],
     SpellListDescription:
       "Restore 1d8 + your Wisdom modifier Hit Points to a living creature.",
     Descriptor: [SpellDescriptor.Healing],
@@ -2318,7 +2396,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Mystic Cure (Level 2)": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 2}],
+    Classes: [{ class: Class.Mystic, level: 2 }],
     SpellListDescription:
       "Restore 3d8 + your Wisdom modifier Hit Points to a living creature.",
     Descriptor: [SpellDescriptor.Healing],
@@ -2336,7 +2414,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Mystic Cure (Level 3)": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 3}],
+    Classes: [{ class: Class.Mystic, level: 3 }],
     SpellListDescription:
       "Restore 5d8 + your Wisdom modifier Hit Points to a living creature.",
     Descriptor: [SpellDescriptor.Healing],
@@ -2354,7 +2432,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Mystic Cure (Level 4)": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 4}],
+    Classes: [{ class: Class.Mystic, level: 4 }],
     SpellListDescription:
       "Restore 12d8 + your Wisdom modifier Hit Points to a living creature or restore life to a recently slain creature.",
     Descriptor: [SpellDescriptor.Healing],
@@ -2372,7 +2450,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Mystic Cure (Level 5)": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 5}],
+    Classes: [{ class: Class.Mystic, level: 5 }],
     SpellListDescription:
       "Restore 16d8 + your Wisdom modifier Hit Points to a living creature or restore life to a recently slain creature.",
     Descriptor: [SpellDescriptor.Healing],
@@ -2390,7 +2468,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Mystic Cure (Level 6)": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 6}],
+    Classes: [{ class: Class.Mystic, level: 6 }],
     SpellListDescription:
       "Restore 20d8 + your Wisdom modifier Hit Points to a living creature or restore life to a recently slain creature.",
     Descriptor: [SpellDescriptor.Healing],
@@ -2408,7 +2486,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Mystic Cure (Mass)(Level 5)": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 5}],
+    Classes: [{ class: Class.Mystic, level: 5 }],
     SpellListDescription:
       "Restore 3d8 + your Wisdom modifier Hit Points to one living creature per level.",
     Descriptor: [SpellDescriptor.Healing],
@@ -2427,7 +2505,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Mystic Cure (Mass)(Level 6)": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 6}],
+    Classes: [{ class: Class.Mystic, level: 6 }],
     SpellListDescription:
       "Restore 5d8 + your Wisdom modifier Hit Points to one living creature per level.",
     Descriptor: [SpellDescriptor.Healing],
@@ -2446,7 +2524,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   Nondetection: {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 3}],
+    Classes: [{ class: Class.Technomancer, level: 3 }],
     SpellListDescription: "Hide target from divination and surveillance.",
     Duration: "(CASTERLEVEL) hours",
     Level: 3,
@@ -2462,7 +2540,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   Overheat: {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 1}],
+    Classes: [{ class: Class.Technomancer, level: 1 }],
     SpellListDescription: "Deal 2d8 fire damage to creatures in cone.",
     Descriptor: [SpellDescriptor.Fire],
     Duration: "Instantaneous",
@@ -2479,7 +2557,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Overload Systems": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 4}],
+    Classes: [{ class: Class.Technomancer, level: 4 }],
     SpellListDescription:
       "Target creature has a 50% chance to lose each action.",
     Descriptor: [SpellDescriptor.Compulsion],
@@ -2497,7 +2575,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   Passwall: {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 5}],
+    Classes: [{ class: Class.Technomancer, level: 5 }],
     SpellListDescription: "Create a passage through most walls.",
     Duration: "(CASTERLEVEL) hours (D)",
     Level: 5,
@@ -2513,7 +2591,10 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Planar Barrier": {
     CastingTime: "6 rounds",
-    Classes: [{class: Class.Mystic, level: 6},{class: Class.Technomancer, level: 6}],
+    Classes: [
+      { class: Class.Mystic, level: 6 },
+      { class: Class.Technomancer, level: 6 }
+    ],
     SpellListDescription:
       "Seal an area against all planar travel into or within it.",
     Duration: "24 hours",
@@ -2530,7 +2611,10 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Planar Binding (Level 4)": {
     CastingTime: "10 minutes",
-    Classes: [{class: Class.Mystic, level: 4},{class: Class.Technomancer, level: 4}],
+    Classes: [
+      { class: Class.Mystic, level: 4 },
+      { class: Class.Technomancer, level: 4 }
+    ],
     SpellListDescription:
       "Trap an extraplanar creature of CR 4 or lower until it performs a task.",
     Descriptor: [SpellDescriptor.Calling],
@@ -2545,11 +2629,23 @@ const spells: { [key: string]: SpellDefinition } = {
     PageNumber: "p.369",
     SpellResistance: "Yes; see text",
     TargetsEffectArea: "See text",
-    Variants: ["Good","Evil","Lawful","Chaotic","Air","Earth","Fire","Water"]
+    Variants: [
+      "Good",
+      "Evil",
+      "Lawful",
+      "Chaotic",
+      "Air",
+      "Earth",
+      "Fire",
+      "Water"
+    ]
   },
   "Planar Binding (Level 5)": {
     CastingTime: "10 minutes",
-    Classes: [{class: Class.Mystic, level: 5},{class: Class.Technomancer, level: 5}],
+    Classes: [
+      { class: Class.Mystic, level: 5 },
+      { class: Class.Technomancer, level: 5 }
+    ],
     SpellListDescription:
       "Trap an extraplanar creature of CR 7 or lower until it performs a task.",
     Descriptor: [SpellDescriptor.Calling],
@@ -2564,11 +2660,23 @@ const spells: { [key: string]: SpellDefinition } = {
     PageNumber: "p.369",
     SpellResistance: "Yes; see text",
     TargetsEffectArea: "See text",
-    Variants: ["Good","Evil","Lawful","Chaotic","Air","Earth","Fire","Water"]
+    Variants: [
+      "Good",
+      "Evil",
+      "Lawful",
+      "Chaotic",
+      "Air",
+      "Earth",
+      "Fire",
+      "Water"
+    ]
   },
   "Planar Binding (Level 6)": {
     CastingTime: "10 minutes",
-    Classes: [{class: Class.Mystic, level: 6},{class: Class.Technomancer, level: 6}],
+    Classes: [
+      { class: Class.Mystic, level: 6 },
+      { class: Class.Technomancer, level: 6 }
+    ],
     SpellListDescription:
       "Trap an extraplanar creature of CR 10 or lower until it performs a task.",
     Descriptor: [SpellDescriptor.Calling],
@@ -2583,11 +2691,23 @@ const spells: { [key: string]: SpellDefinition } = {
     PageNumber: "p.369",
     SpellResistance: "Yes; see text",
     TargetsEffectArea: "See text",
-    Variants: ["Good","Evil","Lawful","Chaotic","Air","Earth","Fire","Water"]
+    Variants: [
+      "Good",
+      "Evil",
+      "Lawful",
+      "Chaotic",
+      "Air",
+      "Earth",
+      "Fire",
+      "Water"
+    ]
   },
   "Plane Shift": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 6},{class: Class.Technomancer, level: 6}],
+    Classes: [
+      { class: Class.Mystic, level: 6 },
+      { class: Class.Technomancer, level: 6 }
+    ],
     SpellListDescription:
       "As many as eight creatures travel to another plane you choose.",
     Descriptor: [SpellDescriptor.Teleportation],
@@ -2606,7 +2726,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Private Sanctum": {
     CastingTime: "10 minutes",
-    Classes: [{class: Class.Technomancer, level: 5}],
+    Classes: [{ class: Class.Technomancer, level: 5 }],
     SpellListDescription:
       "Prevent anyone from viewing or scrying an area for 24 hours.",
     Duration: "24 hours (D)",
@@ -2623,7 +2743,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Probability Prediction": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 3}],
+    Classes: [{ class: Class.Technomancer, level: 3 }],
     SpellListDescription: "Reroll one attack roll save or check.",
     Duration: "(CASTERLEVEL) rounds (D); see text",
     Level: 3,
@@ -2636,7 +2756,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Prying Eyes": {
     CastingTime: "1 minute",
-    Classes: [{class: Class.Technomancer, level: 5}],
+    Classes: [{ class: Class.Technomancer, level: 5 }],
     SpellListDescription: "Twenty floating eyes scout for you.",
     Duration: "(CASTERLEVEL) hours (D); see text",
     Level: 5,
@@ -2652,7 +2772,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Psychic Surgery": {
     CastingTime: "10 minutes",
-    Classes: [{class: Class.Mystic, level: 6}],
+    Classes: [{ class: Class.Mystic, level: 6 }],
     SpellListDescription:
       "Cure all Intelligence Wisdom and Charisma damage and drain plus remove other mental afflictions and conditions.",
     Descriptor: [SpellDescriptor.MindAffecting],
@@ -2670,7 +2790,10 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Psychokinetic Hand": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 0},{class: Class.Technomancer, level: 0}],
+    Classes: [
+      { class: Class.Mystic, level: 0 },
+      { class: Class.Technomancer, level: 0 }
+    ],
     SpellListDescription: "Telekinetically move an object of 1 bulk or less.",
     Duration: "Concentration",
     Level: 0,
@@ -2686,7 +2809,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Psychokinetic Strangulation": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 3}],
+    Classes: [{ class: Class.Mystic, level: 3 }],
     SpellListDescription:
       "Concentrate to immobilize target and deal 3d8 damage per round.",
     Duration: "Concentration up to (CASTERLEVEL) rounds",
@@ -2703,7 +2826,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Raise Dead": {
     CastingTime: "1 minute",
-    Classes: [{class: Class.Mystic, level: 5}],
+    Classes: [{ class: Class.Mystic, level: 5 }],
     SpellListDescription:
       "Restore life to a creature that died no more than (CASTERLEVEL) days ago.",
     Descriptor: [SpellDescriptor.Healing],
@@ -2721,7 +2844,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Rapid Repair": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 5}],
+    Classes: [{ class: Class.Technomancer, level: 5 }],
     SpellListDescription:
       "Construct or weapon regains 2d8 Hit Points per round for 1 minute.",
     Duration: "1 minute",
@@ -2738,7 +2861,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Ray of Exhaustion": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 3}],
+    Classes: [{ class: Class.Mystic, level: 3 }],
     SpellListDescription: "Ray makes target exhausted.",
     Duration: "(CASTERLEVEL) minutes",
     Level: 3,
@@ -2754,7 +2877,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   Recharge: {
     CastingTime: "1 round",
-    Classes: [{class: Class.Technomancer, level: 2}],
+    Classes: [{ class: Class.Technomancer, level: 2 }],
     SpellListDescription:
       "Replenish charges in a battery or item capable of holding charges.",
     Duration: "Instantaneous",
@@ -2771,7 +2894,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Reflecting Armor": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 1}],
+    Classes: [{ class: Class.Mystic, level: 1 }],
     SpellListDescription:
       "Sheath of mystical force can reflect damage back on foe.",
     Descriptor: [SpellDescriptor.Force],
@@ -2786,7 +2909,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   Regenerate: {
     CastingTime: "3 rounds",
-    Classes: [{class: Class.Mystic, level: 6}],
+    Classes: [{ class: Class.Mystic, level: 6 }],
     SpellListDescription:
       "Grow back target's severed limbs restore 12d8 Hit Points and remove exhaustion and fatigue.",
     Descriptor: [SpellDescriptor.Healing],
@@ -2804,7 +2927,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   Reincarnate: {
     CastingTime: "10 minutes",
-    Classes: [{class: Class.Mystic, level: 4}],
+    Classes: [{ class: Class.Mystic, level: 4 }],
     SpellListDescription:
       "Bring a target dead creature back to life in a random body.",
     Duration: "Instantaneous; see text",
@@ -2821,7 +2944,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Remove Affliction": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 3}],
+    Classes: [{ class: Class.Mystic, level: 3 }],
     SpellListDescription:
       "Neutralize curses diseases infestations poisons and other harmful conditions affecting a creature.",
     Descriptor: [SpellDescriptor.Healing],
@@ -2839,7 +2962,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Remove Condition": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 2}],
+    Classes: [{ class: Class.Mystic, level: 2 }],
     SpellListDescription:
       "Remove one moderate harmful condition affecting a creature.",
     Descriptor: [SpellDescriptor.Healing],
@@ -2857,7 +2980,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Remove Condition (Greater)": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 5}],
+    Classes: [{ class: Class.Mystic, level: 5 }],
     SpellListDescription: "Remove all harmful conditions affecting a creature.",
     Descriptor: [SpellDescriptor.Healing],
     Duration: "Instantaneous",
@@ -2874,7 +2997,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Remove Condition (Lesser)": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 1}],
+    Classes: [{ class: Class.Mystic, level: 1 }],
     SpellListDescription:
       "Remove one minor harmful condition affecting a creature.",
     Descriptor: [SpellDescriptor.Healing],
@@ -2892,7 +3015,10 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Remove Radioactivity": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 4},{class: Class.Technomancer, level: 4}],
+    Classes: [
+      { class: Class.Mystic, level: 4 },
+      { class: Class.Technomancer, level: 4 }
+    ],
     SpellListDescription:
       "Remove ongoing radiation effects from a creature or object.",
     Descriptor: [SpellDescriptor.Healing],
@@ -2910,7 +3036,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Resilient Sphere": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 4}],
+    Classes: [{ class: Class.Technomancer, level: 4 }],
     SpellListDescription: "Force globe protects but traps one target.",
     Descriptor: [SpellDescriptor.Force],
     Duration: "(CASTERLEVEL) minutes (D)",
@@ -2927,7 +3053,10 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Resistant Aegis": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 5},{class: Class.Technomancer, level: 5}],
+    Classes: [
+      { class: Class.Mystic, level: 5 },
+      { class: Class.Technomancer, level: 5 }
+    ],
     SpellListDescription:
       "Grant up to 10 creatures DR 5/- or energy resistance 5 to all energy types.",
     Duration: "(CASTERLEVEL) minutes",
@@ -2944,7 +3073,10 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Resistant Armor": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 4},{class: Class.Technomancer, level: 4}],
+    Classes: [
+      { class: Class.Mystic, level: 4 },
+      { class: Class.Technomancer, level: 4 }
+    ],
     SpellListDescription:
       "Grant DR 5/- or energy resistance 5 against two energy types.",
     Duration: "(CASTERLEVEL*10) minutes",
@@ -2961,7 +3093,10 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Resistant Armor (Greater)": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 6},{class: Class.Technomancer, level: 6}],
+    Classes: [
+      { class: Class.Mystic, level: 6 },
+      { class: Class.Technomancer, level: 6 }
+    ],
     SpellListDescription:
       "Grant DR 10/- or energy resistance 10 against three energy types.",
     Duration: "(CASTERLEVEL*10) minutes",
@@ -2978,7 +3113,10 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Resistant Armor (Lesser)": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 3},{class: Class.Technomancer, level: 3}],
+    Classes: [
+      { class: Class.Mystic, level: 3 },
+      { class: Class.Technomancer, level: 3 }
+    ],
     SpellListDescription:
       "Grant DR 15/- or energy resistance 15 against four energy types.",
     Duration: "(CASTERLEVEL*10) minutes",
@@ -2995,7 +3133,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   Restoration: {
     CastingTime: "3 rounds",
-    Classes: [{class: Class.Mystic, level: 4}],
+    Classes: [{ class: Class.Mystic, level: 4 }],
     SpellListDescription: "Restores ability score drain and negative levels.",
     Descriptor: [SpellDescriptor.Healing],
     Duration: "Instantaneous",
@@ -3012,7 +3150,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Restoration (Lesser)": {
     CastingTime: "3 rounds",
-    Classes: [{class: Class.Mystic, level: 2}],
+    Classes: [{ class: Class.Mystic, level: 2 }],
     SpellListDescription:
       "Dispel magical ability penalty or cure 1d4 ability damage.",
     Descriptor: [SpellDescriptor.Healing],
@@ -3030,7 +3168,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   Retrocognition: {
     CastingTime: "1 minute",
-    Classes: [{class: Class.Mystic, level: 5}],
+    Classes: [{ class: Class.Mystic, level: 5 }],
     SpellListDescription:
       "Gain psychic impressions of past events in a certain location.",
     Duration: "Concentration up to (CASTERLEVEL) minutes",
@@ -3044,7 +3182,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Rewire Flesh": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 4}],
+    Classes: [{ class: Class.Technomancer, level: 4 }],
     SpellListDescription:
       "Turn target partially into a robot dealing 3d6 damage per round and reducing speed.",
     Duration: "(CASTERLEVEL) rounds (D); see text",
@@ -3061,7 +3199,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Rewire Flesh (Mass)": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 6}],
+    Classes: [{ class: Class.Technomancer, level: 6 }],
     SpellListDescription:
       "Deal 3d6 damage per round and reducing targets' speed during that time.",
     Duration: "(CASTERLEVEL) rounds (D); see text",
@@ -3079,7 +3217,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Security Seal": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 2}],
+    Classes: [{ class: Class.Technomancer, level: 2 }],
     SpellListDescription:
       "Magically lock a portal a container or a security system.",
     Duration: "24 hours",
@@ -3097,7 +3235,10 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "See Invisibility": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 2},{class: Class.Technomancer, level: 2}],
+    Classes: [
+      { class: Class.Mystic, level: 2 },
+      { class: Class.Technomancer, level: 2 }
+    ],
     SpellListDescription: "See invisible creatures or objects.",
     Duration: "(CASTERLEVEL*10) minutes (D)",
     Level: 2,
@@ -3110,7 +3251,10 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Shadow Walk": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 6},{class: Class.Technomancer, level: 6}],
+    Classes: [
+      { class: Class.Mystic, level: 6 },
+      { class: Class.Technomancer, level: 6 }
+    ],
     SpellListDescription:
       "Step into a shadowy realm to travel to a destination rapidly.",
     Descriptor: [SpellDescriptor.Shadow],
@@ -3128,7 +3272,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Shadowy Fleet": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 6}],
+    Classes: [{ class: Class.Technomancer, level: 6 }],
     SpellListDescription:
       "Illusion of starships deals 3d6 piercing damage and 3d6 fire damage to all creatures in the affected area.",
     Descriptor: [SpellDescriptor.Shadow],
@@ -3146,7 +3290,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Share Language": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 1}],
+    Classes: [{ class: Class.Mystic, level: 1 }],
     SpellListDescription: "Target understands chosen languages.",
     Duration: "24 hours",
     Level: 1,
@@ -3162,7 +3306,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Shield Other": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 2}],
+    Classes: [{ class: Class.Mystic, level: 2 }],
     SpellListDescription: "You take half of the target's Hit Point damage.",
     Duration: "(CASTERLEVEL) hours (D)",
     Level: 2,
@@ -3178,7 +3322,10 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   Slow: {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 3},{class: Class.Technomancer, level: 3}],
+    Classes: [
+      { class: Class.Mystic, level: 3 },
+      { class: Class.Technomancer, level: 3 }
+    ],
     SpellListDescription: "(CASTERLEVEL) creatures move and act slower.",
     Duration: "(CASTERLEVEL) rounds",
     Level: 3,
@@ -3195,7 +3342,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Snuff Life": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 6}],
+    Classes: [{ class: Class.Mystic, level: 6 }],
     SpellListDescription:
       "Instantly kill or massively damage (CASTERLEVEL/2) creatures depending on targets' CRs.",
     Descriptor: [SpellDescriptor.Death],
@@ -3214,7 +3361,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Soothing Protocol": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 4}],
+    Classes: [{ class: Class.Technomancer, level: 4 }],
     SpellListDescription: "Calm a target hostile technological construct.",
     Duration: "(CASTERLEVEL*10) minutes",
     Level: 4,
@@ -3230,7 +3377,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Speak with Dead": {
     CastingTime: "10 minutes",
-    Classes: [{class: Class.Mystic, level: 3}],
+    Classes: [{ class: Class.Mystic, level: 3 }],
     SpellListDescription: "Corpse answers up to six questions.",
     Descriptor: [SpellDescriptor.LanguageDependent],
     Duration: "(CASTERLEVEL) minute",
@@ -3247,7 +3394,10 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Spider Climb": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 2},{class: Class.Technomancer, level: 2}],
+    Classes: [
+      { class: Class.Mystic, level: 2 },
+      { class: Class.Technomancer, level: 2 }
+    ],
     SpellListDescription: "Grant ability to walk on walls and ceilings.",
     Duration: "(CASTERLEVEL*10) minutes",
     Level: 2,
@@ -3263,7 +3413,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   Stabilize: {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 0}],
+    Classes: [{ class: Class.Mystic, level: 0 }],
     SpellListDescription: "Cause a dying creature to stabilize.",
     Descriptor: [SpellDescriptor.Healing],
     Duration: "Instantaneous",
@@ -3280,7 +3430,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   Status: {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 2}],
+    Classes: [{ class: Class.Mystic, level: 2 }],
     SpellListDescription: "Monitor condition and position of allies.",
     Duration: "(CASTERLEVEL) hours",
     Level: 2,
@@ -3296,7 +3446,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Subjective Reality": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 6}],
+    Classes: [{ class: Class.Mystic, level: 6 }],
     SpellListDescription:
       "You convince yourself one creature or object is an illusion.",
     Descriptor: [SpellDescriptor.MindAffecting],
@@ -3311,7 +3461,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   Suggestion: {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 3}],
+    Classes: [{ class: Class.Mystic, level: 3 }],
     SpellListDescription: "Compel a target to follow stated course of action.",
     Descriptor: [
       SpellDescriptor.Compulsion,
@@ -3332,7 +3482,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Suggestion (Mass)": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 6}],
+    Classes: [{ class: Class.Mystic, level: 6 }],
     SpellListDescription:
       "Compel (CASTERLEVEL) targets to follow stated course of action.",
     Descriptor: [
@@ -3355,7 +3505,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Supercharge Weapon": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 1}],
+    Classes: [{ class: Class.Technomancer, level: 1 }],
     SpellListDescription: "Touched weapon deals extra damage.",
     Duration: "See text",
     Level: 1,
@@ -3371,7 +3521,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Sympathetic Vibration": {
     CastingTime: "10 minutes",
-    Classes: [{class: Class.Technomancer, level: 6}],
+    Classes: [{ class: Class.Technomancer, level: 6 }],
     SpellListDescription:
       "Deal 2d10 damage per round to freestanding structure.",
     Descriptor: [SpellDescriptor.Sonic],
@@ -3389,7 +3539,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Synapse Overload": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 5}],
+    Classes: [{ class: Class.Technomancer, level: 5 }],
     SpellListDescription:
       "Target takes 18d8 damage and is staggered for 1 minute.",
     Descriptor: [SpellDescriptor.MindAffecting],
@@ -3407,7 +3557,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Synaptic Pulse": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 3}],
+    Classes: [{ class: Class.Mystic, level: 3 }],
     SpellListDescription: "Stun all creatures within 20 feet for 1 round.",
     Descriptor: [SpellDescriptor.Compulsion, SpellDescriptor.MindAffecting],
     Duration: "1 round",
@@ -3423,7 +3573,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Synaptic Pulse (Greater)": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 5}],
+    Classes: [{ class: Class.Mystic, level: 5 }],
     SpellListDescription: "Stun all creatures within 20 feet for 1d4 rounds.",
     Descriptor: [SpellDescriptor.Compulsion, SpellDescriptor.MindAffecting],
     Duration: "1d4 rounds",
@@ -3440,7 +3590,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   Telekinesis: {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 5}],
+    Classes: [{ class: Class.Technomancer, level: 5 }],
     SpellListDescription:
       "Move an object attack creatures or hurl objects or creatures with your mind.",
     Duration:
@@ -3458,7 +3608,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Telekinetic Projectile": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 0}],
+    Classes: [{ class: Class.Mystic, level: 0 }],
     SpellListDescription:
       "Telekinetically hurl an object dealing 1d6 damage to the target and object.",
     Duration: "Instantaneous",
@@ -3475,7 +3625,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Telepathic Bond": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 4}],
+    Classes: [{ class: Class.Mystic, level: 4 }],
     SpellListDescription: "Link allows allies to communicate.",
     Duration: "(CASTERLEVEL*10) minutes (D)",
     Level: 4,
@@ -3492,7 +3642,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Telepathic Jaunt": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 6}],
+    Classes: [{ class: Class.Mystic, level: 6 }],
     SpellListDescription:
       "Use your telepathic bond with a creature to teleport to its location.",
     Descriptor: [SpellDescriptor.Teleportation],
@@ -3511,7 +3661,10 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Telepathic Message": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 0},{class: Class.Technomancer, level: 0}],
+    Classes: [
+      { class: Class.Mystic, level: 0 },
+      { class: Class.Technomancer, level: 0 }
+    ],
     SpellListDescription:
       "Send a short telepathic message and hear simple telepathic replies.",
     Descriptor: [
@@ -3532,7 +3685,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   Telepathy: {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 5}],
+    Classes: [{ class: Class.Mystic, level: 5 }],
     SpellListDescription:
       "Communicate mentally with any creatures within 100 feet.",
     Descriptor: [SpellDescriptor.MindAffecting],
@@ -3547,7 +3700,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   Teleport: {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 5}],
+    Classes: [{ class: Class.Technomancer, level: 5 }],
     SpellListDescription: "Instantly teleport as far as 2000 miles.",
     Descriptor: [SpellDescriptor.Teleportation],
     Duration: "Instantaneous",
@@ -3565,7 +3718,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   Terraform: {
     CastingTime: "1 hour",
-    Classes: [{class: Class.Technomancer, level: 6}],
+    Classes: [{ class: Class.Technomancer, level: 6 }],
     SpellListDescription: "Alter terrain and climate.",
     Duration: "(CASTERLEVEL) days; see text",
     Level: 6,
@@ -3581,7 +3734,10 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Token Spell": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 0},{class: Class.Technomancer, level: 0}],
+    Classes: [
+      { class: Class.Mystic, level: 0 },
+      { class: Class.Technomancer, level: 0 }
+    ],
     SpellListDescription: "Perform simple magical effects.",
     Duration: "1 hour",
     Level: 0,
@@ -3597,7 +3753,10 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   Tongues: {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 3},{class: Class.Technomancer, level: 3}],
+    Classes: [
+      { class: Class.Mystic, level: 3 },
+      { class: Class.Technomancer, level: 3 }
+    ],
     SpellListDescription: "Target can speak and understand any language.",
     Duration: "(CASTERLEVEL*10) minutes",
     Level: 3,
@@ -3613,7 +3772,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Transfer Charge": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 0}],
+    Classes: [{ class: Class.Technomancer, level: 0 }],
     SpellListDescription:
       "Move charges from one power source to another source of the same type.",
     Duration: "Instantaneous",
@@ -3630,7 +3789,10 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "True Seeing": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 6},{class: Class.Technomancer, level: 6}],
+    Classes: [
+      { class: Class.Mystic, level: 6 },
+      { class: Class.Technomancer, level: 6 }
+    ],
     SpellListDescription: "Target can see things as they really are.",
     Duration: "(CASTERLEVEL) minutes",
     Level: 6,
@@ -3646,7 +3808,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Unseen Servant": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 1}],
+    Classes: [{ class: Class.Technomancer, level: 1 }],
     SpellListDescription: "Invisible force obeys your commands.",
     Descriptor: [SpellDescriptor.Creation],
     Duration: "(CASTERLEVEL) hours",
@@ -3663,7 +3825,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Unwilling Guardian": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 5}],
+    Classes: [{ class: Class.Technomancer, level: 5 }],
     SpellListDescription: "Charm a target into protecting you during combat.",
     Descriptor: [SpellDescriptor.Compulsion, SpellDescriptor.MindAffecting],
     Duration: "(CASTERLEVEL) rounds (D)",
@@ -3680,7 +3842,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   Veil: {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 6}],
+    Classes: [{ class: Class.Technomancer, level: 6 }],
     SpellListDescription: "Change appearance of a group of creatures.",
     Duration: "Concentration + (CASTERLEVEL) hours (D)",
     Level: 6,
@@ -3697,7 +3859,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   Vision: {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 6}],
+    Classes: [{ class: Class.Mystic, level: 6 }],
     SpellListDescription: "Answer a question about a person place or object.",
     Duration: "See text",
     Level: 6,
@@ -3710,7 +3872,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Wall of Fire": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 4}],
+    Classes: [{ class: Class.Technomancer, level: 4 }],
     SpellListDescription:
       "Blazing curtain deals 2d6 fire damage out to 10 feet and 1d6 fire damage out to 20 feet; passing through the wall deals 5d6 fire damage.",
     Descriptor: [SpellDescriptor.Fire],
@@ -3729,7 +3891,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Wall of Force": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 5}],
+    Classes: [{ class: Class.Technomancer, level: 5 }],
     SpellListDescription: "Invisible wall is difficult to destroy.",
     Descriptor: [SpellDescriptor.Force],
     Duration: "(CASTERLEVEL) rounds (D)",
@@ -3746,7 +3908,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Wall of Steel": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer, level: 6}],
+    Classes: [{ class: Class.Technomancer, level: 6 }],
     SpellListDescription:
       "Wall has 45 Hit Points per inch of thickness and hardness 15.",
     Descriptor: [SpellDescriptor.Creation],
@@ -3765,7 +3927,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Waves of Fatigue": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 5}],
+    Classes: [{ class: Class.Mystic, level: 5 }],
     SpellListDescription: "Several targets become fatigued.",
     Duration: "Instantaneous",
     Level: 5,
@@ -3781,7 +3943,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   Wish: {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Technomancer}],
+    Classes: [{ class: Class.Technomancer }],
     SpellListDescription: "Alters reality (within limits).",
     Duration: "See text",
     Description:
@@ -3796,7 +3958,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Wisp Ally": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 1}],
+    Classes: [{ class: Class.Mystic, level: 1 }],
     SpellListDescription:
       "Create wisp of energy that shines light and distracts an enemy.",
     Descriptor: [SpellDescriptor.Creation],
@@ -3814,7 +3976,7 @@ const spells: { [key: string]: SpellDefinition } = {
   },
   "Zone of Truth": {
     CastingTime: "1 standard action",
-    Classes: [{class: Class.Mystic, level: 2}],
+    Classes: [{ class: Class.Mystic, level: 2 }],
     SpellListDescription: "Creatures within range can't lie.",
     Descriptor: [SpellDescriptor.Compulsion, SpellDescriptor.MindAffecting],
     Duration: "(CASTERLEVEL) minutes",
