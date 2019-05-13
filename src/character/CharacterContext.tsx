@@ -96,6 +96,8 @@ export interface Character {
   weapons: OwnedWeapon[];
   equipment: Equipment[];
   spells: KnownSpells;
+  money: number;
+  experience: number;
 }
 
 interface CharacterWithCreated extends Character {
@@ -144,6 +146,8 @@ interface CharacterUpdaters {
   setWeapons: React.Dispatch<React.SetStateAction<OwnedWeapon[]>>;
   setEquipment: React.Dispatch<React.SetStateAction<Equipment[]>>;
   setSpells: React.Dispatch<React.SetStateAction<KnownSpells>>;
+  setMoney: React.Dispatch<React.SetStateAction<number>>;
+  setExperience: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const initialAbilityLevels: AbilityLevels = mergeDeep(
@@ -274,6 +278,9 @@ const initialSpells: KnownSpells = persistedCharacter.spells || [
   }
 ];
 
+const initialMoney = persistedCharacter.money || 500;
+const initialExperience = persistedCharacter.experience || 0;
+
 const initialCharacter: CharacterWithCreated = {
   abilityLevels: initialAbilityLevels,
   skills: initialSkills,
@@ -287,7 +294,9 @@ const initialCharacter: CharacterWithCreated = {
   armor: initialArmor,
   weapons: initialWeapons,
   equipment: initialEquipment,
-  spells: initialSpells
+  spells: initialSpells,
+  money: initialMoney,
+  experience: initialExperience
 };
 
 const initialContext: [CharacterWithCreated, CharacterUpdaters] = [
@@ -305,7 +314,9 @@ const initialContext: [CharacterWithCreated, CharacterUpdaters] = [
     setArmor: () => {},
     setWeapons: () => {},
     setEquipment: () => {},
-    setSpells: () => {}
+    setSpells: () => {},
+    setMoney: () => {},
+    setExperience: () => {}
   }
 ];
 
@@ -329,6 +340,8 @@ const CharacterProvider: React.FC<React.Attributes> = ({ children }) => {
   const [weapons, setWeapons] = useState(initialWeapons);
   const [equipment, setEquipment] = useState(initialEquipment);
   const [spells, setSpells] = useState(initialSpells);
+  const [money, setMoney] = useState(initialMoney);
+  const [experience, setExperience] = useState(initialExperience);
 
   const characterState = [
     abilityLevels,
@@ -342,7 +355,9 @@ const CharacterProvider: React.FC<React.Attributes> = ({ children }) => {
     armor,
     weapons,
     equipment,
-    spells
+    spells,
+    money,
+    experience
   ];
   const character = {
     abilityLevels,
@@ -356,7 +371,9 @@ const CharacterProvider: React.FC<React.Attributes> = ({ children }) => {
     armor,
     weapons,
     equipment,
-    spells
+    spells,
+    money,
+    experience
   };
 
   useEffect(() => {
@@ -382,7 +399,9 @@ const CharacterProvider: React.FC<React.Attributes> = ({ children }) => {
           setArmor,
           setWeapons,
           setEquipment,
-          setSpells
+          setSpells,
+          setMoney,
+          setExperience
         }
       ]}
     >
