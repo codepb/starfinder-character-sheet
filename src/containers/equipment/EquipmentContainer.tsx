@@ -19,6 +19,10 @@ import useArmor from "../../character/useArmor";
 import { sendAlert, closeAlert } from "../../components/layout/Alert";
 import { CSSProperties } from "@material-ui/core/styles/withStyles";
 import AddEquipmentContainer from "./AddEquipmentContainer";
+import DisplayValue from "../../components/layout/DisplayValue";
+import useMoney from "../../character/useMoney";
+import AddMoneyContainer from "./AddMoneyContainer";
+import DeductMoneyContainer from "./DeductMoneyContainer";
 
 type Classes = "addButton";
 
@@ -43,6 +47,7 @@ const EquipmentContainer: React.FC<{ classes: Record<Classes, string> }> = ({
   } = useEquipment();
   const { weapons } = useWeapons();
   const { armor } = useArmor();
+  const { money, debit, credit } = useMoney();
 
   return (
     <>
@@ -74,6 +79,21 @@ const EquipmentContainer: React.FC<{ classes: Record<Classes, string> }> = ({
           </Typography>
         ) : null}
       </Typography>
+      <DisplayValue label="Money">{money}</DisplayValue>
+      <div>
+        <Button
+          onClick={() =>
+            sendAlert(<DeductMoneyContainer onSubmit={closeAlert} />)
+          }
+        >
+          Debit
+        </Button>
+        <Button
+          onClick={() => sendAlert(<AddMoneyContainer onSubmit={closeAlert} />)}
+        >
+          Credit
+        </Button>
+      </div>
       <Typography variant="h6">Equipment</Typography>
       <Table>
         <TableHead>
@@ -146,6 +166,7 @@ const EquipmentContainer: React.FC<{ classes: Record<Classes, string> }> = ({
           ))}
         </TableBody>
       </Table>
+
       <Fab
         className={classes.addButton}
         color="primary"

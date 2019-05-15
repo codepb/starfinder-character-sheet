@@ -32,7 +32,9 @@ enum Page {
 }
 
 const tabs = [
-  <DisplayCharacterDetails />,
+  (setPage: React.Dispatch<React.SetStateAction<Page>>) => (
+    <DisplayCharacterDetails onAddLevel={() => setPage(Page.AddLevel)} />
+  ),
   <Container>
     <Typography variant="h6">Ability Scores</Typography>
     <DisplayAbilityScoresContainer />
@@ -125,7 +127,7 @@ const CharacterDisplayContainer: React.FC = () => {
           .map(([characterClass, level]) => `${characterClass}(${level})`)
           .join("/")}
       </Typography>
-      <Button onClick={() => setPage(Page.AddLevel)}>Add Level</Button>
+
       <AppBar position="static" color="default">
         <Tabs
           value={tab}
@@ -146,7 +148,11 @@ const CharacterDisplayContainer: React.FC = () => {
           <Tab label="Notes" />
         </Tabs>
       </AppBar>
-      {tabs[tab]}
+      {typeof tabs[tab] === "function"
+        ? (tabs[tab] as ((
+            setPage: React.Dispatch<React.SetStateAction<Page>>
+          ) => JSX.Element))(setPage)
+        : tabs[tab]}
     </>
   );
 };

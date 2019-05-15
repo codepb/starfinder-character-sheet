@@ -183,7 +183,9 @@ const initalBasicStats: BasicStats = mergeDeep(
   {
     race: Race.ANDROID,
     theme: Theme.THEMELESS,
-    classLevels: { [Class.Envoy]: 1 }
+    classLevels: (persistedCharacter &&
+      persistedCharacter.basicStats &&
+      persistedCharacter.basicStats.classLevels) || { [Class.Envoy]: 1 }
   },
   persistedCharacter.basicStats
 );

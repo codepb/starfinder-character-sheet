@@ -7,7 +7,6 @@ import HomeWorldSelection from "../../components/characterDetails/HomeWorldSelec
 import LanguagesInput from "../../components/characterDetails/LanguagesInput";
 import NameInput from "../../components/characterDetails/NameInput";
 import SizeSelection from "../../components/characterDetails/SizeSelection";
-import Container from "../../components/layout/Container";
 
 const CharacterDetails: React.FC = () => {
   const {
