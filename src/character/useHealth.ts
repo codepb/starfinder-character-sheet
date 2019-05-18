@@ -9,14 +9,14 @@ import {
 import CharacterContext, { HealthAndResolve } from "./CharacterContext";
 import { useContext } from "react";
 
-const useHealth = (): {
-  max: HealthAndResolve;
-  damage: HealthAndResolve;
+const getResolveRequiredToStabilize = (maxResolve: number) => {
+  const quarterMax = Math.floor(maxResolve / 4);
+  const minToRemove = Math.max(quarterMax, 1);
+  const totalToRemove = Math.min(minToRemove, 3);
+  return totalToRemove;
+};
 
-  addDamage(amount: number): void;
-  restoreStamina(amount: number): void;
-  restoreHealth(amount: number): void;
-} => {
+const useHealth = () => {
   const [{ damage }, { setDamage }] = useContext(CharacterContext);
   const { basicStats } = useBasicStats();
   const { abilityModifiers } = useAbilityScores();
@@ -30,12 +30,13 @@ const useHealth = (): {
     healthAndStamina.stamina +
     (abilityModifiers.constitution || 0) * totalLevels;
   const maxHealth = healthAndStamina.hp + race.hp;
+  const max = {
+    stamina: maxStamina,
+    health: maxHealth,
+    resolve: 1 + keyAbilityScore
+  };
   return {
-    max: {
-      stamina: maxStamina,
-      health: maxHealth,
-      resolve: 1 + keyAbilityScore
-    },
+    max,
     damage,
     addDamage: (amount: number) => {
       setDamage(previous => {
@@ -60,11 +61,63 @@ const useHealth = (): {
         health: previous.health - amount
       }));
     },
+    spendResolve: (amount: number) => {
+      setDamage(previous => ({
+        ...previous,
+        resolve: previous.resolve + amount
+      }));
+    },
     restoreStamina: (amount: number) => {
       setDamage(previous => ({
         ...previous,
         stamina: previous.stamina - amount
       }));
+    },
+    tenMinuteRest: () => {
+      setDamage(previous => ({
+        ...previous,
+        stamina: 0,
+        resolve: previous.resolve + 1
+      }));
+    },
+    overnightRest: () => {
+      setDamage(previous => ({
+        ...previous,
+        stamina: 0,
+        resolve: 0,
+        health: Math.max(0, previous.health - totalLevels)
+      }));
+    },
+    twentyFourHourRest: () => {
+      setDamage(previous => ({
+        ...previous,
+        stamina: 0,
+        resolve: 0,
+        health: Math.max(0, previous.health - 2 * totalLevels)
+      }));
+    },
+    canStabilize:
+      damage.health >= max.health &&
+      damage.resolve + getResolveRequiredToStabilize(max.resolve) <=
+        max.resolve,
+    stabilize: () => {
+      setDamage(previous => {
+        return {
+          ...previous,
+          resolve: previous.resolve + getResolveRequiredToStabilize(max.resolve)
+        };
+      });
+    },
+    canStayInFight:
+      damage.health >= max.health && damage.resolve + 1 <= max.resolve,
+    stayInFight: () => {
+      setDamage(previous => {
+        return {
+          ...previous,
+          health: previous.health - 1,
+          resolve: previous.resolve + 1
+        };
+      });
     }
   };
 };

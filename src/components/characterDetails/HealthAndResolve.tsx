@@ -11,10 +11,17 @@ interface HealthAndResolveProps {
   maxHealth: number;
   maxResolve: number;
   damage: HealthAndResolveType;
+  canStabilize: boolean;
+  canStayInFight: boolean;
 
   addDamage(amount: number): void;
+  tenMinuteRest(): void;
+  overnightRest(): void;
+  twentyFourHourRest(): void;
   restoreStamina(amount: number): void;
   restoreHealth(amount: number): void;
+  stabilize(): void;
+  stayInFight(): void;
 }
 
 const AmountAlert: React.FC<{
@@ -49,7 +56,14 @@ const HealthAndResolve: FC<HealthAndResolveProps> = ({
   damage,
   addDamage,
   restoreStamina,
-  restoreHealth
+  restoreHealth,
+  tenMinuteRest,
+  overnightRest,
+  twentyFourHourRest,
+  canStabilize,
+  stabilize,
+  stayInFight,
+  canStayInFight
 }) => {
   return (
     <>
@@ -77,6 +91,15 @@ const HealthAndResolve: FC<HealthAndResolveProps> = ({
         }
       >
         Add Damage
+      </Button>
+      <Button color="primary" onClick={tenMinuteRest}>
+        10 Minute Rest
+      </Button>
+      <Button color="primary" onClick={overnightRest}>
+        Overnight Rest
+      </Button>
+      <Button color="primary" onClick={twentyFourHourRest}>
+        24 Hour Rest
       </Button>
       <Button
         color="primary"
@@ -110,6 +133,16 @@ const HealthAndResolve: FC<HealthAndResolveProps> = ({
       >
         Restore Health
       </Button>
+      {canStabilize && (
+        <Button color="secondary" onClick={stabilize}>
+          Stabilize
+        </Button>
+      )}
+      {canStayInFight && (
+        <Button color="secondary" onClick={stayInFight}>
+          Stay in the Fight
+        </Button>
+      )}
     </>
   );
 };
