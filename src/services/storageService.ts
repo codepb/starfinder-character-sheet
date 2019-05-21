@@ -46,7 +46,7 @@ const downloadCharacter = (characterState: Character) => {
       characterState.details.name
         ? characterState.details.name
         : "StarfinderCharacter"
-    }.scs`
+    }.sfsheet`
   );
 };
 

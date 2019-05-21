@@ -23,6 +23,7 @@ import ArmorContainer from "../defense/ArmorContainer";
 import WeaponsContainer from "../attack/WeaponsContainer";
 import EquipmentContainer from "../equipment/EquipmentContainer";
 import SpellsContainer from "../spells/SpellsContainer";
+import ActionsContainer from "./ActionsContainer";
 
 enum Page {
   Sheet,
@@ -67,7 +68,10 @@ const tabs = [
   <Container>
     <FeatsContainer />
   </Container>,
-  <NotesContainer />
+  <NotesContainer />,
+  <Container>
+    <ActionsContainer />
+  </Container>
 ];
 
 const CharacterDisplayContainer: React.FC = () => {
@@ -146,6 +150,7 @@ const CharacterDisplayContainer: React.FC = () => {
           <Tab label="Equipment" />
           <Tab label="Feats" />
           <Tab label="Notes" />
+          <Tab label="Actions" />
         </Tabs>
       </AppBar>
       {typeof tabs[tab] === "function"
