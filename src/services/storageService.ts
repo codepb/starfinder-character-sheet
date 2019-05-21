@@ -1,4 +1,6 @@
 import { Character } from "../character/CharacterContext";
+import lzString from "lz-string";
+import { saveAs } from "file-saver";
 
 interface CharacterStorageVersion {
   version: string;
@@ -34,4 +36,34 @@ const processVersion = (characterStorageVersion: CharacterStorageVersion) => {
   throw new Error("unknown version");
 };
 
-export { save, load };
+const downloadCharacter = (characterState: Character) => {
+  const serializedState = JSON.stringify({ ...characterState, version });
+  const compressed = lzString.compress(serializedState);
+  const blob = new Blob([compressed], { type: "text/plain;charset=utf-8" });
+  saveAs(
+    blob,
+    `${
+      characterState.details.name
+        ? characterState.details.name
+        : "StarfinderCharacter"
+    }.scs`
+  );
+};
+
+const uploadChracter = (file: File): Promise<Character> => {
+  return new Promise(resolve => {
+    const reader = new FileReader();
+    function processFileContents() {
+      const fileContents = reader.result as string;
+      const uncompressed = lzString.decompress(fileContents);
+      const deserialized = JSON.parse(uncompressed) as CharacterStorageVersion;
+      const character = processVersion(deserialized);
+      resolve(character);
+    }
+
+    reader.onloadend = processFileContents;
+    reader.readAsText(file);
+  });
+};
+
+export { save, load, downloadCharacter, uploadChracter };
