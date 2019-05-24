@@ -12,6 +12,8 @@ const version = "1";
 
 const key = "character";
 
+const FILE_EXTENSION = "sfsheet";
+
 const save = (characterState: Character) => {
   localStorage.setItem(key, JSON.stringify({ ...characterState, version }));
 };
@@ -38,15 +40,15 @@ const processVersion = (characterStorageVersion: CharacterStorageVersion) => {
 
 const downloadCharacter = (characterState: Character) => {
   const serializedState = JSON.stringify({ ...characterState, version });
-  const compressed = lzString.compress(serializedState);
-  const blob = new Blob([compressed], { type: "text/plain;charset=utf-8" });
+  const compressed = lzString.compressToUTF16(serializedState);
+  const blob = new Blob([compressed], { type: "text/plain;charset=utf-16" });
   saveAs(
     blob,
     `${
       characterState.details.name
         ? characterState.details.name
         : "StarfinderCharacter"
-    }.sfsheet`
+    }.${FILE_EXTENSION}`
   );
 };
 
@@ -55,7 +57,7 @@ const uploadChracter = (file: File): Promise<Character> => {
     const reader = new FileReader();
     function processFileContents() {
       const fileContents = reader.result as string;
-      const uncompressed = lzString.decompress(fileContents);
+      const uncompressed = lzString.decompressFromUTF16(fileContents);
       const deserialized = JSON.parse(uncompressed) as CharacterStorageVersion;
       const character = processVersion(deserialized);
       resolve(character);
@@ -66,4 +68,4 @@ const uploadChracter = (file: File): Promise<Character> => {
   });
 };
 
-export { save, load, downloadCharacter, uploadChracter };
+export { save, load, downloadCharacter, uploadChracter, FILE_EXTENSION };

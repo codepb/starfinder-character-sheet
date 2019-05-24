@@ -20,6 +20,7 @@ import Container from "../../components/layout/Container";
 import StepperButtons from "../../components/characterCreation/StepperButtons";
 import FeatsContainer from "../characterDetails/FeatsContainer";
 import FeatSelection from "../feats/FeatSelection";
+import UploadButton from "./UploadButton";
 
 enum Page {
   theme = 0,
@@ -41,7 +42,10 @@ const CharacterSheetContainer: React.FC = () => {
   switch (page) {
     case Page.start:
       return (
-        <Button onClick={() => setPage(Page.theme)}>Create Character</Button>
+        <>
+          <Button onClick={() => setPage(Page.theme)}>Create Character</Button>
+          <UploadButton />
+        </>
       );
     case Page.sheet:
       return (

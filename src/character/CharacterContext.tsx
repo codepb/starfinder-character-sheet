@@ -147,6 +147,7 @@ interface CharacterUpdaters {
   setSpells: React.Dispatch<React.SetStateAction<KnownSpells>>;
   setMoney: React.Dispatch<React.SetStateAction<number>>;
   setExperience: React.Dispatch<React.SetStateAction<number>>;
+  setCharacter: (Character) => void;
 }
 
 const initialAbilityLevels: AbilityLevels = mergeDeep(
@@ -317,7 +318,8 @@ const initialContext: [CharacterWithCreated, CharacterUpdaters] = [
     setEquipment: () => {},
     setSpells: () => {},
     setMoney: () => {},
-    setExperience: () => {}
+    setExperience: () => {},
+    setCharacter: () => {}
   }
 ];
 
@@ -377,6 +379,23 @@ const CharacterProvider: React.FC<React.Attributes> = ({ children }) => {
     experience
   };
 
+  const setCharacter = (character: Character) => {
+    setAbilityLevels(character.abilityLevels);
+    setSkills(character.skills);
+    setBasicStats(character.basicStats);
+    setDetails(character.details);
+    setNotes(character.notes);
+    setMisc(character.misc);
+    setDamage(character.damage);
+    setFeats(character.feats);
+    setArmor(character.armor);
+    setWeapons(character.weapons);
+    setEquipment(character.equipment);
+    setSpells(character.spells);
+    setMoney(character.money);
+    setExperience(character.experience);
+  };
+
   useEffect(() => {
     save(character);
   }, characterState);
@@ -402,7 +421,8 @@ const CharacterProvider: React.FC<React.Attributes> = ({ children }) => {
           setEquipment,
           setSpells,
           setMoney,
-          setExperience
+          setExperience,
+          setCharacter
         }
       ]}
     >
